@@ -55,7 +55,7 @@ class Controller_User extends Controller_Template {
         $this->template->right_content = View::factory('user/signup.tpl')
             ->bind('error_1', $error_1)->bind('error_2', $error_2);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
-             
+		
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
 			try{
@@ -63,7 +63,7 @@ class Controller_User extends Controller_Template {
 				$json_items['name'] = Arr::get($_POST,'username');	
 				$json_items['password'] = Arr::get($_POST,'userpassword');
 				$json_items['email'] = Arr::get($_POST,'useremail');	
-				$json_items['language'] = Arr::get($_POST,'language');				 	 
+				$json_items['language'] = mb_strtoupper(i18n::lang());				 	 
 				//send to api
 				$data_string = json_encode($json_items);   
 				$results =Model_Contributors::create_contributor($data_string);
@@ -88,7 +88,6 @@ class Controller_User extends Controller_Template {
 						$error_2 = $json_result['email'][0]; 
 					endif;
 				}
-			
 				//@todo force login to next step
 			}
 			catch(Exception $e) {

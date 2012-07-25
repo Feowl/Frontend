@@ -17,33 +17,40 @@
 	{/if}
 	
 	<div class="control-group light-border">
-	<label class="control-label">{__ t='Name'}</label>
+	<label class="control-label">{__ t='Name'}*</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_name" name="username" rel="popover" data-content="What's your first and last name." data-original-title="Full Name">
+	<input type="text" class="input-xlarge" id="user_name" name="username" rel="popover" >
 	</div>
 	</div>
 	
 	<div class="control-group light-border">
-	<label class="control-label" for="input01">{__ t='Email'}</label>
+	<label class="control-label" for="input01">{__ t='E-mail'}*</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="useremail" rel="popover" data-content="What's your email address?" data-original-title="Email">
+	<input type="text" class="input-xlarge" id="user_email" name="useremail" rel="popover" >
 	</div>
 	</div>
 
 	<div class="control-group light-border">
-	<label class="control-label">{__ t='Password'}</label>
+	<label class="control-label">{__ t='Password'}*</label>
 	<div class="controls">
-	<input type="password" class="input-xlarge" id="pwd" name="userpassword" rel="popover" data-content="Enter a desired password" data-original-title="Password">
+	<input type="password" class="input-xlarge" id="pwd" name="userpassword" rel="popover" >
+	</div>
+	</div>
+	
+	<div class="control-group light-border">
+	<label class="control-label">{__ t='GSM Phone Number'}</label>
+	<div class="controls">
+	<input type="text" class="input-xlarge" id="pwd" name="phonenumber" rel="popover" >
 	</div>
 	</div>
 	
 	<div class="control-group">
-	<label class="control-label">{__ t='Language'}</label>
+	<label class="control-label opt">{__ t='How often do you want to contribute ?'}</label>
 	<div class="controls">
 	<select id="language" name="language">
-	<option value="EN">{__ t='English'}</option>
-	<option value="FR">{__ t='French'}</option>
-	<option value="PI">{__ t='Pidgin'}</option>
+		<option value="1">{__ t='Daily'}</option>
+		<option value="7">{__ t='Weekly'}</option>
+		<option value="31">{__ t='Monthly'}</option>
 	</select>
 	</div>
 	</div>
