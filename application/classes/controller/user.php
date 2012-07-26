@@ -56,13 +56,6 @@ class Controller_User extends Controller_Template {
             ->bind('error_1', $error_1)->bind('error_2', $error_2);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
 
-		//$device['category'] = 'Phone';
-		//$device['phone_number'] = "23775598106";
-		//$device['contributor'] = '3';
-		//$results = Model_Devices::create_device(json_encode($device));
-		//$r = json_decode($results['json_result'], true);
-		//echo Debug::vars($results);
-		
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
 			try{
@@ -75,7 +68,7 @@ class Controller_User extends Controller_Template {
 	
 				//send to api
 				$data_string = json_encode($json_items);   
-				$results = Model_Contributors::create_contributor($data_string);
+				$results = Model_Contributors::post_contributor($data_string);
                  
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
@@ -87,13 +80,13 @@ class Controller_User extends Controller_Template {
 					//get the contributor ID
 					$results = Model_Contributors::get_contributors('', "email=$email");
 					$r = json_decode($results['json_result'], true);
-					$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'];
-					//$number_status = $phone_number['status'];
-					//if($phone_number != ""):
-						$device_results = Model_Devices::create_device(json_encode($device));
-						print_r($device_results); exit;
-					//endif;
-
+					$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'].'/';
+					$device_json = json_encode($device);  
+					$device_json = str_replace("\\", "", $device_json);
+					$results = Model_Devices::post_device($device_json);
+					
+					//print_r($results); echo "<br />"; print_r($device_json); exit;
+					
 					$notice = "Thanks for signing up! We would sent you an email to
 					verity your account";
 					//set notice in session

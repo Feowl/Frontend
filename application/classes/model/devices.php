@@ -11,7 +11,7 @@
 class Model_Devices extends Model{
 
 	//Add a new device to a contributor
-	public static function create_device($data_string){
+	public static function post_device($data_string){
 		 return API::send_request(Kohana::config('api.post_device'),$data_string,"POST");
 	}
 	

@@ -11,7 +11,7 @@
 class Model_Contributors extends Model{
 
 	//Add a new contributor to the platform (works if the user that issues this call has the right permission)
-	public static function create_contributor($data_string){
+	public static function post_contributor($data_string){
         return API::send_request(Kohana::config('api.post_contributor'),$data_string,"POST");
 	}
 	
