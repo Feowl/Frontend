@@ -40,14 +40,14 @@
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='GSM Phone Number'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="pwd" name="phonenumber" rel="popover" >
+	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" rel="popover" >
 	</div>
 	</div>
 	
 	<div class="control-group">
 	<label class="control-label opt">{__ t='How often do you want to contribute ?'}</label>
 	<div class="controls">
-	<select id="language" name="language">
+	<select id="distribution" name="distribution">
 		<option value="1">{__ t='Daily'}</option>
 		<option value="7">{__ t='Weekly'}</option>
 		<option value="31">{__ t='Monthly'}</option>

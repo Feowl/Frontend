@@ -5,7 +5,7 @@
 RewriteEngine On
 
 # Installation directory
-RewriteBase /Feowl
+RewriteBase /Feowl/Frontend
 
 # Protect hidden files from being viewed
 <Files .*>
