@@ -37,6 +37,7 @@ class Controller_Contribute extends Controller_Template {
 			//check for ajax request
 		if( HTTP_Request::GET == $this->request->method() AND $this->request->is_ajax() )
 		{
+		print_r($_GET);exit;
 			//format happened at
 			$hour = Arr::get($_GET,'c1');
 			$min  = Arr::get($_GET,'c1_1');
