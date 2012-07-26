@@ -20,11 +20,15 @@ class API {
 	 * @param   string action[post, get, put, delete]
 	 * @return  array results from feowl
 	 */
-    public static function send_request($api_link,$data,$action="POST")
+    public static function send_request($api_link, $data, $action="POST", $filter=Null)
 	{
-	    //action
-		$data_to_feowl = 'username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
-		
+	   // print_r($filter); exit;
+		//action
+		if($filter){
+			$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
+		}else{
+			$data_to_feowl = 'username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
+		}
 		$to_feowl = curl_init($api_link.$data_to_feowl);
 		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);                                                                     
 		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);                                                                  

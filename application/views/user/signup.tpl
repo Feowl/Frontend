@@ -56,9 +56,9 @@
 	</div>
 	
 	<div class="control-group">
-	<div class="controls">
-	<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value=' Sign-up and Contribute! '/>
-	</div> 
+	<center>
+		<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value=' Sign-up and Contribute! '/>
+	</center>
 	</div>  
 	
 </form> 

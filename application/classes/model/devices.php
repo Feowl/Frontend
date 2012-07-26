@@ -10,18 +10,14 @@
  */
 class Model_Devices extends Model{
 
-	//Returns all devices
-	public static function get_devices(){
-	   
+	//Add a new device to a contributor
+	public static function create_device($data_string){
+		 return API::send_request(Kohana::config('api.post_device'),$data_string,"POST");
 	}
 	
 	//Returns a single device identified by its id
 	public static function get_device(){
 		
-	}
-	//Add a new device
-	public static function create_device(){
-
 	}
 	
 	//Update the information related to an existing device
@@ -33,7 +29,5 @@ class Model_Devices extends Model{
 	public static function delete_device(){
 		
 	}	
-	
-	
 
 } // End Devices Model

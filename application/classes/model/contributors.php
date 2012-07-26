@@ -10,9 +10,14 @@
  */
 class Model_Contributors extends Model{
 
+	//Add a new contributor to the platform (works if the user that issues this call has the right permission)
+	public static function create_contributor($data_string){
+        return API::send_request(Kohana::config('api.post_contributor'),$data_string,"POST");
+	}
+	
 	//Returns all contributor if the user that issue this call has the right permission has the right
-	public static function get_contributors(){
-	      
+	public static function get_contributors($data_string, $filter=NULL){
+	    return API::send_request(Kohana::config('api.post_contributor'), $data_string, "GET", $filter); 
 	}
 	
 	/*
@@ -21,10 +26,6 @@ class Model_Contributors extends Model{
 	 */
 	public static function get_contributor(){
 		
-	}
-	//Add a new contributor to the platform (works if the user that issues this call has the right permission)
-	public static function create_contributor($data_string){
-           return API::send_request(Kohana::config('api.post_contributor'),$data_string,"POST");
 	}
 	
 	//Update the information related to an existing contributor(works if the user that issues this call has the right permission)
