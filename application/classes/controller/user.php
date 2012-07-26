@@ -56,12 +56,12 @@ class Controller_User extends Controller_Template {
             ->bind('error_1', $error_1)->bind('error_2', $error_2);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
 
-		$device['category'] = 'Phone';
-		$device['phone_number'] = "23775598106";
+		//$device['category'] = 'Phone';
+		//$device['phone_number'] = "23775598106";
 		//$device['contributor'] = '3';
-		$results = Model_Devices::create_device(json_encode($device));
+		//$results = Model_Devices::create_device(json_encode($device));
 		//$r = json_decode($results['json_result'], true);
-		echo Debug::vars($results);
+		//echo Debug::vars($results);
 		
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
@@ -69,7 +69,7 @@ class Controller_User extends Controller_Template {
 				//build json items
 				$json_items['name'] = Arr::get($_POST,'username');	
 				$json_items['password'] = Arr::get($_POST,'userpassword');
-				$json_items['email'] = Arr::get($_POST,'useremail');	
+				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
 				$json_items['language'] = mb_strtoupper(i18n::lang());	
 				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
 	
@@ -85,20 +85,15 @@ class Controller_User extends Controller_Template {
 					$device['category'] = 'Phone';
 					$device['phone_number'] = $phone_number['number'];
 					//get the contributor ID
-					$results = Model_Contributors::get_contributors('', $json_items['email']);
+					$results = Model_Contributors::get_contributors('', "email=$email");
 					$r = json_decode($results['json_result'], true);
 					$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'];
 					//$number_status = $phone_number['status'];
-					
-					print_r($device); echo "<br />";
-				
-					$device_results = Model_Devices::create_device(json_encode($device));
-					//$http_status_device = json_decode($device_results['http_status']);
-					//$json_result_device = json_decode($device_results['json_result'], true); 
-					
-					
-					print_r($device_results); exit;
-					
+					//if($phone_number != ""):
+						$device_results = Model_Devices::create_device(json_encode($device));
+						print_r($device_results); exit;
+					//endif;
+
 					$notice = "Thanks for signing up! We would sent you an email to
 					verity your account";
 					//set notice in session
