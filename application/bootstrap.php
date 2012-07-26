@@ -79,7 +79,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/Feowl/Frontend',
+	'base_url'   => '/Feowl',
 	'index_file' =>'',
 ));
 
