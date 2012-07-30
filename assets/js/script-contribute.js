@@ -12,28 +12,36 @@ $(document).ready(function() {
 			 $(".contribute1").addClass("current")
 			 $(".contribute1").removeAttr('disabled')
 			 $(".contribute1").change(function(){
+			 $(".success-tick").show()
 			 $(".contribute1-1").removeAttr('disabled')
 			  $(".contribute1").removeClass("current")
 			 $(".contribute1-1").addClass("current")
 			 })
 			  $(".contribute1-1").change(function(){
+			   $(".success-tick1-1").show()
 			  $(".contribute2").removeAttr('disabled')
 			  $(".contribute1-1").removeClass("current")
 			 $(".contribute2").addClass("current")
 			 });
 			  $(".contribute2").change(function(){
+			   $(".success-tick2").show()
 			   $(".contribute3").removeAttr('disabled')
 			  $(".contribute2").removeClass("current")
 			 $(".contribute3").addClass("current")
 			 });
+			 $(".contribute3").change(function(){
+			   $(".success-tick3").show()
+			 });
 			 }else if( a=="false"){
-			 //disable all other fields and go to the last step
-			//terminate
+			 //disable all other fields and goto last step
 			$(".contribute1-1, .contribute2, .contribute1").attr('disabled','disabled').empty()
-			  $(".contribute1").removeClass("current")
-			 $(".contribute3").addClass("current")
-				$(".contribute3").removeAttr('disabled')			 
-			 $(".contribute3").addClass("false")	
+			$(".contribute1").removeClass("current")
+			$(".contribute3").addClass("current")
+			$(".contribute3").removeAttr('disabled')			 
+			$(".contribute3").addClass("false")	
+				 $(".contribute3").change(function(){
+			   $(".success-tick3").show()
+			 });
 				}
 
 });
@@ -55,7 +63,7 @@ $(document).ready(function() {
 				$.get(url, {
 			}, 
 			function(data){   		 
-				//append the required notice
+				//return from server
 	           $(".endContainer").show()
 			    $(".endContainer .alert").append(data)
 			})
