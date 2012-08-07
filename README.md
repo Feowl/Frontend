@@ -18,13 +18,14 @@ The Kohana installation <b>must be at the root of your virtual host or domain</b
 Also, you have to allow writing on <em>application/cache</em> and <em>UI/application/logs</em> directories (replace 	&lt;path> by the path of the Feowl directory):
 
 	cd <path>
-	chmod 777 -Rf application/logs UI/application/cache
+	mkdir -p application/logs application/cache
+	chmod 777 -Rf application/logs application/cache
 
 ### API access
 Every Feowl installation must use a unique key for the API. [Do not hesitate to ask for a key!](mailto:contact@feowl.com)
 To setup your key, from the Feowl directory type:
 
-	cp application/config/apiauth.php.template UI/application/config/apiauth.php
+	cp application/config/apiauth.php.template application/config/apiauth.php
 	nano application/config/apiauth.php
 	
 And replace:
