@@ -20,6 +20,11 @@ class Model_Contributors extends Model{
 	    return API::send_request(Kohana::config('api.post_contributor'), $data_string, "GET", $filter); 
 	}
 	
+	//Delete a contributor(works if the user that issues this call has the right permission)
+	public static function delete_contributor($data_string, $contributor_id){
+		 return API::send_request(Kohana::config('api.delete_contributor').$contributor_id."/?", $data_string, "DELETE"); 
+	}	
+	
 	/*
 	 * Returns a single contributor identified by its id 
 	 * (works if the user that issues this call has the right permission)
@@ -32,12 +37,6 @@ class Model_Contributors extends Model{
 	public static function update_contributor(){
 		
 	}
-	
-	//Delete a contributor(works if the user that issues this call has the right permission)
-	public static function delete_contributor(){
-		
-	}	
-	
 	
 
 } // End Contributors Model

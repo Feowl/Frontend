@@ -133,8 +133,8 @@ class Controller_User extends Controller_Template {
             if ($user)
             {
                 Request::current()->redirect('contribute');
-				$this->session->set('alert', print_r($user));
-				Request::current()->redirect('home');
+				//$this->session->set('alert', print_r($user));
+				//Request::current()->redirect('home');
             }
             else
             {
@@ -154,4 +154,22 @@ class Controller_User extends Controller_Template {
         Request::current()->redirect('user/login');
     }
 	
+	public function action_delete(){
+		
+		//print_r($userdata[0]['id']); exit;
+		$this->template->right_content = View::factory('user/delete.tpl');
+		$this->template->left_content = View::factory('user/login_info.tpl');
+		
+		$q = Arr::get($_GET,'q');
+		
+		if($q == "yes"){
+			$model = new Model_Users;
+			//delete user account and return username
+			$model->delete();
+			Request::current()->redirect('home'); 
+		}elseif($q == "no"){
+			Request::current()->redirect('home'); 
+		}
+		
+	}
 }

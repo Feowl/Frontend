@@ -33,5 +33,21 @@ class Model_Users extends Model{
 	public function logout(){
 		return Session::instance()->destroy();
 	}
+	
+	//delete user account
+	public function delete(){
+		$session = Session::instance();
+		$userdata = $session->get('userdata');
+		$contributor_id = $userdata[0]['id'];
+		$username = $userdata[0]['name'];
+		//api request to delete account
+		Model_Contributors::delete_contributor("", $contributor_id);
+		$session->destroy();
+			
+		$notice = $username." your account has been deleted";
+					//set notice in session
+		Session::instance()->set('alert', $notice);
+		return;
+	}
 
 } // End User Model
