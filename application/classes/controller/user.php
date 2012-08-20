@@ -146,8 +146,9 @@ class Controller_User extends Controller_Template {
 	 //logout the user
     public function action_logout()
     {
-        // Log user out
-        Auth::instance()->logout();
+        $model = new Model_Users;
+		// Log user out
+		$model->logout();
          
         // Redirect to login page
         Request::current()->redirect('user/login');

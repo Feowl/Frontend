@@ -9,15 +9,7 @@
  * @copyright   2012
  */
 class Model_Users extends Model{
-
-	//get all users TODO.. return users from the API
-	public static function user($email){
-		Model_Contributors::get_contributors('', "email=$email");
-		$user1 = array('username'=>'test1', 'password'=>'uiuiuiui1', 'email'=>'test1@test.com');
-		$user2 = array('username'=>'test2', 'password'=>'uiuiuiui2', 'email'=>'test2@test.com');
-		return array($user1, $user2);
-	}
-	
+		
 	//login function
 	//Presently using only a valid email to login a user, risky ... 
 	//TODO:: use email and password to login a user
@@ -35,6 +27,11 @@ class Model_Users extends Model{
 		}else{
 			return false;
 		}
+	}
+	
+	//logout a user
+	public function logout(){
+		return Session::instance()->destroy();
 	}
 
 } // End User Model
