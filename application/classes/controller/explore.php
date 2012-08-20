@@ -12,6 +12,18 @@ class Controller_Explore extends Controller_Template {
 
 	public $template = 'template/template.tpl';
 	
+	public function before(){
+		try {
+			$this->session = Session::instance();
+		} catch(ErrorException $e) {
+			session_destroy();
+		}
+		// Execute parent::before first
+		parent::before();
+		// Open session
+		$this->session = Session::instance();
+	}
+	
 	public function action_index() {
 		$this->template->content = View::factory('explore/explore.tpl');
 	}

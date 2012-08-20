@@ -19,10 +19,10 @@ class Model_Users extends Model{
 		$user = json_decode($user_json['json_result'], true);
 		
 		if($user['meta']['total_count'] == true){
-			foreach($user['objects'] as $u):
 				$session = Session::instance();
-				$session->set('user', $user['objects']);
-			endforeach;
+				//print_r($user['objects']); exit;
+				$session->set('userdata', $user['objects']);
+				$session->set('username', $user['objects'][0]['name']);	
 			return true;
 		}else{
 			return false;

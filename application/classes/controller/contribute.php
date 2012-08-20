@@ -16,6 +16,18 @@ class Controller_Contribute extends Controller_Template {
 	public $happened_at;
 	public $has_experienced_outage;
 	
+	public function before(){
+		try {
+			$this->session = Session::instance();
+		} catch(ErrorException $e) {
+			session_destroy();
+		}
+		// Execute parent::before first
+		parent::before();
+		// Open session
+		$this->session = Session::instance();
+	}
+	
 	//Use the after method to load static files
 	public function after()
 	{

@@ -12,16 +12,26 @@
 
         <ul class="nav pull-right">
             <li class="dropdown">
+				{if isset($smarty.session.username)}
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> {__ t='Account'}
+                    <i class="icon-user"></i> 
+						{$smarty.session.username}
                     <b class="caret"></b>
                 </a>
-
-                <ul class="dropdown-menu">                    
-                    <li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
+                <ul class="dropdown-menu"> 
+					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>
                 </ul>
+				{else}
+				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user"></i> {__ t=Account}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu"> 
+						<li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>
+						<li class="divider"></li>
+						<li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
+                </ul>
+				{/if}
             </li>
 
             <li class="dropdown">
