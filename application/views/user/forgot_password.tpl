@@ -1,6 +1,6 @@
 <div class="span6 bg-color">
 <div class="login-form">
-	<form method='post' action="{url::site('user/login')}" class="form-horizontal" id="signup" >            
+	<form method='post' action="{url::site('user/forgot_password')}" class="form-horizontal" id="signup" >            
 	
 	{if isset($message)}
 	<div class="error">
@@ -17,16 +17,10 @@
 	</div>
 	</div>
 
-	<div class="control-group light-border">
-	<label class="control-label">{__ t='Password'}</label>
-	<div class="controls">
-	<input type="password" class="input-xlarge" id="pwd" name="password" >
-	</div>
-	</div>
 	
 	<div class="control-group">
 	<div class="controls">
-	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Login'}'/><a href="{url::site('user/forgot_password')}" class='forgot-password'>{__ t='Forget your password?'}</a>
+	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Reset Password'}'/>
 	</div> 
 	</div>  
 	
