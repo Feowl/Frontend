@@ -43,6 +43,7 @@ return array(
 	'Home' => 'Accueil', // 57
 	'Explore' => 'Explorer', // 58
 	'Contribute' => 'Contribuer', // 59
+	'About' => 'A propos', // 
 
 	// views/home/home.tpl
 	'Legend' => 'Légende', // 12
