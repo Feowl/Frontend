@@ -1,5 +1,5 @@
 <div class="span6 bg-color">
-<div class="signup-form">
+<div class="login-form">
 	<form method='post' action="{url::site('user/login')}" class="form-horizontal" id="signup" >            
 	
 	{if isset($message)}
@@ -26,7 +26,7 @@
 	
 	<div class="control-group">
 	<div class="controls">
-	<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value=' Login '/>
+	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Login'}'/><a href="{url::site('user/forgot_password')}" class='forgot-password'>{__ t='Forget your password?'}</a>
 	</div> 
 	</div>  
 	

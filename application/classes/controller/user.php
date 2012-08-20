@@ -142,6 +142,33 @@ class Controller_User extends Controller_Template {
             }
         }
     }
+	
+	// user forgot password
+    public function action_forgot_password()
+    {
+        $this->template->right_content = View::factory('user/forgot_password.tpl')
+            ->bind('message', $message);
+		$this->template->left_content = View::factory('user/forgot_info.tpl');
+         
+        if (HTTP_Request::POST == $this->request->method())
+        {
+			$email = $this->request->post('email');
+			//Attempt login a user
+			$model = new Model_Users;
+			$user = $model->check_user($email);
+			
+            // If successful, redirect user to login page
+            if ($user)
+            {
+				$this->session->set('alert', print_r($user));
+				Request::current()->redirect('user/login');
+            }
+            else
+            {
+                $message = 'User does not exist.';
+            }
+        }
+    }
      
 	 //logout the user
     public function action_logout()
