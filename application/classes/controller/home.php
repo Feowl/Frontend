@@ -15,7 +15,6 @@ class Controller_Home extends Controller_Template {
 	public function action_index() {
 		//instantiate and render the home view on the template
 		$this->template->content = View::factory('home/home.tpl');
-		//$this->template->alert = "gfdgf"; 
 	}
 	
 	public function after(){

@@ -57,7 +57,9 @@
             <li class="{$active_home|default:''}"><a href="{url::site()}">{__ t='Home'}</a></li>
             <li class="{$active_explore|default:''}"><a href="{url::site('explore')}">{__ t='Explore'}</a></li>
             <li class="{$active_contribute|default:''}"><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
-        </ul>
+            <li class="{$active_about|default:''}"><a href="{url::site('pages/about')}">{__ t='About'}</a></li>
+
+		</ul>
 
     </div>
 
