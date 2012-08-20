@@ -13,7 +13,7 @@
 	<div class="control-group light-border">
 	<label class="control-label" for="input01">{__ t='Email'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="email" rel="popover" data-content="Enter your email address?" data-original-title="Email">
+	<input type="text" class="input-xlarge" id="user_email" name="email" >
 	</div>
 	</div>
 

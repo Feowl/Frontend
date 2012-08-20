@@ -13,14 +13,14 @@
 	<div class="control-group light-border">
 	<label class="control-label" for="input01">{__ t='Email'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="email" rel="popover" data-content="What's your email address?" data-original-title="Email">
+	<input type="text" class="input-xlarge" id="user_email" name="email" >
 	</div>
 	</div>
 
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='Password'}</label>
 	<div class="controls">
-	<input type="password" class="input-xlarge" id="pwd" name="password" rel="popover" data-content="Enter your password" data-original-title="Password">
+	<input type="password" class="input-xlarge" id="pwd" name="password" >
 	</div>
 	</div>
 	
