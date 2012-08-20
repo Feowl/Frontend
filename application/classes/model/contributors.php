@@ -3,9 +3,9 @@
 /**
  * Description @ Contributors Model. Talks with API about contributor resources
  * Contributors are the individuals registered on the platform, they add reports to it
- * @package		wasaCMS
+ * @package		Model
  * @subpackage  Model
- * @author      Wasamundi/Feowl Team
+ * @author      Feowl Team
  * @copyright   2012
  */
 class Model_Contributors extends Model{

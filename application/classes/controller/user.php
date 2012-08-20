@@ -121,10 +121,14 @@ class Controller_User extends Controller_Template {
          
         if (HTTP_Request::POST == $this->request->method())
         {
-		   // Attempt to login user
-            $remember = array_key_exists('remember', $this->request->post());
-            $user = Auth::instance()->login($this->request->post('email'), $this->request->post('password'), $remember);
-
+			$email = $this->request->post('email');
+			$password = $this->request->post('password');
+			//Attempt login a user
+			
+			$user = Session::instance()->get('user');
+			$model = new Model_Users;
+			$user = $model->login($email, $password);
+			
             // If successful, redirect user to contribute page
             if ($user)
             {
