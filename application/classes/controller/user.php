@@ -192,14 +192,22 @@ class Controller_User extends Controller_Template {
 		
 		if($q == "yes"){
 			//sucess notice
-			$notice = $username." your account has been deleted";
+			$notice_success = $username." your account has been deleted";
+			$notice_failure = $username. " oops something went wrong, Please try again";
 			
 			$model = new Model_Users;
 			//delete user account and return username
-			$model->delete();
-			//set notice in session
-			Session::instance()->set('alert', $notice);
+			$delete = $model->delete();
+			
+			if($delete){
+				//set notice in session
+				Session::instance()->set('alert', $notice_success);
+			}else{
+				Session::instance()->set('alert', $notice_failure);
+			}
+			
 			Request::current()->redirect('home'); 
+			
 		}elseif($q == "no"){
 			Request::current()->redirect('home'); 
 		}

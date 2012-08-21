@@ -39,9 +39,27 @@ class Model_Users extends Model{
 		$session = Session::instance();
 		$userdata = $session->get('userdata');
 		$contributor_id = $userdata[0]['id'];
-		$username = $userdata[0]['name'];
+		//$username = $userdata[0]['name'];
 		//api request to delete account
-		Model_Contributors::delete_contributor("", $contributor_id);
+		$json_result = Model_Contributors::delete_contributor("", $contributor_id);
+		$result = json_decode($json_result['http_status'], true);
+		
+		if($result == 204){
+			$session->destroy();
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	//change contributor email
+	public function change_email(){
+		$session = Session::instance();
+		$userdata = $session->get('userdata');
+		$contributor_id = $userdata[0]['id'];
+		
+		//api request to delete account
+		Model_Contributors::put_contributor("", $contributor_id);
 		$session->destroy();
 			
 		return;
