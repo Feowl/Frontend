@@ -44,9 +44,6 @@ class Model_Users extends Model{
 		Model_Contributors::delete_contributor("", $contributor_id);
 		$session->destroy();
 			
-		$notice = $username." your account has been deleted";
-					//set notice in session
-		Session::instance()->set('alert', $notice);
 		return;
 	}
 

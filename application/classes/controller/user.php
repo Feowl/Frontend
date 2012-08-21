@@ -184,15 +184,21 @@ class Controller_User extends Controller_Template {
 	public function action_delete(){
 		
 		//print_r($userdata[0]['id']); exit;
-		$this->template->right_content = View::factory('user/delete.tpl');
-		$this->template->left_content = View::factory('user/login_info.tpl');
+		$username = $this->session->get('username');
+		$this->template->right_content = View::factory('user/delete.tpl')->bind('username', $username);
+		$this->template->left_content = View::factory('user/delete_info.tpl');
 		
 		$q = Arr::get($_GET,'q');
 		
 		if($q == "yes"){
+			//sucess notice
+			$notice = $username." your account has been deleted";
+			
 			$model = new Model_Users;
 			//delete user account and return username
 			$model->delete();
+			//set notice in session
+			Session::instance()->set('alert', $notice);
 			Request::current()->redirect('home'); 
 		}elseif($q == "no"){
 			Request::current()->redirect('home'); 
