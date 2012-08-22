@@ -73,11 +73,23 @@ class Controller_User extends Controller_Template {
 		{
 			Request::current()->redirect('user/login');
 		}
+		
 	}
      
+	public function action_already_logged_in()
+	{
+		$user = $this->session->get('username');
+		if($user)
+		{
+			Request::current()->redirect('contribute');
+		}
+	}
 	 //post to the api to creat an account for a contributor
     public function action_signup()
     {
+		//check if the user is logged in
+		$this->action_already_logged_in();
+		
         $this->template->right_content = View::factory('user/signup.tpl')
             ->bind('error_1', $error_1)->bind('error_2', $error_2);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
@@ -148,6 +160,9 @@ class Controller_User extends Controller_Template {
 	//login the user
     public function action_login()
     {
+		//check if the user is logged in
+		$this->action_already_logged_in();
+		
         $this->template->right_content = View::factory('user/login.tpl')
             ->bind('message', $message);
 		$this->template->left_content = View::factory('user/login_info.tpl');
