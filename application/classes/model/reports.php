@@ -12,13 +12,13 @@
 class Model_Reports extends Model{
 
 	//Returns all the reports added by all contributors
-	public static function get_reports($data_string){
-	  return API::send_request(Kohana::config('api.get_reports'),$data_string,"GET");
+	public static function get_reports($data_string, $filter=NULL){
+	  return API::send_request(Kohana::config('api.get_reports'),$data_string,"GET", $filter);
 	}
 	
 	//Returns a single report identified by its id
 	public static function get_report($data_string){
-		return API::send_request(Kohana::config('api.get_reports'),$data_string,"GET");
+		return API::send_request(Kohana::config('api.get_reports'), $data_string,"GET");
 	}
 	
 	//Add a new report

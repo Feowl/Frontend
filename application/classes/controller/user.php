@@ -294,12 +294,23 @@ class Controller_User extends Controller_Template {
 	//display logged in user contributions
 	public function action_contributions()
 	{
-		$username = $this->session->get('username');
+		//$username = $this->session->get('username');
 		$userdata = $this->session->get('userdata');
 		//print_r($userdata[0]);
-		$this->template->right_content = View::factory('user/contributions.tpl')->bind('username', $username)
-		->bind('userdata', $userdata[0]);
-		$this->template->left_content = Render::profile('contributions');
+		
+		$contributor_id = $userdata[0]['id']; 
+		$results = Model_Reports::get_reports('', "contributor=$contributor_id");
+		
+		$http_status = json_decode($results['http_status']);
+		$json_result = json_decode($results['json_result'], true); 
+		if($http_status == 200)
+		{
+			//print_r( $json_result['objects']); exit;
+			$this->template->right_content = View::factory('user/contributions.tpl')
+			->bind('contributions', $json_result['objects']);
+			$this->template->left_content = Render::profile('contributions');
+		}
+		
 	}
 	
 	//modify user email
