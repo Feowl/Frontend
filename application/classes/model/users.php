@@ -57,9 +57,30 @@ class Model_Users extends Model{
 	 * @param  string  proceed_url
 	 * @return  boolean
 	 */
-	public function check_login($proceed_url=null)
+	public function check_login($proceedURL=NULL)
 	{
-		Request::detect_uri();
+		$username = $this->session->get('username');
+		$userdata = $this->session->get('userdata');
+		
+		//check if a user is logged in
+		if($username AND $userdata)
+		{
+			return true;
+		}
+		else
+		{
+			//if user is not login set the proceedURL in session
+			if($proceedURL != NULL)
+			{
+				$this->session->set('proceedURL', $proceedURL);
+			}
+			else
+			{
+				$this->session->set('proceedURL', Request::detect_uri());
+			}
+			return false;
+		}
+		
 	}
 	
 	/**

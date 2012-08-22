@@ -26,6 +26,8 @@ class Controller_User extends Controller_Template {
 		parent::before();
 		// Open session
 		$this->session = Session::instance();
+		//instantiate user model
+		$this->model = new Model_Users;
 	}
 	
 	 //Use the after method to load static files
@@ -41,17 +43,37 @@ class Controller_User extends Controller_Template {
 	
     public function action_index()
     {
-        // Load the user information
-        $user = Auth::instance()->get_user();
+        //check if user is logged in
+		$user = $this->model->check_login();
          
-        // if a user is not logged in, redirect to login page
+        // if a user is not logged in, redirect to login page 
         if (!$user)
         {
             Request::current()->redirect('user/login');
-        }else{
+        }
+		else
+		{
 			Request::current()->redirect('contribute');
 		}
     }
+	
+	//check login
+	private function action_check_login($proceedURL=NULL){
+		//check if user is logged in
+		
+		if($proceedURL != NULL)
+		{
+			$user = $this->model->check_login($proceedURL);
+		}else
+		{
+			$user = $this->model->check_login();
+		}
+		
+		if(!$user)
+		{
+			Request::current()->redirect('user/login');
+		}
+	}
      
 	 //post to the api to creat an account for a contributor
     public function action_signup()
@@ -134,18 +156,23 @@ class Controller_User extends Controller_Template {
         {
 			$email = $this->request->post('email');
 			$password = $this->request->post('password');
-			//Attempt login a user
 			
+			//Attempt login a user
 			$user = Session::instance()->get('user');
-			$model = new Model_Users;
-			$user = $model->login($email, $password);
+			$user = $this->model->login($email, $password);
 			
             // If successful, redirect user to contribute page
             if ($user)
             {
-                Request::current()->redirect('contribute');
-				//$this->session->set('alert', print_r($user));
-				//Request::current()->redirect('home');
+				$proceedURL = $this->session->get('proceedURL');
+				if($proceedURL)
+				{
+					Request::current()->redirect($proceedURL);
+				}
+				else
+				{
+					Request::current()->redirect('contribute');
+				}
             }
             else
             {
@@ -164,9 +191,9 @@ class Controller_User extends Controller_Template {
         if (HTTP_Request::POST == $this->request->method())
         {
 			$email = $this->request->post('email');
+			
 			//Attempt login a user
-			$model = new Model_Users;
-			$user = $model->check_user($email);
+			$user = $this->model->check_user($email);
 			
             // If successful, redirect user to login page
             if ($user)
@@ -184,9 +211,8 @@ class Controller_User extends Controller_Template {
 	 //logout the user
     public function action_logout()
     {
-        $model = new Model_Users;
 		// Log user out
-		$model->logout();
+		$this->model->logout();
          
         // Redirect to login page
         Request::current()->redirect('user/login');
@@ -195,6 +221,8 @@ class Controller_User extends Controller_Template {
 	//delete user account
 	public function action_delete()
 	{
+		//check if the user is logged in
+		$this->action_check_login();
 		
 		//print_r($userdata[0]['id']); exit;
 		$username = $this->session->get('username');
@@ -209,9 +237,8 @@ class Controller_User extends Controller_Template {
 			$notice_success = $username." your account has been deleted";
 			$notice_failure = $username. " oops something went wrong, Please try again";
 			
-			$model = new Model_Users;
 			//delete user account
-			$delete = $model->delete();
+			$delete = $this->model->delete();
 			
 			//set notice in session
 			if($delete)
@@ -234,13 +261,12 @@ class Controller_User extends Controller_Template {
 	
 	//modify user email
 	public function action_change_email(){
-		$model = new Model_Users;
 		
 		$data = array();
 		$data['email'] = "email@yahoo.com";
 		
 		//change_email
-		$modified_email = $model->modify_email($data);
+		$modified_email = $this->model->modify_email($data);
 	}
 	
 	//modify cell number
