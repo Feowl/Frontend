@@ -274,6 +274,11 @@ class Controller_User extends Controller_Template {
 		}
 	}
 	
+	//profile
+	public function action_profile(){
+		
+	}
+	
 	//modify user email
 	public function action_change_email(){
 		
