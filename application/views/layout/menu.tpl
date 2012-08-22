@@ -21,9 +21,7 @@
                 <ul class="dropdown-menu"> 					
 					<li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
 					<li class="divider"></li>
-					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>
-					<li class="divider"></li>					
-					<li><a href="{url::site('user/delete')}">{__ t='Delete Account'}</a></li>
+					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
                 </ul>
 				{else}
 				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

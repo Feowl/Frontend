@@ -275,8 +275,10 @@ class Controller_User extends Controller_Template {
 	}
 	
 	//profile
-	public function action_profile(){
-		
+	public function action_profile()
+	{
+		//$this->template->right_content = View::factory('user/delete.tpl')->bind('username', $username);
+		$this->template->left_content = Render::profile('delete');
 	}
 	
 	//modify user email
