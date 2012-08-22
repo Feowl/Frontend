@@ -12,10 +12,14 @@ class Controller_User extends Controller_Template {
  
     public $template = "template/sub_template.tpl";
 	
-	public function before(){
-		try {
+	public function before()
+	{
+		try 
+		{
 			$this->session = Session::instance();
-		} catch(ErrorException $e) {
+		}
+		catch(ErrorException $e) 
+		{
 			session_destroy();
 		}
 		// Execute parent::before first
@@ -58,7 +62,8 @@ class Controller_User extends Controller_Template {
 
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
-			try{
+			try
+			{
 				//build json items
 				$json_items['name'] = Arr::get($_POST,'username');	
 				$json_items['password'] = Arr::get($_POST,'userpassword');
@@ -73,7 +78,8 @@ class Controller_User extends Controller_Template {
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
 				 
-				if($http_status == 201){
+				if($http_status == 201)
+				{
 					//contributor device number #mobile
 					$device['category'] = 'Phone';
 					$device['phone_number'] = $phone_number['number'];
@@ -92,9 +98,13 @@ class Controller_User extends Controller_Template {
 					//set notice in session
 					$this->session->set('alert', $notice);
 					Request::current()->redirect('home');
-				}elseif(isset($json_result['error_message'])){
+				}
+				elseif(isset($json_result['error_message']))
+				{
 					$error_1 = $json_result['error_message']; 
-				}else{
+				}
+				else
+				{
 					//error 400 :)
 					if(isset($json_result['name'][0])):
 						$error_1 = $json_result['name'][0]." ";
@@ -105,7 +115,8 @@ class Controller_User extends Controller_Template {
 				}
 				//@todo force login to next step
 			}
-			catch(Exception $e) {
+			catch(Exception $e) 
+			{
                 // Set failure message TODO: Set various notices
 				$this->session->set('alert', "Technical Error :)");
             }
@@ -181,36 +192,65 @@ class Controller_User extends Controller_Template {
         Request::current()->redirect('user/login');
     }
 	
-	public function action_delete(){
+	//delete user account
+	public function action_delete()
+	{
 		
 		//print_r($userdata[0]['id']); exit;
 		$username = $this->session->get('username');
 		$this->template->right_content = View::factory('user/delete.tpl')->bind('username', $username);
-		$this->template->left_content = View::factory('user/delete_info.tpl');
+		$this->template->left_content = Render::profile('delete');
 		
 		$q = Arr::get($_GET,'q');
 		
-		if($q == "yes"){
+		if($q == "yes")
+		{
 			//sucess notice
 			$notice_success = $username." your account has been deleted";
 			$notice_failure = $username. " oops something went wrong, Please try again";
 			
 			$model = new Model_Users;
-			//delete user account and return username
+			//delete user account
 			$delete = $model->delete();
 			
-			if($delete){
-				//set notice in session
+			//set notice in session
+			if($delete)
+			{
 				Session::instance()->set('alert', $notice_success);
-			}else{
+			}
+			else
+			{
 				Session::instance()->set('alert', $notice_failure);
 			}
 			
 			Request::current()->redirect('home'); 
 			
-		}elseif($q == "no"){
+		}
+		elseif($q == "no")
+		{
 			Request::current()->redirect('home'); 
 		}
+	}
+	
+	//modify user email
+	public function action_change_email(){
+		$model = new Model_Users;
+		
+		$data = array();
+		$data['email'] = "email@yahoo.com";
+		
+		//change_email
+		$modified_email = $model->modify_email($data);
+	}
+	
+	//modify cell number
+	public function action_change_number(){
 		
 	}
+	
+	//modify user password
+	public function action_change_password(){
+		
+	}
+	
 }

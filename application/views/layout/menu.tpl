@@ -18,9 +18,11 @@
 						{$smarty.session.username}
                     <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu"> 
-					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>
+                <ul class="dropdown-menu"> 					
+					<li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
 					<li class="divider"></li>
+					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>
+					<li class="divider"></li>					
 					<li><a href="{url::site('user/delete')}">{__ t='Delete Account'}</a></li>
                 </ul>
 				{else}
@@ -29,7 +31,7 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu"> 
-						<li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>
+						<li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>						
 						<li class="divider"></li>
 						<li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
                 </ul>

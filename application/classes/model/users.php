@@ -9,58 +9,117 @@
  * @copyright   2012
  */
 class Model_Users extends Model{
-		
-	//login function
-	//Presently using only a valid email to login a user, risky ... 
-	//TODO:: use email and password to login a user
-	public function login($email, $password){
+	
+	public function __construct()
+	{
+		try 
+		{
+			$this->session = Session::instance();
+		}
+		catch(ErrorException $e) 
+		{
+			session_destroy();
+		}
+		//parent::__construct();
+		// set session 
+		$this->session = Session::instance();
+	}
+	
+	/**
+	 * Log out a user by removing the related session variables.
+	 * TODO:: use email and password to login a user
+	 * @param  string  email
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public function login($email, $password)
+	{
 		//email is unique returns a single result
 		$user_json = Model_Contributors::get_contributors('', "email=$email");
 		$user = json_decode($user_json['json_result'], true);
 		
-		if($user['meta']['total_count'] == true){
-				$session = Session::instance();
-				//print_r($user['objects']); exit;
-				$session->set('userdata', $user['objects']);
-				$session->set('username', $user['objects'][0]['name']);	
+		if($user['meta']['total_count'] == true)
+		{
+			//set user info in session
+			$this->session->set('userdata', $user['objects']);
+			$this->session->set('username', $user['objects'][0]['name']);	
 			return true;
-		}else{
+		}
+		else
+		{
 			return false;
 		}
 	}
 	
-	//logout a user
-	public function logout(){
-		return Session::instance()->destroy();
+	/**
+	 * Check if a user is login
+	 * 
+	 * @param  string  proceed_url
+	 * @return  boolean
+	 */
+	public function check_login($proceed_url=null)
+	{
+		Request::detect_uri();
 	}
 	
-	//delete user account
-	public function delete(){
-		$session = Session::instance();
-		$userdata = $session->get('userdata');
+	/**
+	 * Logout a user by either destroying all session variables or related variables.
+	 * 
+	 * TODO:: use email and password to login a user
+	 * @param  string  email
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public function logout($destroy=false)
+	{
+		if($destroy != true)
+		{
+			$this->session->destroy();
+		}
+		else
+		{
+			$this->session->delete('userdate');
+			$this->session->delete('username');
+		}
+		return;
+	}
+	
+	/**
+	 * Logout a user by either destroying all session variables or related variables.
+	 * delete user account (works if the user that issues this call has the right permission)
+	 * @return  boolean
+	 */
+	public function delete()
+	{
+		$userdata = $this->session->get('userdata');
 		$contributor_id = $userdata[0]['id'];
 		//$username = $userdata[0]['name'];
 		//api request to delete account
 		$json_result = Model_Contributors::delete_contributor("", $contributor_id);
 		$result = json_decode($json_result['http_status'], true);
 		
-		if($result == 204){
-			$session->destroy();
+		if($result == 204)
+		{
+			self::logout(true);
 			return true;
-		}else{
+		}
+		else
+		{
 			return false;
 		}
 	}
 	
-	//change contributor email
-	public function change_email(){
-		$session = Session::instance();
+	//change contributor email (works if the user that issues this call has the right permission)
+	public function modify_email($data)
+	{
 		$userdata = $session->get('userdata');
 		$contributor_id = $userdata[0]['id'];
 		
-		//api request to delete account
-		Model_Contributors::put_contributor("", $contributor_id);
-		$session->destroy();
+		$data_json = json_encode($data['email']);
+		//api request to update email
+		$update = Model_Contributors::update_contributor($data_json, $contributor_id);
+		
+		print_r($update); exit;
 			
 		return;
 	}
