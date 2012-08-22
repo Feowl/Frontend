@@ -291,6 +291,17 @@ class Controller_User extends Controller_Template {
 		$this->template->left_content = Render::profile('account');
 	}
 	
+	//display logged in user contributions
+	public function action_contributions()
+	{
+		$username = $this->session->get('username');
+		$userdata = $this->session->get('userdata');
+		//print_r($userdata[0]);
+		$this->template->right_content = View::factory('user/contributions.tpl')->bind('username', $username)
+		->bind('userdata', $userdata[0]);
+		$this->template->left_content = Render::profile('contributions');
+	}
+	
 	//modify user email
 	public function action_change_email(){
 		
