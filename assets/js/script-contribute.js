@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //initialize
 	$(".endContainer").hide()
-    $(".contribute1-1, .contribute2, .contribute1, .contribute3").attr('disabled','disabled')
+   // $("").attr('disabled','disabled')
         $('.controls input:radio').change(function () {
 
         a = $('input[name=contribute]:checked').val();
@@ -34,7 +34,7 @@ $(document).ready(function() {
 			 });
 			 }else if( a=="false"){
 			 //disable all other fields and goto last step
-			$(".contribute1-1, .contribute2, .contribute1").attr('disabled','disabled').empty()
+			//$(".contribute1-1, .contribute2, .contribute1").attr('disabled','disabled').empty()
 			$(".contribute1").removeClass("current")
 			$(".contribute3").addClass("current")
 			$(".contribute3").removeAttr('disabled')			 
