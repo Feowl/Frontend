@@ -283,12 +283,51 @@ class Controller_User extends Controller_Template {
 	//accounts
 	public function action_account()
 	{
-		$username = $this->session->get('username');
-		$userdata = $this->session->get('userdata');
-		//print_r($userdata[0]);
 		$this->template->right_content = View::factory('user/account.tpl')->bind('username', $username)
-		->bind('userdata', $userdata[0]);
+		->bind('userdata', $user);
 		$this->template->left_content = Render::profile('account');
+		try
+		{
+			$username = $this->session->get('username');
+			$userdata = $this->session->get('userdata');
+			$contributor_id = $userdata[0]['id']; 
+			$user = $userdata[0];
+			//print_r($userdata[0]);
+			$results = Model_Devices::get_device('', "contributor=$contributor_id");
+			$json_result = json_decode($results['json_result'], true); 
+			/*
+			* At the moment each user has only one device, no need to loop through
+			* TODO, a user can have more than one device (better loop .. foreach)
+			*/
+			$total_count = $json_result['meta']['total_count'];
+			//check if a user has a device
+			if($total_count >= 1)
+			{
+				$category = $json_result['objects'][0]['category'];
+				if($category == "Phone")
+				{
+					$phone_number = $json_result['objects'][0]['phone_number'];
+				}
+				else
+				{
+					$phone_number = '1';
+				}
+			}
+			else
+			{
+				$phone_number = '3';
+			}
+			//add phone number to user array
+			$user['phone_number'] = $phone_number;
+		}
+		catch(Exception $e) 
+		{
+			$this->session->set('alert', "Technical Error :)");
+			$alert = $this->session->get_once('alert');
+			//$alert = $this->session->get_once('alert');
+			$this->template->right_content->alert = $alert;
+		}
+			
 	}
 	
 	//display logged in user contributions

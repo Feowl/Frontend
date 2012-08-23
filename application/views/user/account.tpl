@@ -2,18 +2,18 @@
 <div class="signup-form">
 	<form method='post' action="{url::site('user/account')}" class="form-horizontal" id="signup" >            
 	
-	{if isset($error_2) OR isset($error_1)}
+	{if isset($alert)}
 	<div class="error">
 	<div class="alert">
-		{if isset($error_1)}
-			{$error_1}
-		{/if}
-		{if isset($error_2)}
-			{$error_2}
-		{/if}
+		{$alert}
 		<a class="close" data-dismiss="alert" href="#">&times;</a>
 	</div>	
 	</div>
+	{elseif isset($notice)}
+		<div class="alert">
+		{$notice}
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	</div>	
 	{/if}
 	
 	
@@ -41,7 +41,7 @@
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='GSM Phone Number'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" value="" rel="popover" >
+	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" value="{$userdata.phone_number}" rel="popover" >
 	</div>
 	</div>
 	
