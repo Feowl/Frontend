@@ -283,6 +283,9 @@ class Controller_User extends Controller_Template {
 	//accounts
 	public function action_account()
 	{
+		//check if the user is logged in
+		$this->action_check_login();
+		
 		$this->template->right_content = View::factory('user/account.tpl')->bind('username', $username)
 		->bind('userdata', $user);
 		$this->template->left_content = Render::profile('account');
@@ -316,10 +319,10 @@ class Controller_User extends Controller_Template {
 				exit;
 				//$results = Model_Contributors::post_contributor($data_string);
                  
-				//$http_status = json_decode($results['http_status']);
-				//$json_result = json_decode($results['json_result'], true); 
+				$http_status = json_decode($results['http_status']);
+				$json_result = json_decode($results['json_result'], true); 
 				 
-				 $http_status = 201;
+				//$http_status = 201;
 				if($http_status == 201)
 				{
 					//contributor device number #mobile
@@ -373,7 +376,6 @@ class Controller_User extends Controller_Template {
 				{
 					$phone_number = $json_result['objects'][0]['phone_number'];					
 					$str = $json_result['objects'][0]['resource_uri'];
-					$strlen = strlen($str);
 					$resource = explode('/', $str);
 					$device_id = $resource[4];										
 				}
@@ -405,6 +407,9 @@ class Controller_User extends Controller_Template {
 	//display logged in user contributions
 	public function action_contributions()
 	{
+		//check if the user is logged in
+		$this->action_check_login();
+		
 		//$username = $this->session->get('username');
 		$userdata = $this->session->get('userdata');
 		//print_r($userdata[0]);
@@ -421,26 +426,13 @@ class Controller_User extends Controller_Template {
 			->bind('contributions', $json_result['objects']);
 			$this->template->left_content = Render::profile('contributions');
 		}
-		
 	}
 	
-	//modify user email
-	public function action_change_email(){
-		
-		$data = array();
-		$data['email'] = "email@yahoo.com";
-		
-		//change_email
-		$modified_email = $this->model->modify_email($data);
-	}
-	
-	//modify cell number
-	public function action_change_number(){
-		
-	}
-	
-	//modify user password
-	public function action_change_password(){
+	//download contributions
+	public function action_download_contribution()
+	{
+		//check if the user is logged in
+		$this->action_check_login();
 		
 	}
 	

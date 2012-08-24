@@ -27,13 +27,10 @@
 				<td >{$contribution.quality}</td>
 			</tr>
 			{/foreach}
-			<tr>
-				<td colspan="4" class="tc">{__ t='Show more'}</td>
-			</tr>
 		</tbody>
 	</table>
 	<div class="left-space">
-		<a href="#" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
+		<a href="{URL::site('user/download_contribution')}?format=csv" target="_blank" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
 	</div>
 </div>    
 
