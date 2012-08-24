@@ -407,6 +407,7 @@ class Controller_User extends Controller_Template {
 	//display logged in user contributions
 	public function action_contributions()
 	{
+		
 		//check if the user is logged in
 		$this->action_check_login();
 		
@@ -419,17 +420,19 @@ class Controller_User extends Controller_Template {
 		
 		$http_status = json_decode($results['http_status']);
 		$json_result = json_decode($results['json_result'], true); 
+		
 		if($http_status == 200)
 		{
 			//print_r( $json_result['objects']); exit;
 			$this->template->right_content = View::factory('user/contributions.tpl')
-			->bind('contributions', $json_result['objects']);
+			->bind('contributions', $json_result['objects'])->bind('total_count', $json_result['meta']['total_count']);
 			$this->template->left_content = Render::profile('contributions');
 		}
+		
 	}
 	
 	//download contributions
-	public function action_download_contribution()
+	public function action_download_contributions()
 	{
 		//check if the user is logged in
 		$this->action_check_login();

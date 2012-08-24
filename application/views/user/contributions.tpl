@@ -2,6 +2,7 @@
 	<h3>{__ t='Lists of Contributions'}</h3>
 	<br />
 		<table class="table table-striped table-condensed" id="explore-list">
+		{if $total_count >= 1}
 		<thead>
 			<tr>
 				<th>{__ t='District'}</th>
@@ -27,6 +28,15 @@
 				<td >{$contribution.quality}</td>
 			</tr>
 			{/foreach}
+		{else}
+			<tr>
+				<div class="error">
+					<div class="error alert">
+						{__ t='You currently have no contributions'}
+					</div>
+				</div>
+			</tr>
+		{/if}
 		</tbody>
 	</table>
 	<div class="left-space">
