@@ -440,7 +440,7 @@ class Controller_User extends Controller_Template {
 		$userdata = $this->session->get('userdata');
 		
 		$contributor_id = $userdata[0]['id']; 
-		$results = Model_Reports::get_reports('', "contributor=$contributor_id&format=csv");
+		$results = Model_Reports::get_reports('', "contribuator=$contributor_id&format=csv");
 		$csv_format = $results['json_result'];
 		
 		//create a temporal file and save under temp/
