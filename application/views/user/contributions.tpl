@@ -40,7 +40,7 @@
 		</tbody>
 	</table>
 	<div class="left-space">
-		<a href="{URL::site('user/download_contribution')}?format=csv" target="_blank" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
+		<a href="{URL::site('user/download_contributions')}?format=csv" target="_blank" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
 	</div>
 </div>    
 

@@ -437,6 +437,33 @@ class Controller_User extends Controller_Template {
 		//check if the user is logged in
 		$this->action_check_login();
 		
+		$userdata = $this->session->get('userdata');
+		
+		$contributor_id = $userdata[0]['id']; 
+		$results = Model_Reports::get_reports('', "contributor=$contributor_id&format=csv");
+		$csv_format = $results['json_result'];
+		
+		//create a temporal file and save under temp/
+		$filename = uniqid().'_'.$userdata[0]['email']."_contributions.csv";
+		
+		//check file is created and open
+		if ($fp = fopen("temp/$filename", "w")) 
+		{
+			fwrite($fp, $csv_format);
+			
+			//setting headers to downloAd contributions as CSV
+			header('Content-Type: text/csv; charset=utf-8');
+			header('Content-Disposition: attachment; filename='.$filename);
+			header('Content-Length: ' . strlen($filename));
+			header('location: http://localhost/Frontend/temp/'.$filename);
+			
+			//delete the csv file
+			//unlink(URL::base().'temp/'.$filename);
+			exit;
+		}
+		else
+		{
+			//TODO
+		}
 	}
-	
 }
