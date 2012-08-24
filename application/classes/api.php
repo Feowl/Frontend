@@ -29,6 +29,7 @@ class API {
 		}else{
 			$data_to_feowl = 'username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
 		}
+		//print_r($api_link.$data_to_feowl); exit;
 		$to_feowl = curl_init($api_link.$data_to_feowl);
 		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);                                                                     
 		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);                                                                  

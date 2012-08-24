@@ -130,19 +130,4 @@ class Model_Users extends Model{
 		}
 	}
 	
-	//change contributor email (works if the user that issues this call has the right permission)
-	public function modify_email($data)
-	{
-		$userdata = $session->get('userdata');
-		$contributor_id = $userdata[0]['id'];
-		
-		$data_json = json_encode($data['email']);
-		//api request to update email
-		$update = Model_Contributors::update_contributor($data_json, $contributor_id);
-		
-		print_r($update); exit;
-			
-		return;
-	}
-
 } // End User Model
