@@ -32,7 +32,7 @@
 					{__ t='<p>Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.</p><p>Feowl will poll reliable voluntary contributors and will ask them about their power cut experience: Did they witness one? When was that? Where?</p><p>Feowl will aggregate, compute and analyze the data received via polls and will display them on this platform using the best visualization techniques.</p><p>Feowl was made possible thanks to a grant received from the International Press Institute.</p>'}
 				</p>
 				<p class="call-to-contribute">
-					<a class="btn btn-large btn-primary" href="{url::site('contribute')}">Contribue to Feowl!</a>
+					<a class="btn btn-large btn-primary" href="{url::site('contribute')}">Contribute to Feowl!</a>
 				</p>		
 			</div>
 
