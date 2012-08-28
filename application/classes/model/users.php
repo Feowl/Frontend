@@ -37,9 +37,7 @@ class Model_Users extends Model{
 		//email is unique returns a single result
 		$user_json = Model_Contributors::get_contributors('', "email=$email");
 		$user = json_decode($user_json['json_result'], true);
-		
-		//print_r($user); exit;
-		
+	
 		//if there is a user with this email
 		if($user['meta']['total_count'] == true)
 		{
