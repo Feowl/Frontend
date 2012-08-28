@@ -20,14 +20,14 @@
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='Name'}*</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_name" name="username" value="{$userdata.name}" rel="popover" >
+	<input type="text" class="input-xlarge" id="user_name" name="username" value="{$user.name}" rel="popover" >
 	</div>
 	</div>
 	
 	<div class="control-group light-border">
 	<label class="control-label" for="input01">{__ t='E-mail'}*</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="useremail" value="{$userdata.email}" rel="popover" >
+	<input type="text" class="input-xlarge" id="user_email" name="useremail" value="{$user.email}" rel="popover" >
 	</div>
 	</div>
 
@@ -41,7 +41,7 @@
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='GSM Phone Number'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" value="{$userdata.phone_number}" rel="popover" >
+	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" value="{$user.phone_number}" rel="popover" >
 	</div>
 	</div>
 	

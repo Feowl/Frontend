@@ -12,10 +12,10 @@
 
         <ul class="nav pull-right">
             <li class="dropdown">
-				{if isset($smarty.session.username)}
+				{if isset($smarty.session.user.name)}
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-user"></i> 
-						{$smarty.session.username}
+						{$smarty.session.user.name}
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu"> 					
