@@ -78,7 +78,7 @@ class Controller_User extends Controller_Template {
      
 	public function action_already_logged_in()
 	{
-		$user = $this->session->get('username');
+		$user = $this->session->get('user');
 		if($user)
 		{
 			Request::current()->redirect('contribute');
@@ -240,7 +240,8 @@ class Controller_User extends Controller_Template {
 		$this->action_check_login();
 		
 		//print_r($userdata[0]['id']); exit;
-		$username = $this->session->get('username');
+		$user = $this->session->get('user');
+		$username = $user['name'];
 		$this->template->right_content = View::factory('user/delete.tpl')->bind('username', $username);
 		$this->template->left_content = Render::profile('delete');
 		
@@ -286,17 +287,16 @@ class Controller_User extends Controller_Template {
 		//check if the user is logged in
 		$this->action_check_login();
 		
-		$this->template->right_content = View::factory('user/account.tpl')->bind('username', $username)
-		->bind('userdata', $user);
+		$this->template->right_content = View::factory('user/account.tpl')->bind('user', $user);
 		$this->template->left_content = Render::profile('account');
 		try
 		{
 			//user info
-			$username = $this->session->get('username');
-			$userdata = $this->session->get('userdata');
-			$contributor_id = $userdata[0]['id']; 
-			$email = $userdata[0]['email'];
-			$user = $userdata[0];
+			//$username = $this->session->get('username');
+			$user = $this->session->get('user');
+			$contributor_id = $user['id']; 
+			$email = $user['email'];
+			//$user = $userdata[0];
 			
 			
 			// if the user updates profile
@@ -412,11 +412,12 @@ class Controller_User extends Controller_Template {
 		$this->action_check_login();
 		
 		//$username = $this->session->get('username');
-		$userdata = $this->session->get('userdata');
+		$user = $this->session->get('user');
 		//print_r($userdata[0]);
 		
-		$contributor_id = $userdata[0]['id']; 
-		$results = Model_Reports::get_reports('', "contributor=$contributor_id");
+		$contributor_id = $user['id']; 
+		//created a bug to display contributions
+		$results = Model_Reports::get_reports('', "contribsutor=$contributor_id");
 		
 		$http_status = json_decode($results['http_status']);
 		$json_result = json_decode($results['json_result'], true); 
@@ -437,14 +438,15 @@ class Controller_User extends Controller_Template {
 		//check if the user is logged in
 		$this->action_check_login();
 		
-		$userdata = $this->session->get('userdata');
+		$user = $this->session->get('user');
 		
-		$contributor_id = $userdata[0]['id']; 
+		$contributor_id = $user['id']; 
+		//created a bug to display contributions
 		$results = Model_Reports::get_reports('', "contribuator=$contributor_id&format=csv");
 		$csv_format = $results['json_result'];
 		
 		//create a temporal file and save under temp/
-		$filename = uniqid().'_'.$userdata[0]['email']."_contributions.csv";
+		$filename = uniqid().'_'.$user['email']."_contributions.csv";
 		
 		//check file is created and open
 		if ($fp = fopen("temp/$filename", "w")) 

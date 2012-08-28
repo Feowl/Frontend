@@ -38,12 +38,23 @@ class Model_Users extends Model{
 		$user_json = Model_Contributors::get_contributors('', "email=$email");
 		$user = json_decode($user_json['json_result'], true);
 		
+		//if there is a user with this email
 		if($user['meta']['total_count'] == true)
 		{
-			//set user info in session
-			$this->session->set('userdata', $user['objects']);
-			$this->session->set('username', $user['objects'][0]['name']);	
-			return true;
+			//now check if the contributor password is valid
+		    $password_check_json = self::check_password($user['objects'][0]['id'], $password);
+			$password_check = json_decode($password_check_json['json_result'], true);
+			
+			if($password_check['password_valid'])
+			{
+				//set user info in session
+				$this->session->set('user', $password_check);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
@@ -59,11 +70,10 @@ class Model_Users extends Model{
 	 */
 	public function check_login($proceedURL=NULL)
 	{
-		$username = $this->session->get('username');
-		$userdata = $this->session->get('userdata');
-		
+		$user= $this->session->get('user');
+	
 		//check if a user is logged in
-		if($username AND $userdata)
+		if($user)
 		{
 			return true;
 		}
@@ -79,8 +89,20 @@ class Model_Users extends Model{
 				$this->session->set('proceedURL', Request::detect_uri());
 			}
 			return false;
-		}
-		
+		}	
+	}
+	
+	/**
+	 * check if a contributor password is valid
+	 * 
+	 * @param  string  contributor_id
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public static function check_password($contributor_id, $password){
+		$filter = "password=$password";
+		$data_string = "";
+		return API::send_request(Kohana::config('api.contributor').$contributor_id."/check_password/?", $data_string, "GET", $filter); 
 	}
 	
 	/**
@@ -99,8 +121,7 @@ class Model_Users extends Model{
 		}
 		else
 		{
-			$this->session->delete('userdate');
-			$this->session->delete('username');
+			$this->session->delete('user');
 		}
 		return;
 	}
@@ -112,8 +133,8 @@ class Model_Users extends Model{
 	 */
 	public function delete()
 	{
-		$userdata = $this->session->get('userdata');
-		$contributor_id = $userdata[0]['id'];
+		$user = $this->session->get('user');
+		$contributor_id = $user['id'];
 		//$username = $userdata[0]['name'];
 		//api request to delete account
 		$json_result = Model_Contributors::delete_contributor("", $contributor_id);
