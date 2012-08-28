@@ -9,11 +9,15 @@
 	</div>	
 	</div>
 	{/if}
-	
+	{if isset($smarty.post.email)}
+		{assign var=email value=$smarty.post.email}
+	{else}
+		{assign var=email value=''}
+	{/if}
 	<div class="control-group light-border">
 	<label class="control-label" for="input01">{__ t='Email'}</label>
 	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="email" >
+	<input type="text" class="input-xlarge" id="user_email" name="email" value="{$email}" >
 	</div>
 	</div>
 
