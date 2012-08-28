@@ -103,12 +103,12 @@ class Controller_User extends Controller_Template {
 				$json_items['password'] = Arr::get($_POST,'userpassword');
 				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
 				$json_items['language'] = mb_strtoupper(i18n::lang());	
+				$json_items['frequency'] = Arr::get($_POST,'frequency');
 				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
-	
+				
 				//send to api
-				$data_string = json_encode($json_items);   
+				$data_string = json_encode($json_items);
 				$results = Model_Contributors::post_contributor($data_string);
-                 
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
 				 
