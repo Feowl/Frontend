@@ -8,6 +8,7 @@ return array
 		//'ca' => 'Català',
 		//'es' => 'Español',
 		'fr' => 'Français',
+		'pd' => 'Pidgin',
 		//'de' => 'Deutsch',
 	),
 
