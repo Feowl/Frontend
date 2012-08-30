@@ -173,7 +173,7 @@ class Controller_User extends Controller_Template {
 			$password = $this->request->post('password');
 			
 			//Attempt login a user
-			$user = Session::instance()->get('user');
+			//$user = Session::instance()->get('user');
 			$user = $this->model->login($email, $password);
 			
             // If successful, redirect user to contribute page
@@ -286,98 +286,34 @@ class Controller_User extends Controller_Template {
 	{
 		//check if the user is logged in
 		$this->action_check_login();
-		
-		$this->template->right_content = View::factory('user/account.tpl')->bind('user', $user);
+		$alert = $this->session->get_once('alert');
+		$notice = $this->session->get_once('notice');
+		$this->template->right_content = View::factory('user/account.tpl')->bind('user', $user)
+		->bind('notice', $notice)->bind('alert', $alert);
 		$this->template->left_content = Render::profile('account');
 		try
 		{
-			//user info
-			//$username = $this->session->get('username');
 			$user = $this->session->get('user');
 			$contributor_id = $user['id']; 
 			$email = $user['email'];
-			//$user = $userdata[0];
 			
-			
-			// if the user updates profile
-			if (HTTP_Request::POST == $this->request->method())
-			{
-				//build json items
-				$json_items['name'] = Arr::get($_POST,'username');	
-				$json_items['password'] = Arr::get($_POST,'userpassword');
-				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
-				$json_items['language'] = mb_strtoupper(i18n::lang());	
-				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
-	
-				//send to api
-				$data_json = json_encode($json_items);
-				
-				$result = Model_Contributors::update_contributor($data_json, $contributor_id);
-				print_r($data_json);
-				echo "<br />";
-				print_r($result);
-				exit;
-				//$results = Model_Contributors::post_contributor($data_string);
-                 
-				$http_status = json_decode($results['http_status']);
-				$json_result = json_decode($results['json_result'], true); 
-				 
-				//$http_status = 201;
-				if($http_status == 201)
-				{
-					//contributor device number #mobile
-					$device['category'] = 'Phone';
-					$device['phone_number'] = $phone_number['number'];
-					//get the contributor ID
-					
-					$device['contributor'] = "/api/v1/contributors/".$contributor_id.'/';
-					$device_json = json_encode($device);  
-					$device_json = str_replace("\\", "", $device_json);
-					
-					//print_r($device_json); exit;
-					$results = Model_Devices::update_device($device_json, $device_id);
-					
-					print_r($results); echo "<br />"; print_r($device_json); exit;
-					
-					$notice = "Thanks for signing up! We would sent you an email to
-					verity your account";
-					//set notice in session
-					$this->session->set('alert', $notice);
-					Request::current()->redirect('home');
-				}
-				elseif(isset($json_result['error_message']))
-				{
-					$error_1 = $json_result['error_message']; 
-				}
-				else
-				{
-					//error 400 :)
-					if(isset($json_result['name'][0])):
-						$error_1 = $json_result['name'][0]." ";
-					endif;
-					if(isset($json_result['email'][0])):
-						$error_2 = $json_result['email'][0]; 
-					endif;
-				}
-				//@todo force login to next step
-			}
-			$results = Model_Devices::get_device('', "contributor=$contributor_id");
-			$json_result = json_decode($results['json_result'], true); 
+			$result_device = Model_Devices::get_device('', "contributor=$contributor_id");
+			$device_decode = json_decode($result_device['json_result'], true); 
 			/*
 			* At the moment each user has only one device, no need to loop through
 			* TODO, a user can have more than one device (better loop .. foreach)
 			*/
-			$total_count = $json_result['meta']['total_count'];
+			$total_count = $device_decode['meta']['total_count'];
 			//check if a user has a device
 			if($total_count >= 1)
 			{
-				$category = $json_result['objects'][0]['category'];
+				$category = $device_decode['objects'][0]['category'];
 				if($category == "Phone")
 				{
-					$phone_number = $json_result['objects'][0]['phone_number'];					
-					$str = $json_result['objects'][0]['resource_uri'];
+					$phone_number = $device_decode['objects'][0]['phone_number'];					
+					$str = $device_decode['objects'][0]['resource_uri'];
 					$resource = explode('/', $str);
-					$device_id = $resource[4];										
+					$device_id = $resource[4];				
 				}
 				else
 				{
@@ -391,7 +327,70 @@ class Controller_User extends Controller_Template {
 			
 			//add phone number to user array
 			$user['phone_number'] = $phone_number;
-		
+			
+			
+			// if the user updates profile
+			if (HTTP_Request::POST == $this->request->method())
+			{
+				//build json items	
+				$json_items['password'] = Arr::get($_POST,'userpassword');
+				
+				$_email = Arr::get($_POST,'useremail');	
+				$_name = Arr::get($_POST,'username');
+				//if email and or name is changed submit --- 
+				//The API would return a 404 if u submit an already existing email
+				if($_email != $user['email']):
+					$json_items['email'] = $_email;
+				endif;
+				
+				if($_name != $user['name']):
+					$json_items['name'] = $_name;
+				endif;
+				
+				$json_items['frequency'] = Arr::get($_POST,'frequency');
+				
+				$json_items['language'] = mb_strtoupper(i18n::lang());	
+				$phonenumber = Format::phone_number(Arr::get($_POST, 'phonenumber'));
+	
+				//send to api
+				$data_json = json_encode($json_items);
+				
+				$results = Model_Contributors::update_contributor($data_json, $contributor_id);
+				
+				//change user info in session
+				$this->model->force_login($user['id']);
+                 
+				$http_status = json_decode($results['http_status']);
+	
+				//$http_status = 204;
+				if($http_status == 204)
+				{
+					//$results = Model_Devices::get_device('', "contributor=$contributor_id");
+					//print_r($results); exit;
+					
+					//contributor device number #mobile
+					$device['category'] = 'Phone';
+					$device['phone_number'] = $phonenumber['number'];
+					
+					$device['contributor'] = "/api/v1/contributors/".$contributor_id.'/';
+					$device_json = json_encode($device);  
+					$device_json = str_replace("\\", "", $device_json);
+					
+					//print_r($device_json); exit;
+					$results = Model_Devices::update_device($device_json, $device_id);
+					
+					$notice = "Your profile has been updated";
+					
+					$this->session->set('notice', $notice);
+					Request::current()->redirect('user/account');
+				}
+				else
+				{ 	
+					$alert = "Technical Error";
+					$this->session->set('alert', $alert);
+				}
+				//@todo force login to next step
+			}
 		}
 		catch(Exception $e) 
 		{

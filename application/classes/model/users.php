@@ -44,7 +44,7 @@ class Model_Users extends Model{
 			//now check if the contributor password is valid
 		    $password_check_json = self::check_password($user['objects'][0]['id'], $password);
 			$password_check = json_decode($password_check_json['json_result'], true);
-			
+			//print_r($password_check_json); exit;
 			if($password_check['password_valid'])
 			{
 				//set user info in session
@@ -149,6 +149,16 @@ class Model_Users extends Model{
 		{
 			return false;
 		}
+	}
+	
+	public function force_login($user_id)
+	{
+	
+		$password_check_json = self::check_password($user_id, '');
+		$password_check = json_decode($password_check_json['json_result'], true);
+		$this->session->set('user', $password_check);
+		
+		return true;
 	}
 	
 } // End User Model
