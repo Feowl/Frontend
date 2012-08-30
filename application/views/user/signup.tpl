@@ -57,9 +57,10 @@
 	</div>
 	
 	<div class="control-group">
-	<center>
+		<div class="control-submit">
+		<a href="{URL::site('user/login')}">{__ t='Have an account? Login!'}</a>
 		<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value=' Sign-up and Contribute! '/>
-	</center>
+		</div>
 	</div>  
 	
 </form> 
