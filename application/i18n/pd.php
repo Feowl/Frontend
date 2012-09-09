@@ -41,7 +41,7 @@ return array(
 	'Account' => 'Your account', // 16
 	'Signup' => 'Join we', // 23
 	'Home' => 'Home', // 57
-	'Explore' => 'Wath map', // 58
+	'Explore' => 'Watch map', // 58
 	'Contribute' => 'Contribute', // 59
 	'About' => 'About', // 
 
