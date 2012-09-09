@@ -48,10 +48,11 @@
 	<div class="control-group">
 	<label class="control-label opt">{__ t='How often do you want to contribute ?'}</label>
 	<div class="controls">
-	<select id="distribution" name="distribution">
+	<select id="distribution" name="frequency">
+		<option value="0">{__ t='Not Sure'}</option>
 		<option value="1">{__ t='Daily'}</option>
-		<option value="7">{__ t='Weekly'}</option>
-		<option value="31">{__ t='Monthly'}</option>
+		<option value="2">{__ t='Weekly'}</option>
+		<option value="3">{__ t='Monthly'}</option>
 	</select>
 	</div>
 	</div>
