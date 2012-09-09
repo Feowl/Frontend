@@ -35,7 +35,7 @@ return array(
 	'contact' => 'contact', // 11
 	'blog' => 'blog', // 11
 	'Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl money come from <a href="http://www.freemedia.at/">International Press Institute</a>.', // 15
-	'It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Feowl people them na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> et <a href="http://www.wasamundi.com/">Wasamundi</a>.', // 18
+	'It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Feowl people them na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.', // 18
 
 	// views/layout/menu.tpl
 	'Account' => 'Your account', // 16
