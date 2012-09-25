@@ -37,18 +37,18 @@
 		padding:8px;
 
 		li {
+			line-height:16px;
 			padding-top:4px;
 			padding-bottom:4px;
-			line-height:16px;
 			white-space:nowrap;
 
 			.legend {
+				border:1px solid #A6A6A6;
 				display:block;
 				float:left;
-				width:15px;
 				height:15px;
-				border:1px solid #A6A6A6;
 				margin-right:5px;
+				width:15px;
 
 				.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
 				.border-radius(@inputBorderRadius);
@@ -57,12 +57,18 @@
 					background: url("../img/stripe.png") repeat;
 				}
 
-				&.low {
+				&.less-30min {
 					background:#CEE9EA;
 				}
-
-				&.high {
+				&.less-2h {
+					background:#88E8BE;
+				}
+				&.less-4h {
 					background:#309AA3;
+				}
+
+				&.more-4h {
+					background:#446E75;
 				}
 			}
 		}

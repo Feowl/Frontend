@@ -7,17 +7,19 @@
 		<div id="explore-space" class="row">
 
 
-			<div id="explore-legend" class="span2">
+			<div id="explore-legend" class="span3">
 				<ul class="nav nav-list well">
 					<li class="nav-header">
 						{__ t='Legend'}
 					</li>
 					<li><span class="legend no-relevant"></span>{__ t='No enough data'}</li>
-					<li><span class="legend low"></span>{__ t='Less power cuts'}</li>
-					<li><span class="legend high"></span>{__ t='More power cuts'}</li>
+					<li><span class="legend less-30min"></span>{__ t='No power cuts or less than 30mn'}</li>
+					<li><span class="legend less-2h"></span>{__ t='Beetween 30mn and 2h'}</li>
+					<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
+					<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 				</ul>
 			</div>	
-			<div id="explore-map" class="span10"></div>		
+			<div id="explore-map" class="span9"></div>		
 		
 			<div  class="span12">
 				<div id="explore-range-slider"></div>
