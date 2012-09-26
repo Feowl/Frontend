@@ -111,7 +111,7 @@
 				key: 'id'
 			});
 
-			explore.updateMap(explore.map);			
+			explore.updateMap(explore.map);	
 		}
 	};
 
@@ -126,10 +126,10 @@
 		,  scale = "q";
 
 		try {
-
+			// les limits correspondent au temps de coupure moyen (en s)
 			explore.colorscale = new chroma.ColorScale({
-				colors: ['#fafafa','#168891'],
-				limits: chroma.limits(explore.reportsAgregation, scale, 5, prop)
+				colors: ['#fafafa','#0A3E42'],
+				limits: [0, 1, 30, 120, 240, 1440]
 			});
 
 			explore.map.choropleth({
@@ -156,7 +156,7 @@
 			  		}
 			  	}
 
-			    return [id, avg_duration];
+			    return [id, 'Average daily duration without electricity : ' + avg_duration];
 			  },
 				style: {
 					classes: 'ui-tooltip-shadow'
