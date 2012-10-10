@@ -111,6 +111,8 @@ class Controller_User extends Controller_Template {
 				$results = Model_Contributors::post_contributor($data_string);
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
+			
+				//print_r($results); exit;
 				 
 				if($http_status == 201)
 				{
