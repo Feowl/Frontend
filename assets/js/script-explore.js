@@ -126,7 +126,7 @@
 		,  scale = "q";
 
 		try {
-			// les limits correspondent au temps de coupure moyen (en s)
+			// limits are linked to to the times of average electricity cuts (in seconds)
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
@@ -136,32 +136,55 @@
    				layer: 'douala-arrts',
 				data: explore.reportsAgregation,
 				key: 'id',
-				colors: function(d) {		
-					// For now, no power cut means no relevant data 			
-					if (d == null || d[prop] == 0) return 'url("assets/img/stripe.png")';
+				colors: function(d) {	
+				// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
+					// For now, no power cut means no relevant data
+					// if (typeof(i) != "undefined"){var i=0;}else{i++;};
+					// console.log(i);
+					if (d == null || d[prop] == 0 /*&& !*****/ ) return 'url("assets/img/stripe.png")';
+					// if () return ;
+					// console.log(e.mouseX, e.mouseY);
+					// console.log('lol');
 					return explore.colorscale.getColor(d[prop]);
 				},
 				duration: 0
 			});
 
 			explore.map.tooltips({
-			  layer: 'douala-arrts',
-			  content: function(id) {
+				// layer specified by the markup <g>
+			  	layer: 'douala-arrts',
+			  	// this id is the data-id linked to a markup <path> 
+			  	content: function(id) {
 
-			  	var avg_duration = null;
-			  	// Look for the updatime
-			  	for(var index in explore.reportsAgregation) {
-			  		if(explore.reportsAgregation[index].id == id) {
-			  			avg_duration = explore.reportsAgregation[index].avg_duration;
+			  		var avg_duration = null;
+			  		// Look for the updatime
+			  		for(var index in explore.reportsAgregation) {
+			  			if(explore.reportsAgregation[index].id == id) {
+			  				avg_duration = explore.reportsAgregation[index].avg_duration;
+			  			}
 			  		}
-			  	}
 
-			    return [id, 'Average daily duration without electricity : ' + avg_duration];
-			  },
-				style: {
-					classes: 'ui-tooltip-shadow'
-				}
+			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+			  	}
 			});
+			console.log(explore.map);
+			console.log( explore.map.getLayer('douala-arrts') );
+			/*
+			explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
+				$(this).css("stroke", "red").css("z-index", 100);
+			});
+			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
+				$(this).css("stroke", "black").css("z-index", 10);
+				this
+			});*/
+
+			explore.map.getLayer('douala-arrts')
+			    .on('click', function(data, path, event) {
+			        // do something nice
+			        console.log(data);
+			        path.attr('fill', 'red');
+			        console.log(e.mouseX, e.mouseY);
+			    });
 
 		} catch (err) {
 
@@ -190,6 +213,7 @@
 		explore.$exploreSpace.loading();
 
 		$.ajax({
+			// go looking for data from URL/feowl/Frontend/json/interval_reports/
 			url: 'json/interval_reports/',
 			data: params,
 			type: "GET",
@@ -259,5 +283,7 @@
 		explore.$exploreList.delegate(".load-more", "click", explore.moreReports);		 		
 
 	})();
+
+	
 
 })(window);
