@@ -61,7 +61,7 @@
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='Current password'}</label>
 	<div class="controls">
-	<input type="password" class="input-xlarge" id="pwd" name="userpassword" rel="popover" >
+	<input type="password" class="input-xlarge" id="pwd" name="password" rel="popover" >
 	</div>
 	</div>
 	
