@@ -10,9 +10,9 @@ $(document).ready(function() {
 	 $(".grid2,.grid3").show();
 	 }
 	 else{
-	 alert("#contribute")
+	// alert("#contribute")
 	 //@todo reset all fields
-	 //$("#contribute").reset()
+	 $("#contribute")[0].reset()
 	 }
    });
 
