@@ -116,25 +116,7 @@ $(document).ready(function() {
 		 });
 				  
 			
-		 //detect the last div
-		 /*
-		 function last_div(num)
-		 {
-		  //show grids
-		      if(num==1)
-			  last_div = ".contribute1-1";
-		      if(num==2){
-			  $(".grid2").show();
-			  last_div = ".contribute2-1";
-			  }
-			  if(num==3){
-			  $(".grid2,.grid3").show();
-			  last_div = ".contribute3-1";
-			  }
-			  return last_div;
-		
-		 }
-		 */
+		 
 			  
 			 });
 		

@@ -11,10 +11,12 @@
 class Controller_Contribute extends Controller_Template {
  
     public $template = "template/sub_template.tpl";
+	public $how_many_outage;
 	public $area;
 	public $duration;
 	public $happened_at;
-	public $has_experienced_outage;
+	public $do_not;
+
 	
 	public function before(){
 		try {
@@ -49,10 +51,33 @@ class Controller_Contribute extends Controller_Template {
 			//check for ajax request
 		if( HTTP_Request::GET == $this->request->method() AND $this->request->is_ajax() )
 		{
-		print_r( Arr::get($_GET,'content'));exit;
+		    //prepare variables
+			$e =explode(",",Arr::get($_GET,'content'));
+			$count_var =count($e);
+			print_r($e);exit;
+			//@todo, scale it to n power cuts
+			if($e[1] !=1){
+			$this->how_many_outage=$e[0];
+			$this->do_not =$e[1];
+			$this->duration= $e[2];
+			$this->area =$e[3];
+			//add 1 more power cuts
+			if($count_var==5){
+			$this->duration= $e[4];
+			$this->area =$e[5];
+			}
+			//add 2more power cuts
+			if($count_var==7){
+			$this->duration= $e[6];
+			$this->area =$e[7];
+			}
+			}else
+			{
+			//no power cut
+			}
 			//format happened at
-			$hour = Arr::get($_GET,'c1');
-			$min  = Arr::get($_GET,'c1_1');
+			//$hour = Arr::get($_GET,'c1');
+			//$min  = Arr::get($_GET,'c1_1');
 			//$date = explode("/", date("d/m/y",time()));
 			//$this->happened_at = date('c', mktime($hour, $min, 0, $date[0], $date[1], $date[2]));
 			$this->happened_at = date("Y-m-d")." $hour:$min:00";
@@ -98,7 +123,7 @@ class Controller_Contribute extends Controller_Template {
 				endif;
 			}
 			exit;
-			//@todo, return the right notice and display with twitter boostrap + backbone.js
+			//@todo, return the right notice and display with twitter boostrap
 		}
 	} 
    
