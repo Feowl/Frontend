@@ -103,7 +103,7 @@ class Controller_User extends Controller_Template {
 				$json_items['password'] = Arr::get($_POST,'userpassword');
 				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
 				$json_items['language'] = mb_strtoupper(i18n::lang());	
-				$json_items['frequency'] = Arr::get($_POST,'frequency');
+				//$json_items['frequency'] = Arr::get($_POST,'frequency');
 				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
 				
 				//send to api
@@ -112,6 +112,8 @@ class Controller_User extends Controller_Template {
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
 			
+				//print_r($data_string); //exit;
+				 
 				//print_r($results); exit;
 				 
 				if($http_status == 201)
