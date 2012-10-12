@@ -28,7 +28,7 @@ class API {
 		if($filter){
 		$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}else{
-		$data_to_feowl = 'username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
+		$data_to_feowl = 'username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}
 		//print_r($api_link.$data_to_feowl); exit;
 		$to_feowl = curl_init($api_link.$data_to_feowl);

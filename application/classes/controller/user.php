@@ -112,9 +112,6 @@ class Controller_User extends Controller_Template {
 				$http_status = json_decode($results['http_status']);
 				$json_result = json_decode($results['json_result'], true); 
 			
-				//print_r($data_string); //exit;
-				 
-				//print_r($results); exit;
 				 
 				if($http_status == 201)
 				{
