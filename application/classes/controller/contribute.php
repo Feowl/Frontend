@@ -15,7 +15,7 @@ class Controller_Contribute extends Controller_Template {
 	public $area;
 	public $duration;
 	public $happened_at;
-	public $do_not;
+	public $has_experience_power_cut;
 
 	
 	public function before(){
@@ -54,14 +54,13 @@ class Controller_Contribute extends Controller_Template {
 		    //prepare variables
 			$e =explode(",",Arr::get($_GET,'content'));
 			$count_var =count($e);
-			print_r($e);exit;
 			//@todo, scale it to n power cuts
 			if($e[1] !=1){
 			$this->how_many_outage=$e[0];
-			$this->do_not =$e[1];
-			$this->duration= $e[2];
-			$this->area =$e[3];
-			//add 1 more power cuts
+			$this->has_experience_power_cut=$e[1]=true;
+			$this->duration= (int)$e[2];
+			$this->area =$this->area = "/api/v1/areas/".$e[3];
+			//add 1 more power cut
 			if($count_var==5){
 			$this->duration= $e[4];
 			$this->area =$e[5];
@@ -75,6 +74,7 @@ class Controller_Contribute extends Controller_Template {
 			{
 			//no power cut
 			}
+			/* @deprecated
 			//format happened at
 			//$hour = Arr::get($_GET,'c1');
 			//$min  = Arr::get($_GET,'c1_1');
@@ -89,14 +89,16 @@ class Controller_Contribute extends Controller_Template {
 			$area = Arr::get($_GET,'c3');
 			//$this->area = array('pk'=>(int)$area);	
 			$this->area = "/api/v1/areas/$area/"; 
-			 
+			 */
 			//@todo do all validation and cleaning of data
 			$json_items['area']= $this->area;  
-			$json_items['happened_at']= $this->happened_at;
-			$json_items['has_experienced_outage']= $this->has_experienced_outage;    
+			$json_items['has_experience_power_cut']= $this->has_experience_power_cut;    
 			$json_items['duration']= $this->duration;
-			 
+			$json_items['contributor']=null;
+			$json_items['happened_at']=0;
+			
 			//send to api
+			//iterate to report several power cuts
 			$data_string = json_encode($json_items);  
 			$data_string = str_replace("\\", "", $data_string);
 			//Model returns an array of status code and json data
@@ -105,7 +107,7 @@ class Controller_Contribute extends Controller_Template {
 			
 			$http_status = json_decode($results['http_status']);
 			$json_result = json_decode($results['json_result'], true);
-			
+			var_dump($http_status);exit;
 			if($http_status == 201){
 				echo "Thank you for your contribution! ";
 			}elseif(isset($json_result['error_message'])){
