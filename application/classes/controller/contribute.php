@@ -46,6 +46,7 @@ class Controller_Contribute extends Controller_Template {
         $this->template->left_content = View::factory('contribute/how_to.tpl');
 		$this->template->right_content = View::factory('contribute/contribute.tpl');
     }
+	//handle contribute action
 	public function action_switch()
 	{
 			//check for ajax request

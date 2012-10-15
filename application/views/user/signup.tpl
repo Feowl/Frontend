@@ -17,6 +17,11 @@
 	{/if}
 	
 	<div class="control-group light-border">
+	<div class="controls">
+	<a href="#" >{__ t='I have a phone send my login details'}</a>
+	</div>
+	</div>
+	<div class="control-group light-border">
 	<label class="control-label">{__ t='Name'}*</label>
 	<div class="controls">
 	<input type="text" class="input-xlarge" id="user_name" name="username" rel="popover" >
