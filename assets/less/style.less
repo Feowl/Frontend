@@ -33,6 +33,42 @@
 	border:@grayLight 1px solid;
 	.border-radius(5px);
 }
+
+
+.account-form .form-horizontal  input{
+	width:230px;
+	border:none;
+	min-height:20px;
+	font-size:16px;
+	.border-radius(3px);
+}
+.account-form .email-size{
+	font-size:16px;
+}
+.account-form{
+	padding-top:7px;
+}
+.account-form .form-horizontal .control-label {
+	margin:0 5px 0 47px;
+	width:140px;
+	font-size:16px;
+	text-align:left;
+}
+.account-form .form-horizontal .opt{
+	width:250px;
+}
+.account-form .form-horizontal select{
+	min-height:33px;
+	font-size:16px;
+	width:236px;
+	border:@grayLight 1px solid;
+	.border-radius(3px);
+}
+.tag{
+	margin:5px 0 25px 0;
+	font-size: 17px;
+	font-weight:bold;
+}
 .control-submit{
 	margin:0 0 0 47px;
 }
@@ -54,13 +90,19 @@ padding-right:50px;
 	.border-radius(15px);
 	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
 }
+.bg-color-acc{
+	background-color:darken(@white, 20%);
+	padding:10px 5px 5px;
+	.border-radius(	5px);
+	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+}
 .bg-color-contribute
 {
 	background-color:darken(@white, 20%);
-	padding:10px 5px 5px;
+	padding:10px 5px 5px ;
 	.border-radius(15px);
 	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
-	width:700px;
+	width:720px;
 }
 .contribute-form , .contribute-form-s{
 	padding-top:7px;
@@ -70,7 +112,6 @@ padding-right:50px;
 	width:160px;
 	text-align:left;
 }
-
 .contribute-form .bold{
 	font-weight:@headingsFontWeight;
 }
@@ -132,6 +173,9 @@ background-color: #FFFF9D;
 .center{
 	margin:0 auto;
 }
+.reset{
+margin-left:325px;
+}
 .bg-sidebar{
 	width:300px;
 	padding: 0;
@@ -143,14 +187,24 @@ background-color: #FFFF9D;
 .left-space{
 	margin:10px 0px;
 }
-.bg-sidebar  li  a {
+.bg-sidebar{
+	background-color: #EEE;
+}
+.bg-sidebar li a{
 	display: block;
 	margin: 0 0 -1px;
-	padding: 8px 14px;
+	padding: 12px;
 	border: 1px solid #E5E5E5;
 	font-size:16px;
+	background-color: #FFF;
+	.border-radius(8px);
 }
-.bg-sidebar  li  a:hover, .bg-sidebar-hover {
+
+.bg-sidebar li a:hover{
+	color:@white;
+	background-color:#168891;
+}
+.bg-sidebar .bg-sidebar-hover{
 	color:@white;
 	background-color:#168891;
 }
@@ -168,12 +222,11 @@ background-color: #FFFF9D;
     margin-right: -6px;
     opacity: 0.25;
 }
-.bg-sidebar .active .icon-chevron-right, .bg-sidebar .active a:hover .icon-chevron-right {
-    background-image: url("../asset/img/glyphicons-halflings-white.png");
-    opacity: 1;
+.bg-sidebar .bg-sidebar-hover .icon-chevron-right {
+    opacity: 0.92;
 }
 .bg-sidebar a:hover .icon-chevron-right {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 svg .bgstroke {

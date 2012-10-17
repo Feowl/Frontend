@@ -10,9 +10,8 @@ $(document).ready(function() {
 	 $(".grid2,.grid3").show();
 	 }
 	 else{
-	 alert("#contribute")
-	 //@todo reset all fields
-	 //$("#contribute").reset()
+    reset_fields();	
+
 	 }
    });
 
@@ -58,8 +57,12 @@ $(document).ready(function() {
 			 });
 			  $(".contribute2").change(function(){
 			   $(".contribute2-1").removeAttr('disabled')
-			  $(".contribute2").removeClass("current")
+			  $(".contribute2").removeClass("current");
+			  $(".contribute3").removeAttr('disabled');
 			 $(".contribute2-1").addClass("current")
+			 //optionaly make button clickable
+			  $(".contribute-submit").addClass("btn-primary")
+			 $(".contribute-submit").removeAttr('disabled')
 			 });
 			   $(".contribute2-1").change(function(){
 			   $(".success-tick2").show()
@@ -74,6 +77,9 @@ $(document).ready(function() {
 			   $(".contribute3-1").removeAttr('disabled')
 			  $(".contribute3").removeClass("current")
 			 $(".contribute3-1").addClass("current")
+			 //optionaly make button clickable
+			  $(".contribute-submit").addClass("btn-primary")
+			 $(".contribute-submit").removeAttr('disabled')
 			 });
 			 $(".contribute3-1").change(function(){
 			   $(".success-tick3").show()
@@ -116,28 +122,18 @@ $(document).ready(function() {
 		 });
 				  
 			
-		 //detect the last div
-		 /*
-		 function last_div(num)
-		 {
-		  //show grids
-		      if(num==1)
-			  last_div = ".contribute1-1";
-		      if(num==2){
-			  $(".grid2").show();
-			  last_div = ".contribute2-1";
-			  }
-			  if(num==3){
-			  $(".grid2,.grid3").show();
-			  last_div = ".contribute3-1";
-			  }
-			  return last_div;
-		
-		 }
-		 */
-			  
 			 });
-		
+			 //reset fields
+  function reset_fields()
+		 {
+$("select").each( function(){
+	 $(".grid2,.grid3").hide();
+	  $(".contribute").removeAttr('disabled','disabled');
+	  $(".success-tick1,.success-tick, .success-tick2").hide();
+	// set its value to its first option
+	$(this).val( $("#" + $(this).attr("id") + " option:first").val() );
+	 $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
 	
-
-	 
+	  return false;
+});
+}

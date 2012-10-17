@@ -11,10 +11,12 @@
 class Controller_Contribute extends Controller_Template {
  
     public $template = "template/sub_template.tpl";
+	public $how_many_outage;
 	public $area;
 	public $duration;
 	public $happened_at;
-	public $has_experienced_outage;
+	public $has_experience_power_cut;
+
 	
 	public function before(){
 		try {
@@ -44,15 +46,39 @@ class Controller_Contribute extends Controller_Template {
         $this->template->left_content = View::factory('contribute/how_to.tpl');
 		$this->template->right_content = View::factory('contribute/contribute.tpl');
     }
+	//handle contribute action
 	public function action_switch()
 	{
 			//check for ajax request
 		if( HTTP_Request::GET == $this->request->method() AND $this->request->is_ajax() )
 		{
-		print_r( Arr::get($_GET,'content'));exit;
+		    //prepare variables
+			$e =explode(",",Arr::get($_GET,'content'));
+			$count_var =count($e);
+			//@todo, scale it to n power cuts
+			if($e[1] !=1){
+			$this->how_many_outage=$e[0];
+			$this->has_experience_power_cut=$e[1]=true;
+			$this->duration= (int)$e[2];
+			$this->area =$this->area = "/api/v1/areas/".$e[3];
+			//add 1 more power cut
+			if($count_var==5){
+			$this->duration= $e[4];
+			$this->area =$e[5];
+			}
+			//add 2more power cuts
+			if($count_var==7){
+			$this->duration= $e[6];
+			$this->area =$e[7];
+			}
+			}else
+			{
+			//no power cut
+			}
+			/* @deprecated
 			//format happened at
-			$hour = Arr::get($_GET,'c1');
-			$min  = Arr::get($_GET,'c1_1');
+			//$hour = Arr::get($_GET,'c1');
+			//$min  = Arr::get($_GET,'c1_1');
 			//$date = explode("/", date("d/m/y",time()));
 			//$this->happened_at = date('c', mktime($hour, $min, 0, $date[0], $date[1], $date[2]));
 			$this->happened_at = date("Y-m-d")." $hour:$min:00";
@@ -64,14 +90,16 @@ class Controller_Contribute extends Controller_Template {
 			$area = Arr::get($_GET,'c3');
 			//$this->area = array('pk'=>(int)$area);	
 			$this->area = "/api/v1/areas/$area/"; 
-			 
+			 */
 			//@todo do all validation and cleaning of data
 			$json_items['area']= $this->area;  
-			$json_items['happened_at']= $this->happened_at;
-			$json_items['has_experienced_outage']= $this->has_experienced_outage;    
+			$json_items['has_experience_power_cut']= $this->has_experience_power_cut;    
 			$json_items['duration']= $this->duration;
-			 
+			$json_items['contributor']=null;
+			$json_items['happened_at']=0;
+			
 			//send to api
+			//iterate to report several power cuts
 			$data_string = json_encode($json_items);  
 			$data_string = str_replace("\\", "", $data_string);
 			//Model returns an array of status code and json data
@@ -80,7 +108,7 @@ class Controller_Contribute extends Controller_Template {
 			
 			$http_status = json_decode($results['http_status']);
 			$json_result = json_decode($results['json_result'], true);
-			
+			var_dump($http_status);exit;
 			if($http_status == 201){
 				echo "Thank you for your contribution! ";
 			}elseif(isset($json_result['error_message'])){
@@ -98,7 +126,7 @@ class Controller_Contribute extends Controller_Template {
 				endif;
 			}
 			exit;
-			//@todo, return the right notice and display with twitter boostrap + backbone.js
+			//@todo, return the right notice and display with twitter boostrap
 		}
 	} 
    

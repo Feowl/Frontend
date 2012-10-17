@@ -1,5 +1,5 @@
-<div class="span6 bg-color">
-<div class="signup-form">
+<div class="span6 bg-color-acc">
+<div class="account-form">
 	<form method='post' action="{url::site('user/account')}" class="form-horizontal" id="signup" >            
 	
 	{if isset($alert)}
@@ -16,6 +16,9 @@
 	</div>	
 	{/if}
 	
+	<div class="tag">
+	----------------------------- {__ t='Change my informations'} -----------------------------
+	</div>
 	
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='Name'}*</label>
@@ -26,27 +29,20 @@
 	
 	<div class="control-group light-border">
 	<label class="control-label" for="input01">{__ t='E-mail'}*</label>
-	<div class="controls">
-	<input type="text" class="input-xlarge" id="user_email" name="useremail" value="{$user.email}" rel="popover" >
+	<div class="controls email-size">
+	{$user.email}
 	</div>
 	</div>
 
-	<div class="control-group light-border">
-	<label class="control-label">{__ t='Password'}*</label>
-	<div class="controls">
-	<input type="password" class="input-xlarge" id="pwd" name="userpassword" rel="popover" >
-	</div>
-	</div>
-	
 	<div class="control-group light-border">
 	<label class="control-label">{__ t='GSM Phone Number'}</label>
 	<div class="controls">
 	<input type="text" class="input-xlarge" id="phone_number" name="phonenumber" value="{$user.phone_number}" rel="popover" >
 	</div>
 	</div>
-	
+
 	<div class="control-group">
-	<label class="control-label opt">{__ t='How often do you want to contribute ?'}</label>
+	<label class="control-label">{__ t='How often do you want to contribute ?'}</label>
 	<div class="controls">
 	<select id="distribution" name="frequency">
 		<option value="0">{__ t='Not Sure'}</option>
@@ -54,6 +50,32 @@
 		<option value="2">{__ t='Weekly'}</option>
 		<option value="3">{__ t='Monthly'}</option>
 	</select>
+	</div>
+	</div>
+
+	<div class="tag">
+	----------------------------- {__ t='Change my password'} ---------------------------------
+	</div>
+
+
+	<div class="control-group light-border">
+	<label class="control-label">{__ t='Current password'}</label>
+	<div class="controls">
+	<input type="password" class="input-xlarge" id="pwd" name="password" rel="popover" >
+	</div>
+	</div>
+	
+	<div class="control-group light-border">
+	<label class="control-label">{__ t='New password'}</label>
+	<div class="controls">
+	<input type="password" class="input-xlarge" id="pwd" name="newpassword" rel="popover" >
+	</div>
+	</div>
+	
+	<div class="control-group light-border">
+	<label class="control-label">{__ t='Repeat new password'}</label>
+	<div class="controls">
+	<input type="password" class="input-xlarge" id="pwd" name="repeat_newpassword" rel="popover" >
 	</div>
 	</div>
 	
