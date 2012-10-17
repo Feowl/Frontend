@@ -15,7 +15,7 @@
 	};
 
 	/**
-	 * HGet local short date string
+	 * Get local short date string
 	 * @src http://stackoverflow.com/a/7740464
 	 * @param 	<Date> d
 	 * @return 	<String>
@@ -36,6 +36,7 @@
 	 * Helper for district names
 	 */
 	Handlebars.registerHelper('district_name', function(key) {
+		// returns names of districts from "User reports"
 	  return explore.areas[key];
 	});
 
@@ -45,7 +46,91 @@
 	Handlebars.registerHelper('short_date_string', explore.getLocaleShortDateString);
 
 
+	if (typeof(duration_total) != "undefined") {
+		var duration_total = 0;
+	}
+
+	Handlebars.registerHelper('duration_rate', function(key) {
+
+		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
+		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
+		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
+		// console.log(typeof(duration_total));
+		// console.log(duration_total);
+		duration_total += key;
+
+		return duration_total;
+	});
 	
+	/**
+	 * Add a bar chart for the specified district
+	 */
+	explore.addChart = function(data, path) {
+
+    	console.dir(path);
+    	console.dir(data);
+
+		var half  = 0,
+			two   = 0,
+			four  = 0,
+			more  = 0;
+    	
+    	for( var i in data.list ) {
+
+    		console.log('iteration n°' + i);
+
+    		var _list = data.list[i];
+
+        	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
+
+        		// AIM: store %ages of different durations regarding to all of them_______USELESS
+        		if( _list.duration < 30 ) {
+        			half++;
+        		}
+        		else if( _list.duration < 120 ) {
+        			two++;
+        		}
+        		else if( _list.duration < 240 ) {
+        			four++;
+        		}
+        		else {
+        			more++;
+        		}
+        	}
+        }
+
+		// console.log('half: ' + half);
+		// console.log('two: ' + two);
+		// console.log('four: ' + four);
+		// console.log('more: ' + more);
+
+        // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples
+		
+		// Changing the "Frontend/explore" view
+		$('#explore-legend').hide();
+
+		// CHOICE: We chose here to add the block with JS ( for the moment )
+		$('#explore-barchart').remove();
+		$('#explore-map').after('<div id="explore-barchart" class="span3"></div>');
+
+		// TEMPORARY style
+		$('#explore-barchart').css({
+			border: 'solid black 1px', margin: '0 auto', height: '100%', "min-height": '60px'
+		});
+
+        var 	r	= Raphael("explore-barchart"),
+        	txtattr = { font: "16px verdana" };
+        r.text(140, 30, "Proportion of Feowl users\n suffering from power\n cuts in "+ path.id).attr(txtattr);
+
+        if( !half && !two && !four && !more ) {
+        	r.text(140, 70, "---- no data available ----").attr(txtattr);
+        	//$('#explore-barchart').html('- no data available -').css({display: "block", font: "16px verdana"});
+        }
+        else {
+        	r.barchart(10, 80, 200, 220, [[half, two, four, more]], 0, {type: "sharp"});
+        }
+	}
+
 	/**
 	 * Draw the list
 	 */
@@ -66,10 +151,25 @@
 			$tbody.find(".load-more").remove();
 		}
 
+		//console.log(source);
 		// Append every items at the same time
 		$tbody.append(html);
 	};
 
+	/**
+	 * WIP !!
+	 * Display summarizing data
+	 */
+	explore.displayMetadata = function(data) {
+
+		var   $contributions = explore.$exploreLegend.find("#contributions")
+		,   source = $("#tpl-reports-summary").html()
+		, template = Handlebars.compile(source)   // QUESTION: besoin de compiler 2* ?
+		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
+
+		$contributions.empty();
+		$contributions.append(html);
+	};
 
 	/**
 	 * Draw the map
@@ -81,7 +181,7 @@
 			data.agregation[index].id = explore.areas[data.agregation[index].area];
 		}
 
-		// Gives the data objects to the layer
+		// Gives the data objects to the layer  // #1111  ??????
 		explore.reportsAgregation = data.agregation;
 
 		// No layer defined, loads the svg file
@@ -92,7 +192,10 @@
 				
 				explore.map.addLayer({
 					id: 'douala-arrts',
-					key: 'id'
+					key: 'id',
+	                click: function(path) {
+	                	explore.addChart(data, path);
+	                }
 				});
 
 				explore.updateMap(explore.map);
@@ -108,10 +211,16 @@
 			// Add layer again to prevent a fill bug with Kartograph
 			explore.map.addLayer({
 				id: 'douala-arrts',
-				key: 'id'
+				key: 'id',
+				styles: {
+                    'stroke': "green"
+                },
+                click: function(path) {
+	                	explore.addChart(data, path);
+	                }
 			});
 
-			explore.updateMap(explore.map);	
+			explore.updateMap(explore.map);	// QUESTION: events in updateMap or in addLayer like in da doc?
 		}
 	};
 
@@ -126,7 +235,7 @@
 		,  scale = "q";
 
 		try {
-			// limits are linked to to the times of average electricity cuts (in seconds)
+			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
@@ -135,8 +244,8 @@
 			explore.map.choropleth({
    				layer: 'douala-arrts',
 				data: explore.reportsAgregation,
-				key: 'id',
-				colors: function(d) {	
+				key: 'id',	  
+				colors: function(d) {
 				// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
 					// For now, no power cut means no relevant data
 					// if (typeof(i) != "undefined"){var i=0;}else{i++;};
@@ -167,24 +276,14 @@
 			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
 			  	}
 			});
-			console.log(explore.map);
-			console.log( explore.map.getLayer('douala-arrts') );
-			/*
+
+
 			explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
-				$(this).css("stroke", "red").css("z-index", 100);
+				//$(this).css("stroke", "#075156");
 			});
 			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
-				$(this).css("stroke", "black").css("z-index", 10);
-				this
-			});*/
-
-			explore.map.getLayer('douala-arrts')
-			    .on('click', function(data, path, event) {
-			        // do something nice
-			        console.log(data);
-			        path.attr('fill', 'red');
-			        console.log(e.mouseX, e.mouseY);
-			    });
+				//$(this).css("stroke", "black");
+			});
 
 		} catch (err) {
 
@@ -221,8 +320,11 @@
 			success: function(data) {
 				// Draw the map only if we have agreated reports
 				if(data.agregation) explore.drawMap(data);
-				// Draw the list only if we have listed reports
-				if(data.list) 		explore.drawList(data);
+				// Draw the list only if we have listed reports + Displays info under the legend 
+				if(data.list) {
+					explore.drawList(data);
+					explore.displayMetadata(data);
+				}
 				// Removes the loading overlay
 				explore.$exploreSpace.loading(false);
 			}
@@ -254,6 +356,8 @@
 		explore.$dateRange = $("#explore-range-slider");
 		// Element to use to display the map
 		explore.$exploreMap = $("#explore-map");
+		// Element to use to display the legend
+		explore.$exploreLegend = $("#explore-legend");
 		// Element to use to display the list
 		explore.$exploreList = $("#explore-list");
 		// Element to use as a workspace

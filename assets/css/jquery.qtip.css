@@ -53,8 +53,8 @@
 		padding: 5px 35px 5px 10px;
 		overflow: hidden;
 
-		background-color: #ccf !important;
-		border-width: 0 0 1px;
+		background-color: #f0f0f0 !important;
+		border-width: 0 !important;
 		font-weight: bold;
 	}
 
@@ -146,7 +146,7 @@
 
 /*! Add rounded corners to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE9+, Safari 2+ */
 .ui-tooltip{
-	border: solid 2px #000 !important;
+	border: solid 1px #f6f6f6 !important;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
