@@ -52,11 +52,6 @@
 
 	Handlebars.registerHelper('duration_rate', function(key) {
 
-		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
-		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
-		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
-		// console.log(typeof(duration_total));
-		// console.log(duration_total);
 		duration_total += key;
 
 		return duration_total;
@@ -83,7 +78,6 @@
 
         	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
 
-        		// AIM: store %ages of different durations regarding to all of them_______USELESS
         		if( _list.duration < 30 ) {
         			half++;
         		}
@@ -99,35 +93,31 @@
         	}
         }
 
-		// console.log('half: ' + half);
-		// console.log('two: ' + two);
-		// console.log('four: ' + four);
-		// console.log('more: ' + more);
-
         // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples
 		
-		// Changing the "Frontend/explore" view
 		$('#explore-legend').hide();
 
-		// CHOICE: We chose here to add the block with JS ( for the moment )
 		$('#explore-barchart').remove();
 		$('#explore-map').after('<div id="explore-barchart" class="span3"></div>');
 
 		// TEMPORARY style
 		$('#explore-barchart').css({
-			border: 'solid black 1px', margin: '0 auto', height: '100%', "min-height": '60px'
+			border: 'solid black 1px', margin: '0 auto', height: '300px'
 		});
 
-        var 	r	= Raphael("explore-barchart"),
-        	txtattr = { font: "16px verdana" };
-        r.text(140, 30, "Proportion of Feowl users\n suffering from power\n cuts in "+ path.id).attr(txtattr);
+        var r		= Raphael("explore-barchart"),
+        	txtattr = { font: "16px verdana" },
+        	fn 		= function() {
+        		this.flag = r.label(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+        	};
+
+        r.text(140, 30, "Proportion of Feowl users\n suffering from power cuts in\n "+ path.id).attr(txtattr);
 
         if( !half && !two && !four && !more ) {
-        	r.text(140, 70, "---- no data available ----").attr(txtattr);
-        	//$('#explore-barchart').html('- no data available -').css({display: "block", font: "16px verdana"});
+        	r.text(140, 160, "---- no data available ----").attr(txtattr);
         }
         else {
-        	r.barchart(10, 80, 200, 220, [[half, two, four, more]], 0, {type: "sharp"});
+        	r.barchart(10, 80, 200, 220, [[half, two, four, more]], 0, {type: "sharp"}).each(fn);
         }
 	}
 
@@ -164,8 +154,8 @@
 
 		var   $contributions = explore.$exploreLegend.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
-		, template = Handlebars.compile(source)   // QUESTION: besoin de compiler 2* ?
-		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
+		, template = Handlebars.compile(source)
+		,     html = template(data);
 
 		$contributions.empty();
 		$contributions.append(html);
