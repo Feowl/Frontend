@@ -28,6 +28,8 @@ class Controller_Contribute extends Controller_Template {
 		parent::before();
 		// Open session
 		$this->session = Session::instance();
+		$this->user = $this->session->get('user');
+	   
 	}
 	
 	//Use the after method to load static files
@@ -43,6 +45,7 @@ class Controller_Contribute extends Controller_Template {
 	
     public function action_index()
     {
+	
         $this->template->left_content = View::factory('contribute/how_to.tpl');
 		$this->template->right_content = View::factory('contribute/contribute.tpl');
     }
@@ -69,7 +72,12 @@ class Controller_Contribute extends Controller_Template {
 			$json_items['happened_at']="2012-07-09 05:45:00";
 			$json_items['has_experience_power_cut']=$this->has_experience_power_cut;    
 			$json_items['duration']= $this->duration;
+		   if($this->user)
+			{
+			$json_items['contributor']=(int)$this->user['id'];
+			}else{
 			$json_items['contributor']=null;
+			}
 			//send to api
 			$data_string = json_encode($json_items); 
 			$data_string = str_replace("\\", "", $data_string);		
