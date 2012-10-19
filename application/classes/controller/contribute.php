@@ -63,7 +63,7 @@ class Controller_Contribute extends Controller_Template {
 			//iterate to report several power cuts
 			//@assume: the API does not fail.
 			$this->how_many_outage=$e[0];
-			$this->has_experience_power_cut="true";
+			$this->has_experience_power_cut=true;
 			$this->duration= (int)$e[2];
 			$this->area = "/api/v1/areas/".$e[3]."/";
 			$date = explode("/", date("d/m/y",time()));
@@ -80,7 +80,8 @@ class Controller_Contribute extends Controller_Template {
 			}
 			//send to api
 			$data_string = json_encode($json_items); 
-			$data_string = str_replace("\\", "", $data_string);		
+			$data_string = str_replace("\\", "", $data_string);	
+print_r($data_string );exit;			
 			//Model returns an array of status code and json data
 			$results = Model_Reports::create_report($data_string);
 			//add 1 more power cut
