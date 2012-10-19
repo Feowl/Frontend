@@ -115,7 +115,8 @@ $(document).ready(function() {
 			}, 
 			function(data){   		 
 				//return from server
-	          // $(".endContainer").show()
+				 //$(".endContainer").empty();
+	           $(".endContainer").show()
 			    $(".endContainer .alert").append(data).show();
 			})
             return false;

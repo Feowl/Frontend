@@ -57,25 +57,13 @@ class Controller_Contribute extends Controller_Template {
 			$count_var =count($e);
 			//@todo, scale it to n power cuts
 			if($e[1] !=1){
+			//iterate to report several power cuts
+			//@assume: the API does not fail.
 			$this->how_many_outage=$e[0];
 			$this->has_experience_power_cut="true";
 			$this->duration= (int)$e[2];
-			$this->area =$this->area = "/api/v1/areas/".$e[3]."/";
-			//add 1 more power cut
-			if($count_var==5){
-			$this->duration= $e[4];
-			$this->area =$e[5];
-			}
-			//add 2more power cuts
-			if($count_var==7){
-			$this->duration= $e[6];
-			$this->area =$e[7];
-			}
-			}else
-			{
-			//no power cut
-			}
-			 $date = explode("/", date("d/m/y",time()));
+			$this->area = "/api/v1/areas/".$e[3]."/";
+			$date = explode("/", date("d/m/y",time()));
 			//@todo do all validation and cleaning of data
 			$json_items['area']= $this->area;  
 			$json_items['happened_at']="2012-07-09 05:45:00";
@@ -83,19 +71,49 @@ class Controller_Contribute extends Controller_Template {
 			$json_items['duration']= $this->duration;
 			$json_items['contributor']=null;
 			//send to api
-			//iterate to report several power cuts
 			$data_string = json_encode($json_items); 
-			$data_string = str_replace("\\", "", $data_string);
-			//print_r($data_string);exit;		
+			$data_string = str_replace("\\", "", $data_string);		
 			//Model returns an array of status code and json data
 			$results = Model_Reports::create_report($data_string);
-            //return data
+			//add 1 more power cut
+			if($count_var>4){
+			$this->duration= $e[4];
+			$this->area =$e[5];
+			$json_items['area']= "/api/v1/areas/".$this->area."/";			
+			$json_items['duration']= $this->duration;
+			//send to api
+			$data_string = json_encode($json_items); 
+			$data_string = str_replace("\\", "", $data_string);		
+			//Model returns an array of status code and json data
+			$results = Model_Reports::create_report($data_string);
+			}
+			//add 2more power cuts
+			if($count_var>6){
+			$this->duration= $e[6];
+			$this->area =$e[7];
+			$json_items['area']=  "/api/v1/areas/".$this->area."/";	   
+			$json_items['duration']= $this->duration;
+			//send to api
+			$data_string = json_encode($json_items); 
+			$data_string = str_replace("\\", "", $data_string);		
+			//Model returns an array of status code and json data
+			$results = Model_Reports::create_report($data_string);
+			}
+			}else
+			{
+			//no power cut
+			}
 			
+			
+			
+            //return data
+			//we expect just the final result from the api if more than 1 power cut			
 			$http_status = json_decode($results['http_status']);
 			$json_result = json_decode($results['json_result'], true);
 	
 			if($http_status == 201){
 				echo "Thank you for your contribution! ";
+				//redirect to explore
 			}elseif(isset($json_result['error_message'])){
 				echo $json_result['error_message'];
 			}else{
