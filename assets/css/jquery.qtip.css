@@ -53,10 +53,12 @@
 		padding: 5px 35px 5px 10px;
 		overflow: hidden;
 
-		border-width: 0 0 1px;
+		background-color: #f0f0f0 !important;
+		border-width: 0 !important;
 		font-weight: bold;
 	}
 
+	/* #1111 que mettre à la place de !important????? */
 	.ui-tooltip-titlebar + .ui-tooltip-content{ border-top-width: 0px !important; }
 
 		/*! Default close button class */
@@ -144,12 +146,11 @@
 
 /*! Add rounded corners to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE9+, Safari 2+ */
 .ui-tooltip{
+	border: solid 1px #f6f6f6 !important;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
-
-
 
 /**
  * Twitter Bootstrap style.
