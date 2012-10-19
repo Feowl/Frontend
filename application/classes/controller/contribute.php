@@ -58,9 +58,9 @@ class Controller_Contribute extends Controller_Template {
 			//@todo, scale it to n power cuts
 			if($e[1] !=1){
 			$this->how_many_outage=$e[0];
-			$this->has_experience_power_cut=$e[1]=true;
+			$this->has_experience_power_cut="true";
 			$this->duration= (int)$e[2];
-			$this->area =$this->area = "/api/v1/areas/".$e[3];
+			$this->area =$this->area = "/api/v1/areas/".$e[3]."/";
 			//add 1 more power cut
 			if($count_var==5){
 			$this->duration= $e[4];
@@ -75,40 +75,25 @@ class Controller_Contribute extends Controller_Template {
 			{
 			//no power cut
 			}
-			/* @deprecated
-			//format happened at
-			//$hour = Arr::get($_GET,'c1');
-			//$min  = Arr::get($_GET,'c1_1');
-			//$date = explode("/", date("d/m/y",time()));
-			//$this->happened_at = date('c', mktime($hour, $min, 0, $date[0], $date[1], $date[2]));
-			$this->happened_at = date("Y-m-d")." $hour:$min:00";
-			
-			$this->has_experienced_outage = (bool)Arr::get($_GET,'type');
-			//@todo, this input should be int from the input, not forced
-			$this->duration = (int)Arr::get($_GET,'c2');
-			//format area
-			$area = Arr::get($_GET,'c3');
-			//$this->area = array('pk'=>(int)$area);	
-			$this->area = "/api/v1/areas/$area/"; 
-			 */
+			 $date = explode("/", date("d/m/y",time()));
 			//@todo do all validation and cleaning of data
 			$json_items['area']= $this->area;  
-			$json_items['has_experience_power_cut']= $this->has_experience_power_cut;    
+			$json_items['happened_at']="2012-07-09 05:45:00";
+			$json_items['has_experience_power_cut']=$this->has_experience_power_cut;    
 			$json_items['duration']= $this->duration;
 			$json_items['contributor']=null;
-			$json_items['happened_at']=0;
-			
 			//send to api
 			//iterate to report several power cuts
-			$data_string = json_encode($json_items);  
+			$data_string = json_encode($json_items); 
 			$data_string = str_replace("\\", "", $data_string);
+			//print_r($data_string);exit;		
 			//Model returns an array of status code and json data
 			$results = Model_Reports::create_report($data_string);
             //return data
 			
 			$http_status = json_decode($results['http_status']);
 			$json_result = json_decode($results['json_result'], true);
-			var_dump($http_status);exit;
+	
 			if($http_status == 201){
 				echo "Thank you for your contribution! ";
 			}elseif(isset($json_result['error_message'])){
