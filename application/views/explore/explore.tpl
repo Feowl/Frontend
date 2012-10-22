@@ -93,11 +93,11 @@
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
 					
 					{{#list}}
-						<p>qualité</p>
+						{{! <p>qualité</p>}}
 						{{! TODO: sum all the duration values in one variable}}
-						{{duration_rate duration}}
-						<p>contrib</p>
-						{{contributor}}
+						{{! duration_rate duration}}
+						{{! <p>contrib</p>}}
+						{{! contributor}}
 					{{/list}}
 					{{^list}}
 						no list here!
@@ -105,7 +105,7 @@
 
 					{/literal}{__ t='SOMETHING TO TRANSLATE!'}{literal}
 					
-					{{contributor}}
+					{{! contributor}}
 
 				</script>
 

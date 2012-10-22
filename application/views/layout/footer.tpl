@@ -34,5 +34,6 @@
 	{if isset($files_javascript)}
 	{include file='tool/header-file.tpl' type='js'  list=$files_javascript after="" before=""}
 	{/if}
+
 	</body>
 </html>

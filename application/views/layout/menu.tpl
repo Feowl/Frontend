@@ -1,5 +1,5 @@
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
 
   <div class="navbar-inner">
 
@@ -78,3 +78,7 @@
   </div>
 
 </div>
+<div id="header-step" class=""></div>
+
+{* Calling the responsive CSS *}
+<link href="{URL::base()}assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="all" />

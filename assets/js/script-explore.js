@@ -1,3 +1,15 @@
+//$('#explore-space').not('#explore-map')
+$('body')
+	.click(function(event) {
+
+	 	// console.log(event.target.nodeName);
+
+	 	if(event.target.nodeName != 'path') {
+			$('#explore-barchart').remove();
+	 		$('#explore-legend').show();
+	 	}
+	});
+
 (function(window, undefined) {
 
 	var explore = {
@@ -52,6 +64,11 @@
 
 	Handlebars.registerHelper('duration_rate', function(key) {
 
+		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
+		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
+		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
+		// console.log(typeof(duration_total));
+		// console.log(duration_total);
 		duration_total += key;
 
 		return duration_total;
@@ -62,8 +79,8 @@
 	 */
 	explore.addChart = function(data, path) {
 
-    	console.dir(path);
-    	console.dir(data);
+    	// console.dir(path);
+    	// console.dir(data);
 
 		var half  = 0,
 			two   = 0,
@@ -72,7 +89,7 @@
     	
     	for( var i in data.list ) {
 
-    		console.log('iteration n°' + i);
+    		// console.log('iteration n°' + i);
 
     		var _list = data.list[i];
 
@@ -109,15 +126,25 @@
         	txtattr = { font: "16px verdana" },
         	fn 		= function() {
         		this.flag = r.label(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-        	};
+        	},
+        	total_p = (half+two+four+more)/100;
 
-        r.text(140, 30, "Proportion of Feowl users\n suffering from power cuts in\n "+ path.id).attr(txtattr);
+
+        // CHOICE: a html presentation might be better
+        r.text(140, 30, "Proportion of Feowl users\n suffering from power cuts in\n "+ path.id + " (%)").attr(txtattr);
 
         if( !half && !two && !four && !more ) {
         	r.text(140, 160, "---- no data available ----").attr(txtattr);
         }
         else {
-        	r.barchart(10, 80, 200, 220, [[half, two, four, more]], 0, {type: "sharp"}).each(fn);
+        	r.barchart(
+        		30, 80,
+        		200, 220,
+        		[[Math.floor(half/total_p), Math.floor(two/total_p), Math.floor(four/total_p), Math.floor(more/total_p)]],
+        		0,
+        		{type: "sharp"}
+        	)
+        	.each(fn);
         }
 	}
 
@@ -155,7 +182,7 @@
 		var   $contributions = explore.$exploreLegend.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template(data);
+		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
 
 		$contributions.empty();
 		$contributions.append(html);
@@ -168,6 +195,7 @@
 
 		// Updates the key for each area
 		for(var index in data.agregation) {
+			// Care: "id" here stands for a string
 			data.agregation[index].id = explore.areas[data.agregation[index].area];
 		}
 
@@ -184,6 +212,8 @@
 					id: 'douala-arrts',
 					key: 'id',
 	                click: function(path) {
+	                	// console.log(data);
+	                	// console.log(path);
 	                	explore.addChart(data, path);
 	                }
 				});
@@ -277,7 +307,7 @@
 
 		} catch (err) {
 
-			console && console.log(err);
+			//console && console.log(err);
 		}
 
 	};
