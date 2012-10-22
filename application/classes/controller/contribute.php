@@ -74,14 +74,13 @@ class Controller_Contribute extends Controller_Template {
 			$json_items['duration']= $this->duration;
 		   if($this->user)
 			{
-			$json_items['contributor']=(int)$this->user['id'];
+			$json_items['contributor']="/api/v1/contributors/".$this->user['id']."/";
 			}else{
 			$json_items['contributor']=null;
 			}
 			//send to api
 			$data_string = json_encode($json_items); 
-			$data_string = str_replace("\\", "", $data_string);	
-print_r($data_string );exit;			
+			$data_string = str_replace("\\", "", $data_string);			
 			//Model returns an array of status code and json data
 			$results = Model_Reports::create_report($data_string);
 			//add 1 more power cut
