@@ -1,14 +1,3 @@
-//$('#explore-space').not('#explore-map')
-$('body')
-	.click(function(event) {
-
-	 	// console.log(event.target.nodeName);
-
-	 	if(event.target.nodeName != 'path') {
-			$('#explore-barchart').remove();
-	 		$('#explore-legend').show();
-	 	}
-	});
 
 (function(window, undefined) {
 
@@ -25,6 +14,34 @@ $('body')
 		},
 		currentPage:0
 	};
+
+
+	/**
+	 * EVENTS
+	 */
+
+
+	/**
+	 * Switch barchart view to legend view
+	 */
+	// tried before with .not(), which did not work
+	$('body')
+		.click(function(event) {
+
+		 	if(event.target.nodeName != 'path') {
+
+		 		// Suppress the previous barchart
+		 		$('#explore-barchart').children('svg').remove();
+				$('#explore-barchart').addClass('hidden');
+		 		$('#explore-legend').removeClass('hidden');
+		 	}
+	});
+
+
+	/**
+	 * FUNCTIONS
+	 */
+
 
 	/**
 	 * Get local short date string
@@ -75,12 +92,10 @@ $('body')
 	});
 	
 	/**
-	 * Add a bar chart for the specified district
+	 * Adds a bar chart for the specified district
+	 * @params data, path
 	 */
 	explore.addChart = function(data, path) {
-
-    	// console.dir(path);
-    	// console.dir(data);
 
 		var half  = 0,
 			two   = 0,
@@ -112,15 +127,9 @@ $('body')
 
         // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples
 		
-		$('#explore-legend').hide();
-
-		$('#explore-barchart').remove();
-		$('#explore-map').after('<div id="explore-barchart" class="span3"></div>');
-
-		// TEMPORARY style
-		$('#explore-barchart').css({
-			border: 'solid black 1px', margin: '0 auto', height: '300px'
-		});
+		$('#explore-barchart svg:first-child').remove();
+		$('#explore-barchart').removeClass('hidden');
+ 		$('#explore-legend').addClass('hidden');
 
         var r		= Raphael("explore-barchart"),
         	txtattr = { font: "16px verdana" },
@@ -212,8 +221,6 @@ $('body')
 					id: 'douala-arrts',
 					key: 'id',
 	                click: function(path) {
-	                	// console.log(data);
-	                	// console.log(path);
 	                	explore.addChart(data, path);
 	                }
 				});

@@ -20,7 +20,8 @@
 				</ul>
 				<div id="contributions"></div>
 			</div>
-			<div id="explore-map" class="span9"></div>		
+			<div id="explore-map" class="span6"></div>
+			<div id="explore-barchart" class="span3 hidden"></div>
 		
 			<div  class="span12">
 				<div id="explore-range-slider"></div>
