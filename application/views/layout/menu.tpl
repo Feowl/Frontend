@@ -84,7 +84,4 @@
   </div>
 
 </div>
-<div id="header-step" class=""></div>
-
-{* Calling the responsive CSS *}
-<link href="{URL::base()}assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="all" />
+<div id="header-step" class="hidden-phone"></div>
