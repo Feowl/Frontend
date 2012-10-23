@@ -208,7 +208,7 @@ class Controller_User extends Controller_Template {
         {
 			$email = $this->request->post('email');
 			
-			//Attempt login a user
+			//check user credentials
 			$user = $this->model->check_user($email);
 			
             // If successful, redirect user to login page
@@ -485,6 +485,7 @@ class Controller_User extends Controller_Template {
 			header('Content-Type: text/csv; charset=utf-8');
 			header('Content-Disposition: attachment; filename='.$filename);
 			header('Content-Length: ' . strlen($filename));
+			//@todo, change localhost
 			header('location: http://localhost/Frontend/temp/'.$filename);
 			
 			//delete the csv file
@@ -495,5 +496,25 @@ class Controller_User extends Controller_Template {
 		{
 			//TODO
 		}
+	}
+	
+	//allow users ask for login details with phone number
+	public function action_gsm_phonenumber()
+	
+	{
+	    $this->template->right_content = View::factory('user/gsm_phonenumber.tpl')
+            ->bind('message', $message);
+		$this->template->left_content = View::factory('user/gsm_phonenumber_info.tpl');
+		// if the user updates profile
+			if (HTTP_Request::POST == $this->request->method())
+			{
+				//@todo validate as a cameroon phone number
+				$phone = Arr::get($_POST,'phone');
+				print_r($phone);exit;
+				//check if gsm exist, if- pull login details
+				// if-not create login details
+				//send to user
+			}
+         
 	}
 }

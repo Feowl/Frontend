@@ -18,8 +18,10 @@
 					<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
 					<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 				</ul>
-			</div>	
-			<div id="explore-map" class="span9"></div>		
+				<div id="contributions"></div>
+			</div>
+			<div id="explore-map" class="span6"></div>
+			<div id="explore-barchart" class="span3 hidden"></div>
 		
 			<div  class="span12">
 				<div id="explore-range-slider"></div>
@@ -53,6 +55,8 @@
 			</div>
 			
 			{literal}
+
+				<!-- tbody after loading of data from the API -->
 				<script id="tpl-reports-list" type="text/x-handlebars-template">
 
 					{{#if list}}
@@ -85,7 +89,29 @@
 			  		{{/if}}
 
 				</script>
+
+				<!-- metadata under the legend -->
+				<script id="tpl-reports-summary" type="text/x-handlebars-template">
+					
+					{{#list}}
+						{{! <p>qualité</p>}}
+						{{! TODO: sum all the duration values in one variable}}
+						{{! duration_rate duration}}
+						{{! <p>contrib</p>}}
+						{{! contributor}}
+					{{/list}}
+					{{^list}}
+						no list here!
+					{{/list}}
+
+					{/literal}{__ t='SOMETHING TO TRANSLATE!'}{literal}
+					
+					{{! contributor}}
+
+				</script>
+
 			{/literal}
+
 		</div>	
 
 	</div>
