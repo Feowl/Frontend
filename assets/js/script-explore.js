@@ -17,33 +17,27 @@
 
 
 	/**
-	 * jQuery EVENTS
+	 * Managing the events
 	 */
+	
+	explore.bindEvents = function() {
 
+		// Switching barchart view to legend view
+		if( explore.listExists() ) {
+			$('body')
+				.click(function(event) {
 
-	/**
-	 * Switch barchart view to legend view
-	 */
-	if( explore.listExists ) {
+				 	if(event.target.nodeName != 'path') {
 
-		// tried before with .not(), which did not work
-		$('body')
-			.click(function(event) {
+				 		// Suppress the previous barchart
+				 		$('#explore-barchart').children('svg').remove();
+						$('#explore-barchart').addClass('hidden');
+				 		$('#explore-legend').removeClass('hidden');
+				 	}
+			});
+		}
 
-			 	if(event.target.nodeName != 'path') {
-
-			 		// Suppress the previous barchart
-			 		$('#explore-barchart').children('svg').remove();
-					$('#explore-barchart').addClass('hidden');
-			 		$('#explore-legend').removeClass('hidden');
-			 	}
-		});
 	}
-
-
-	/**
-	 * FUNCTIONS
-	 */
 
 
 	/**
@@ -104,7 +98,7 @@
 			two    = 0,
 			four   = 0,
 			more   = 0,
-			$tbody = explore.$exploreList.find('tbody'); // QUESTION: what is data.current_page ? (possible alternative?)
+			$tbody = explore.$exploreList.find('tbody');
     	
     	for( var i in data.list ) {
 
@@ -133,7 +127,7 @@
 		
 		$('#explore-barchart svg:first-child').remove();
 		$('#explore-barchart').removeClass('hidden');
-		if( explore.listExists ) $('#explore-legend').addClass('hidden');
+		if( explore.listExists() ) $('#explore-legend').addClass('hidden');
 
         var r		= Raphael("explore-barchart"),
         	txtattr = { font: "16px verdana" },
@@ -171,7 +165,7 @@
 		, template = Handlebars.compile(source)
 		, 	 html  = template(data);
 
-		// Clear the table only if we are in the first page
+		// Clear the table only if we are in the first page of the API
 		if(data.current_page == 0) {			
 			// First page, empty the table
 			$tbody.empty();
@@ -225,7 +219,7 @@
 					id: 'douala-arrts',
 					key: 'id',
 	                click: function(path) {
-	                	if(explore.listExists)
+	                	if(explore.listExists())
 	                		explore.addChart(data, path);
 	                }
 				});
@@ -248,7 +242,7 @@
                     'stroke': "green"
                 },
                 click: function(path) {
-                	if(explore.listExists)
+                	if(explore.listExists())
 	                	explore.addChart(data, path);
 	            }
 			});
@@ -425,7 +419,10 @@
 		$(window).on("resize", explore.resizeMap);	
 
 		// Resize the map when we resize the window
-		explore.$exploreList.delegate(".load-more", "click", explore.moreReports);		 		
+		explore.$exploreList.delegate(".load-more", "click", explore.moreReports);
+
+		// Add the events
+		explore.bindEvents();		 		
 
 	})();
 
