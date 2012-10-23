@@ -8,22 +8,22 @@ return array(
 /// TODO	'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply' => '', // 133
 
 	// views/user/login_info.tpl
-/// TODO	'Login' => '', // 1
-/// TODO	'Login and report power cuts' => '', // 1
-/// TODO	'Feowl team.' => '', // 1
+	'Login' => 'Connexion', // 1
+	'Login and report power cuts' => 'Connectez vous et participez', // 1
+	'Feowl team.' => 'L'équipe Feowl, // 1
 
 	// views/user/login.tpl
-/// TODO	'Email' => '', // 14
-/// TODO	'Password' => '', // 21
+	'Email' => 'Email', // 14
+	'Password' => 'Mot de passe', // 21
 
 	// views/user/signup_info.tpl
-/// TODO	'Sign Up' => '', // 1
+	'Sign Up' => 'Inscription', // 1
 /// TODO	'Don\'t worry, they will not contradict you when i finish with your report and others.' => '', // 1
 /// TODO	'You will be able to have a geographical look on how the mess up all this time.' => '', // 1
 /// TODO	'I intend to equip you with relevant tools to measure the quality of service you pay for.' => '', // 1
 
 	// views/user/signup.tpl
-/// TODO	'Name' => '', // 20
+	'Name' => 'Nom', // 20
 	'Language' => 'Langue', // 41
 /// TODO	'English' => '', // 44
 /// TODO	'French' => '', // 45
@@ -87,8 +87,8 @@ return array(
 /// TODO	'Douala V' => '', // 1
 
 	// views/contribute/how_to.tpl
-/// TODO	'How to Contribute' => '', // 2
-/// TODO	'Read More' => '', // 4
+	'How to Contribute' => 'Comment contribuer', // 2
+	'Read More' => 'En savoir plus', // 4
 
 	// Orphan phrases
 	'User Guide' => 'Guide Utilisateur',
