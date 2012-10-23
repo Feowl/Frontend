@@ -445,7 +445,7 @@ class Controller_User extends Controller_Template {
 		
 		$contributor_id = $user['id']; 
 		//created a bug to display contributions
-		$results = Model_Reports::get_reports('', "contribsutor=$contributor_id");
+		$results = Model_Reports::get_reports('', "contributor=$contributor_id");
 		
 		$http_status = json_decode($results['http_status']);
 		$json_result = json_decode($results['json_result'], true); 
@@ -470,7 +470,7 @@ class Controller_User extends Controller_Template {
 		
 		$contributor_id = $user['id']; 
 		//created a bug to display contributions
-		$results = Model_Reports::get_reports('', "contribuator=$contributor_id&format=csv");
+		$results = Model_Reports::get_reports('', "contributor=$contributor_id&format=csv");
 		$csv_format = $results['json_result'];
 		
 		//create a temporal file and save under temp/
