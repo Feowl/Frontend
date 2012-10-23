@@ -19,7 +19,8 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu"> 					
-					<li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
+                    <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+                    <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
 					<li class="divider"></li>
 					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
                 </ul>
