@@ -10,8 +10,10 @@
 	</div>
 	{/if}
 	
+	<div style="margin:20px;"></div>
+	
 	<div class="control-group light-border">
-	<label class="control-label" for="input01">{__ t='Email'}</label>
+	<label class="control-label" for="input01">{__ t='E-mail'}*</label>
 	<div class="controls">
 	<input type="text" class="input-xlarge" id="user_email" name="email" >
 	</div>
@@ -20,7 +22,7 @@
 	
 	<div class="control-group">
 	<div class="controls">
-	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Reset Password'}'/>
+	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value="{__ t='Reset Password'}"/>
 	</div> 
 	</div>  
 	

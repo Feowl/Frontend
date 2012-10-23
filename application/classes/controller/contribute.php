@@ -120,7 +120,8 @@ class Controller_Contribute extends Controller_Template {
 			$json_result = json_decode($results['json_result'], true);
 	
 			if($http_status == 201){
-				echo "Thank you for your contribution! ";
+				echo "Thank you, your contribution has been taken into account.<p> Thanks to you we can provide 
+				statistics on the daily powercuts in Douala.</p>";
 				//redirect to explore
 			}elseif(isset($json_result['error_message'])){
 				echo $json_result['error_message'];

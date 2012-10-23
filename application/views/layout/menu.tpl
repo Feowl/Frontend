@@ -11,30 +11,36 @@
         </a>    
 
         <ul class="nav pull-right">
-            <li class="dropdown">
-				{if isset($smarty.session.user.name)}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> 
-						{$smarty.session.user.name}
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu"> 					
-					<li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
-					<li class="divider"></li>
-					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
-                </ul>
-				{else}
-				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> {__ t=Account}
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu"> 
-						<li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>						
-						<li class="divider"></li>
-						<li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
-                </ul>
-				{/if}
-            </li>
+			{if isset($smarty.session.user.name)}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> 
+    						{$smarty.session.user.name}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu"> 					
+                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
+    					<li class="divider"></li>
+    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
+                    </ul>
+                </li>
+			{else}		 
+                <li>                    
+                    <a href="{url::site('user/login')}">
+                        <i class="icon-user"></i>
+                        {__ t='Login'}
+                    </a>
+                </li> 
+                <li>
+                    <span>or</span>
+                </li>
+                <li>                        
+                    <a href="{url::site('user/signup')}">                        
+                        {__ t='Sign up'}
+                    </a>
+                </li>     
+			{/if}
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
