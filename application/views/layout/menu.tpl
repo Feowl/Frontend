@@ -29,9 +29,8 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu"> 
-						<li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>						
-						<li class="divider"></li>
-						<li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
+						<li><a href="{url::site('user/login')}">{__ t='Sign In'}</a></li>						
+						<li><a href="{url::site('user/signup')}">{__ t='Sign Up'}</a></li>
                 </ul>
 				{/if}
             </li>
