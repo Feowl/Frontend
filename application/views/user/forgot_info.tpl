@@ -1,1 +1,1 @@
-  <div class="span5">  <h2>{__ t='Login'}</h2>  <p>{__ t='If you forgot your password, enter your email to reset it.'}  </p>           <small>{__ t='Feowl team.'}</small>            </div>
+  <div class="span5">  <h2>{__ t='Forgot your password ?'}</h2>  <p>{__ t='Give us your email and we would send you a new password'}  </p>           <small>{__ t='Feowl team.'}</small>            </div>
