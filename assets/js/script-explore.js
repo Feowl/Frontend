@@ -25,7 +25,7 @@
 	 * Switch barchart view to legend view
 	 */
 	if( explore.listExists ) {
-		
+
 		// tried before with .not(), which did not work
 		$('body')
 			.click(function(event) {
@@ -345,7 +345,7 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
-			"list"		: explore.listExists*1,
+			"list"		: explore.listExists()*1,
 			"page"		: explore.currentPage
 		};
 
