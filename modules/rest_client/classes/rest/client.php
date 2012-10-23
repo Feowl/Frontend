@@ -63,9 +63,9 @@ class REST_Client {
             // If no configuration options were passed in
             if ($config === NULL) {
                 // Load the configuration for this client
-                $config = Kohana::$config->load('rest')->get($name);
+                $config = Kohana::$config->load('api')->get($name);
             }
-
+            
             // Create the client instance
             new REST_Client($name, $config);
         }
