@@ -39,9 +39,11 @@
 		{/if}
 		</tbody>
 	</table>
-	<div class="left-space">
-		<a href="{URL::site('user/download_contributions')}?format=csv" target="_blank" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
-	</div>
+	{if $total_count >= 1}
+		<div class="left-space">
+			<a href="{URL::site('user/download_contributions')}?format=csv" target="_blank" class="btn btn-primary btn-large" />{__ t=' Download your contributions (csv) '}</a>
+		</div>
+	{/if}
 </div>    
 
   
