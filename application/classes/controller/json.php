@@ -42,11 +42,12 @@ class Controller_Json extends Controller {
 		$params  = Kohana::$config->load("apiauth")->get("default");
 		$params += array(
 			"happened_at__gte" => Arr::get($_GET, 'date_gte'),
-			"happened_at__lte" => Arr::get($_GET, 'date_lte')
+			"happened_at__lte" => Arr::get($_GET, 'date_lte'),
+			"format"					 => "json" // Needed temporary
 		);
 
 		$restClient = REST_Client::instance();
-		$rep = $restClient->get("aggregation/reports/", $params);		
+		$rep = $restClient->get("reports-aggregation/", $params);		
 		/*print"<pre>";
 		var_dump($rep);
 		print"</pre>";*/
