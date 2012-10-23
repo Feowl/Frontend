@@ -24,18 +24,21 @@
 	/**
 	 * Switch barchart view to legend view
 	 */
-	// tried before with .not(), which did not work
-	$('body')
-		.click(function(event) {
+	if( explore.listExists ) {
 
-		 	if(event.target.nodeName != 'path') {
+		// tried before with .not(), which did not work
+		$('body')
+			.click(function(event) {
 
-		 		// Suppress the previous barchart
-		 		$('#explore-barchart').children('svg').remove();
-				$('#explore-barchart').addClass('hidden');
-		 		$('#explore-legend').removeClass('hidden');
-		 	}
-	});
+			 	if(event.target.nodeName != 'path') {
+
+			 		// Suppress the previous barchart
+			 		$('#explore-barchart').children('svg').remove();
+					$('#explore-barchart').addClass('hidden');
+			 		$('#explore-legend').removeClass('hidden');
+			 	}
+		});
+	}
 
 
 	/**
@@ -130,8 +133,7 @@
 		
 		$('#explore-barchart svg:first-child').remove();
 		$('#explore-barchart').removeClass('hidden');
-		if( $tbody ) $('#explore-legend').addClass('hidden');
-		// console.log(data.current_page);
+		if( explore.listExists ) $('#explore-legend').addClass('hidden');
 
         var r		= Raphael("explore-barchart"),
         	txtattr = { font: "16px verdana" },
@@ -223,8 +225,8 @@
 					id: 'douala-arrts',
 					key: 'id',
 	                click: function(path) {
-	                	if(***********)
-	                	explore.addChart(data, path);
+	                	if(explore.listExists)
+	                		explore.addChart(data, path);
 	                }
 				});
 
@@ -246,8 +248,9 @@
                     'stroke': "green"
                 },
                 click: function(path) {
+                	if(explore.listExists)
 	                	explore.addChart(data, path);
-	                }
+	            }
 			});
 
 			explore.updateMap(explore.map);
@@ -330,7 +333,7 @@
 		return !!explore.$exploreList.length;
 	};
 
-	
+
 	explore.updateData = function(event) {
 
 		// Catch an event, we reset the current page
@@ -342,7 +345,7 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
-			"list"		: explore.listExists*1,
+			"list"		: explore.listExists()*1,
 			"page"		: explore.currentPage
 		};
 
