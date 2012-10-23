@@ -17,7 +17,7 @@
 
 
 	/**
-	 * EVENTS
+	 * jQuery EVENTS
 	 */
 
 
@@ -97,10 +97,11 @@
 	 */
 	explore.addChart = function(data, path) {
 
-		var half  = 0,
-			two   = 0,
-			four  = 0,
-			more  = 0;
+		var half   = 0,
+			two    = 0,
+			four   = 0,
+			more   = 0,
+			$tbody = explore.$exploreList.find('tbody'); // QUESTION: what is data.current_page ? (possible alternative?)
     	
     	for( var i in data.list ) {
 
@@ -129,7 +130,8 @@
 		
 		$('#explore-barchart svg:first-child').remove();
 		$('#explore-barchart').removeClass('hidden');
- 		$('#explore-legend').addClass('hidden');
+		if( $tbody ) $('#explore-legend').addClass('hidden');
+		// console.log(data.current_page);
 
         var r		= Raphael("explore-barchart"),
         	txtattr = { font: "16px verdana" },
@@ -221,6 +223,7 @@
 					id: 'douala-arrts',
 					key: 'id',
 	                click: function(path) {
+	                	if(***********)
 	                	explore.addChart(data, path);
 	                }
 				});
@@ -247,7 +250,7 @@
 	                }
 			});
 
-			explore.updateMap(explore.map);	// QUESTION: events in updateMap or in addLayer like in da doc?
+			explore.updateMap(explore.map);
 		}
 	};
 
@@ -319,7 +322,15 @@
 
 	};
 
+	/**
+	 * Returns true if the reports list exists 
+	 * @return {Boolean}
+	 */
+	explore.listExists = function() {
+		return !!explore.$exploreList.length;
+	};
 
+	
 	explore.updateData = function(event) {
 
 		// Catch an event, we reset the current page
@@ -331,7 +342,7 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
-			"list"		: !!explore.$exploreList.length*1,
+			"list"		: explore.listExists*1,
 			"page"		: explore.currentPage
 		};
 
