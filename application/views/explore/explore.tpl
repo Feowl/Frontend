@@ -18,10 +18,14 @@
 					<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
 					<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 				</ul>
-				<div id="contributions"></div>
+				<!--div id="contributions"></div-->
+				<div class="well hidden" id="explore-barchart">
+					<h4 data-tpl="{__ t='Proportion of Feowl users suffering from power cuts in %s'}"></h4>
+					<div id="explore-barchart-area"></div>
+				</div>
 			</div>
-			<div id="explore-map" class="span6"></div>
-			<div id="explore-barchart" class="span3 hidden"></div>
+
+			<div id="explore-map" class="span9"></div>
 		
 			<div  class="span12">
 				<div id="explore-range-slider"></div>

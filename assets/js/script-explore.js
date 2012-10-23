@@ -18,26 +18,41 @@
 
 	/**
 	 * Managing the events
-	 */
-	
+	 */	
 	explore.bindEvents = function() {
 
-		// Switching barchart view to legend view
+		// When we create the date slider, a "value changed" event is triggered
+		explore.$dateRange.on("userValuesChanged", explore.updateData);
+		// Resize the map when we resize the window
+		$(window).on("resize", explore.resizeMap);	
+
+		// If we are not on the homepage (the list doesn't exist)
 		if( explore.listExists() ) {
-			$('body')
-				.click(function(event) {
-
-				 	if(event.target.nodeName != 'path') {
-
-				 		// Suppress the previous barchart
-				 		$('#explore-barchart').children('svg').remove();
-						$('#explore-barchart').addClass('hidden');
-				 		$('#explore-legend').removeClass('hidden');
-				 	}
-			});
+			// Resize the map when we resize the window
+			explore.$exploreList.delegate(".load-more", "click", explore.moreReports);	
+			// Switching barchart view to legend view
+			explore.$exploreMap.on("click", explore.removeMapGraphs);
 		}
 
-	}
+	};
+
+	/**
+	 * Removes the bar charts and show the legend  
+	 * @param  {Object} event The triggered event
+	 */
+	explore.removeMapGraphs = function(event) {
+		// If we are not clicking on a map element
+	 	if(event.target.nodeName != 'path') {	 		
+	 		// Suppress the previous barchart
+	 		explore.$exploreBarcharts.find('svg').remove();
+	 		// Hides thebarcharts
+			explore.$exploreBarcharts.addClass('hidden');
+			// Display the legend
+	 		// explore.$exploreLegend.removeClass('hidden');
+	 	}
+	};
+
+
 
 
 	/**
@@ -94,66 +109,99 @@
 	 */
 	explore.addChart = function(data, path) {
 
+		if( ! explore.listExists() ) return;
+
 		var half   = 0,
-			two    = 0,
-			four   = 0,
-			more   = 0,
-			$tbody = explore.$exploreList.find('tbody');
+				two    = 0,
+				four   = 0,
+				more   = 0,
+				$tbody = explore.$exploreList.find('tbody');				
+	
+		for( var i in data.list ) {
+
+			// console.log('iteration n°' + i);
+			var _list = data.list[i];
+
+    	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
+
+    		switch(true) {
+    			case _list.duration < 30 :
+    				half++;
+    				break;
+
+    			case _list.duration < 120 :
+    				two++;
+    				break;
+
+    			case _list.duration < 240 :
+    				four++;
+    				break;
+
+    			default:
+    				more++;
+    				break;
+    		} 
+
+    	}
+
+	  }
+
+    // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples		
+		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarcharts.removeClass('hidden');
+
+    var   r = Raphael("explore-barchart-area"),
+    txtattr = { font: "14px verdana" },
+    total_p = (half+two+four+more)/100,
+     $title = explore.$exploreBarcharts.find("h4");
+    		 fn = function() {
+    		 			// Bar style
+    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"})
+    		 			// Create the bar flag
+    					this.flag = r.popup(
+    						this.bar.x, 
+    						this.bar.y, 
+    						this.bar.value + "%" || "0%"
+    					)
+    					.attr({ fill: "#168891", stroke: "#ffffff" })
+    					.insertBefore(this);
+    				},
+
+
+    // CHOICE: a html presentation might be better
+    // @TODO use an html template to allow multiple languages (here an example)    
+    $title.html( $title.data("tpl").replace("%s", path.id) );
+
+    if( !half && !two && !four && !more ) {
     	
-    	for( var i in data.list ) {
+    	// @TODO use an html template to allow multiple languages
+    	r.text(140, 160, "---- no data available ----").attr(txtattr);
 
-    		// console.log('iteration n°' + i);
-
-    		var _list = data.list[i];
-
-        	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
-
-        		if( _list.duration < 30 ) {
-        			half++;
-        		}
-        		else if( _list.duration < 120 ) {
-        			two++;
-        		}
-        		else if( _list.duration < 240 ) {
-        			four++;
-        		}
-        		else {
-        			more++;
-        		}
-        	}
-        }
-
-        // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples
-		
-		$('#explore-barchart svg:first-child').remove();
-		$('#explore-barchart').removeClass('hidden');
-		if( explore.listExists() ) $('#explore-legend').addClass('hidden');
-
-        var r		= Raphael("explore-barchart"),
-        	txtattr = { font: "16px verdana" },
-        	fn 		= function() {
-        		this.flag = r.label(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-        	},
-        	total_p = (half+two+four+more)/100;
+    } else {
 
 
-        // CHOICE: a html presentation might be better
-        r.text(140, 30, "Proportion of Feowl users\n suffering from power cuts in\n "+ path.id + " (%)").attr(txtattr);
+    	// Create the bar chart
+    	var bc = r.barchart(
+    		// Positions
+    		30, 20,
+    		// Dimensions
+    		200, 200,
+    		// Values
+    		[
+    			[
+    				Math.floor(half/total_p),
+    				Math.floor(two/total_p),
+    				Math.floor(four/total_p),
+    				Math.floor(more/total_p)
+    			]
+    		],
+    		0,
+    		{stacked: true, type: "soft"} 
+    	// Worker on each bar     		
+    	).each(fn);
+    }
 
-        if( !half && !two && !four && !more ) {
-        	r.text(140, 160, "---- no data available ----").attr(txtattr);
-        }
-        else {
-        	r.barchart(
-        		30, 80,
-        		200, 220,
-        		[[Math.floor(half/total_p), Math.floor(two/total_p), Math.floor(four/total_p), Math.floor(more/total_p)]],
-        		0,
-        		{type: "sharp"}
-        	)
-        	.each(fn);
-        }
-	}
+	};
 
 	/**
 	 * Draw the list
@@ -393,6 +441,8 @@
 		explore.$exploreMap = $("#explore-map");
 		// Element to use to display the legend
 		explore.$exploreLegend = $("#explore-legend");
+		// Element to show the map's barcharts
+		explore.$exploreBarcharts = $("#explore-barchart");
 		// Element to use to display the list
 		explore.$exploreList = $("#explore-list");
 		// Element to use as a workspace
@@ -411,15 +461,6 @@
 			},
 			formatter: explore.getLocaleShortDateString
 		});	
-
-		// When we create the date slider, a "value changed" event is triggered
-		explore.$dateRange.on("userValuesChanged", explore.updateData);
-
-		// Resize the map when we resize the window
-		$(window).on("resize", explore.resizeMap);	
-
-		// Resize the map when we resize the window
-		explore.$exploreList.delegate(".load-more", "click", explore.moreReports);
 
 		// Add the events
 		explore.bindEvents();		 		
