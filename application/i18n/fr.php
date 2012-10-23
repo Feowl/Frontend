@@ -10,7 +10,7 @@ return array(
 	// views/user/login_info.tpl
 	'Login' => 'Connexion', // 1
 	'Login and report power cuts' => 'Connectez vous et participez', // 1
-	'Feowl team.' => 'L'équipe Feowl, // 1
+	'Feowl team.' => 'L\'équipe Feowl', // 1
 
 	// views/user/login.tpl
 	'Email' => 'Email', // 14
