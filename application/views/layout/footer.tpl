@@ -3,7 +3,7 @@
 		<footer class="row">
 			<div class="span3">
 				<p>
-					<a href="https://github.com/jplusplus/feowl/">{__ t='Fork us on GitHub!'}</a>
+					<a href="https://github.com/Feowl/">{__ t='Fork us on GitHub!'}</a>
 					{__ t='Feowl files under an Apache licence'}
 				</p>
 			</div>
