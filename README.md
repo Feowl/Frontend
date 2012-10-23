@@ -13,11 +13,11 @@ You must have a basic Apache and PHP environement:
 	sudo apt-get install apache2 php5 libapache2-mod-php5 php5-curl
 
 ### System configuration
-The Kohana installation <b>must be at the root of your virtual host or domain</b>.
+The Kohana installation <b>must be in a subdirectory <em>/Frontend/</em> from the root of your virtual host or domain</b>.
 
-Also, you have to allow writing on <em>application/cache</em> and <em>UI/application/logs</em> directories (replace 	&lt;path> by the path of the Feowl directory):
+Also, you have to allow writing on <em>/Frontend/application/cache</em> and <em>/Frontend/application/logs</em> directories (replace 	&lt;path> by the path of the Feowl directory):
 
-	cd <path>
+	cd /Frontend/
 	mkdir -p application/logs application/cache
 	chmod 777 -Rf application/logs application/cache
 
