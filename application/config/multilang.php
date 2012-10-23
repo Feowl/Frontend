@@ -28,6 +28,13 @@ return array(
 				'name' => 'Français'
 			),
 
+			'pd' => array(
+				'code' => 'pd-pd',
+				'locale' => array('pd_PD.utf-8'),
+				'name' => 'Pidgin'
+			),
+
+
 		),
 
 		'default' => 'en',

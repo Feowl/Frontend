@@ -10,30 +10,24 @@
  */
 class Model_Devices extends Model{
 
-	//Returns all devices
-	public static function get_devices(){
-	   
+	//Add a new device to a contributor
+	public static function post_device($data_string){
+		 return API::send_request(Kohana::config('api.device'),$data_string,"POST");
 	}
 	
-	//Returns a single device identified by its id
-	public static function get_device(){
-		
-	}
-	//Add a new device
-	public static function create_device(){
-
+	//Returns a usere device identified by its id
+	public static function get_device($data_string, $filter=NULL){
+		return API::send_request(Kohana::config('api.device'),$data_string,"GET", $filter);
 	}
 	
-	//Update the information related to an existing device
-	public static function update_device(){
-		
+	//Update the information related to an existing device(works if the user that issues this call has the right permission)
+	public static function update_device($data_string, $device_id, $filter=NULL){
+		 return API::send_request(Kohana::config('api.update_device').$device_id."/?", $data_string, "PUT", $filter); 
 	}
 	
 	//Delete a device identified by its id
 	public static function delete_device(){
 		
 	}	
-	
-	
 
 } // End Devices Model

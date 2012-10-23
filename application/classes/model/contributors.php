@@ -3,16 +3,31 @@
 /**
  * Description @ Contributors Model. Talks with API about contributor resources
  * Contributors are the individuals registered on the platform, they add reports to it
- * @package		wasaCMS
+ * @package		Model
  * @subpackage  Model
- * @author      Wasamundi/Feowl Team
+ * @author      Feowl Team
  * @copyright   2012
  */
 class Model_Contributors extends Model{
 
+	//Add a new contributor to the platform (works if the user that issues this call has the right permission)
+	public static function post_contributor($data_string){
+        return API::send_request(Kohana::config('api.post_contributor'),$data_string,"POST");
+	}
+	
 	//Returns all contributor if the user that issue this call has the right permission has the right
-	public static function get_contributors(){
-	      
+	public static function get_contributors($data_string, $filter=NULL){
+	    return API::send_request(Kohana::config('api.post_contributor'), $data_string, "GET", $filter); 
+	}
+	
+	//Delete a contributor(works if the user that issues this call has the right permission)
+	public static function delete_contributor($data_string, $contributor_id){
+		 return API::send_request(Kohana::config('api.contributor').$contributor_id."/?", $data_string, "DELETE"); 
+	}	
+	
+	//Update the information related to an existing contributor(works if the user that issues this call has the right permission)
+	public static function update_contributor($data_string, $contributor_id, $filter=NULL){
+		 return API::send_request(Kohana::config('api.contributor').$contributor_id."/?", $data_string, "PUT", $filter); 
 	}
 	
 	/*
@@ -22,21 +37,6 @@ class Model_Contributors extends Model{
 	public static function get_contributor(){
 		
 	}
-	//Add a new contributor to the platform (works if the user that issues this call has the right permission)
-	public static function create_contributor($data_string){
-           return API::send_request(Kohana::config('api.post_contributor'),$data_string,"POST");
-	}
-	
-	//Update the information related to an existing contributor(works if the user that issues this call has the right permission)
-	public static function update_contributor(){
-		
-	}
-	
-	//Delete a contributor(works if the user that issues this call has the right permission)
-	public static function delete_contributor(){
-		
-	}	
-	
 	
 
 } // End Contributors Model

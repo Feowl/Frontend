@@ -1,44 +1,50 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * Class: api
- *
- * @package    Feowl/Contribute
- * @author     Feowl Team
- * @copyright  (c) 2012 Feowl Team
- * @license    http://feowl.tumblr.com/
- */
+* Class: api
+*
+* @package Feowl/Contribute
+* @author Feowl Team
+* @copyright (c) 2012 Feowl Team
+* @license http://feowl.tumblr.com/
+*/
 class API {
  
- //default output
- public $output_format = 'json'; 
- 
-    /*
-	 * Sends the curl request 
-	 * @param   string api link
-	 * @param   string data to be sent
-	 * @param   string action[post, get, put, delete]
-	 * @return  array results from feowl
-	 */
-    public static function send_request($api_link,$data,$action="POST")
+	//default output
+	public $output_format = 'json';
+	 
+		/*
+	* Sends the curl request
+	* @param string api link
+	* @param string data to be sent
+	* @param string action[post, get, put, delete]
+	* @return array results from feowl
+	*/
+	public static function send_request($api_link, $data, $action="POST", $filter=Null)
 	{
-	    //action
-		$data_to_feowl = 'username='.Kohana::config('apiauth.username').'&api_key='.Kohana::config('apiauth.api_key');
+		// print_r($filter); exit;
+		//action
 		
+		if($filter){
+		$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
+		}else{
+		$data_to_feowl = 'username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
+		}
+		//print_r($api_link.$data_to_feowl); exit;
 		$to_feowl = curl_init($api_link.$data_to_feowl);
-		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);                                                                     
-		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);                                                                  
-		curl_setopt($to_feowl, CURLOPT_RETURNTRANSFER, true);                                                                      
-		curl_setopt($to_feowl, CURLOPT_HTTPHEADER, array(                                                                          
-	    'Content-Type: application/json',                                                                                
-	    'Content-Length: ' . strlen($data))                                                                       
-		);                                                                                                                   
+		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);
+		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($to_feowl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($to_feowl, CURLOPT_HTTPHEADER, array(
+		'Content-Type: application/json',
+		'Content-Length: ' . strlen($data))
+		);
 		$from_feowl = curl_exec($to_feowl);
 		$http_status = curl_getinfo($to_feowl, CURLINFO_HTTP_CODE);
 		curl_close ($to_feowl);
 		return array('http_status'=>$http_status, 'json_result'=>$from_feowl);
 	}
- 
-    
+  
 }
+
 ?>

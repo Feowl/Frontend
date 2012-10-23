@@ -1,5 +1,5 @@
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
 
   <div class="navbar-inner">
 
@@ -11,18 +11,36 @@
         </a>    
 
         <ul class="nav pull-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> {__ t='Account'}
-                    <b class="caret"></b>
-                </a>
-
-                <ul class="dropdown-menu">                    
-                    <li><a href="{url::site('user/login')}">{__ t='Login'}</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{url::site('user/signup')}">{__ t='Signup'}</a></li>
-                </ul>
-            </li>
+			{if isset($smarty.session.user.name)}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> 
+    						{$smarty.session.user.name}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu"> 					
+                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
+    					<li class="divider"></li>
+    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
+                    </ul>
+                </li>
+			{else}		 
+                <li>                    
+                    <a href="{url::site('user/login')}">
+                        <i class="icon-user"></i>
+                        {__ t='Login'}
+                    </a>
+                </li> 
+                <li>
+                    <span>or</span>
+                </li>
+                <li>                        
+                    <a href="{url::site('user/signup')}">                        
+                        {__ t='Sign up'}
+                    </a>
+                </li>     
+			{/if}
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -57,10 +75,16 @@
             <li class="{$active_home|default:''}"><a href="{url::site()}">{__ t='Home'}</a></li>
             <li class="{$active_explore|default:''}"><a href="{url::site('explore')}">{__ t='Explore'}</a></li>
             <li class="{$active_contribute|default:''}"><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
-        </ul>
+            <li class="{$active_about|default:''}"><a href="{url::site('pages/about')}">{__ t='About'}</a></li>
+
+		</ul>
 
     </div>
 
   </div>
 
 </div>
+<div id="header-step" class=""></div>
+
+{* Calling the responsive CSS *}
+<link href="{URL::base()}assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="all" />

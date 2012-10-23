@@ -1,3 +1,4 @@
+
 (function(window, undefined) {
 
 	var explore = {
@@ -14,8 +15,36 @@
 		currentPage:0
 	};
 
+
 	/**
-	 * HGet local short date string
+	 * EVENTS
+	 */
+
+
+	/**
+	 * Switch barchart view to legend view
+	 */
+	// tried before with .not(), which did not work
+	$('body')
+		.click(function(event) {
+
+		 	if(event.target.nodeName != 'path') {
+
+		 		// Suppress the previous barchart
+		 		$('#explore-barchart').children('svg').remove();
+				$('#explore-barchart').addClass('hidden');
+		 		$('#explore-legend').removeClass('hidden');
+		 	}
+	});
+
+
+	/**
+	 * FUNCTIONS
+	 */
+
+
+	/**
+	 * Get local short date string
 	 * @src http://stackoverflow.com/a/7740464
 	 * @param 	<Date> d
 	 * @return 	<String>
@@ -36,6 +65,7 @@
 	 * Helper for district names
 	 */
 	Handlebars.registerHelper('district_name', function(key) {
+		// returns names of districts from "User reports"
 	  return explore.areas[key];
 	});
 
@@ -45,7 +75,88 @@
 	Handlebars.registerHelper('short_date_string', explore.getLocaleShortDateString);
 
 
+	if (typeof(duration_total) != "undefined") {
+		var duration_total = 0;
+	}
+
+	Handlebars.registerHelper('duration_rate', function(key) {
+
+		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
+		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
+		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
+		// console.log(typeof(duration_total));
+		// console.log(duration_total);
+		duration_total += key;
+
+		return duration_total;
+	});
 	
+	/**
+	 * Adds a bar chart for the specified district
+	 * @params data, path
+	 */
+	explore.addChart = function(data, path) {
+
+		var half  = 0,
+			two   = 0,
+			four  = 0,
+			more  = 0;
+    	
+    	for( var i in data.list ) {
+
+    		// console.log('iteration n°' + i);
+
+    		var _list = data.list[i];
+
+        	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
+
+        		if( _list.duration < 30 ) {
+        			half++;
+        		}
+        		else if( _list.duration < 120 ) {
+        			two++;
+        		}
+        		else if( _list.duration < 240 ) {
+        			four++;
+        		}
+        		else {
+        			more++;
+        		}
+        	}
+        }
+
+        // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples
+		
+		$('#explore-barchart svg:first-child').remove();
+		$('#explore-barchart').removeClass('hidden');
+ 		$('#explore-legend').addClass('hidden');
+
+        var r		= Raphael("explore-barchart"),
+        	txtattr = { font: "16px verdana" },
+        	fn 		= function() {
+        		this.flag = r.label(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+        	},
+        	total_p = (half+two+four+more)/100;
+
+
+        // CHOICE: a html presentation might be better
+        r.text(140, 30, "Proportion of Feowl users\n suffering from power cuts in\n "+ path.id + " (%)").attr(txtattr);
+
+        if( !half && !two && !four && !more ) {
+        	r.text(140, 160, "---- no data available ----").attr(txtattr);
+        }
+        else {
+        	r.barchart(
+        		30, 80,
+        		200, 220,
+        		[[Math.floor(half/total_p), Math.floor(two/total_p), Math.floor(four/total_p), Math.floor(more/total_p)]],
+        		0,
+        		{type: "sharp"}
+        	)
+        	.each(fn);
+        }
+	}
+
 	/**
 	 * Draw the list
 	 */
@@ -66,10 +177,25 @@
 			$tbody.find(".load-more").remove();
 		}
 
+		//console.log(source);
 		// Append every items at the same time
 		$tbody.append(html);
 	};
 
+	/**
+	 * WIP !!
+	 * Display summarizing data
+	 */
+	explore.displayMetadata = function(data) {
+
+		var   $contributions = explore.$exploreLegend.find("#contributions")
+		,   source = $("#tpl-reports-summary").html()
+		, template = Handlebars.compile(source)
+		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
+
+		$contributions.empty();
+		$contributions.append(html);
+	};
 
 	/**
 	 * Draw the map
@@ -78,10 +204,11 @@
 
 		// Updates the key for each area
 		for(var index in data.agregation) {
+			// Care: "id" here stands for a string
 			data.agregation[index].id = explore.areas[data.agregation[index].area];
 		}
 
-		// Gives the data objects to the layer
+		// Gives the data objects to the layer  // #1111  ??????
 		explore.reportsAgregation = data.agregation;
 
 		// No layer defined, loads the svg file
@@ -92,7 +219,10 @@
 				
 				explore.map.addLayer({
 					id: 'douala-arrts',
-					key: 'id'
+					key: 'id',
+	                click: function(path) {
+	                	explore.addChart(data, path);
+	                }
 				});
 
 				explore.updateMap(explore.map);
@@ -108,10 +238,16 @@
 			// Add layer again to prevent a fill bug with Kartograph
 			explore.map.addLayer({
 				id: 'douala-arrts',
-				key: 'id'
+				key: 'id',
+				styles: {
+                    'stroke': "green"
+                },
+                click: function(path) {
+	                	explore.addChart(data, path);
+	                }
 			});
 
-			explore.updateMap(explore.map);			
+			explore.updateMap(explore.map);	// QUESTION: events in updateMap or in addLayer like in da doc?
 		}
 	};
 
@@ -126,46 +262,59 @@
 		,  scale = "q";
 
 		try {
-
+			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
 			explore.colorscale = new chroma.ColorScale({
-				colors: ['#fafafa','#168891'],
-				limits: chroma.limits(explore.reportsAgregation, scale, 5, prop)
+				colors: ['#fafafa','#0A3E42'],
+				limits: [0, 1, 30, 120, 240, 1440]
 			});
 
 			explore.map.choropleth({
    				layer: 'douala-arrts',
 				data: explore.reportsAgregation,
-				key: 'id',
-				colors: function(d) {		
-					// For now, no power cut means no relevant data 			
-					if (d == null || d[prop] == 0) return 'url("assets/img/stripe.png")';
+				key: 'id',	  
+				colors: function(d) {
+				// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
+					// For now, no power cut means no relevant data
+					// if (typeof(i) != "undefined"){var i=0;}else{i++;};
+					// console.log(i);
+					if (d == null || d[prop] == 0 /*&& !*****/ ) return 'url("assets/img/stripe.png")';
+					// if () return ;
+					// console.log(e.mouseX, e.mouseY);
+					// console.log('lol');
 					return explore.colorscale.getColor(d[prop]);
 				},
 				duration: 0
 			});
 
 			explore.map.tooltips({
-			  layer: 'douala-arrts',
-			  content: function(id) {
+				// layer specified by the markup <g>
+			  	layer: 'douala-arrts',
+			  	// this id is the data-id linked to a markup <path> 
+			  	content: function(id) {
 
-			  	var avg_duration = null;
-			  	// Look for the updatime
-			  	for(var index in explore.reportsAgregation) {
-			  		if(explore.reportsAgregation[index].id == id) {
-			  			avg_duration = explore.reportsAgregation[index].avg_duration;
+			  		var avg_duration = null;
+			  		// Look for the updatime
+			  		for(var index in explore.reportsAgregation) {
+			  			if(explore.reportsAgregation[index].id == id) {
+			  				avg_duration = explore.reportsAgregation[index].avg_duration;
+			  			}
 			  		}
-			  	}
 
-			    return [id, avg_duration];
-			  },
-				style: {
-					classes: 'ui-tooltip-shadow'
-				}
+			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+			  	}
+			});
+
+
+			explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
+				//$(this).css("stroke", "#075156");
+			});
+			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
+				//$(this).css("stroke", "black");
 			});
 
 		} catch (err) {
 
-			console && console.log(err);
+			//console && console.log(err);
 		}
 
 	};
@@ -190,6 +339,7 @@
 		explore.$exploreSpace.loading();
 
 		$.ajax({
+			// go looking for data from URL/feowl/Frontend/json/interval_reports/
 			url: 'json/interval_reports/',
 			data: params,
 			type: "GET",
@@ -197,8 +347,11 @@
 			success: function(data) {
 				// Draw the map only if we have agreated reports
 				if(data.agregation) explore.drawMap(data);
-				// Draw the list only if we have listed reports
-				if(data.list) 		explore.drawList(data);
+				// Draw the list only if we have listed reports + Displays info under the legend 
+				if(data.list) {
+					explore.drawList(data);
+					explore.displayMetadata(data);
+				}
 				// Removes the loading overlay
 				explore.$exploreSpace.loading(false);
 			}
@@ -230,6 +383,8 @@
 		explore.$dateRange = $("#explore-range-slider");
 		// Element to use to display the map
 		explore.$exploreMap = $("#explore-map");
+		// Element to use to display the legend
+		explore.$exploreLegend = $("#explore-legend");
 		// Element to use to display the list
 		explore.$exploreList = $("#explore-list");
 		// Element to use as a workspace
@@ -259,5 +414,7 @@
 		explore.$exploreList.delegate(".load-more", "click", explore.moreReports);		 		
 
 	})();
+
+	
 
 })(window);

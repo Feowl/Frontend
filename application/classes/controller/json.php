@@ -47,7 +47,9 @@ class Controller_Json extends Controller {
 
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("aggregation/reports/", $params);		
-
+		/*print"<pre>";
+		var_dump($rep);
+		print"</pre>";*/
 		// Decode the json body and records the agregated objects
 		$res = array("agregation" => json_decode($rep->body)->objects );
 

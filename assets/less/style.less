@@ -8,8 +8,23 @@
 .tc, table td.tc { text-align:center; }
 .tr, table td.tr { text-align:right; }
 
+#header-step { height:50px; }
+
+// Links
+.navbar .nav > li > span {
+	display:block;
+  float: none;
+  // Vertically center the text given @navbarHeight
+  @elementHeight: 20px;
+  padding: ((@navbarHeight - @elementHeight) / 2 - 1) 0px ((@navbarHeight - @elementHeight) / 2 + 1);
+  line-height: 19px;
+  color: @navbarLinkColor;
+  text-decoration: none;
+  //text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+}
+
 .signup-form .form-horizontal  input{
-	width:170px;
+	width:200px;
 	
 }
 .light-border input{
@@ -20,14 +35,68 @@
 	padding-top:7px;
 }
 .signup-form .form-horizontal .control-label {
-	margin:0 0 0 10px;
-	width:130px;
+	margin:0 0 0 47px;
+	width:140px;
 	font-weight:@headingsFontWeight;
+	text-align:left;
+}
+.signup-form .form-horizontal .opt{
+	width:250px;
 }
 .signup-form .form-horizontal select{
-	width:180px;
+	width:98px;
 	border:@grayLight 1px solid;
 	.border-radius(5px);
+}
+
+
+.account-form .form-horizontal  input{
+	width:230px;
+	border:none;
+	min-height:20px;
+	font-size:16px;
+	.border-radius(3px);
+}
+.account-form .email-size{
+	font-size:16px;
+}
+.account-form{
+	padding-top:7px;
+}
+.account-form .form-horizontal .control-label {
+	margin:0 5px 0 47px;
+	width:140px;
+	font-size:16px;
+	text-align:left;
+}
+.account-form .form-horizontal .opt{
+	width:250px;
+}
+.account-form .form-horizontal select{
+	min-height:33px;
+	font-size:16px;
+	width:236px;
+	border:@grayLight 1px solid;
+	.border-radius(3px);
+}
+.tag{
+	margin:5px 0 25px 0;
+	font-size: 17px;
+	font-weight:bold;
+}
+.control-submit{
+	margin:0 0 0 47px;
+}
+.login-form .forgot-password
+{
+font-size:13px;
+padding-left: 15px;
+}
+.login-form .padbtn
+{
+font-size:13px;
+padding-left: 50px;
+padding-right:50px;
 }
 
 .bg-color{
@@ -36,22 +105,48 @@
 	.border-radius(15px);
 	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
 }
+.bg-color-acc{
+	background-color:darken(@white, 20%);
+	padding:10px 5px 5px;
+	.border-radius(	5px);
+	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+}
+.bg-color-contribute
+{
+	background-color:darken(@white, 20%);
+	padding:10px 5px 5px ;
+	.border-radius(15px);
+	.box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+	width:720px;
+}
 .contribute-form , .contribute-form-s{
 	padding-top:7px;
 }
 .contribute-form .form-horizontal .control-label {
-	margin:0 0 0 10px;
-	width:240px;
+	margin:0 0 0 5px;
+	width:160px;
 	text-align:left;
 }
-
 .contribute-form .bold{
 	font-weight:@headingsFontWeight;
 }
 .contribute-form .form-horizontal select{
-	width:130px;
+	width:165px;
 	border:@grayLight 1px solid;
 	.border-radius(5px);
+}
+.contribute-divider
+{
+border-bottom: 1px dotted #333;
+font-style:Italic;
+font-weight:bold;
+margin-bottom:5px;
+}
+.contribute-submit{
+margin-left: 165px;
+}
+.label-contribute{
+margin-left: 10px;
 }
 .alert{
 	background-color:#168891; 
@@ -78,4 +173,77 @@
 	left:0;
 
 	z-index:999;
+}
+.current, {
+border: 1px solid #900;
+background-color: #FFFF9D;
+} 
+	.success-tick,.success-tick1, .success-tick2, .success-tick3{
+    background: url("../img/16x16.png")  no-repeat ;
+	display:none;
+	width: 35px;
+	height: 35px;
+	
+	}
+.center{
+	margin:0 auto;
+}
+.reset{
+margin-left:325px;
+}
+.bg-sidebar{
+	width:300px;
+	padding: 0;
+	background-color:@white;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+	-moz-box-shadow: 0 2px 4px rgba(0,0,0,.08);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+}
+.left-space{
+	margin:10px 0px;
+}
+.bg-sidebar{
+	background-color: #EEE;
+}
+.bg-sidebar li a{
+	display: block;
+	margin: 0 0 -1px;
+	padding: 12px;
+	border: 1px solid #E5E5E5;
+	font-size:16px;
+	background-color: #FFF;
+	.border-radius(8px);
+}
+
+.bg-sidebar li a:hover{
+	color:@white;
+	background-color:#168891;
+}
+.bg-sidebar .bg-sidebar-hover{
+	color:@white;
+	background-color:#168891;
+}
+.nav-list  li  a, .nav-list .nav-header {
+	margin-right: -15px;
+	margin-left: -15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.nav li  a {
+	display: block;
+}
+.bg-sidebar .icon-chevron-right {
+    float: right;
+    margin-top: 2px;
+    margin-right: -6px;
+    opacity: 0.25;
+}
+.bg-sidebar .bg-sidebar-hover .icon-chevron-right {
+    opacity: 0.92;
+}
+.bg-sidebar a:hover .icon-chevron-right {
+    opacity: 1;
+}
+
+svg .bgstroke {
+	stroke: red !important;
 }

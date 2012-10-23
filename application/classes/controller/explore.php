@@ -12,6 +12,18 @@ class Controller_Explore extends Controller_Template {
 
 	public $template = 'template/template.tpl';
 	
+	public function before(){
+		try {
+			$this->session = Session::instance();
+		} catch(ErrorException $e) {
+			session_destroy();
+		}
+		// Execute parent::before first
+		parent::before();
+		// Open session
+		$this->session = Session::instance();
+	}
+	
 	public function action_index() {
 		$this->template->content = View::factory('explore/explore.tpl');
 	}
@@ -27,7 +39,9 @@ class Controller_Explore extends Controller_Template {
 			url::base()."assets/js/handlebars.js",
 			url::base()."assets/js/chroma.min.js",
 			url::base()."assets/js/kartograph.js",
-			url::base()."assets/js/raphael.min.js",			
+			url::base()."assets/js/raphael.min.js",		
+			url::base()."assets/js/g.raphael-min.js",		
+			url::base()."assets/js/g.bar-min.js",
 			url::base()."assets/js/jquery-ui-1.8.16.custom.min.js",		
 			url::base()."assets/js/jquery.qtip.min.js",				
 			url::base()."assets/js/jQAllRangeSliders-min.js",

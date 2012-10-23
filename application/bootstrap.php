@@ -79,9 +79,10 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/feowl/UI',
+	'base_url'   => '/Frontend',
 	'index_file' =>'',
 ));
+
 
 /**
  * Attach the file write to logging. Multiple writers are supported.
@@ -106,10 +107,9 @@ Kohana::modules(array(
 	'database'   	=> MODPATH.'database',	   // Database access
 	//'orm'        	=> MODPATH.'orm',          // Object Relationship Mapping
 	'userguide'  	=> MODPATH.'userguide',    // User guide and API documentation
-  	'smarty'  	 	=> MODPATH.'smarty',	   // Smarty Template Engine
-  	'i18nget'  	 	=> MODPATH.'i18nget'	   // Retrieve all string to translate
+  'smarty'  	 	=> MODPATH.'smarty',	   // Smarty Template Engine
+  'i18nget'  	 	=> MODPATH.'i18nget'	   // Retrieve all string to translate
 ));
-
 
 /**
  * Current language definition

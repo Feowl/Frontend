@@ -3,44 +3,162 @@
 /**
  * Description @ Users Model. Talks with API
  *
- * @package		wasaCMS
+ * @package		Feowl
  * @subpackage  Model
- * @author      Wasamundi/Feowl Team
+ * @author      Feowl Team
  * @copyright   2012
  */
 class Model_Users extends Model{
-
-	//get all users TODO.. return users from the API
-	public static function all(){
-		$user1 = array('username'=>'test1', 'password'=>'uiuiuiui1', 'email'=>'test1@test.com');
-		$user2 = array('username'=>'test2', 'password'=>'uiuiuiui2', 'email'=>'test2@test.com');
-		return array($user1, $user2);
+	
+	public function __construct()
+	{
+		try 
+		{
+			$this->session = Session::instance();
+		}
+		catch(ErrorException $e) 
+		{
+			session_destroy();
+		}
+		//parent::__construct();
+		// set session 
+		$this->session = Session::instance();
 	}
 	
-	//this method creates a new user
-	public static function create(){
+	/**
+	 * Log out a user by removing the related session variables.
+	 * TODO:: use email and password to login a user
+	 * @param  string  email
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public function login($email, $password)
+	{
+		//email is unique returns a single result
+		$user_json = Model_Contributors::get_contributors('', "email=$email");
+		$user = json_decode($user_json['json_result'], true);
 	
+		//if there is a user with this email
+		if($user['meta']['total_count'] == true)
+		{
+			//now check if the contributor password is valid
+		    $password_check_json = self::check_password($user['objects'][0]['id'], $password);
+			$password_check = json_decode($password_check_json['json_result'], true);
+			//print_r($password_check_json); exit;
+			if($password_check['password_valid'])
+			{
+				//set user info in session
+				$this->session->set('user', $password_check);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
+	/**
+	 * Check if a user is login
+	 * 
+	 * @param  string  proceed_url
+	 * @return  boolean
+	 */
+	public function check_login($proceedURL=NULL)
+	{
+		$user= $this->session->get('user');
 	
-	//this method displays a user's details
-	public static function display_one(){
-	
+		//check if a user is logged in
+		if($user)
+		{
+			return true;
+		}
+		else
+		{
+			//if user is not login set the proceedURL in session
+			if($proceedURL != NULL)
+			{
+				$this->session->set('proceedURL', $proceedURL);
+			}
+			else
+			{
+				$this->session->set('proceedURL', Request::detect_uri());
+			}
+			return false;
+		}	
 	}
 	
-	//deletes a user
-	public static function delete(){
+	/**
+	 * check if a contributor password is valid
+	 * 
+	 * @param  string  contributor_id
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public static function check_password($contributor_id, $password){
+		$filter = "password=$password";
+		$data_string = "";
+		return API::send_request(Kohana::config('api.contributor').$contributor_id."/check_password/?", $data_string, "GET", $filter); 
+	}
+	
+	/**
+	 * Logout a user by either destroying all session variables or related variables.
+	 * 
+	 * TODO:: use email and password to login a user
+	 * @param  string  email
+	 * @param  string  password
+	 * @return  boolean
+	 */
+	public function logout($destroy=false)
+	{
+		if($destroy != true)
+		{
+			$this->session->destroy();
+		}
+		else
+		{
+			$this->session->delete('user');
+		}
+		return;
+	}
+	
+	/**
+	 * Logout a user by either destroying all session variables or related variables.
+	 * delete user account (works if the user that issues this call has the right permission)
+	 * @return  boolean
+	 */
+	public function delete()
+	{
+		$user = $this->session->get('user');
+		$contributor_id = $user['id'];
+		//$username = $userdata[0]['name'];
+		//api request to delete account
+		$json_result = Model_Contributors::delete_contributor("", $contributor_id);
+		$result = json_decode($json_result['http_status'], true);
 		
+		if($result == 204)
+		{
+			self::logout(true);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	//deletes all users
-	public static function delete_all(){
+	public function force_login($user_id)
+	{
+	
+		$password_check_json = self::check_password($user_id, '');
+		$password_check = json_decode($password_check_json['json_result'], true);
+		$this->session->set('user', $password_check);
 		
+		return true;
 	}
 	
-	//update a user
-	public static function update(){
-	
-	}	
-
 } // End User Model

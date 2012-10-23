@@ -3,7 +3,7 @@
 		<footer class="row">
 			<div class="span3">
 				<p>
-					<a href="https://github.com/jplusplus/feowl/">{__ t='Fork us on GitHub!'}</a>
+					<a href="https://github.com/Feowl/">{__ t='Fork us on GitHub!'}</a>
 					{__ t='Feowl files under an Apache licence'}
 				</p>
 			</div>
@@ -20,9 +20,9 @@
 			</div>
 		</footer>
 	</div>
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
 	{* Global js *}
@@ -34,5 +34,6 @@
 	{if isset($files_javascript)}
 	{include file='tool/header-file.tpl' type='js'  list=$files_javascript after="" before=""}
 	{/if}
+
 	</body>
 </html>

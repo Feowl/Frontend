@@ -11,11 +11,22 @@ class Controller_Home extends Controller_Template {
 	
 	//define the template to use
 	public $template = 'template/template.tpl';
-
+	
+	public function before(){
+		try {
+			$this->session = Session::instance();
+		} catch(ErrorException $e) {
+			session_destroy();
+		}
+		// Execute parent::before first
+		parent::before();
+		// Open session
+		$this->session = Session::instance();
+	}
+	
 	public function action_index() {
 		//instantiate and render the home view on the template
 		$this->template->content = View::factory('home/home.tpl');
-		//$this->template->alert = "gfdgf"; 
 	}
 	
 	public function after(){
@@ -38,7 +49,7 @@ class Controller_Home extends Controller_Template {
 			url::base()."assets/js/script-explore.js",
 		);
 		$this->template->active_home = "active";
-		$alert = Session::instance()->get_once('alert');
+		$alert = $this->session->get_once('alert');
 		if(isset($alert)){
 			$this->template->alert = $alert;
 		}
