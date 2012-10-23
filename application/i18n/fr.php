@@ -17,7 +17,7 @@ return array(
 	'Password' => 'Mot de passe', // 21
 
 	// views/user/signup_info.tpl
-	'Sign Up' => 'Inscription', // 1
+	'Sign up' => 'Inscription', // 1
 /// TODO	'Don\'t worry, they will not contradict you when i finish with your report and others.' => '', // 1
 /// TODO	'You will be able to have a geographical look on how the mess up all this time.' => '', // 1
 /// TODO	'I intend to equip you with relevant tools to measure the quality of service you pay for.' => '', // 1
@@ -40,6 +40,7 @@ return array(
 	// views/layout/menu.tpl
 	'Account' => 'Profil', // 16
 	'Signup' => 'Inscription', // 23
+	'or' => 'ou', // 36
 	'Home' => 'Accueil', // 57
 	'Explore' => 'Explorer', // 58
 	'Contribute' => 'Contribuer', // 59
