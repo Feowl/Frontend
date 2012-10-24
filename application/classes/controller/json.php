@@ -32,15 +32,18 @@ class Controller_Json extends Controller {
 		echo json_encode($json_items);	
 	}
 
-	public static function get_reports_page($date_gte, $date_lte, $page = 0, $limit = 15) {
+	public static function get_reports_page($date_gte, $date_lte, $page = 0, $limit = 15, $area = false) {
 
 		// Builds the API parameters (first, extracts the username and key)
 		$params  = Kohana::$config->load("apiauth")->get("default");
 		$params += array(
 			"happened_at__gte" => $date_gte,
 			"happened_at__lte" => $date_lte,
-			"format" => "json" // Needed temporary
+			"format"					 => "json" // Needed temporary
 		);
+
+		// Add an area filter
+		if($area) $params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
 
 		// Specify the page size
 		$params["limit"] = $limit;
@@ -52,7 +55,7 @@ class Controller_Json extends Controller {
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("reports/", $params);			
 		// Parse the json object
-		$body = json_decode($rep->body);			
+		$body = json_decode($rep->body);
 		// Decode the json body and records the agregated objects
 		$res = array("list" => $body->objects );
 		// Add a current_page parameter
@@ -63,18 +66,19 @@ class Controller_Json extends Controller {
 		return $res;
 	}
 
-	public function action_all_reports() {
+	public function action_area_reports() {
 
 		$date_gte = Arr::get($_GET, 'date_gte');
 		$date_lte = Arr::get($_GET, 'date_lte');
-		$page = 0;
+		$area 		= Arr::get($_GET, 'area');
+		$page 		= 0;
 
 		// To saves every reports
 		$reports = array();
 		// do while
 		do {
 			// get the reports from the server to a specified page
-			$res = $this::get_reports_page($date_gte, $date_lte, $page, 100);
+			$res = $this::get_reports_page($date_gte, $date_lte, $page, 100, $area);
 			// saves the reports
 			$reports = array_merge($reports, $res["list"]);
 			// and increments the page index		

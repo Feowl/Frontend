@@ -45,6 +45,7 @@ class Controller_Home extends Controller_Template {
 			url::base()."assets/js/jquery-ui-1.8.16.custom.min.js",	
 			url::base()."assets/js/jquery.qtip.min.js",				
 			url::base()."assets/js/jQAllRangeSliders-min.js",
+			url::base()."assets/js/underscore-min.js",
 			url::base()."assets/js/global.js",
 			url::base()."assets/js/script-explore.js",
 		);
