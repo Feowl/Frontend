@@ -171,6 +171,9 @@
 
 	  }
     
+		// Prepare the bar chart area
+		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarcharts.removeClass('hidden');	
 		// Remove loading mode on the bar chart area
 		explore.$exploreBarcharts.loading(false);
 
