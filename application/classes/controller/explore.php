@@ -38,7 +38,7 @@ class Controller_Explore extends Controller_Template {
 		$this->template->files_javascript = array(		
 			url::base()."assets/js/handlebars.js",
 			url::base()."assets/js/chroma.min.js",
-			url::base()."assets/js/kartograph.js",
+			url::base()."assets/js/kartograph.min.js",
 			url::base()."assets/js/raphael.min.js",		
 			url::base()."assets/js/g.raphael-min.js",		
 			url::base()."assets/js/g.bar-min.js",

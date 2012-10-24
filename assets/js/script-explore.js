@@ -311,19 +311,14 @@
 			explore.map = $K.map( explore.$exploreMap );
 			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
 				
-
-				explore.map.addLayer('land', {
-          name: 'bgback'
-        });
-				
-				explore.map.addLayer({
-					id: 'douala-arrts',
+				explore.map.addLayer('douala-arrts', {					
 					key: 'id',
           click: function(path) {
-          	if(explore.listExists())
+          	if( explore.listExists() ) {
           		explore.addChart(data, path);
+          	}
           }
-				});
+				});			
 
 				explore.updateMap(explore.map);
 
@@ -336,19 +331,15 @@
 			explore.map.getLayer('douala-arrts').remove()
 
 			// Add layer again to prevent a fill bug with Kartograph
-			explore.map.addLayer({
-				id: 'douala-arrts',
+			explore.map.addLayer('douala-arrts', {
 				key: 'id',
-				styles: {
-                  'stroke': "green"
-                },
-                click: function(path) {
-                	if(explore.listExists())
-	                	explore.addChart(data, path);
-	            }
+        click: function(path) {
+        	if(explore.listExists())
+          	explore.addChart(data, path);
+      	}
 			});
 
-			explore.updateMap(explore.map);
+			explore.updateMap();
 		}
 	};
 
@@ -358,9 +349,6 @@
 	 * Update map colors
 	 */
 	explore.updateMap = function() {
-
-		var prop = "avg_duration"
-		,  scale = "q";
 
 		try {
 			
@@ -372,38 +360,30 @@
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
 			});
-
-			explore.map.choropleth({
-   			layer: 'douala-arrts',
-				data: explore.reportsAgregation,
-				key: 'id',	  
-				colors: function(d) {
-					// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
-					// For now, no power cut means no relevant data
-					if (d == null || d[prop] == 0 ) return 'url("assets/img/stripe.png")';					
-					return explore.colorscale.getColor(d[prop]);
-				},
-				duration: 0
+  
+			// Set colors on map			
+			explore.map.getLayer('douala-arrts').style('fill', function(d) {
+				// Looks for the value using the id
+				var value = _.find(explore.reportsAgregation, function(e) { return e.id == d.id });				
+				// If we didn't find the value
+			  if (value == undefined || value.avg_duration == 0 ) return 'url("assets/img/stripe.png")';	
+			  // Return the matching color
+				return explore.colorscale.getColor( value.avg_duration );
 			});
 
-			explore.map.tooltips({
-				// layer specified by the markup <g>
-			  	layer: 'douala-arrts',
-			  	// this id is the data-id linked to a markup <path> 
-			  	content: function(id) {
+			explore.map.getLayer('douala-arrts').tooltips(function(d) {
 
-			  		var avg_duration = null;
-			  		// Look for the updatime
-			  		for(var index in explore.reportsAgregation) {
-			  			if(explore.reportsAgregation[index].id == id) {
-			  				avg_duration = explore.reportsAgregation[index].avg_duration;
-			  			}
-			  		}
+	  		var avg_duration = null;
+	  		// Look for the updatime
+	  		for(var index in explore.reportsAgregation) {
+	  			if(explore.reportsAgregation[index].id == d.id) {
+	  				avg_duration = explore.reportsAgregation[index].avg_duration;
+	  			}
+	  		}
 
-			  		// @TODO : use an HTML template 
-			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
-			  	}
-			});
+	  		// @TODO : use an HTML template 
+	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+	  	});
 
 
 			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
@@ -414,8 +394,7 @@
 			}); */
 
 		} catch (err) {
-
-			//console && console.log(err);
+			console && console.log(err);
 		}
 
 	};
@@ -518,7 +497,7 @@
 		});	
 
 		// Add the events
-		//explore.bindEvents();		 		
+		explore.bindEvents();		 		
 
 	})();
 

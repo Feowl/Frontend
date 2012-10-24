@@ -40,7 +40,7 @@ class Controller_Home extends Controller_Template {
 		$this->template->files_javascript = array(	
 			url::base()."assets/js/handlebars.js",
 			url::base()."assets/js/chroma.min.js",
-			url::base()."assets/js/kartograph.js",
+			url::base()."assets/js/kartograph.min.js",
 			url::base()."assets/js/raphael.min.js",
 			url::base()."assets/js/jquery-ui.min.js",	
 			url::base()."assets/js/jquery.qtip.min.js",				
