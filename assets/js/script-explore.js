@@ -518,7 +518,7 @@
 		});	
 
 		// Add the events
-		explore.bindEvents();		 		
+		//explore.bindEvents();		 		
 
 	})();
 
