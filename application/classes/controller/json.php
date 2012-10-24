@@ -32,7 +32,7 @@ class Controller_Json extends Controller {
 		echo json_encode($json_items);	
 	}
 
-	public static function get_reports_page($date_gte, $date_lte, $page = 0, $limit = 15, $area = false) {
+	public static function get_reports_page($date_gte, $date_lte, $area = false, $page = 0, $limit = 15, $order = "date", $desc = false) {
 
 		// Builds the API parameters (first, extracts the username and key)
 		$params  = Kohana::$config->load("apiauth")->get("default");
@@ -71,14 +71,14 @@ class Controller_Json extends Controller {
 		$date_gte = Arr::get($_GET, 'date_gte');
 		$date_lte = Arr::get($_GET, 'date_lte');
 		$area 		= Arr::get($_GET, 'area');
-		$page 		= 0;
+		$page 		= 0;		
 
 		// To saves every reports
 		$reports = array();
 		// do while
 		do {
 			// get the reports from the server to a specified page
-			$res = $this::get_reports_page($date_gte, $date_lte, $page, 100, $area);
+			$res = $this::get_reports_page($date_gte, $date_lte, $area, $page, 100);
 			// saves the reports
 			$reports = array_merge($reports, $res["list"]);
 			// and increments the page index		
@@ -108,23 +108,36 @@ class Controller_Json extends Controller {
 			"format"					 => "json" // Needed temporary
 		);
 
+
+		// Add an area filter (conditional)
+		if( Arr::get($_GET, 'area', false) ) {
+			$params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
+		}
+
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("reports-aggregation/", $params);		
-		/*print"<pre>";
-		var_dump($rep);
-		print"</pre>";*/
+
 		// Decode the json body and records the agregated objects
 		$res = array("agregation" => json_decode($rep->body)->objects );
 
 		// Is the user asking for a list of every reports ?
 		if( Arr::get($_GET, 'list', false) ) {
-			$res += $this::get_reports_page($params["happened_at__gte"], $params["happened_at__lte"], Arr::get($_GET, 'page', 0));
+
+			$res += $this::get_reports_page(
+				$params["happened_at__gte"], 
+				$params["happened_at__lte"], 
+				isset($params["area"]) ? $params["area"] : false,
+				Arr::get($_GET, 'page', 0)
+				// Arr::get($_GET, 'order_by', 'date'),
+				// Arr::get($_GET, 'desc', false),
+			);
+
  		}
 
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');
 		// Display the content
-		$this->response->body(json_encode($res));
+		$this->response->body( json_encode($res) );
 
 
 		return $res;	

@@ -32,6 +32,8 @@
 			explore.$exploreList.delegate(".load-more", "click", explore.moreReports);	
 			// Switching barchart view to legend view
 			explore.$exploreMap.on("click", explore.removeMapGraphs);
+			// Change the order of the list
+			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);
 		}
 
 	};
@@ -250,6 +252,31 @@
 	};
 
 	/**
+	 * Change the order of the list (table) when click on a column name
+	 * @param  {Object} event The deleguate event
+	 */
+	explore.changeListOrder = function(event) {
+		
+		// Select the other th (at the footer of the table)
+		var sorter = $(this).data("sort"),
+			  $other = explore.$exploreList.find("th[data-sort='" + sorter + "']");		
+
+		// Add the other column to the current selector
+		var $this = $(this).add( $other );
+
+		// DESC class
+		$this.toggleClass("desc", $this.hasClass("sorted") && !$this.hasClass("desc") );
+		// Change the selected column
+		explore.$exploreList.find("th").not(this).removeClass("sorted");
+		$this.addClass("sorted");
+
+		// Update the list  
+		explore.currentPage = 0;
+		explore.updateData();
+
+	};
+
+	/**
 	 * WIP !!
 	 * Display summarizing data
 	 */
@@ -414,7 +441,6 @@
 			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")
 		};
 
-		console.log(params);
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
 

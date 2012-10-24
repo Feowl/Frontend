@@ -26,6 +26,21 @@
 		text-transform: uppercase;
 	}
 
+	th {
+
+		cursor:pointer;
+		position:relative;		
+		padding-left:22px;
+		
+		&.sorted {
+			background:url("../img/arrow-sort-asc.png") no-repeat 5px center;
+
+			&.desc {
+				background-image:url("../img/arrow-sort-desc.png");
+			}
+		}
+	}
+
 }
 
 #explore-legend {
