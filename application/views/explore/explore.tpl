@@ -33,7 +33,7 @@
 
 			<div class="span12">
 				<h2>{__ t='User reports'}</h2>
-				<table class="table table-striped table-condensed" data-sort="date" id="explore-list">
+				<table class="table table-striped table-condensed" id="explore-list">
 					<thead>
 						<tr>
 							<th data-sort="area">{__ t='District'}</th>
