@@ -38,7 +38,7 @@
 						<tr>
 							<th data-sort="area">{__ t='District'}</th>
 							<th data-sort="duration">{__ t='Duration'}</th>
-							<th data-sort="date">{__ t='Date'}</th>
+							<th data-sort="date" class="sorted">{__ t='Date'}</th>
 							<th data-sort="quality">{__ t='Quality'}</th>
 						</tr>
 					</thead>
@@ -46,7 +46,7 @@
 						<tr>
 							<th data-sort="area">{__ t='District'}</th>
 							<th data-sort="duration">{__ t='Duration'}</th>
-							<th data-sort="date">{__ t='Date'}</th>
+							<th data-sort="date" class="sorted">{__ t='Date'}</th>
 							<th data-sort="quality">{__ t='Quality'}</th>
 						</tr>
 					</tfoot>
