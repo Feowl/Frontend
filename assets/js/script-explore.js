@@ -176,6 +176,9 @@
 		explore.$exploreBarcharts.removeClass('hidden');	
 		// Remove loading mode on the bar chart area
 		explore.$exploreBarcharts.loading(false);
+  	// Deleting the hypothetical previous message
+  	explore.$exploreBarchartsArea.empty();
+
 
     var   r = Raphael("explore-barchart-area"),
     txtattr = { font: "14px verdana" },
@@ -195,8 +198,9 @@
 
     if( !half && !two && !four && !more ) {
     	
-    	// @TODO use an html template to allow multiple languages
-    	r.text(140, 160, "---- no data available ----").attr(txtattr);
+    	// Show a message "no data available"
+    	explore.$exploreBarchartsArea.html( explore.$exploreBarchartsArea.data("absent") );
+    	console.log(( !half && !two && !four && !more ));
 
     } else {
 
@@ -464,6 +468,8 @@
 		explore.$exploreLegend = $("#explore-legend");
 		// Element to show the map's barcharts
 		explore.$exploreBarcharts = $("#explore-barchart");
+		// Element to use to display the "no data" message
+		explore.$exploreBarchartsArea = $("#explore-barchart-area");
 		// Element to use to display the list
 		explore.$exploreList = $("#explore-list");
 		// Element to use as a workspace

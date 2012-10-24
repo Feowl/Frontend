@@ -21,7 +21,7 @@
 				<!--div id="contributions"></div-->
 				<div class="well hidden" id="explore-barchart">
 					<h4 data-tpl="{__ t='Proportion of Feowl users suffering from power cuts in %s'}"></h4>
-					<div id="explore-barchart-area"></div>
+					<div id="explore-barchart-area" data-absent="{__ t='no data available'}"></div>
 					<ul id="explore-barchart-duration">
 						<li>{__ t="0"}</li>
 						<li>{__ t="30'"}</li>
@@ -29,6 +29,7 @@
 						<li>{__ t="4h"}</li>
 						<li class="last">{__ t="&gt; 4h"}</li>
 					</ul>
+					<h5>{__ t="Duration of daily power cuts"}</h5>
 				</div>
 			</div>
 
