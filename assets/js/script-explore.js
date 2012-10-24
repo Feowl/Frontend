@@ -42,7 +42,7 @@
 	 */
 	explore.removeMapGraphs = function(event) {
 		// If we are not clicking on a map element
-	 	if(event.target.nodeName != 'path') {	 		
+	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 		
 	 		// Suppress the previous barchart
 	 		explore.$exploreBarcharts.find('svg').remove();
 	 		// Hides thebarcharts
@@ -111,49 +111,72 @@
 
 		if( ! explore.listExists() ) return;
 
+		// Extract the data from the range
+		var values = explore.$dateRange.dateRangeSlider("values");
+		// Extracts the parameters to use
+		var params = {
+			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
+			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),			
+			"area"			: _.invert(explore.areas)[path.id]
+		};
+
+		// Prepare the bar chart area
+		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarcharts.removeClass('hidden');		
+		// Loading mode on the bar chart area		
+		explore.$exploreBarcharts.loading();
+
+    var $title = explore.$exploreBarcharts.find("h4");
+    // CHOICE: a html presentation might be better
+    // @TODO use an html template to allow multiple languages (here an example)    
+    $title.html( $title.data("tpl").replace("%s", path.id) );
+
+		// Load every reports for this interval
+		$.getJSON("json/area_reports/", params, explore.drawChart);
+
+
+	};
+
+	explore.drawChart = function(reports) {
+
 		var half   = 0,
 				two    = 0,
 				four   = 0,
 				more   = 0,
 				$tbody = explore.$exploreList.find('tbody');				
 	
-		for( var i in data.list ) {
+		// Distributes the bar proportions according the list of reports
+		for( var i in reports ) {
 
 			// console.log('iteration n°' + i);
-			var _list = data.list[i];
+			var report = reports[i];
 
-    	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
+  		switch(true) {
+  			case report.duration < 30 :
+  				half++;
+  				break;
 
-    		switch(true) {
-    			case _list.duration < 30 :
-    				half++;
-    				break;
+  			case report.duration < 120 :
+  				two++;
+  				break;
 
-    			case _list.duration < 120 :
-    				two++;
-    				break;
+  			case report.duration < 240 :
+  				four++;
+  				break;
 
-    			case _list.duration < 240 :
-    				four++;
-    				break;
-
-    			default:
-    				more++;
-    				break;
-    		} 
-
-    	}
+  			default:
+  				more++;
+  				break;
+  		}
 
 	  }
-
-    // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples		
-		explore.$exploreBarcharts.find('svg:first').remove();
-		explore.$exploreBarcharts.removeClass('hidden');
+    
+		// Remove loading mode on the bar chart area
+		explore.$exploreBarcharts.loading(false);
 
     var   r = Raphael("explore-barchart-area"),
     txtattr = { font: "14px verdana" },
     total_p = (half+two+four+more)/100,
-     $title = explore.$exploreBarcharts.find("h4");
     		 fn = function() {
     		 			// Bar style
     		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"})
@@ -165,12 +188,7 @@
     					)
     					.attr({ fill: "#168891", stroke: "#ffffff" })
     					.insertBefore(this);
-    				},
-
-
-    // CHOICE: a html presentation might be better
-    // @TODO use an html template to allow multiple languages (here an example)    
-    $title.html( $title.data("tpl").replace("%s", path.id) );
+    				};
 
     if( !half && !two && !four && !more ) {
     	
@@ -178,7 +196,6 @@
     	r.text(140, 160, "---- no data available ----").attr(txtattr);
 
     } else {
-
 
     	// Create the bar chart
     	var bc = r.barchart(
@@ -203,6 +220,7 @@
 
 	};
 
+
 	/**
 	 * Draw the list
 	 */
@@ -223,7 +241,7 @@
 			$tbody.find(".load-more").remove();
 		}
 
-		//console.log(source);
+		// console.log(source);
 		// Append every items at the same time
 		$tbody.append(html);
 	};
@@ -287,7 +305,7 @@
 				id: 'douala-arrts',
 				key: 'id',
 				styles: {
-                    'stroke': "green"
+                  'stroke': "green"
                 },
                 click: function(path) {
                 	if(explore.listExists())
@@ -310,6 +328,10 @@
 		,  scale = "q";
 
 		try {
+			
+			// Hide the map chart
+			explore.removeMapGraphs();
+
 			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
@@ -321,14 +343,9 @@
 				data: explore.reportsAgregation,
 				key: 'id',	  
 				colors: function(d) {
-				// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
+					// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
 					// For now, no power cut means no relevant data
-					// if (typeof(i) != "undefined"){var i=0;}else{i++;};
-					// console.log(i);
-					if (d == null || d[prop] == 0 /*&& !*****/ ) return 'url("assets/img/stripe.png")';
-					// if () return ;
-					// console.log(e.mouseX, e.mouseY);
-					// console.log('lol');
+					if (d == null || d[prop] == 0 ) return 'url("assets/img/stripe.png")';					
 					return explore.colorscale.getColor(d[prop]);
 				},
 				duration: 0
@@ -348,17 +365,18 @@
 			  			}
 			  		}
 
+			  		// @TODO : use an HTML template 
 			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
 			  	}
 			});
 
 
-			explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
-				//$(this).css("stroke", "#075156");
+			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
+				$(this).css("stroke", "#075156");
 			});
 			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
-				//$(this).css("stroke", "black");
-			});
+				$(this).css("stroke", "black");
+			}); */
 
 		} catch (err) {
 
@@ -375,7 +393,7 @@
 		return !!explore.$exploreList.length;
 	};
 
-
+	
 	explore.updateData = function(event) {
 
 		// Catch an event, we reset the current page
@@ -387,8 +405,8 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
-			"list"		: explore.listExists()*1,
-			"page"		: explore.currentPage
+			"list"			: explore.listExists()*1,
+			"page"			: explore.currentPage
 		};
 
 		// Adds a loading overlay on the map
