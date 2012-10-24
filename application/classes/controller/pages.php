@@ -42,8 +42,7 @@ class Controller_Pages extends Controller_Template {
 
 		// Adds optional javascript files in an array
 		$this->template->files_javascript = array(
-			url::base()."assets/js/global.js",
-			url::base()."assets/js/script-explore.js",
+			url::base()."assets/js/global.js"
 		);
 		$this->template->active_about = "active";
 		parent::after();		
