@@ -44,18 +44,18 @@
 				<table class="table table-striped table-condensed" id="explore-list">
 					<thead>
 						<tr>
-							<th>{__ t='District'}</th>
-							<th>{__ t='Duration'}</th>
-							<th>{__ t='Date'}</th>
-							<th>{__ t='Quality'}</th>
+							<th data-sort="area">{__ t='District'}</th>
+							<th data-sort="duration">{__ t='Duration'}</th>
+							<th data-sort="date" class="sorted">{__ t='Date'}</th>
+							<th data-sort="quality">{__ t='Quality'}</th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
-							<th>{__ t='District'}</th>
-							<th>{__ t='Duration'}</th>
-							<th>{__ t='Date'}</th>
-							<th>{__ t='Quality'}</th>
+							<th data-sort="area">{__ t='District'}</th>
+							<th data-sort="duration">{__ t='Duration'}</th>
+							<th data-sort="date" class="sorted">{__ t='Date'}</th>
+							<th data-sort="quality">{__ t='Quality'}</th>
 						</tr>
 					</tfoot>
 					<tbody>

@@ -26,6 +26,21 @@
 		text-transform: uppercase;
 	}
 
+	th {
+
+		cursor:pointer;
+		position:relative;		
+		padding-left:22px;
+		
+		&.sorted {
+			background:url("../img/arrow-sort-asc.png") no-repeat 5px center;
+
+			&.desc {
+				background-image:url("../img/arrow-sort-desc.png");
+			}
+		}
+	}
+
 }
 
 #explore-legend {
@@ -75,6 +90,16 @@
 #explore-barchart {
 	height: 280px;
 	position:relative;
+
+	h4 {
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		color: #999999;
+		font-size: 11px;
+		text-transform:uppercase;
+		line-height: 16px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+	}
 }
 
 	#explore-barchart-area {
