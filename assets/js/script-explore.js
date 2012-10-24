@@ -309,15 +309,20 @@
 		if(explore.map === null) {
 
 			explore.map = $K.map( explore.$exploreMap );
-			explore.map.loadMap('assets/data/douala-districts.svg', function() {
+			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
+				
+
+				explore.map.addLayer('land', {
+          name: 'bgback'
+        });
 				
 				explore.map.addLayer({
 					id: 'douala-arrts',
 					key: 'id',
-	                click: function(path) {
-	                	if(explore.listExists())
-	                		explore.addChart(data, path);
-	                }
+          click: function(path) {
+          	if(explore.listExists())
+          		explore.addChart(data, path);
+          }
 				});
 
 				explore.updateMap(explore.map);
