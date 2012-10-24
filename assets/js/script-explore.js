@@ -258,7 +258,7 @@
 		var   $contributions = explore.$exploreLegend.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
+		,     html = template(data);
 
 		$contributions.empty();
 		$contributions.append(html);
@@ -275,7 +275,7 @@
 			data.agregation[index].id = explore.areas[data.agregation[index].area];
 		}
 
-		// Gives the data objects to the layer  // #1111  ??????
+		// Gives the data objects to the layer
 		explore.reportsAgregation = data.agregation;
 
 		// No layer defined, loads the svg file
