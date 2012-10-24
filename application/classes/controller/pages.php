@@ -41,14 +41,7 @@ class Controller_Pages extends Controller_Template {
 		);
 
 		// Adds optional javascript files in an array
-		$this->template->files_javascript = array(	
-			url::base()."assets/js/handlebars.js",
-			url::base()."assets/js/chroma.min.js",
-			url::base()."assets/js/kartograph.js",
-			url::base()."assets/js/raphael.min.js",
-			url::base()."assets/js/jquery-ui-1.8.16.custom.min.js",	
-			url::base()."assets/js/jquery.qtip.min.js",				
-			url::base()."assets/js/jQAllRangeSliders-min.js",
+		$this->template->files_javascript = array(
 			url::base()."assets/js/global.js",
 			url::base()."assets/js/script-explore.js",
 		);
