@@ -109,7 +109,7 @@
 	 * Adds a bar chart for the specified district
 	 * @params data, path
 	 */
-	explore.addChart = function(data, path) {
+	explore.addChart = function(path) {
 
 		if( ! explore.listExists() ) return;
 
@@ -309,39 +309,28 @@
 		if(explore.map === null) {
 
 			explore.map = $K.map( explore.$exploreMap );
-			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
-				
-				explore.map.addLayer('douala-arrts', {					
-					key: 'id',
-          click: function(path) {
-          	if( explore.listExists() ) {
-          		explore.addChart(data, path);
-          	}
-          }
-				});			
+			explore.map.loadMap('assets/data/douala-districts-better.svg', explore.addMapLayers);
 
-				explore.updateMap(explore.map);
+		} else explore.addMapLayers();
 
-			});
-
-		// Layer exists, update the data
-		} else {
-
-			// Remove the previous layer
-			explore.map.getLayer('douala-arrts').remove()
-
-			// Add layer again to prevent a fill bug with Kartograph
-			explore.map.addLayer('douala-arrts', {
-				key: 'id',
-        click: function(path) {
-        	if(explore.listExists())
-          	explore.addChart(data, path);
-      	}
-			});
-
-			explore.updateMap();
-		}
 	};
+
+	/**
+	 * Add the layer to the map
+	 */
+	explore.addMapLayers = function(data) {
+
+		explore.map.addLayer('douala-arrts', {					
+			key: 'id',
+      click: function(path) {
+      	if( explore.listExists() ) {
+      		explore.addChart(path);
+      	}
+      }
+		});			
+
+		explore.updateMap(explore.map);
+	}
 
 
 
