@@ -18,7 +18,7 @@
 					<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
 					<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 				</ul>
-				<!--div id="contributions"></div-->
+				<div id="contributions"></div>
 				<div class="well hidden" id="explore-barchart">
 					<h4 data-tpl="{__ t='Proportion of Feowl users suffering from power cuts in %s'}"></h4>
 					<div id="explore-barchart-area" data-absent="{__ t='no data available'}"></div>
@@ -106,20 +106,26 @@
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
 					
 					{{#list}}
-						{{! <p>qualité</p>}}
-						{{! TODO: sum all the duration values in one variable}}
-						{{! duration_rate duration}}
-						{{! <p>contrib</p>}}
-						{{! contributor}}
+						{{area}}
+						{{happened_at}}
+						<p>DURéE</p>
+						{{!@TODO: sum all the duration values in one variable}}
+						<p>contributeur</p>
+						{{contributor}}
 					{{/list}}
 					{{^list}}
 						no list here!
 					{{/list}}
+						<br/>
+					{{#agregation}}	
+						{{avg_duration}}
+					{{/agregation}}
+					{{^agregation}}
+						no agregation here!
+					{{/agregation}}
 
-					{/literal}{__ t='SOMETHING TO TRANSLATE!'}{literal}
+					{/literal}{__ t='<p>SOMETHING TO TRANSLATE!</p>'}{literal}
 					
-					{{! contributor}}
-
 				</script>
 
 			{/literal}

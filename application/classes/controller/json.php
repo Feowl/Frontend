@@ -66,6 +66,9 @@ class Controller_Json extends Controller {
 		return $res;
 	}
 
+	/*
+	 * Looks for reports for a specific area
+	 */
 	public function action_area_reports() {
 
 		$date_gte = Arr::get($_GET, 'date_gte');
@@ -105,7 +108,7 @@ class Controller_Json extends Controller {
 		$params += array(
 			"happened_at__gte" => Arr::get($_GET, 'date_gte'),
 			"happened_at__lte" => Arr::get($_GET, 'date_lte'),
-			"format"					 => "json" // Needed temporary
+			"format"					 => "json" // Needed temporarily
 		);
 
 		$restClient = REST_Client::instance();

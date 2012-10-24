@@ -200,7 +200,6 @@
     	
     	// Show a message "no data available"
     	explore.$exploreBarchartsArea.html( explore.$exploreBarchartsArea.data("absent") );
-    	console.log(( !half && !two && !four && !more ));
 
     } else {
 
