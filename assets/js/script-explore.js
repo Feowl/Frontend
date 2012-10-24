@@ -311,23 +311,42 @@
 			explore.map = $K.map( explore.$exploreMap );
 			explore.map.loadMap('assets/data/douala-districts-better.svg', explore.addMapLayers);
 
-		} else explore.addMapLayers();
+		} else  {
+			// Remove the previous layer
+			explore.map.getLayer('douala-arrts').remove();
+			explore.addMapLayers();
+		}
 
 	};
 
 	/**
 	 * Add the layer to the map
 	 */
-	explore.addMapLayers = function(data) {
+	explore.addMapLayers = function(map) {
+
+		explore.map.addLayer('land', {	
+			name:"bgback"
+		});
+
 
 		explore.map.addLayer('douala-arrts', {					
 			key: 'id',
+			name: 'douala-arrts',
       click: function(path) {
       	if( explore.listExists() ) {
       		explore.addChart(path);
       	}
       }
 		});			
+
+   	explore.map.addFilter('oglow', 'glow', {
+        size: 0.1,
+        color: '#000',
+        strength: 1,
+        inner: true
+    });
+
+    explore.map.getLayer('douala-arrts').applyFilter('oglow');
 
 		explore.updateMap(explore.map);
 	}
