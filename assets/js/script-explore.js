@@ -342,7 +342,7 @@
 			});
 
 			explore.map.choropleth({
-   				layer: 'douala-arrts',
+   			layer: 'douala-arrts',
 				data: explore.reportsAgregation,
 				key: 'id',	  
 				colors: function(d) {
@@ -409,9 +409,12 @@
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
 			"list"			: explore.listExists()*1,
-			"page"			: explore.currentPage
+			"page"			: explore.currentPage,
+			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
+			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")
 		};
 
+		console.log(params);
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
 

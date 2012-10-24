@@ -127,7 +127,6 @@ class Controller_Json extends Controller {
 		$this->response->body(json_encode($res));
 
 
-
 		return $res;	
 	}
 	
