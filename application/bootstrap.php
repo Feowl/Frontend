@@ -81,6 +81,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/Frontend',
 	'index_file' =>'',
+	'errors' => true
 ));
 
 

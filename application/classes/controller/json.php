@@ -32,6 +32,64 @@ class Controller_Json extends Controller {
 		echo json_encode($json_items);	
 	}
 
+	public static function get_reports_page($date_gte, $date_lte, $page = 0, $limit = 15) {
+
+		// Builds the API parameters (first, extracts the username and key)
+		$params  = Kohana::$config->load("apiauth")->get("default");
+		$params += array(
+			"happened_at__gte" => $date_gte,
+			"happened_at__lte" => $date_lte,
+			"format" => "json" // Needed temporary
+		);
+
+		// Specify the page size
+		$params["limit"] = $limit;
+		// Find the current page (that begins to 0)
+		$currentPage = $page;
+		// Find the offset according the current page size
+		$params["offset"] = $currentPage * $params["limit"];
+		// Get the reports
+		$restClient = REST_Client::instance();
+		$rep = $restClient->get("reports/", $params);			
+		// Parse the json object
+		$body = json_decode($rep->body);			
+		// Decode the json body and records the agregated objects
+		$res = array("list" => $body->objects );
+		// Add a current_page parameter
+		$res += array("current_page" => $currentPage);			
+		// Add a next_page parameter if there is a next page
+		if($body->meta->next) $res += array("next_page" => $currentPage+1);
+
+		return $res;
+	}
+
+	public function action_all_reports() {
+
+		$date_gte = Arr::get($_GET, 'date_gte');
+		$date_lte = Arr::get($_GET, 'date_lte');
+		$page = 0;
+
+		// To saves every reports
+		$reports = array();
+		// do while
+		do {
+			// get the reports from the server to a specified page
+			$res = $this::get_reports_page($date_gte, $date_lte, $page, 100);
+			// saves the reports
+			$reports = array_merge($reports, $res["list"]);
+			// and increments the page index		
+		  $page++;
+		// check if there is a next page
+		} while ( isset($res["next_page"])	&& $page < 10 );
+
+
+ 		// Change the content type for JSON
+ 		$this->response->headers('Content-Type','application/json');
+		// Display the content
+		$this->response->body(json_encode($reports));
+
+	}
+
 	/**
 	 * Display a json string with the reports betweens the given interval
 	 * @access	public	  
@@ -56,22 +114,7 @@ class Controller_Json extends Controller {
 
 		// Is the user asking for a list of every reports ?
 		if( Arr::get($_GET, 'list', false) ) {
-			// Specify the page size
-			$params["limit"] = 15;
-			// Find the current page (that begins to 0)
-			$currentPage = Arr::get($_GET, 'page', 0);
-			// Find the offset according the current page size
-			$params["offset"] = $currentPage * $params["limit"];
-			// Get the reports
-			$rep = $restClient->get("reports/", $params);			
-			// Parse the json object
-			$body = json_decode($rep->body);			
-			// Decode the json body and records the agregated objects
-			$res += array("list" => $body->objects );
-			// Add a current_page parameter
-			$res += array("current_page" => $currentPage);			
-			// Add a next_page parameter if there is a next page
-			if($body->meta->next) $res += array("next_page" => $currentPage+1);
+			$res += $this::get_reports_page($params["happened_at__gte"], $params["happened_at__lte"], Arr::get($_GET, 'page', 0));
  		}
 
  		// Change the content type for JSON
