@@ -32,13 +32,14 @@ class Controller_Json extends Controller {
 		echo json_encode($json_items);	
 	}
 
-	public static function get_reports_page($date_gte, $date_lte, $area = false, $page = 0, $limit = 15, $order = "date", $desc = false) {
+	public static function get_reports_page($date_gte, $date_lte, $area = false, $page = 0, $limit = 15, $order = "happened_at", $desc = false) {
 
 		// Builds the API parameters (first, extracts the username and key)
 		$params  = Kohana::$config->load("apiauth")->get("default");
 		$params += array(
 			"happened_at__gte" => $date_gte,
 			"happened_at__lte" => $date_lte,
+			"order_by"    		 => $desc ? "-{$order}" : $order,
 			"format"					 => "json" // Needed temporary
 		);
 
@@ -53,7 +54,7 @@ class Controller_Json extends Controller {
 		$params["offset"] = $currentPage * $params["limit"];
 		// Get the reports
 		$restClient = REST_Client::instance();
-		$rep = $restClient->get("reports/", $params);			
+		$rep = $restClient->get("reports/", $params);	
 		// Parse the json object
 		$body = json_decode($rep->body);
 		// Decode the json body and records the agregated objects
@@ -130,9 +131,10 @@ class Controller_Json extends Controller {
 				$params["happened_at__gte"], 
 				$params["happened_at__lte"], 
 				isset($params["area"]) ? $params["area"] : false,
-				Arr::get($_GET, 'page', 0)
-				// Arr::get($_GET, 'order_by', 'date'),
-				// Arr::get($_GET, 'desc', false),
+				Arr::get($_GET, 'page', 0),
+				15,
+				Arr::get($_GET, 'order_by', 'happened_at'),
+				Arr::get($_GET, 'desc', false)
 			);
 
  		}
