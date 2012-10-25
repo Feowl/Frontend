@@ -325,7 +325,7 @@
 	explore.addMapLayers = function(map) {
 
 		explore.map.addLayer('land', {	
-			name:"bgback"
+			name:"land"
 		});
 
 
