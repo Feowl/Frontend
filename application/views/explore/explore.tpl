@@ -103,23 +103,25 @@
 				</script>
 
 				<!-- metadata under the legend -->
+				<!-- "5,623 Responses out of 28,112 participants living in Douala III (20%)" -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
 					
 					{{#list}}
-						{{area}}
-						{{happened_at}}
-						<p>DURéE</p>
-						{{!@TODO: sum all the duration values in one variable}}
-						<p>contributeur</p>
-						{{contributor}}
 					{{/list}}
+
 					{{^list}}
 						no list here!
 					{{/list}}
-						<br/>
+
+					{{! This section is iterated for each element of the agregation array }}
+					{{! WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
 					{{#agregation}}	
-						{{avg_duration}}
+
+						{{! agregation1<br/>
+						agregation2<br/> }}
+
 					{{/agregation}}
+
 					{{^agregation}}
 						no agregation here!
 					{{/agregation}}
