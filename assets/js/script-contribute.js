@@ -2,12 +2,14 @@ $(document).ready(function() {
     //initialize       
 	$(".endContainer, .grid2, .grid3").hide()
     $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
+
 	$('input[name=know]').change(function(){
     var c = this.checked
    //disable all other fields
    if(c){
-   $(".contribute,.contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
-	 $(".grid2,.grid3").show();
+   $(".contribute, .contribute1, .contribute1-1").attr('disabled','disabled');
+    $(".contribute-submit").addClass("btn-primary")
+    $(".contribute-submit").removeAttr('disabled')
 	 }
 	 else{
     reset_fields();	
@@ -18,7 +20,12 @@ $(document).ready(function() {
         $(".contribute").change(function(){
 		//ger multiple powercut value
 		   num = $(".contribute option:selected").val()
+			  if( $(".contribute").val() !="Please select")
+			 {
 			 $(".success-tick").show()
+			 }else{
+			  $(".success-tick").hide()
+			 }
 			 $(".contribute1").removeAttr('disabled')
 			  $(".contribute1").removeClass("current")
 			 $(".contribute1").addClass("current")
@@ -47,13 +54,19 @@ $(document).ready(function() {
 			  selected = $(".contribute1-1 option:selected").val()
 			  //fill 2-1,3-1 with values of 1-1
 			  $(".contribute2-1,.contribute3-1").val( selected ).attr('selected',true);
-			   $(".success-tick1").show()
+
 			  $(".contribute2").removeAttr('disabled')
 			  $(".contribute1-1").removeClass("current")
 			 $(".contribute2").addClass("current")
 			 if(last_div==".contribute1-1")
 			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
+			 $(".contribute-submit").removeAttr('disabled');
+			 if( $(".contribute1-1").val() !="Please select")
+			 {
+			 $(".success-tick1").show()
+			 }else{
+			  $(".success-tick1").hide()
+			 }
 			 });
 			  $(".contribute2").change(function(){
 			   $(".contribute2-1").removeAttr('disabled')
@@ -65,7 +78,12 @@ $(document).ready(function() {
 			 $(".contribute-submit").removeAttr('disabled')
 			 });
 			   $(".contribute2-1").change(function(){
-			   $(".success-tick2").show()
+			    if( $(".contribute2-1").val() !="Please select")
+			 {
+			 $(".success-tick2").show()
+			 }else{
+			  $(".success-tick2").hide()
+			 }
 			   $(".contribute3").removeAttr('disabled')
 			  $(".contribute2-1").removeClass("current")
 			  if(last_div==".contribute2-1")
@@ -82,14 +100,29 @@ $(document).ready(function() {
 			 $(".contribute-submit").removeAttr('disabled')
 			 });
 			 $(".contribute3-1").change(function(){
-			   $(".success-tick3").show()
+			  if( $(".contribute3-1").val() !="Please select")
+			 {
+			 $(".success-tick3").show()
+			 }else{
+			  $(".success-tick3").hide()
+			 }
 			    $(".contribute3-1").removeClass("current")
 				 $(".contribute-submit").addClass("btn-primary")
 				 if(last_div==".contribute3-1")
 			 $(".contribute-submit").addClass("btn-primary")
 			 $(".contribute-submit").removeAttr('disabled')
 			 });
-
+			 /*
+			 	if(    $(".contribute1-1").val() =="Please select"){
+	$(".success-tick1").hide()
+	}
+	if(    $(".contribute2-1").val() =="Please select"){
+	$(".success-tick2").hide()
+	}
+	if(    $(".contribute3-1").val() =="Please select"){
+	$(".success-tick3").hide()
+	}
+*/
 		 //handle submit
 		 $(".contribute-submit").click(function(){
 		         var content = new Array();
@@ -115,9 +148,10 @@ $(document).ready(function() {
 			}, 
 			function(data){   		 
 				//return from server
-				 //$(".endContainer").empty();
+				 $("#contribute").hide();
 	           $(".endContainer").show()
 			    $(".endContainer .alert").append(data).show();
+				
 			})
             return false;
 		 });
@@ -125,16 +159,22 @@ $(document).ready(function() {
 			
 			 });
 			 //reset fields
-  function reset_fields()
+  function reset_fields(form)
 		 {
-$("select").each( function(){
-	 $(".grid2,.grid3").hide();
+	  $(".grid2,.grid3").hide();
 	  $(".contribute").removeAttr('disabled','disabled');
 	  $(".success-tick1,.success-tick, .success-tick2").hide();
-	// set its value to its first option
-	$(this).val( $("#" + $(this).attr("id") + " option:first").val() );
-	 $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
+	  // set its value to its first option
+	var selects = document.forms["contribute"].getElementsByTagName("SELECT");
+	for (var i=0; i<selects.length; i++){
+	selects.item(i).selectedIndex = 0;
+	}
+    $(form).children('input[type=checkbox]').each(function()
+    {
+     this.checked = false;
+    });
+   $(".contribute-submit").attr('disabled','disabled')
+   $(".contribute-submit").removeClass("btn-primary")
 	
-	  return false;
-});
+
 }
