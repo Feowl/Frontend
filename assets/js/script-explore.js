@@ -188,9 +188,15 @@
  openTooltip = function() {
  			$(this.node).qtip(
  				{
- 					content:"HELLO", 
+ 					content: explore.getBarchartTooltip(this.value), 
  					show: { 
  						ready: true 
+ 					},
+ 					position: {
+						target: 'mouse',
+						adjust: {
+							mouse: true  // Can be omitted (e.g. default behaviour)
+						}
  					}
  				}
  			);
@@ -243,6 +249,20 @@ closeTooltip = function() { /* Nothing yet */ },
 
 	};
 
+	explore.getBarchartTooltip = function(value) {		
+
+		var   str = [],
+				place = "Douala I",
+		dateStart = "yesterday",
+		  dateEnd = "today",
+		 interval = "30min and 2h";
+
+		str.push("In " + place + ", Between " + dateStart + " and " + dateEnd + ",");
+		str.push(value + "% of respondents had their power cut between " + interval);
+		str.push("on any given day.");
+
+		return str.join("\n");
+	}
 
 	/**
 	 * Draw the list
