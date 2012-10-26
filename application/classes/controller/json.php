@@ -155,7 +155,7 @@ class Controller_Json extends Controller {
 
 
 		// SOMETHING TO CODE HERE FOR DA LOOP ON LIST PAGES
-		var_dump($res);
+		//var_dump($res);
 
 		return $res;	
 	}
