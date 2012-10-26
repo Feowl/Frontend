@@ -60,7 +60,15 @@ class Controller_Json extends Controller {
 		// Decode the json body and records the aggregated objects
 		$res = array("list" => $body->objects );
 		// Add a current_page parameter
-		$res += array("current_page" => $currentPage);			
+		$res += array("current_page" => $currentPage);
+
+		// Add a foreach to "pass" all elements (which are objects) of the list array of the page and sum up their contributor attributes
+		// if $res["list"] exists
+			// foreach element of $res["list"]
+				// if array(["contributor"] => NOT NULL)
+				// $contrib += REGEX element["contributor"] 
+				// -->>> cf if($area) $params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
+
 		// Add a next_page parameter if there is a next page
 		if($body->meta->next) $res += array("next_page" => $currentPage+1);
 
@@ -72,10 +80,11 @@ class Controller_Json extends Controller {
 	 */
 	public function action_area_reports() {
 
-		$date_gte = Arr::get($_GET, 'date_gte');
-		$date_lte = Arr::get($_GET, 'date_lte');
-		$area 		= Arr::get($_GET, 'area');
-		$page 		= 0;		
+		$date_gte 		= Arr::get($_GET, 'date_gte');
+		$date_lte 		= Arr::get($_GET, 'date_lte');
+		$area 				= Arr::get($_GET, 'area');
+		$page 				= 0;
+		$contributor 	= 0;		
 
 		// To saves every reports
 		$reports = array();
@@ -143,6 +152,10 @@ class Controller_Json extends Controller {
  		$this->response->headers('Content-Type','application/json');
 		// Display the content
 		$this->response->body( json_encode($res) );
+
+
+		// SOMETHING TO CODE HERE FOR DA LOOP ON LIST PAGES
+		var_dump($res);
 
 		return $res;	
 	}
