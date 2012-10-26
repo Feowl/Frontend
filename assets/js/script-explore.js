@@ -33,7 +33,7 @@
 			// Switching barchart view to legend view
 			explore.$exploreMap.on("click", explore.removeMapGraphs);
 			// Change the order of the list
-			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);
+			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);		
 		}
 
 	};
@@ -182,19 +182,38 @@
   	explore.$exploreBarchartsArea.empty();
 
 
-    var   r = Raphael("explore-barchart-area"),
-    txtattr = { font: "14px verdana" },
-    total_p = (half+two+four+more)/100,
-    		 fn = function() {
+    var    r = Raphael("explore-barchart-area"),
+     txtattr = { font: "14px verdana" },
+     total_p = (half+two+four+more)/100,
+ openTooltip = function() {
+ 			$(this.node).qtip(
+ 				{
+ 					content: explore.getBarchartTooltip(this.value), 
+ 					show: { 
+ 						ready: true 
+ 					},
+ 					position: {
+						target: 'mouse',
+						adjust: {
+							mouse: true  // Can be omitted (e.g. default behaviour)
+						}
+ 					}
+ 				}
+ 			);
+    },
+closeTooltip = function() { /* Nothing yet */ },
+   drawChart = function() {
+    		 			
     		 			// Bar style
-    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"})
-    		 			// Create the bar flag
+    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
+
+	    		 		// Create the bar flag
     					this.flag = r.popup(
     						this.bar.x, 
     						this.bar.y, 
     						this.bar.value + "%" || "0%"
     					)
-    					.attr({ fill: "#168891", stroke: "#ffffff" })
+							.attr({ fill: "#168891", stroke: "#ffffff" })
     					.insertBefore(this);
     				};
 
@@ -222,12 +241,28 @@
     		],
     		0,
     		{stacked: true, type: "soft"} 
+    	// Mouse hover event
+			).hover(openTooltip, closeTooltip)
     	// Worker on each bar     		
-    	).each(fn);
+    	.each(drawChart);
     }
 
 	};
 
+	explore.getBarchartTooltip = function(value) {		
+
+		var   str = [],
+				place = "Douala I",
+		dateStart = "yesterday",
+		  dateEnd = "today",
+		 interval = "30min and 2h";
+
+		str.push("In " + place + ", Between " + dateStart + " and " + dateEnd + ",");
+		str.push(value + "% of respondents had their power cut between " + interval);
+		str.push("on any given day.");
+
+		return str.join("\n");
+	}
 
 	/**
 	 * Draw the list
@@ -425,7 +460,7 @@
 			"list"			: explore.listExists()*1,
 			"page"			: explore.currentPage,
 			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
-			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")
+			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
 
 		// Adds a loading overlay on the map
