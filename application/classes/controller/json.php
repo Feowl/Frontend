@@ -142,7 +142,6 @@ class Controller_Json extends Controller {
 		// Display the content
 		$this->response->body( json_encode($res) );
 
-
 		return $res;	
 	}
 	

@@ -110,7 +110,7 @@
 					{{/list}}
 
 					{{^list}}
-						no list here!
+						{{! no list here! }}
 					{{/list}}
 
 					{{! This section is iterated for each element of the agregation array }}
