@@ -56,7 +56,7 @@ class Controller_Json extends Controller {
 		$rep = $restClient->get("reports/", $params);			
 		// Parse the json object
 		$body = json_decode($rep->body);
-		// Decode the json body and records the agregated objects
+		// Decode the json body and records the aggregated objects
 		$res = array("list" => $body->objects );
 		// Add a current_page parameter
 		$res += array("current_page" => $currentPage);			
@@ -89,13 +89,13 @@ class Controller_Json extends Controller {
 		// check if there is a next page
 		} while ( isset($res["next_page"])	&& $page < 10 );
 
-
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');
 		// Display the content
 		$this->response->body(json_encode($reports));
 
 	}
+
 
 	/**
 	 * Display a json string with the reports betweens the given interval
@@ -108,7 +108,7 @@ class Controller_Json extends Controller {
 		$params += array(
 			"happened_at__gte" => Arr::get($_GET, 'date_gte'),
 			"happened_at__lte" => Arr::get($_GET, 'date_lte'),
-			"format"					 => "json" // Needed temporarily
+								"format" => "json" // Needed temporarily
 		);
 
 
@@ -120,8 +120,8 @@ class Controller_Json extends Controller {
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("reports-aggregation/", $params);		
 
-		// Decode the json body and records the agregated objects
-		$res = array("agregation" => json_decode($rep->body)->objects );
+		// Decode the json body and records the aggregated objects
+		$res = array("aggregation" => json_decode($rep->body)->objects );
 
 		// Is the user asking for a list of every reports ?
 		if( Arr::get($_GET, 'list', false) ) {
@@ -131,8 +131,8 @@ class Controller_Json extends Controller {
 				$params["happened_at__lte"], 
 				isset($params["area"]) ? $params["area"] : false,
 				Arr::get($_GET, 'page', 0)
-				// Arr::get($_GET, 'order_by', 'date'),
-				// Arr::get($_GET, 'desc', false),
+				Arr::get($_GET, 'order_by', 'date'),
+				Arr::get($_GET, 'desc', false),
 			);
 
  		}

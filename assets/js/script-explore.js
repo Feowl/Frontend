@@ -4,7 +4,7 @@
 	var explore = {
 		map:null,
 		colorscale:null,
-		reportsAgregation:null,
+		reportsAggregation:null,
 		areas: {
 			"/api/v1/areas/1/" : "Douala-I",
 			"/api/v1/areas/2/" : "Douala-II",
@@ -109,7 +109,7 @@
 	 * Adds a bar chart for the specified district
 	 * @params data, path
 	 */
-	explore.addChart = function(path) {
+	explore.addChart = function(data, path) {
 
 		if( ! explore.listExists() ) return;
 
@@ -300,59 +300,51 @@
 	explore.drawMap = function(data) {
 
 		// Updates the key for each area
-		for(var index in data.agregation) {
+		for(var index in data.aggregation) {
 			// Care: "id" here stands for a string
-			data.agregation[index].id = explore.areas[data.agregation[index].area];
+			data.aggregation[index].id = explore.areas[data.aggregation[index].area];
 		}
 
 		// Gives the data objects to the layer
-		explore.reportsAgregation = data.agregation;
+		explore.reportsAggregation = data.aggregation;
 
 		// No layer defined, loads the svg file
 		if(explore.map === null) {
 
 			explore.map = $K.map( explore.$exploreMap );
-			explore.map.loadMap('assets/data/douala-districts-better.svg', explore.addMapLayers);
+			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
+				
+				explore.map.addLayer('douala-arrts', {					
+					key: 'id',
+          click: function(path) {
+          	if( explore.listExists() ) {
+          		explore.addChart(data, path);
+          	}
+          }
+				});			
 
-		} else  {
+				explore.updateMap(explore.map);
+
+			});
+
+		// Layer exists, update the data
+		} else {
+
 			// Remove the previous layer
-			explore.map.getLayer('douala-arrts').remove();
-			explore.addMapLayers();
-		}
+			explore.map.getLayer('douala-arrts').remove()
 
-	};
-
-	/**
-	 * Add the layer to the map
-	 */
-	explore.addMapLayers = function(map) {
-
-		explore.map.addLayer('land', {	
-			name:"land"
-		});
-
-
-		explore.map.addLayer('douala-arrts', {					
-			key: 'id',
-			name: 'douala-arrts',
-      click: function(path) {
-      	if( explore.listExists() ) {
-      		explore.addChart(path);
+			// Add layer again to prevent a fill bug with Kartograph
+			explore.map.addLayer('douala-arrts', {
+				key: 'id',
+        click: function(path) {
+        	if(explore.listExists())
+          	explore.addChart(data, path);
       	}
-      }
-		});			
+			});
 
-   	explore.map.addFilter('oglow', 'glow', {
-        size: 0.1,
-        color: '#000',
-        strength: 1,
-        inner: true
-    });
-
-    explore.map.getLayer('douala-arrts').applyFilter('oglow');
-
-		explore.updateMap(explore.map);
-	}
+			explore.updateMap();
+		}
+	};
 
 
 
@@ -375,7 +367,7 @@
 			// Set colors on map			
 			explore.map.getLayer('douala-arrts').style('fill', function(d) {
 				// Looks for the value using the id
-				var value = _.find(explore.reportsAgregation, function(e) { return e.id == d.id });				
+				var value = _.find(explore.reportsAggregation, function(e) { return e.id == d.id });				
 				// If we didn't find the value
 			  if (value == undefined || value.avg_duration == 0 ) return 'url("assets/img/stripe.png")';	
 			  // Return the matching color
@@ -386,9 +378,9 @@
 
 	  		var avg_duration = null;
 	  		// Look for the updatime
-	  		for(var index in explore.reportsAgregation) {
-	  			if(explore.reportsAgregation[index].id == d.id) {
-	  				avg_duration = explore.reportsAgregation[index].avg_duration;
+	  		for(var index in explore.reportsAggregation) {
+	  			if(explore.reportsAggregation[index].id == d.id) {
+	  				avg_duration = explore.reportsAggregation[index].avg_duration;
 	  			}
 	  		}
 
@@ -446,8 +438,8 @@
 			type: "GET",
 			dataType: 'json',
 			success: function(data) {
-				// Draw the map only if we have agreated reports
-				if(data.agregation) explore.drawMap(data);
+				// Draw the map only if we have aggregated reports
+				if(data.aggregation) explore.drawMap(data);
 				// Draw the list only if we have listed reports + Displays info under the legend 
 				if(data.list) {
 					explore.drawList(data);
