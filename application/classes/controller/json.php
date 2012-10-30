@@ -29,7 +29,7 @@ class Controller_Json extends Controller {
 	 */
 	public static function action_contribute($json_items) {
 		//@todo post the contents to the api
-		echo json_encode($json_items);	
+		echo json_encode($json_items);
 	}
 
 	public static function get_reports_page($date_gte, $date_lte, $area = false, $page = 0, $limit = 15, $order = "happened_at", $desc = false) {
@@ -40,8 +40,9 @@ class Controller_Json extends Controller {
 			"happened_at__gte" => $date_gte,
 			"happened_at__lte" => $date_lte,
 			"order_by"    		 => $desc ? "-{$order}" : $order,
-			"format"					 => "json" // Needed temporary
+			"format"					 => "json" // Needed temporarily
 		);
+		$contributors = 0;
 
 		// Add an area filter
 		if($area) $params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
@@ -62,12 +63,13 @@ class Controller_Json extends Controller {
 		// Add a current_page parameter
 		$res += array("current_page" => $currentPage);
 
-		// Add a foreach to "pass" all elements (which are objects) of the list array of the page and sum up their contributor attributes
-		// if $res["list"] exists
-			// foreach element of $res["list"]
-				// if array(["contributor"] => NOT NULL)
-				// $contrib += REGEX element["contributor"] 
-				// -->>> cf if($area) $params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
+		// Iterate over all elements (which are objects) of EACH (?) list array of the page
+		foreach( $res["list"] as $obj_list ) {
+			if( isset( $obj_list->contributor ) ) {
+				// Sum up contributors of the current page
+				$contributors += trim($obj_list->contributor, "/api/v1/contributors/");
+			}
+		}
 
 		// Add a next_page parameter if there is a next page
 		if($body->meta->next) $res += array("next_page" => $currentPage+1);
@@ -84,7 +86,6 @@ class Controller_Json extends Controller {
 		$date_lte 		= Arr::get($_GET, 'date_lte');
 		$area 				= Arr::get($_GET, 'area');
 		$page 				= 0;
-		$contributor 	= 0;		
 
 		// To saves every reports
 		$reports = array();
@@ -98,6 +99,8 @@ class Controller_Json extends Controller {
 		  $page++;
 		// check if there is a next page
 		} while ( isset($res["next_page"])	&& $page < 10 );
+
+		// PUSH $contributors in aggregation array
 
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');
@@ -154,10 +157,11 @@ class Controller_Json extends Controller {
 		$this->response->body( json_encode($res) );
 
 
-		// SOMETHING TO CODE HERE FOR DA LOOP ON LIST PAGES
-		//var_dump($res);
+		// SOMETHING TO CODE HERE FOR THE LOOP ON LIST PAGES
 
-		return $res;	
+		// Add contributors amount in $res["aggregation"]
+
+		return $res;
 	}
 	
 	
