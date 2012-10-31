@@ -42,7 +42,6 @@ class Controller_Json extends Controller {
 			"order_by"    		 => $desc ? "-{$order}" : $order,
 			"format"					 => "json" // Needed temporarily
 		);
-		$contributors = 0;
 
 		// Add an area filter
 		if($area) $params += array("area" => (int) preg_replace("#/api/v1/areas/(\d)/#i", "$1", $area) );
@@ -63,19 +62,38 @@ class Controller_Json extends Controller {
 		// Add a current_page parameter
 		$res += array("current_page" => $currentPage);
 
-		// Iterate over all elements (which are objects) of EACH (?) list array of the page
-		foreach( $res["list"] as $obj_list ) {
-			if( isset( $obj_list->contributor ) ) {
-				// Sum up contributors of the current page
-				$contributors += trim($obj_list->contributor, "/api/v1/contributors/");
-			}
-		}
+		// if the request is a about an area, so using action_area_reports()
+		// if($res["aggregation"]) {
+
+
+		// }
 
 		// Add a next_page parameter if there is a next page
 		if($body->meta->next) $res += array("next_page" => $currentPage+1);
 
 		return $res;
 	}
+
+
+	public function count_contributors($res) {
+
+
+		$contributors = 0;
+
+		// Iterate over all objects of the list array of the page
+		foreach( $res["list"] as $obj_list ) {
+			if( isset( $obj_list->contributor ) ) {
+				// Sum up contributors of the current page
+				$contributors += ltrim($obj_list->contributor, "/api/v1/contributors/");
+			}
+		}
+		// Adds the contributors total in the report
+		$res += array("total" => array("contributors_total" => $contributors ));
+
+		return $res;
+
+	}
+
 
 	/*
 	 * Looks for reports for a specific area
@@ -98,9 +116,13 @@ class Controller_Json extends Controller {
 			// and increments the page index		
 		  $page++;
 		// check if there is a next page
-		} while ( isset($res["next_page"])	&& $page < 10 );
+		} while ( isset($res["next_page"])	&& $page < 10 ); // TODO: Precise the limit of 10 pages in the doc
 
-		// PUSH $contributors in aggregation array
+		$res = $this::count_contributors($res);
+
+		$reports = array_merge($reports, $res["total"]);
+
+		// var_dump($reports);
 
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');
@@ -123,6 +145,7 @@ class Controller_Json extends Controller {
 			"happened_at__lte" => Arr::get($_GET, 'date_lte'),
 								"format" => "json" // Needed temporarily
 		);
+		$page = 0;
 
 
 		// Add an area filter (conditional)
@@ -155,11 +178,6 @@ class Controller_Json extends Controller {
  		$this->response->headers('Content-Type','application/json');
 		// Display the content
 		$this->response->body( json_encode($res) );
-
-
-		// SOMETHING TO CODE HERE FOR THE LOOP ON LIST PAGES
-
-		// Add contributors amount in $res["aggregation"]
 
 		return $res;
 	}

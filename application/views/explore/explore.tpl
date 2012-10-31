@@ -106,27 +106,14 @@
 				<!-- "5,623 Responses out of 28,112 participants living in Douala III (20%)" -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
 					
-					{{#list}}
-					{{/list}}
+					<div>
+						{/literal}{__ t='There are '}{literal}
+						{{#list}}{{ contributors_total }}{{/list}}
+						{/literal}{__ t=' responses out of X participants living in Douala.'}{literal}
+					</div>
 
-					{{^list}}
-						{{! no list here! }}
-					{{/list}}
-
-					{{! This section is iterated for each element of the agregation array }}
-					{{! WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
-					{{#agregation}}	
-
-						{{! agregation1<br/>
-						agregation2<br/> }}
-
-					{{/agregation}}
-
-					{{^agregation}}
-						no agregation here!
-					{{/agregation}}
-
-					{/literal}{__ t='<p>SOMETHING TO TRANSLATE!</p>'}{literal}
+					{{! This section is iterated for each element of the aggregation array: {{#aggregation}}{{/aggregation}} }}
+					{{! kind of sentence WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
 					
 				</script>
 
