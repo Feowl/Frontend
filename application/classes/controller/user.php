@@ -383,6 +383,8 @@ class Controller_User extends Controller_Template {
 					//send to api
 					$data_json = json_encode($json_items);
 					
+					//print_r($data_json); exit;
+					
 					$results = Model_Contributors::update_contributor($data_json, $contributor_id);
 					
 					//change user info in session

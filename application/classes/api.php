@@ -22,15 +22,16 @@ class API {
 	*/
 	public static function send_request($api_link, $data, $action="POST", $filter=Null)
 	{
-		// print_r($filter); exit;
+		//print_r($action); 
 		//action
-		
+		//print_r($filter); print_r($data);  print_r("me"); print_r($api_link); exit;
 		if($filter){
 		$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}else{
 		$data_to_feowl = 'username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}
 		//print_r($api_link.$data_to_feowl); exit;
+		
 		$to_feowl = curl_init($api_link.$data_to_feowl);
 		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);
 		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);
