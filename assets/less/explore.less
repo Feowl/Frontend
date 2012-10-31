@@ -4,6 +4,10 @@
 #explore-map {
 	height:400px;
 	position:relative;
+
+	svg .land {
+		fill:#aaa;
+	}
 }
 
 .call-to-contribute {
@@ -24,6 +28,21 @@
 		color:lighten(#9AD3D7, 50%);
 		text-shadow:1px 1px 0 darken(#9AD3D7, 5%);
 		text-transform: uppercase;
+	}
+
+	th {
+
+		cursor:pointer;
+		position:relative;		
+		padding-left:22px;
+		
+		&.sorted {
+			background:url("../img/arrow-sort-asc.png") no-repeat 5px center;
+
+			&.desc {
+				background-image:url("../img/arrow-sort-desc.png");
+			}
+		}
 	}
 
 }
@@ -73,11 +92,52 @@
 }
 
 #explore-barchart {
-	height: 250px;
+	height: 280px;
+	position:relative;
+
+	h4 {
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		color: #999999;
+		font-size: 11px;
+		text-transform:uppercase;
+		line-height: 16px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+	}
 }
+
+	#explore-barchart-area {
+		border-bottom: solid black 1px;
+		height: 200px;
+    line-height: 1400%;
+    text-align: center;
+	}
+	#explore-barchart-duration {
+		margin-left: 32px;
+
+		li {
+			display: inline;
+			margin-right: 30px;
+		}
+		li.last {
+			margin-right: 0px;
+		}
+	}
+	#explore-barchart h5 {
+		text-align: center;	
+	}
 
 // Must be relocated for the whole website
 .hidden {
 	display: block !important;
 	visibility: hidden;
+}
+
+.agregation_list {
+    display: block;
+    height: 30px;
+    overflow: scroll;
+    visibility: visible;
+    width: 30px;
+    z-index: 1000000;
 }

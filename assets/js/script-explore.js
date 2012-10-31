@@ -4,7 +4,7 @@
 	var explore = {
 		map:null,
 		colorscale:null,
-		reportsAgregation:null,
+		reportsAggregation:null,
 		areas: {
 			"/api/v1/areas/1/" : "Douala-I",
 			"/api/v1/areas/2/" : "Douala-II",
@@ -32,6 +32,8 @@
 			explore.$exploreList.delegate(".load-more", "click", explore.moreReports);	
 			// Switching barchart view to legend view
 			explore.$exploreMap.on("click", explore.removeMapGraphs);
+			// Change the order of the list
+			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);		
 		}
 
 	};
@@ -42,7 +44,7 @@
 	 */
 	explore.removeMapGraphs = function(event) {
 		// If we are not clicking on a map element
-	 	if(event.target.nodeName != 'path') {	 		
+	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 		
 	 		// Suppress the previous barchart
 	 		explore.$exploreBarcharts.find('svg').remove();
 	 		// Hides thebarcharts
@@ -111,74 +113,116 @@
 
 		if( ! explore.listExists() ) return;
 
+		// Extract the data from the range
+		var values = explore.$dateRange.dateRangeSlider("values");
+		// Extracts the parameters to use
+		var params = {
+			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
+			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),			
+			"area"			: _.invert(explore.areas)[path.id]
+		};
+
+		// Prepare the bar chart area
+		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarcharts.removeClass('hidden');		
+		// Loading mode on the bar chart area		
+		explore.$exploreBarcharts.loading();
+
+    var $title = explore.$exploreBarcharts.find("h4");
+    // CHOICE: a html presentation might be better
+    // @TODO use an html template to allow multiple languages (here an example)    
+    $title.html( $title.data("tpl").replace("%s", path.id) );
+
+		// Load every reports for this interval
+		$.getJSON("json/area_reports/", params, explore.drawChart);
+
+
+	};
+
+	explore.drawChart = function(reports) {
+
 		var half   = 0,
 				two    = 0,
 				four   = 0,
 				more   = 0,
 				$tbody = explore.$exploreList.find('tbody');				
 	
-		for( var i in data.list ) {
+		// Distributes the bar proportions according the list of reports
+		for( var i in reports ) {
 
 			// console.log('iteration n°' + i);
-			var _list = data.list[i];
+			var report = reports[i];
 
-    	if( typeof(_list.area) != 'undefined' && explore.areas[_list.area] == path.id ) {
+  		switch(true) {
+  			case report.duration < 30 :
+  				half++;
+  				break;
 
-    		switch(true) {
-    			case _list.duration < 30 :
-    				half++;
-    				break;
+  			case report.duration < 120 :
+  				two++;
+  				break;
 
-    			case _list.duration < 120 :
-    				two++;
-    				break;
+  			case report.duration < 240 :
+  				four++;
+  				break;
 
-    			case _list.duration < 240 :
-    				four++;
-    				break;
-
-    			default:
-    				more++;
-    				break;
-    		} 
-
-    	}
+  			default:
+  				more++;
+  				break;
+  		}
 
 	  }
-
-    // with GRAPHAEL for the moment ---> with Kartograph after? cf SYMBOLS and exemples		
+    
+		// Prepare the bar chart area
 		explore.$exploreBarcharts.find('svg:first').remove();
-		explore.$exploreBarcharts.removeClass('hidden');
+		explore.$exploreBarcharts.removeClass('hidden');	
+		// Remove loading mode on the bar chart area
+		explore.$exploreBarcharts.loading(false);
+  	// Deleting the hypothetical previous message
+  	explore.$exploreBarchartsArea.empty();
 
-    var   r = Raphael("explore-barchart-area"),
-    txtattr = { font: "14px verdana" },
-    total_p = (half+two+four+more)/100,
-     $title = explore.$exploreBarcharts.find("h4");
-    		 fn = function() {
+
+    var    r = Raphael("explore-barchart-area"),
+     txtattr = { font: "14px verdana" },
+     total_p = (half+two+four+more)/100,
+ openTooltip = function() {
+ 			$(this.node).qtip(
+ 				{
+ 					content: explore.getBarchartTooltip(this.value), 
+ 					show: { 
+ 						ready: true 
+ 					},
+ 					position: {
+						target: 'mouse',
+						adjust: {
+							mouse: true  // Can be omitted (e.g. default behaviour)
+						}
+ 					}
+ 				}
+ 			);
+    },
+closeTooltip = function() { /* Nothing yet */ },
+   drawChart = function() {
+    		 			
     		 			// Bar style
-    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"})
-    		 			// Create the bar flag
+    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
+
+	    		 		// Create the bar flag
     					this.flag = r.popup(
     						this.bar.x, 
     						this.bar.y, 
     						this.bar.value + "%" || "0%"
     					)
-    					.attr({ fill: "#168891", stroke: "#ffffff" })
+							.attr({ fill: "#168891", stroke: "#ffffff" })
     					.insertBefore(this);
-    				},
-
-
-    // CHOICE: a html presentation might be better
-    // @TODO use an html template to allow multiple languages (here an example)    
-    $title.html( $title.data("tpl").replace("%s", path.id) );
+    				};
 
     if( !half && !two && !four && !more ) {
     	
-    	// @TODO use an html template to allow multiple languages
-    	r.text(140, 160, "---- no data available ----").attr(txtattr);
+    	// Show a message "no data available"
+    	explore.$exploreBarchartsArea.html( explore.$exploreBarchartsArea.data("absent") );
 
     } else {
-
 
     	// Create the bar chart
     	var bc = r.barchart(
@@ -197,11 +241,28 @@
     		],
     		0,
     		{stacked: true, type: "soft"} 
+    	// Mouse hover event
+			).hover(openTooltip, closeTooltip)
     	// Worker on each bar     		
-    	).each(fn);
+    	.each(drawChart);
     }
 
 	};
+
+	explore.getBarchartTooltip = function(value) {		
+
+		var   str = [],
+				place = "Douala I",
+		dateStart = "yesterday",
+		  dateEnd = "today",
+		 interval = "30min and 2h";
+
+		str.push("In " + place + ", Between " + dateStart + " and " + dateEnd + ",");
+		str.push(value + "% of respondents had their power cut between " + interval);
+		str.push("on any given day.");
+
+		return str.join("\n");
+	}
 
 	/**
 	 * Draw the list
@@ -223,9 +284,34 @@
 			$tbody.find(".load-more").remove();
 		}
 
-		//console.log(source);
+		// console.log(source);
 		// Append every items at the same time
 		$tbody.append(html);
+	};
+
+	/**
+	 * Change the order of the list (table) when click on a column name
+	 * @param  {Object} event The deleguate event
+	 */
+	explore.changeListOrder = function(event) {
+		
+		// Select the other th (at the footer of the table)
+		var sorter = $(this).data("sort"),
+			  $other = explore.$exploreList.find("th[data-sort='" + sorter + "']");		
+
+		// Add the other column to the current selector
+		var $this = $(this).add( $other );
+
+		// DESC class
+		$this.toggleClass("desc", $this.hasClass("sorted") && !$this.hasClass("desc") );
+		// Change the selected column
+		explore.$exploreList.find("th").not(this).removeClass("sorted");
+		$this.addClass("sorted");
+
+		// Update the list  
+		explore.currentPage = 0;
+		explore.updateData();
+
 	};
 
 	/**
@@ -237,7 +323,7 @@
 		var   $contributions = explore.$exploreLegend.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template(data); // WEIRD: ce que je ne comprends pas: data n'est au départ que les données du JSON
+		,     html = template(data);
 
 		$contributions.empty();
 		$contributions.append(html);
@@ -249,28 +335,28 @@
 	explore.drawMap = function(data) {
 
 		// Updates the key for each area
-		for(var index in data.agregation) {
+		for(var index in data.aggregation) {
 			// Care: "id" here stands for a string
-			data.agregation[index].id = explore.areas[data.agregation[index].area];
+			data.aggregation[index].id = explore.areas[data.aggregation[index].area];
 		}
 
-		// Gives the data objects to the layer  // #1111  ??????
-		explore.reportsAgregation = data.agregation;
+		// Gives the data objects to the layer
+		explore.reportsAggregation = data.aggregation;
 
 		// No layer defined, loads the svg file
 		if(explore.map === null) {
 
 			explore.map = $K.map( explore.$exploreMap );
-			explore.map.loadMap('assets/data/douala-districts.svg', function() {
+			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
 				
-				explore.map.addLayer({
-					id: 'douala-arrts',
+				explore.map.addLayer('douala-arrts', {					
 					key: 'id',
-	                click: function(path) {
-	                	if(explore.listExists())
-	                		explore.addChart(data, path);
-	                }
-				});
+          click: function(path) {
+          	if( explore.listExists() ) {
+          		explore.addChart(data, path);
+          	}
+          }
+				});			
 
 				explore.updateMap(explore.map);
 
@@ -283,19 +369,15 @@
 			explore.map.getLayer('douala-arrts').remove()
 
 			// Add layer again to prevent a fill bug with Kartograph
-			explore.map.addLayer({
-				id: 'douala-arrts',
+			explore.map.addLayer('douala-arrts', {
 				key: 'id',
-				styles: {
-                    'stroke': "green"
-                },
-                click: function(path) {
-                	if(explore.listExists())
-	                	explore.addChart(data, path);
-	            }
+        click: function(path) {
+        	if(explore.listExists())
+          	explore.addChart(data, path);
+      	}
 			});
 
-			explore.updateMap(explore.map);
+			explore.updateMap();
 		}
 	};
 
@@ -306,63 +388,51 @@
 	 */
 	explore.updateMap = function() {
 
-		var prop = "avg_duration"
-		,  scale = "q";
-
 		try {
+			
+			// Hide the map chart
+			explore.removeMapGraphs();
+
 			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
 			});
-
-			explore.map.choropleth({
-   				layer: 'douala-arrts',
-				data: explore.reportsAgregation,
-				key: 'id',	  
-				colors: function(d) {
-				// d is successively each element of the array explore.reportsAgregation, and d[prop] is the avg_duration value
-					// For now, no power cut means no relevant data
-					// if (typeof(i) != "undefined"){var i=0;}else{i++;};
-					// console.log(i);
-					if (d == null || d[prop] == 0 /*&& !*****/ ) return 'url("assets/img/stripe.png")';
-					// if () return ;
-					// console.log(e.mouseX, e.mouseY);
-					// console.log('lol');
-					return explore.colorscale.getColor(d[prop]);
-				},
-				duration: 0
+  
+			// Set colors on map			
+			explore.map.getLayer('douala-arrts').style('fill', function(d) {
+				// Looks for the value using the id
+				var value = _.find(explore.reportsAggregation, function(e) { return e.id == d.id });				
+				// If we didn't find the value
+			  if (value == undefined || value.avg_duration == 0 ) return 'url("assets/img/stripe.png")';	
+			  // Return the matching color
+				return explore.colorscale.getColor( value.avg_duration );
 			});
 
-			explore.map.tooltips({
-				// layer specified by the markup <g>
-			  	layer: 'douala-arrts',
-			  	// this id is the data-id linked to a markup <path> 
-			  	content: function(id) {
+			explore.map.getLayer('douala-arrts').tooltips(function(d) {
 
-			  		var avg_duration = null;
-			  		// Look for the updatime
-			  		for(var index in explore.reportsAgregation) {
-			  			if(explore.reportsAgregation[index].id == id) {
-			  				avg_duration = explore.reportsAgregation[index].avg_duration;
-			  			}
-			  		}
+	  		var avg_duration = null;
+	  		// Look for the updatime
+	  		for(var index in explore.reportsAggregation) {
+	  			if(explore.reportsAggregation[index].id == d.id) {
+	  				avg_duration = explore.reportsAggregation[index].avg_duration;
+	  			}
+	  		}
 
-			    	return [id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
-			  	}
-			});
+	  		// @TODO : use an HTML template 
+	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+	  	});
 
 
-			explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
-				//$(this).css("stroke", "#075156");
+			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
+				$(this).css("stroke", "#075156");
 			});
 			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
-				//$(this).css("stroke", "black");
-			});
+				$(this).css("stroke", "black");
+			}); */
 
 		} catch (err) {
-
-			//console && console.log(err);
+			console && console.log(err);
 		}
 
 	};
@@ -375,7 +445,7 @@
 		return !!explore.$exploreList.length;
 	};
 
-
+	
 	explore.updateData = function(event) {
 
 		// Catch an event, we reset the current page
@@ -387,8 +457,10 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),
-			"list"		: explore.listExists()*1,
-			"page"		: explore.currentPage
+			"list"			: explore.listExists()*1,
+			"page"			: explore.currentPage,
+			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
+			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
 
 		// Adds a loading overlay on the map
@@ -401,8 +473,8 @@
 			type: "GET",
 			dataType: 'json',
 			success: function(data) {
-				// Draw the map only if we have agreated reports
-				if(data.agregation) explore.drawMap(data);
+				// Draw the map only if we have aggregated reports
+				if(data.aggregation) explore.drawMap(data);
 				// Draw the list only if we have listed reports + Displays info under the legend 
 				if(data.list) {
 					explore.drawList(data);
@@ -443,6 +515,8 @@
 		explore.$exploreLegend = $("#explore-legend");
 		// Element to show the map's barcharts
 		explore.$exploreBarcharts = $("#explore-barchart");
+		// Element to use to display the "no data" message
+		explore.$exploreBarchartsArea = $("#explore-barchart-area");
 		// Element to use to display the list
 		explore.$exploreList = $("#explore-list");
 		// Element to use as a workspace
