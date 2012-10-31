@@ -91,7 +91,7 @@ class Controller_User extends Controller_Template {
 		$this->action_already_logged_in();
 		
         $this->template->right_content = View::factory('user/signup.tpl')
-            ->bind('error_1', $error_1)->bind('error_2', $error_2);
+            ->bind('error', $error);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
 
         if (HTTP_Request::POST == $this->request->method())
@@ -103,15 +103,18 @@ class Controller_User extends Controller_Template {
 				$json_items['password'] = Arr::get($_POST,'userpassword');
 				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
 				$json_items['language'] = mb_strtoupper(i18n::lang());	
-				//$json_items['frequency'] = Arr::get($_POST,'frequency');
+				$json_items['frequency'] = Arr::get($_POST,'frequency');
 				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
 				
 				//send to api
 				$data_string = json_encode($json_items);
 				$results = Model_Contributors::post_contributor($data_string);
-				$http_status = json_decode($results['http_status']);
-				$json_result = json_decode($results['json_result'], true); 
+				//$http_status = json_decode($results['http_status']);
+				//$json_result = json_decode($results['json_result']); 
+				$http_status = $results['http_status'];
+				$json_result = $results['json_result']; 
 			
+				//print_r($json_result); exit;
 				 
 				if($http_status == 201)
 				{
@@ -134,19 +137,26 @@ class Controller_User extends Controller_Template {
 					$this->session->set('alert', $notice);
 					Request::current()->redirect('home');
 				}
-				elseif(isset($json_result['error_message']))
+				elseif(isset($json_result))
 				{
-					$error_1 = $json_result['error_message']; 
+					$error_string = $pieces = explode(" ", $json_result);
+					if(in_array("name", $error_string)) 
+					{
+						$error = "This name is already in use";
+					}
+					elseif(in_array("email", $error_string))
+					{
+						$error = "This e-mail address is already in use. Forgot your password ?";
+					}	
+					else
+					{
+						$error = "Technical Error. PLease try again Later";
+					}
+					//$error_1 = $json_result['error_message']; 
 				}
 				else
 				{
-					//error 400 :)
-					if(isset($json_result['name'][0])):
-						$error_1 = $json_result['name'][0]." ";
-					endif;
-					if(isset($json_result['email'][0])):
-						$error_2 = $json_result['email'][0]; 
-					endif;
+					$error = "Technical Error. PLease try again Later";
 				}
 				//@todo force login to next step
 			}

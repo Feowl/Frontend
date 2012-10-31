@@ -2,14 +2,11 @@
 <div class="signup-form">
 	<form method='post' action="{url::site('user/signup')}" class="form-horizontal" id="signup" >            
 	
-	{if isset($error_2) OR isset($error_1)}
+	{if isset($error)}
 	<div class="error">
 	<div class="alert">
-		{if isset($error_1)}
-			{$error_1}
-		{/if}
-		{if isset($error_2)}
-			{$error_2}
+		{if isset($error)}
+			{$error}
 		{/if}
 		<a class="close" data-dismiss="alert" href="#">&times;</a>
 	</div>	

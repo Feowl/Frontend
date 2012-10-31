@@ -43,6 +43,8 @@ class API {
 		$from_feowl = curl_exec($to_feowl);
 		$http_status = curl_getinfo($to_feowl, CURLINFO_HTTP_CODE);
 		curl_close ($to_feowl);
+		
+		//print_r($http_status.'|'.$from_feowl); exit;
 		return array('http_status'=>$http_status, 'json_result'=>$from_feowl);
 	}
   
