@@ -1,8 +1,7 @@
 $(document).ready(function() {
     //initialize       
-	$(".endContainer, .grid2, .grid3").hide()
+	$(".endContainer, .grid2, .grid3,.js-loading-overlay").hide()
     $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
-
 	$('input[name=know]').change(function(){
     var c = this.checked
    //disable all other fields
@@ -22,6 +21,7 @@ $(document).ready(function() {
 		   num = $(".contribute option:selected").val()
 			  if( $(".contribute").val() !="Please select")
 			 {
+			 //@todo, refactor how the success icons are called
 			 $(".success-tick").show()
 			 }else{
 			  $(".success-tick").hide()
@@ -49,23 +49,32 @@ $(document).ready(function() {
 			 $(".contribute1-1").removeAttr('disabled')
 			  $(".contribute1").removeClass("current")
 			 $(".contribute1-1").addClass("current")
+			 //actions when dash is post selected
+			 if( ($(".contribute1-1").val() !="Please select") &&  ($(".contribute1").val() =="Please select")){
+					$(".success-tick1").hide()
+					$(".contribute-submit").attr('disabled','disabled')
+			} if( ($(".contribute1-1").val() !="Please select") &&  ($(".contribute1").val() !="Please select")){
+				     $(".contribute-submit").addClass("btn-primary")
+					 $(".contribute-submit").removeAttr('disabled')
+					 $(".success-tick1").show()
+			}
 			 })
 			  $(".contribute1-1").change(function(){
 			  selected = $(".contribute1-1 option:selected").val()
 			  //fill 2-1,3-1 with values of 1-1
 			  $(".contribute2-1,.contribute3-1").val( selected ).attr('selected',true);
-
 			  $(".contribute2").removeAttr('disabled')
 			  $(".contribute1-1").removeClass("current")
 			 $(".contribute2").addClass("current")
-			 if(last_div==".contribute1-1")
+			 if(last_div==".contribute1-1"){
 			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled');
+			 $(".contribute-submit").removeAttr('disabled');}
 			 if( $(".contribute1-1").val() !="Please select")
 			 {
 			 $(".success-tick1").show()
 			 }else{
 			  $(".success-tick1").hide()
+			  $(".contribute-submit").attr('disabled','disabled')
 			 }
 			 });
 			  $(".contribute2").change(function(){
@@ -76,20 +85,33 @@ $(document).ready(function() {
 			 //optionaly make button clickable
 			  $(".contribute-submit").addClass("btn-primary")
 			 $(".contribute-submit").removeAttr('disabled')
+			  //actions when dash is post selected
+			 if( ($(".contribute2-1").val() !="Please select") &&  ($(".contribute2").val() =="Please select")){
+					$(".success-tick2").hide()
+					$(".contribute-submit").attr('disabled','disabled')
+			} if( ($(".contribute2-1").val() !="Please select") &&  ($(".contribute2").val() !="Please select")){
+				     $(".contribute-submit").addClass("btn-primary")
+					 $(".contribute-submit").removeAttr('disabled')
+					 $(".success-tick2").show()
+			}
 			 });
 			   $(".contribute2-1").change(function(){
+			     if(last_div==".contribute2-1" ){
+			 $(".contribute-submit").addClass("btn-primary")
+			 $(".contribute-submit").removeAttr('disabled')
+			 }
 			    if( $(".contribute2-1").val() !="Please select")
 			 {
 			 $(".success-tick2").show()
+			 $(".contribute3").removeAttr('disabled')
+			  $(".contribute2-1").removeClass("current")
 			 }else{
 			  $(".success-tick2").hide()
+			  $(".contribute-submit").attr('disabled','disabled')
 			 }
-			   $(".contribute3").removeAttr('disabled')
-			  $(".contribute2-1").removeClass("current")
-			  if(last_div==".contribute2-1")
-			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
+			
 			 $(".contribute3").addClass("current")
+			 
 			 });
 			    $(".contribute3").change(function(){
 			   $(".contribute3-1").removeAttr('disabled')
@@ -98,33 +120,46 @@ $(document).ready(function() {
 			 //optionaly make button clickable
 			  $(".contribute-submit").addClass("btn-primary")
 			 $(".contribute-submit").removeAttr('disabled')
+			 //actions when dash is post selected
+			 if( ($(".contribute3-1").val() !="Please select") &&  ($(".contribute3").val() =="Please select")){
+					$(".success-tick3").hide()
+					$(".contribute-submit").attr('disabled','disabled')
+			} if( ($(".contribute3-1").val() !="Please select") &&  ($(".contribute3").val() !="Please select")){
+				     $(".contribute-submit").addClass("btn-primary")
+					 $(".contribute-submit").removeAttr('disabled')
+					 $(".success-tick3").show()
+			}
 			 });
 			 $(".contribute3-1").change(function(){
 			  if( $(".contribute3-1").val() !="Please select")
 			 {
 			 $(".success-tick3").show()
+			  $(".contribute3-1").removeClass("current")
+			$(".contribute-submit").addClass("btn-primary")
 			 }else{
 			  $(".success-tick3").hide()
+			  $(".contribute-submit").attr('disabled','disabled')
 			 }
-			    $(".contribute3-1").removeClass("current")
-				 $(".contribute-submit").addClass("btn-primary")
-				 if(last_div==".contribute3-1")
+				 if(last_div==".contribute3-1" && $(".contribute2-1").val() !="Please select"){
 			 $(".contribute-submit").addClass("btn-primary")
 			 $(".contribute-submit").removeAttr('disabled')
+			 }
 			 });
-			 /*
-			 	if(    $(".contribute1-1").val() =="Please select"){
-	$(".success-tick1").hide()
-	}
+			 
+	
 	if(    $(".contribute2-1").val() =="Please select"){
 	$(".success-tick2").hide()
+	 $(".contribute-submit").attr('disabled','disabled')
 	}
 	if(    $(".contribute3-1").val() =="Please select"){
 	$(".success-tick3").hide()
+	 $(".contribute-submit").attr('disabled','disabled')
 	}
-*/
+
 		 //handle submit
 		 $(".contribute-submit").click(function(){
+		 $(".js-loading-overlay").show()
+		 
 		         var content = new Array();
 				 content[0]=$(".contribute option:selected").val()
 				 content[1]=$('input[name=know]:checked').val()
@@ -148,7 +183,7 @@ $(document).ready(function() {
 			}, 
 			function(data){   		 
 				//return from server
-				 $("#contribute").hide();
+				 $("#contribute,.js-loading-overlay").hide();
 	           $(".endContainer").show()
 			    $(".endContainer .alert").append(data).show();
 				

@@ -27,6 +27,7 @@ class Model_Contributors extends Model{
 	
 	//Update the information related to an existing contributor(works if the user that issues this call has the right permission)
 	public static function update_contributor($data_string, $contributor_id, $filter=NULL){
+		//print_r($data_string); exit;
 		 return API::send_request(Kohana::config('api.contributor').$contributor_id."/?", $data_string, "PUT", $filter); 
 	}
 	
