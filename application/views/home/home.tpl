@@ -1,7 +1,7 @@
 
 	<div class="banner">
 
-		<img src="{URL::base()}assets/img/home-douala.jpg" class="douala" />
+		<img src="{URL::base()}assets/img/home-douala.jpg" class="douala" alt="Photo: Alvise Forcellini" />
 
 		<div class="welcome">
 			<div class="container">
@@ -38,7 +38,7 @@
 
 				<div id="explore-map"></div>	
 				<p>
-					<a class="btn btn-large btn-primary" href="{url::site('contribute')}">{__ t='Explore the reports'}</a>
+					<a class="btn btn-large btn-primary" href="{url::site('explore')}">{__ t='Explore the reports'}</a>
 				</p>		
 				
 				<div class="hidden">
