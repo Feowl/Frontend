@@ -11,37 +11,6 @@
         </a>    
 
         <ul class="nav pull-right">
-			{if isset($smarty.session.user.name)}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i> 
-    						{$smarty.session.user.name}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu"> 					
-                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
-                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
-    					<li class="divider"></li>
-    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
-                    </ul>
-                </li>
-			{else}		 
-                <li>                    
-                    <a href="{url::site('user/login')}">
-                        <i class="icon-user"></i>
-                        {__ t='Login'}
-                    </a>
-                </li> 
-                <li>
-                    <span>or</span>
-                </li>
-                <li>                        
-                    <a href="{url::site('user/signup')}">                        
-                        {__ t='Sign up'}
-                    </a>
-                </li>     
-			{/if}
-
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-globe"></i> {__ t='Language'}
@@ -68,15 +37,45 @@
                     
                 </ul>
             </li>
-
         </ul> 
+
+		{if isset($smarty.session.user.name)}
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> 
+    						{$smarty.session.user.name}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu"> 					
+                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
+    					<li class="divider"></li>
+    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
+                    </ul>
+                </li>
+            </ul>
+		{else}		 
+            <div class="pull-right">                  
+                <a href="{url::site('user/login')}">
+                    <span class="btn">
+                        {__ t='Login'}
+                    </span>
+                </a>
+                <a href="{url::site('user/signup')}">                        
+                    <strong class="btn btn-primary">
+                    {__ t='Sign up'}  
+                    </strong>                  
+                </a>
+            </div>
+        {/if}
+
 		
-        <ul class="nav">
+        <ul class="nav pull-right main-menu">
             <li class="{$active_home|default:''}"><a href="{url::site()}">{__ t='Home'}</a></li>
             <li class="{$active_explore|default:''}"><a href="{url::site('explore')}">{__ t='Explore'}</a></li>
             <li class="{$active_contribute|default:''}"><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
             <li class="{$active_about|default:''}"><a href="{url::site('pages/about')}">{__ t='About'}</a></li>
-
 		</ul>
 
     </div>
@@ -84,4 +83,4 @@
   </div>
 
 </div>
-<div id="header-step" class="hidden-phone"></div>
+<div id="header-step" class="hidden-phone hidden-tablet"></div>

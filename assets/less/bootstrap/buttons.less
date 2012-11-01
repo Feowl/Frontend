@@ -16,7 +16,6 @@
   *line-height: 20px;
   color: @grayDark;
   text-align: center;
-  text-shadow: 0 1px 1px rgba(255,255,255,.75);
   vertical-align: middle;
   cursor: pointer;
   .buttonBackground(@btnBackground, @btnBackgroundHighlight);
@@ -25,7 +24,8 @@
   border-bottom-color: darken(@btnBorder, 10%);
   .border-radius(4px);
   .ie7-restore-left-whitespace(); // Give IE7 some love
-  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  .box-shadow(~"inset 0 1px 5px rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");      
+  text-shadow: 0 1px 1px rgba(255,255,255,.75);
 }
 
 // Hover state
@@ -69,6 +69,18 @@
 
 // Button Sizes
 // --------------------------------------------------
+
+// Giant 
+.btn-giant {
+  padding: 15px 24px;
+  font-size: @baseFontSize + 6px;
+  line-height: normal;
+  font-weight:bold;
+  .border-radius(5px);
+  &, &:hover { 
+    text-shadow:0 1px 6px black;
+  }
+}
 
 // Large
 .btn-large {
@@ -117,7 +129,7 @@
 .btn-inverse,
 .btn-inverse:hover {
   color: @white;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  text-shadow:1px -1px 0 fade(black, 25);
 }
 // Provide *some* extra contrast for those who can get it
 .btn-primary.active,
