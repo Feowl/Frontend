@@ -40,9 +40,8 @@
 				<p>
 					<a class="btn btn-large btn-primary" href="{url::site('contribute')}">{__ t='Explore the reports'}</a>
 				</p>		
-
 				
-				<div class="span6 hidden">
+				<div class="hidden">
 					<div id="explore-range-slider"></div>
 				</div>
 			
