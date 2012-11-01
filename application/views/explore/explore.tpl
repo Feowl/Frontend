@@ -18,7 +18,6 @@
 					<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
 					<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 				</ul>
-				<div id="contributions"></div>
 				<div class="well hidden" id="explore-barchart">
 					<h4 data-tpl="{__ t='Proportion of Feowl users suffering from power cuts in %s'}"></h4>
 					<div id="explore-barchart-area" data-absent="{__ t='no data available'}"></div>
@@ -30,6 +29,7 @@
 						<li class="last">{__ t="&gt; 4h"}</li>
 					</ul>
 					<h5>{__ t="Duration of daily power cuts"}</h5>
+					<div id="contributions"></div>
 				</div>
 			</div>
 
@@ -90,7 +90,7 @@
 							</tr>
 				  		{{/if}}
 
-			  		{{else}}	
+			  		{{else}}
 
 						<tr>
 							<td colspan="4" class="tc">
@@ -105,15 +105,18 @@
 				<!-- metadata under the legend -->
 				<!-- "5,623 Responses out of 28,112 participants living in Douala III (20%)" -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
-					
-					<div>
-						{/literal}{__ t='There are '}{literal}
-						{{#list}}{{ contributors_total }}{{/list}}
-						{/literal}{__ t=' responses out of X participants living in Douala.'}{literal}
-					</div>
 
-					{{! This section is iterated for each element of the aggregation array: {{#aggregation}}{{/aggregation}} }}
 					{{! kind of sentence WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
+
+					<div>
+						{/literal}
+							{__ t='There are '}
+						{literal}
+							{{contributors_total}}
+						{/literal}
+							{__ t=' responses'}
+						{literal}
+					</div>
 					
 				</script>
 
