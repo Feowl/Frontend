@@ -320,6 +320,7 @@ class Controller_User extends Controller_Template {
 			$user = $this->session->get('user');
 			$contributor_id = $user['id']; 
 			$email = $user['email'];
+			//frequency
 			
 			$result_device = Model_Devices::get_device('', "contributor=$contributor_id");
 			$device_decode = json_decode($result_device['json_result'], true); 
@@ -406,7 +407,7 @@ class Controller_User extends Controller_Template {
 					//send to api
 					$data_json = json_encode($json_items);
 					
-					//print_r($data_json); exit;
+					print_r($data_json); exit;
 					
 					$results = Model_Contributors::update_contributor($data_json, $contributor_id);
 					
@@ -418,19 +419,22 @@ class Controller_User extends Controller_Template {
 					//$http_status = 204;
 					if($http_status == 204)
 					{
-						//$results = Model_Devices::get_device('', "contributor=$contributor_id");
-						//print_r($results); exit;
-						
 						//contributor device number #mobile
-						$device['category'] = 'Phone';
-						$device['phone_number'] = $phonenumber['number'];
-						
-						$device['contributor'] = "/api/v1/contributors/".$contributor_id.'/';
-						$device_json = json_encode($device);  
-						$device_json = str_replace("\\", "", $device_json);
-						
-						//print_r($device_json); exit;
-						$results = Model_Devices::update_device($device_json, $device_id);
+							$device['category'] = 'Phone';
+							$device['phone_number'] = $phonenumber['number'];
+							$device['contributor'] = "/api/v1/contributors/".$contributor_id.'/';
+							$device_json = json_encode($device);  
+							$device_json = str_replace("\\", "", $device_json);
+							
+						if($phonenumber['number'] != $user['phone_number'] AND isset($device_id))
+						{
+							//print_r($device_json); exit;
+							$results = Model_Devices::update_device($device_json, $device_id);
+						}
+						else
+						{
+							$results = Model_Devices::post_device($device_json);
+						}
 						
 						$notice = "Your profile has been updated";
 						
