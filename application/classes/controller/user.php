@@ -242,6 +242,7 @@ class Controller_User extends Controller_Template {
             {
                 $message = 'We can\'t find your E-mail in our system';               
             }
+            $this->model->logout();
 			$this->session->set('alert', $message);
         }
     }
