@@ -129,10 +129,12 @@ class Controller_User extends Controller_Template {
 					$device_json = str_replace("\\", "", $device_json);
 					$results = Model_Devices::post_device($device_json);
 					
+					//login the user
+					$this->model->force_login($r['objects'][0]['id']);
+					
 					//print_r($results); echo "<br />"; print_r($device_json); exit;
 					
-					$notice = "Thanks for signing up! We would sent you an email to
-					verity your account";
+					$notice = "Thanks for signing up!";
 					//set notice in session
 					$this->session->set('alert', $notice);
 					Request::current()->redirect('home');
