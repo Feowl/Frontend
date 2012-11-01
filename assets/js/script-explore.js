@@ -362,8 +362,6 @@ closeTooltip = function() { /* Nothing yet */ },
           	if( explore.listExists() ) {
           		explore.addChart(data, path);
           	}
-          	else {
-          	}
           }
 				});			
 
@@ -381,12 +379,8 @@ closeTooltip = function() { /* Nothing yet */ },
 			explore.map.addLayer('douala-arrts', {
 				key: 'id',
         click: function(path) {
-        	if(explore.listExists()) {
+        	if(explore.listExists())
           	explore.addChart(data, path);
-          }
-        	else {
-        		
-        	}
       	}
 			});
 

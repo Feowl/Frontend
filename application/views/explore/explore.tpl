@@ -103,7 +103,6 @@
 				</script>
 
 				<!-- metadata under the legend -->
-				<!-- "5,623 Responses out of 28,112 participants living in Douala III (20%)" -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
 
 					{{! kind of sentence WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
@@ -112,9 +111,9 @@
 						{/literal}
 							{__ t='There are '}
 						{literal}
-							{{contributors_total}}
+							{{!nb_reports}}
 						{/literal}
-							{__ t=' responses'}
+							{__ t=' contributions'}
 						{literal}
 					</div>
 					
