@@ -210,8 +210,11 @@ class Controller_User extends Controller_Template {
 	// user forgot password
     public function action_forgot_password()
     {
+        //check if the user is logged in
+		$this->action_already_logged_in();
+		
         $this->template->right_content = View::factory('user/forgot_password.tpl')
-            ->bind('message', $message);
+            ->bind('message', $message)->bind('password', $password);
 		$this->template->left_content = View::factory('user/forgot_info.tpl');
          
         if (HTTP_Request::POST == $this->request->method())
@@ -224,13 +227,22 @@ class Controller_User extends Controller_Template {
             // If successful, redirect user to login page
             if ($user)
             {
-				$this->session->set('alert', print_r($user));
-				Request::current()->redirect('user/login');
+				// generate a new password for the user
+				$json['password'] = $password = Text::random();	
+				$json_encode = json_encode($json);
+				 
+				Model_Contributors::reset_password($json_encode, $user["id"]);
+				$message = "User exist. $password";
+				$message = View::factory('user/new_password.tpl')->bind("name", $user["name"])->bind("password", $password);
+				$headers = "From: iamfeowl@gmail.com";
+				
+				mail($email, "Password Reset", $message, $headers); 
             }
             else
             {
-                $message = 'User does not exist.';
+                $message = 'We can\'t find your E-mail in our system';               
             }
+			$this->session->set('alert', $message);
         }
     }
      

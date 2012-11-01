@@ -39,5 +39,11 @@ class Model_Contributors extends Model{
 		
 	}
 	
+	//reset contributor password
+	public static function reset_password($data_string, $contributor_id, $filter=NULL){
+		return API::send_request(Kohana::config('api.contributor').$contributor_id."/?", $data_string, "PUT", $filter); 
+		
+	}
+	
 
 } // End Contributors Model
