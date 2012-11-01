@@ -355,10 +355,10 @@ closeTooltip = function() { /* Nothing yet */ },
 
 			explore.map = $K.map( explore.$exploreMap );
 			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
-				
-        // Add layer again to prevent a fill bug with Kartograph
-        explore.createMapLayers(data);
-				explore.updateMap(explore.map);
+			
+      // Add layer again to prevent a fill bug with Kartograph
+      explore.createMapLayers(data);
+			explore.updateMap(explore.map);
 
 			});
 
