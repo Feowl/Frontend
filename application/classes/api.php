@@ -24,7 +24,7 @@ class API {
 	{
 		//print_r($action); 
 		//action
-		//print_r($filter); print_r($data);  print_r("me"); print_r($api_link); exit;
+		//print_r($filter); print_r($data);  print_r("me"); print_r($api_link); print_r($action); exit;
 		if($filter){
 		$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}else{

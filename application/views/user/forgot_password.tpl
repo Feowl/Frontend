@@ -1,4 +1,5 @@
 <div class="span6 bg-color">
+{if !isset($password)}
 <div class="login-form">
 	<form method='post' action="{url::site('user/forgot_password')}" class="form-horizontal" id="signup" >            
 	
@@ -8,6 +9,10 @@
 		<a class="close" data-dismiss="alert" href="#">&times;</a>
 	</div>	
 	</div>
+	{else}
+	<div class="alert">{__ t='Enter your E-mail inorder to recieve a new password'}
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	</div>	
 	{/if}
 	
 	<div style="margin:20px;"></div>
@@ -28,6 +33,12 @@
 	
 </form> 
 </div>
+{else}
+	<div class="alert">{__ t='Your Password has been resetted: Check your E-mail for your new password'}
+	<br /> ---I would temporally display the email here for testing purpose <br /> {$message}
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	</div>	
+{/if}
 </div>    
 
   

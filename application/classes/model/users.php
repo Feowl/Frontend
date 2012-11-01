@@ -161,4 +161,21 @@ class Model_Users extends Model{
 		return true;
 	}
 	
+	public function check_user($email)
+	{
+		//email is unique returns a single result
+		$user_json = Model_Contributors::get_contributors('', "email=$email");
+		$user = json_decode($user_json['json_result'], true);
+		
+		if($user['meta']['total_count'] == true)
+		{
+			//return contributor's id
+			return array("id"=>$user['objects'][0]['id'], "name"=>$user['objects'][0]["name"]);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 } // End User Model
