@@ -51,6 +51,8 @@
 			explore.$exploreBarcharts.addClass('hidden');
 			// Display the legend
 	 		// explore.$exploreLegend.removeClass('hidden');
+	 		// Hides the legend about districts
+	 		explore.$exploreLegend.find('#contributions').addClass('hidden');
 	 	}
 	};
 
@@ -93,17 +95,17 @@
 		var duration_total = 0;
 	}
 
-	Handlebars.registerHelper('duration_rate', function(key) {
+	/*Handlebars.registerHelper('duration_rate', function(key) {
 
 		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
 		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
 		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
 		// console.log(typeof(duration_total));
 		// console.log(duration_total);
-		duration_total += key;
+		// duration_total += key;
 
 		return duration_total;
-	});
+	});*/
 	
 	/**
 	 * Adds a bar chart for the specified district
@@ -145,7 +147,11 @@
 				two    = 0,
 				four   = 0,
 				more   = 0,
-				$tbody = explore.$exploreList.find('tbody');				
+				$tbody = explore.$exploreList.find('tbody');	
+
+
+    // Display info about the current area
+		explore.displayMetadata(reports);			
 	
 		// Distributes the bar proportions according the list of reports
 		for( var i in reports ) {
@@ -320,12 +326,13 @@ closeTooltip = function() { /* Nothing yet */ },
 	 */
 	explore.displayMetadata = function(data) {
 
-		var   $contributions = explore.$exploreLegend.find("#contributions")
+		var   $contributions = explore.$exploreBarcharts.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
 		,     html = template(data);
 
 		$contributions.empty();
+		$contributions.removeClass('hidden');
 		$contributions.append(html);
 	};
 
@@ -355,6 +362,8 @@ closeTooltip = function() { /* Nothing yet */ },
           	if( explore.listExists() ) {
           		explore.addChart(data, path);
           	}
+          	else {
+          	}
           }
 				});			
 
@@ -372,8 +381,12 @@ closeTooltip = function() { /* Nothing yet */ },
 			explore.map.addLayer('douala-arrts', {
 				key: 'id',
         click: function(path) {
-        	if(explore.listExists())
+        	if(explore.listExists()) {
           	explore.addChart(data, path);
+          }
+        	else {
+        		
+        	}
       	}
 			});
 
@@ -462,6 +475,9 @@ closeTooltip = function() { /* Nothing yet */ },
 			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
 			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
+
+		// Hides the legend about districts
+	 	explore.$exploreLegend.find('#contributions').addClass('hidden');
 
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
