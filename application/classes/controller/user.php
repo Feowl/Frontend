@@ -88,11 +88,13 @@ class Controller_User extends Controller_Template {
 	 //post to the api to creat an account for a contributor
     public function action_signup() {
 
+    	// Change the template dynamicly
+			$this->template = View::factory("template/template.tpl");
+
 			//check if the user is logged in
 			$this->action_already_logged_in();
 	
-      $this->template->right_content = View::factory('user/signup.tpl')->bind('error', $error);
-			$this->template->left_content = View::factory('user/signup_info.tpl');
+      $this->template->content = View::factory('user/signup.tpl')->bind('error', $error);			
 
       if (HTTP_Request::POST == $this->request->method()) {    
 
