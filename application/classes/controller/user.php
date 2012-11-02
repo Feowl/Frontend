@@ -35,7 +35,7 @@ class Controller_User extends Controller_Template {
 	{
 		// Adds all javascript files
 		$this->template->files_javascript = array(		
-			url::base()."assets/js/script-user.js",
+			url::base()."assets/js/script-user.js", 
 			"http://jzaefferer.github.com/jquery-validation/jquery.validate.js"
 		);	
 		parent::after();
@@ -86,54 +86,58 @@ class Controller_User extends Controller_Template {
 	}
 
 	 //post to the api to creat an account for a contributor
-    public function action_signup() {
+    public function action_signup()
+    {
+
 
     	// Change the template dynamicly
 			$this->template = View::factory("template/template.tpl");
 
-			//check if the user is logged in
-			$this->action_already_logged_in();
-	
-      $this->template->content = View::factory('user/signup.tpl')->bind('error', $error);			
+		//check if the user is logged in
+		$this->action_already_logged_in();
+		
+        $this->template->content = View::factory('user/signup.tpl')
+            ->bind('error', $error)->bind('loader', $loader);
 
-      if (HTTP_Request::POST == $this->request->method()) {    
-
-				try {
-					//build json items
-					$json_items['name'] = Arr::get($_POST,'username');	
-					$json_items['password'] = Arr::get($_POST,'userpassword');
-					$email = $json_items['email'] = Arr::get($_POST,'useremail');	
-					$json_items['language'] = mb_strtoupper(i18n::lang());	
-					$json_items['frequency'] = Arr::get($_POST,'frequency');
-					$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
-					
-					//send to api
-					$data_string = json_encode($json_items);
-					$results = Model_Contributors::post_contributor($data_string);
-					//$http_status = json_decode($results['http_status']);
-					//$json_result = json_decode($results['json_result']); 
-					$http_status = $results['http_status'];
-					$json_result = $results['json_result']; 
+        if (HTTP_Request::POST == $this->request->method())
+        {    //echo "I love Feowl"; exit;
+			//echo "<div class='js-loading-overlay' style='display: block;'></div>";
+			//$loader = true;
+			try
+			{
+				//build json items
+				$json_items['name'] = Arr::get($_POST,'username');	
+				$json_items['password'] = Arr::get($_POST,'userpassword');
+				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
+				$json_items['language'] = mb_strtoupper(i18n::lang());	
+				$json_items['frequency'] = Arr::get($_POST,'frequency');
+				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
 				
-					//print_r($json_result); exit;
-					 
-					if($http_status == 201)
-					{
-						//contributor device number #mobile
-						$device['category'] = 'Phone';
-						$device['phone_number'] = $phone_number['number'];
-						//get the contributor ID
-						$results = Model_Contributors::get_contributors('', "email=$email");
-						$r = json_decode($results['json_result'], true);
-						$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'].'/';
-						$device_json = json_encode($device);  
-						$device_json = str_replace("\\", "", $device_json);
-						$results = Model_Devices::post_device($device_json);
-						
-						//login the user
-						$this->model->force_login($r['objects'][0]['id']);
-						
-						//print_r($results); echo "<br />"; print_r($device_json); exit;
+				//send to api
+				$data_string = json_encode($json_items);
+				$results = Model_Contributors::post_contributor($data_string);
+				//$http_status = json_decode($results['http_status']);
+				//$json_result = json_decode($results['json_result']); 
+				$http_status = $results['http_status'];
+				$json_result = $results['json_result']; 
+			
+				//print_r($json_result); exit;
+				 
+				if($http_status == 201)
+				{
+					//contributor device number #mobile
+					$device['category'] = 'Phone';
+					$device['phone_number'] = $phone_number['number'];
+					//get the contributor ID
+					$results = Model_Contributors::get_contributors('', "email=$email");
+					$r = json_decode($results['json_result'], true);
+					$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'].'/';
+					$device_json = json_encode($device);  
+					$device_json = str_replace("\\", "", $device_json);
+					$results = Model_Devices::post_device($device_json);
+					
+					//login the user
+					$this->model->force_login($r['objects'][0]['id']);
 						
 						$notice = "Thanks for signing up!";
 						//set notice in session

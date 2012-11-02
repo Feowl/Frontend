@@ -79,3 +79,16 @@
 		</div>
 	</div>
 </div>
+	
+{literal}
+	<script type="text/javascript">
+		function show_overlay(){
+		   document.getElementById('overlay').style.display = 'block'; 
+		}
+		 
+	</script>
+{/literal}
+	
+<div id="overlay" style="display:none">
+	<div class="js-loading-overlay" ></div>
+</div>
