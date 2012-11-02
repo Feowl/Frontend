@@ -29,10 +29,10 @@
 				<div id="explore-legend" class="tl">
 					<ul class="well no-style">
 						<li><span class="legend no-relevant"></span>{__ t='no data'}</li>
-						<li><span class="legend less-30min"></span>{__ t='&gt; 30m'}</li>
-						<li><span class="legend less-2h"></span>{__ t='&gt; 2h'}</li>
-						<li><span class="legend less-4h"></span>{__ t='&gt; 4h'}</li>
-						<li><span class="legend more-4h"></span>{__ t='&lt; 4h'}</li>
+						<li><span class="legend less-30min"></span>{__ t='&lt; 30m'}</li>
+						<li><span class="legend less-2h"></span>{__ t='&lt; 2h'}</li>
+						<li><span class="legend less-4h"></span>{__ t='&lt; 4h'}</li>
+						<li><span class="legend more-4h"></span>{__ t='&gt; 4h'}</li>
 					</ul>
 				</div>
 
