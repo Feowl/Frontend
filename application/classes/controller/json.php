@@ -75,24 +75,24 @@ class Controller_Json extends Controller {
 	}
 
 
-	public function count_contributors($res) {
+	// public function count_contributors($res) {
 
 
-		$contributors = 0;
+	// 	$contributors = 0;
 
-		// Iterate over all objects of the list array of the page
-		foreach( $res["list"] as $obj_list ) {
-			if( isset( $obj_list->contributor ) ) {
-				// Sum up contributors of the current page
-				$contributors += ltrim($obj_list->contributor, "/api/v1/contributors/");
-			}
-		}
-		// Adds the contributors total in the report
-		$res += array("total" => array("contributors_total" => $contributors ));
+	// 	// Iterate over all objects of the list array of the page
+	// 	foreach( $res["list"] as $obj_list ) {
+	// 		if( isset( $obj_list->contributor ) ) {
+	// 			// Sum up contributors of the current page
+	// 			$contributors += ltrim($obj_list->contributor, "/api/v1/contributors/");
+	// 		}
+	// 	}
+	// 	// Adds the contributors total in the report
+	// 	$res += array("total" => array("contributors_total" => $contributors ));
 
-		return $res;
+	// 	return $res;
 
-	}
+	// }
 
 
 	/*
@@ -118,11 +118,9 @@ class Controller_Json extends Controller {
 		// check if there is a next page
 		} while ( isset($res["next_page"])	&& $page < 10 ); // TODO: Precise the limit of 10 pages in the doc
 
-		$res = $this::count_contributors($res);
+		//$res = $this::count_contributors($res);
 
-		$reports = array_merge($reports, $res["total"]);
-
-		// var_dump($reports);
+		//$reports = array_merge($reports, $res["total"]);
 
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');

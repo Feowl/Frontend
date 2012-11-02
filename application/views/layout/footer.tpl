@@ -1,24 +1,30 @@
 	<div class="container">
-		<hr>
-		<footer class="row">
-			<div class="span3">
-				<p>
-					<a href="https://github.com/Feowl/">{__ t='Fork us on GitHub!'}</a>
-					{__ t='Feowl files under an Apache licence'}
-				</p>
+
+		<footer>
+
+			<div class="row">
+				<div class="span1 offset2"><a href="{URL::base()}pages/about">{__ t='À propos'}</a></div>
+				<div class="span1"><a href="mailto:contact@feowl.com">{__ t='Contact'}</a></div>
+				<div class="span1"><a href="http://feowl.tumblr.com/">{__ t='Blog'}</a></div>
+				<div class="span1"><a href="http://twitter.com/feowl">{__ t='Twitter'}</a></div>				
+				<div class="span1"><a href="http://facebook.com/feowl">{__ t='Facebook'}</a></div>				
+				<div class="span1"><a href="https://github.com/Feowl/Frontend">{__ t='Code'}</a></div>
+				<div class="span1"><a href="https://github.com/Feowl/API">{__ t='API'}</a></div>
+				<div class="span1"><a href="http://www>|apache.org/licenses/LICENSE-2.0.html">{__ t='Licence'}</a></div>	
 			</div>
-			<div class="offset1 span3">
-				<p>&copy; Feowl 2012 | <a href="mailto:contact@feowl.com">{__ t='contact'}</a> | <a href="http://feowl.tumblr.com/">{__ t='blog'}</a></p> 
+
+			<div class="row">
+				<div class="offset2 span8 tc">
+					<p class="mentions">
+						{__ t='Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.'}
+						<br />
+						{__ t='It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.'}
+					</p>
+				</div>
 			</div>
-			<div class="offset1 span3">
-				<p>
-					{__ t='Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.'}
-				</p>
-				<p>
-					{__ t='It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.'}
-				</p>
-			</div>
+
 		</footer>
+
 	</div>
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

@@ -34,6 +34,7 @@ class Controller_Home extends Controller_Template {
 		$this->template->files_stylesheet = array(
 			url::base()."assets/css/jquery.qtip.css",	
 			url::base()."assets/less/jQRangeSlider.less",	
+			url::base()."assets/less/home.less",	
 		);
 
 		// Adds optional javascript files in an array

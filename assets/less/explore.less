@@ -1,21 +1,18 @@
 @import "bootstrap/mixins.less";
 @import "bootstrap/variables.less";
 
+#explore-space {
+	padding:20px;
+}
 #explore-map {
-	height:400px;
+
+	margin-top:40px;
+	height:450px;
 	position:relative;
 
 	svg .land {
-		fill:#aaa;
+		fill:#aaa;		
 	}
-}
-
-.call-to-contribute {
-	text-align:center;
-}
-
-#explore-space {
-	position:relative;
 }
 
 #explore-list {
@@ -113,26 +110,40 @@
     text-align: center;
 	}
 	#explore-barchart-duration {
-		margin-left: 32px;
+		
+		@chartWidth:250px;
+		margin:auto;
+		width:@chartWidth;
+		position:relative;
+		left:-15px;
 
 		li {
-			display: inline;
-			margin-right: 30px;
+			display: block;
+			padding:0;
+			margin:0;
+			float:left;
+			width:(@chartWidth/5px)-1px;
+			text-align:right;
 		}
-		li.last {
-			margin-right: 0px;
-		}
+
 	}
 	#explore-barchart {
+		margin-top:20px;
 		h5, #contributions {
 			text-align: center;
 		}
 	}
 
+
+#explore-range-slider {
+	margin-top:50px;
+}
+
 // Must be relocated for the whole website
 .hidden {
 	display: block !important;
 	visibility: hidden;
+	overflow:hidden;
 }
 
 .agregation_list {

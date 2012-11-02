@@ -355,19 +355,10 @@ closeTooltip = function() { /* Nothing yet */ },
 
 			explore.map = $K.map( explore.$exploreMap );
 			explore.map.loadMap('assets/data/douala-districts-better.svg', function() {
-				
-				explore.map.addLayer('douala-arrts', {					
-					key: 'id',
-          click: function(path) {
-          	if( explore.listExists() ) {
-          		explore.addChart(data, path);
-          	}
-          	else {
-          	}
-          }
-				});			
-
-				explore.updateMap(explore.map);
+			
+      // Add layer again to prevent a fill bug with Kartograph
+      explore.createMapLayers(data);
+			explore.updateMap(explore.map);
 
 			});
 
@@ -378,22 +369,39 @@ closeTooltip = function() { /* Nothing yet */ },
 			explore.map.getLayer('douala-arrts').remove()
 
 			// Add layer again to prevent a fill bug with Kartograph
-			explore.map.addLayer('douala-arrts', {
-				key: 'id',
-        click: function(path) {
-        	if(explore.listExists()) {
-          	explore.addChart(data, path);
-          }
-        	else {
-        		
-        	}
-      	}
-			});
-
+      explore.createMapLayers(data);
 			explore.updateMap();
 		}
 	};
 
+  explore.createMapLayers = function(data) {
+
+    explore.map.addLayer('land', {  
+      name:"land"
+    })
+
+    explore.map.addLayer('douala-arrts', {          
+      key: 'id',
+      click: function(path) {
+        if( explore.listExists() ) {
+          explore.addChart(data, path);
+        }
+      },        
+      styles: {
+        'stroke-width': 0.5
+      }
+    });     
+
+    explore.map.addFilter('oglow', 'glow', {
+        size: 0.1,
+        color: '#000',
+        strength: 1,
+        inner: true
+    });
+
+    explore.map.getLayer('douala-arrts').applyFilter('oglow');
+
+  };
 
 
 	/**

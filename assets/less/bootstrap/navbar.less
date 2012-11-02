@@ -9,9 +9,15 @@
   // Fix for IE7's bad z-indexing so dropdowns don't appear below content that follows the navbar
   *position: relative;
   *z-index: 2;
+  font-size:@baseFontSize + 2px;
+  line-height:@baseLineHeight + 2px;
 
   overflow: visible;
   margin-bottom: @baseLineHeight;
+
+  [class^="icon-"], [class*=" icon-"] {
+    margin-top:2px;
+  }
 }
 
 // Gradient is applied to it's own element because overflow visible is not honored by IE when filter is present
@@ -19,9 +25,9 @@
   min-height: @navbarHeight;
   padding-left:  20px;
   padding-right: 20px;
-  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);  
   .border-radius(@inputBorderRadius);
-  .box-shadow(~"0 1px 3px rgba(0,0,0,.25)");
+  .box-shadow(0 1px 2px rgba(0, 0, 0, 0.1) );
 }
 
 // Set width to auto for default container
