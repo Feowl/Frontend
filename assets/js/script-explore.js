@@ -47,10 +47,13 @@
 	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 		
 	 		// Suppress the previous barchart
 	 		explore.$exploreBarcharts.find('svg').remove();
+
 	 		// Hides thebarcharts
 			explore.$exploreBarcharts.addClass('hidden');
-			// Display the legend
-	 		// explore.$exploreLegend.removeClass('hidden');
+			
+			// Empties the data-attribute of the previously clicked area
+			$('#explore-barchart').data('district', '');
+
 	 		// Hides the legend about districts
 	 		explore.$exploreLegend.find('#contributions').addClass('hidden');
 	 	}
@@ -111,7 +114,7 @@
 	 * Adds a bar chart for the specified district
 	 * @params data, path
 	 */
-	explore.addChart = function(data, path) {
+	explore.addChart = function(data, pathName) {
 
 		if( ! explore.listExists() ) return;
 
@@ -121,19 +124,21 @@
 		var params = {
 			"date_gte"	: values.min.getFullYear() + "-" + (values.min.getMonth()+1) + "-" + values.min.getDate(),
 			"date_lte"	: values.max.getFullYear() + "-" + (values.max.getMonth()+1) + "-" + values.max.getDate(),			
-			"area"			: _.invert(explore.areas)[path.id]
+			"area"			: _.invert(explore.areas)[pathName]
 		};
 
 		// Prepare the bar chart area
 		explore.$exploreBarcharts.find('svg:first').remove();
-		explore.$exploreBarcharts.removeClass('hidden');		
+		explore.$exploreBarcharts.removeClass('hidden');	
+		// Stores the name of the district clicked
+		explore.$exploreBarcharts.data('district', pathName);
 		// Loading mode on the bar chart area		
 		explore.$exploreBarcharts.loading();
 
     var $title = explore.$exploreBarcharts.find("h4");
     // CHOICE: a html presentation might be better
     // @TODO use an html template to allow multiple languages (here an example)    
-    $title.html( $title.data("tpl").replace("%s", path.id) );
+    $title.html( $title.data("tpl").replace("%s", pathName) );
 
 		// Load every reports for this interval
 		$.getJSON("json/area_reports/", params, explore.drawChart);
@@ -376,6 +381,14 @@ closeTooltip = function() { /* Nothing yet */ },
 
   explore.createMapLayers = function(data) {
 
+    var areaOn = explore.$exploreBarcharts.data('district') || false;
+
+console.log("this is areaOn: " + areaOn);
+
+		if(areaOn) {
+			explore.addChart(data, areaOn);
+		}
+
     explore.map.addLayer('land', {  
       name:"land"
     })
@@ -383,8 +396,10 @@ closeTooltip = function() { /* Nothing yet */ },
     explore.map.addLayer('douala-arrts', {          
       key: 'id',
       click: function(path) {
+      	// if we are in explore page
         if( explore.listExists() ) {
-          explore.addChart(data, path);
+// console.log("this is areaOn: " + areaOn);
+          explore.addChart(data, path.id);
         }
       },        
       styles: {
@@ -484,14 +499,10 @@ closeTooltip = function() { /* Nothing yet */ },
 			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
 
-		// Hides the legend about districts
-	 	explore.$exploreLegend.find('#contributions').addClass('hidden');
-
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
 
 		$.ajax({
-			// go looking for data from URL/feowl/Frontend/json/interval_reports/
 			url: 'json/interval_reports/',
 			data: params,
 			type: "GET",
