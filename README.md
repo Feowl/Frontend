@@ -15,7 +15,7 @@ You must have a basic Apache and PHP environement:
 ### System configuration
 The Kohana installation <b>must be in a subdirectory <em>/Frontend/</em> from the root of your virtual host or domain</b>.
 
-Also, you have to allow writing on <em>/Frontend/application/cache</em>, <em>/Frontend/application/logs</em> and <em>temp</em> directories (replace 	&lt;path> by the path of the Feowl directory):
+Also, you have to allow writing on <em>/Frontend/application/cache</em>, <em>/Frontend/application/logs</em> and <em>/Frontend/temp</em> directories (replace 	&lt;path> by the path of the Feowl directory):
 
 	cd /Frontend/
 	mkdir -p application/logs application/cache temp
