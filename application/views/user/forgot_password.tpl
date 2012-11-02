@@ -35,7 +35,6 @@
 </div>
 {else}
 	<div class="alert">{__ t='Your Password has been resetted: Check your E-mail for your new password'}
-	<br /> ---I would temporally display the email here for testing purpose <br /> {$message}
 		<a class="close" data-dismiss="alert" href="#">&times;</a>
 	</div>	
 {/if}
