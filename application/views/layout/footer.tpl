@@ -3,14 +3,14 @@
 		<footer>
 
 			<div class="row">
-				<div class="span1 offset2"><a href="{URL::base()}pages/about">{__ t='À propos'}</a></div>
+				<div class="span1 offset2"><a href="{URL::base()}pages/about">{__ t='About'}</a></div>
 				<div class="span1"><a href="mailto:contact@feowl.com">{__ t='Contact'}</a></div>
 				<div class="span1"><a href="http://feowl.tumblr.com/">{__ t='Blog'}</a></div>
 				<div class="span1"><a href="http://twitter.com/feowl">{__ t='Twitter'}</a></div>				
 				<div class="span1"><a href="http://facebook.com/feowl">{__ t='Facebook'}</a></div>				
 				<div class="span1"><a href="https://github.com/Feowl/Frontend">{__ t='Code'}</a></div>
 				<div class="span1"><a href="https://github.com/Feowl/API">{__ t='API'}</a></div>
-				<div class="span1"><a href="http://www>|apache.org/licenses/LICENSE-2.0.html">{__ t='Licence'}</a></div>	
+				<div class="span1"><a href="http://www.apache.org/licenses/LICENSE-2.0.html">{__ t='Licence'}</a></div>	
 			</div>
 
 			<div class="row">
