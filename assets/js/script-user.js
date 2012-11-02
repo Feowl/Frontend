@@ -10,7 +10,7 @@ $(document).ready(function() {
 		username:"required",
 		useremail:{required:true,email: true},
 		userpassword:{required:true,minlength: 6},
-		phonenumber:{required:true, minlength: 8, maxlength:13, digits:true}
+		phonenumber:{required:false, minlength: 8, maxlength:13, digits:true}
 		},
 
 		messages:{
@@ -22,7 +22,6 @@ $(document).ready(function() {
 		required:"Enter your password",
 		minlength:"Password must be minimum 8 characters"},
 		phonenumber:{
-		required:"Enter Phone Number",
 		minlength:"Phone Number must have atleast 6 chars",
 		maxlength: "Phone Number must not exceed 13 chars",
 		digits: "Phone Number should content only digits"

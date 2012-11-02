@@ -2589,27 +2589,27 @@ button.close {
   cursor: pointer;
   background-color: #f5f5f5;
   *background-color: #e6e6e6;
-  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
   background-repeat: repeat-x;
   border: 1px solid #cccccc;
   *border: 0;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border-bottom-color: #b3b3b3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
   *zoom: 1;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn:hover,
@@ -2674,6 +2674,21 @@ button.close {
           box-shadow: none;
 }
 
+.btn-giant {
+  padding: 15px 24px;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.btn-giant,
+.btn-giant:hover {
+  text-shadow: 0 1px 6px black;
+}
+
 .btn-large {
   padding: 9px 14px;
   font-size: 15px;
@@ -2716,7 +2731,7 @@ button.close {
 .btn-inverse,
 .btn-inverse:hover {
   color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary.active,
@@ -3573,10 +3588,17 @@ input[type="submit"].btn.btn-mini {
   *z-index: 2;
   margin-bottom: 18px;
   overflow: visible;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.navbar [class^="icon-"],
+.navbar [class*=" icon-"] {
+  margin-top: 2px;
 }
 
 .navbar-inner {
-  min-height: 40px;
+  min-height: 60px;
   padding-right: 20px;
   padding-left: 20px;
   background-color: #ffffff;
@@ -3591,9 +3613,9 @@ input[type="submit"].btn.btn-mini {
      -moz-border-radius: 2px;
           border-radius: 2px;
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -3615,7 +3637,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .brand {
   display: block;
   float: left;
-  padding: 8px 20px 12px;
+  padding: 18px 20px 22px;
   margin-left: -20px;
   font-size: 20px;
   font-weight: 200;
@@ -3625,7 +3647,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .navbar-text {
   margin-bottom: 0;
-  line-height: 40px;
+  line-height: 60px;
 }
 
 .navbar .navbar-link {
@@ -3638,7 +3660,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .btn,
 .navbar .btn-group {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .navbar .btn-group .btn {
@@ -3664,7 +3686,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-form select,
 .navbar-form .radio,
 .navbar-form .checkbox {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .navbar-form input,
@@ -3693,7 +3715,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-search {
   position: relative;
   float: left;
-  margin-top: 6px;
+  margin-top: 16px;
   margin-bottom: 0;
 }
 
@@ -3788,7 +3810,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a {
   float: none;
-  padding: 9px 10px 11px;
+  padding: 19px 10px 21px;
   line-height: 19px;
   color: #999999;
   text-decoration: none;
@@ -3797,12 +3819,12 @@ input[type="submit"].btn.btn-mini {
 .navbar .btn {
   display: inline-block;
   padding: 4px 10px 4px;
-  margin: 5px 5px 6px;
+  margin: 15px 5px 16px;
   line-height: 18px;
 }
 
 .navbar .btn-group {
-  padding: 5px 5px 6px;
+  padding: 15px 5px 16px;
   margin: 0;
 }
 
@@ -3821,7 +3843,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .divider-vertical {
   width: 1px;
-  height: 40px;
+  height: 60px;
   margin: 0 9px;
   overflow: hidden;
   background-color: #ffffff;

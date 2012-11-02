@@ -35,7 +35,7 @@ class Controller_User extends Controller_Template {
 	{
 		// Adds all javascript files
 		$this->template->files_javascript = array(		
-			url::base()."assets/js/script-user.js",
+			url::base()."assets/js/script-user.js", 
 			"http://jzaefferer.github.com/jquery-validation/jquery.validate.js"
 		);	
 		parent::after();
@@ -91,11 +91,13 @@ class Controller_User extends Controller_Template {
 		$this->action_already_logged_in();
 		
         $this->template->right_content = View::factory('user/signup.tpl')
-            ->bind('error', $error);
+            ->bind('error', $error)->bind('loader', $loader);
 		$this->template->left_content = View::factory('user/signup_info.tpl');
 
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
+			//echo "<div class='js-loading-overlay' style='display: block;'></div>";
+			//$loader = true;
 			try
 			{
 				//build json items
