@@ -30,7 +30,7 @@
 		if( explore.listExists() ) {
 			// Resize the map when we resize the window
 			explore.$exploreList.delegate(".load-more", "click", explore.moreReports);	
-			// Switching barchart view to legend view
+			// Deleting barchart view
 			explore.$exploreMap.on("click", explore.removeMapGraphs);
 			// Change the order of the list
 			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);		
@@ -44,15 +44,16 @@
 	 */
 	explore.removeMapGraphs = function(event) {
 		// If we are not clicking on a map element
-	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 		
+	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 
+
 	 		// Suppress the previous barchart
 	 		explore.$exploreBarcharts.find('svg').remove();
 
 	 		// Hides thebarcharts
 			explore.$exploreBarcharts.addClass('hidden');
-			
-			// Empties the data-attribute of the previously clicked area
-			$('#explore-barchart').data('district', '');
+
+			// If the map is clicked, it empties the data-attribute of the previously clicked area
+			if(typeof(event) != 'undefined') $('#explore-barchart').data('district', '');
 
 	 		// Hides the legend about districts
 	 		explore.$exploreLegend.find('#contributions').addClass('hidden');
@@ -151,10 +152,14 @@
 		var half   = 0,
 				two    = 0,
 				four   = 0,
-				more   = 0;
+				more   = 0,
+				slider = 0;
 
-		// Adaptate the User reports to the clicked area
-		explore.drawList(reports);
+// slider = explore.$dateRange.on("userValuesChanged", true); // AF: uservch <=> slider  >> cet évé a-t-il eu lieu?
+// console.log('drawchart');
+
+		// Adaptate the User reports to the clicked area // To be called only for clicks
+		/*if() */explore.drawList(reports);
     // Display info about the current area
 		explore.displayMetadata(reports);			
 	
@@ -285,12 +290,10 @@ closeTooltip = function() { /* Nothing yet */ },
 		, template = Handlebars.compile(source)
 		, 	 html  = template(data);
 
-// console.log("go through drawlist");
-// console.log(data);
-
 		// Clear the table only if we are in the first page of the API OR if an area is clicked
 		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
+			console.log('empty the user reports list');
 			$tbody.empty();
 		// If not the first page
 		} else {
@@ -298,6 +301,7 @@ closeTooltip = function() { /* Nothing yet */ },
 			$tbody.find(".load-more").remove();
 		}
 
+			console.log('adding to reports list');
 		// Append every items at the same time
 		$tbody.append(html);
 	};
