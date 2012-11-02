@@ -61,13 +61,14 @@
 	<div class="control-group">
 		<div class="control-submit">
 		<a href="{URL::site('user/login')}">{__ t='Have an account? Login!'}</a>
-		<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value=' Sign-up and Contribute! '/>
+		<input type='submit' class="btn btn-primary btn-large sbtn signup-submit" name='submit' value=' Sign-up and Contribute! '/>
 		</div>
 	</div>  
 	
 </form> 
 </div>
 </div>    
-
-  
+<div style="display:none;">
+<div class="js-loading-overlay" style="display: block;"></div>
+</div>
   
