@@ -61,14 +61,24 @@
 	<div class="control-group">
 		<div class="control-submit">
 		<a href="{URL::site('user/login')}">{__ t='Have an account? Login!'}</a>
-		<input type='submit' class="btn btn-primary btn-large sbtn signup-submit" name='submit' value=' Sign-up and Contribute! '/>
+		<input type='submit' class="btn btn-primary btn-large sbtn signup-submit" name='submit' value=' Sign-up and Contribute! ' onClick="javascript:show_overlay();"/>
 		</div>
 	</div>  
 	
 </form> 
 </div>
 </div>    
-<div style="display:none;">
-<div class="js-loading-overlay" style="display: block;"></div>
+	
+{literal}
+<script type="text/javascript">
+	function show_overlay(){
+	   document.getElementById('overlay').style.display = 'block'; 
+	}
+	 
+</script>
+{/literal}
+	
+<div id="overlay" style="display:none">
+	<div class="js-loading-overlay" ></div>
 </div>
   

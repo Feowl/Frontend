@@ -35,7 +35,7 @@ class Controller_User extends Controller_Template {
 	{
 		// Adds all javascript files
 		$this->template->files_javascript = array(		
-			url::base()."assets/js/script-user.js", url::base()."assets/js/script-signup.js", 
+			url::base()."assets/js/script-user.js", 
 			"http://jzaefferer.github.com/jquery-validation/jquery.validate.js"
 		);	
 		parent::after();
@@ -97,6 +97,7 @@ class Controller_User extends Controller_Template {
         if (HTTP_Request::POST == $this->request->method())
         {    //echo "I love Feowl"; exit;
 			//echo "<div class='js-loading-overlay' style='display: block;'></div>";
+			//$loader = true;
 			try
 			{
 				//build json items
