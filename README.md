@@ -15,11 +15,11 @@ You must have a basic Apache and PHP environement:
 ### System configuration
 The Kohana installation <b>must be in a subdirectory <em>/Frontend/</em> from the root of your virtual host or domain</b>.
 
-Also, you have to allow writing on <em>/Frontend/application/cache</em> and <em>/Frontend/application/logs</em> directories (replace 	&lt;path> by the path of the Feowl directory):
+Also, you have to allow writing on <em>/Frontend/application/cache</em>, <em>/Frontend/application/logs</em> and <em>temp</em> directories (replace 	&lt;path> by the path of the Feowl directory):
 
 	cd /Frontend/
-	mkdir -p application/logs application/cache
-	chmod 777 -Rf application/logs application/cache
+	mkdir -p application/logs application/cache temp
+	chmod 777 -Rf application/logs application/cache temp
 
 ### API access
 Every Feowl installation must use a unique key for the API. [Do not hesitate to ask for a key!](mailto:contact@feowl.com)
