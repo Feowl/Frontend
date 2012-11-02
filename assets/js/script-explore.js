@@ -151,10 +151,10 @@
 		var half   = 0,
 				two    = 0,
 				four   = 0,
-				more   = 0,
-				$tbody = explore.$exploreList.find('tbody');	
+				more   = 0;
 
-
+		// Adaptate the User reports to the clicked area
+		explore.drawList(reports);
     // Display info about the current area
 		explore.displayMetadata(reports);			
 	
@@ -285,8 +285,11 @@ closeTooltip = function() { /* Nothing yet */ },
 		, template = Handlebars.compile(source)
 		, 	 html  = template(data);
 
-		// Clear the table only if we are in the first page of the API
-		if(data.current_page == 0) {			
+// console.log("go through drawlist");
+// console.log(data);
+
+		// Clear the table only if we are in the first page of the API OR if an area is clicked
+		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
 			$tbody.empty();
 		// If not the first page
@@ -295,7 +298,6 @@ closeTooltip = function() { /* Nothing yet */ },
 			$tbody.find(".load-more").remove();
 		}
 
-		// console.log(source);
 		// Append every items at the same time
 		$tbody.append(html);
 	};
@@ -326,7 +328,6 @@ closeTooltip = function() { /* Nothing yet */ },
 	};
 
 	/**
-	 * WIP !!
 	 * Display summarizing data
 	 */
 	explore.displayMetadata = function(data) {
@@ -381,9 +382,7 @@ closeTooltip = function() { /* Nothing yet */ },
 
   explore.createMapLayers = function(data) {
 
-    var areaOn = explore.$exploreBarcharts.data('district') || false;
-
-console.log("this is areaOn: " + areaOn);
+    var areaOn = explore.$exploreBarcharts.data('district');
 
 		if(areaOn) {
 			explore.addChart(data, areaOn);
@@ -398,7 +397,6 @@ console.log("this is areaOn: " + areaOn);
       click: function(path) {
       	// if we are in explore page
         if( explore.listExists() ) {
-// console.log("this is areaOn: " + areaOn);
           explore.addChart(data, path.id);
         }
       },        
@@ -459,7 +457,7 @@ console.log("this is areaOn: " + areaOn);
 	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
 	  	});
 
-
+			// Hightlight
 			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
 				$(this).css("stroke", "#075156");
 			});

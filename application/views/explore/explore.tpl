@@ -84,32 +84,47 @@
 
 					{{#if list}}
 
-			  			{{#list}}
+			  		{{#list}}
 							<tr>
 								<td>{{district_name area}}</td>
 								<td>{{duration}}</td>
 								<td>{{short_date_string happened_at}}</td>
 								<td>{{quality}}</td>
 							</tr>
-				  		{{/list}}
+				  	{{/list}}
 
-				  		{{#if next_page}}
+				  	{{#if next_page}}
 							<tr class="load-more">
 								<td colspan="4">
 									{/literal}{__ t='Load more'}{literal}
 								</td>
 							</tr>
-				  		{{/if}}
+				  	{{/if}}
+
+			  	{{else}}
+			  		
+			  		{{#if 0.area}}
+
+			  			{{#each this}}
+
+								<tr>
+									<td>{{district_name area}}</td>
+									<td>{{duration}}</td>
+									<td>{{short_date_string happened_at}}</td>
+									<td>{{quality}}</td>
+								</tr>
+
+			  			{{/each}}
 
 			  		{{else}}
+							<tr>
+								<td colspan="4" class="tc">
+									{/literal}{__ t='No reports submited for that period'}{literal}
+								</td>
+							</tr>
+						{{/if}}
 
-						<tr>
-							<td colspan="4" class="tc">
-								{/literal}{__ t='No reports submited for that period'}{literal}
-							</td>
-						</tr>
-
-			  		{{/if}}
+			  	{{/if}}
 
 				</script>
 
