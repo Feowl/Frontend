@@ -10,7 +10,7 @@
  */
 class Controller_Contribute extends Controller_Template {
  
-    public $template = "template/sub_template.tpl";
+  public $template = "template/sub_template.tpl";
 	public $how_many_outage;
 	public $area;
 	public $duration;
