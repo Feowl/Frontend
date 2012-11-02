@@ -1,25 +1,37 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 
+@import "tools.less?s";
 @import "layouts.less";
 @import "explore.less";
 
-.tl, table td.tl { text-align:left; }
-.tc, table td.tc { text-align:center; }
-.tr, table td.tr { text-align:right; }
 
 #header-step { height:@navbarHeight; }
 
-.font-feowl {  font-family: 'Pacifico',cursive; }
 .page-header { padding-bottom:0; }
 
-.white-panel {
-  background-color: #FFFFFF !important;
-  border: 1px solid #DADADA;
-  color: #333333;
-  margin-bottom: 40px;
-  .border-radius(6px);
-  .box-shadow(0 1px 2px rgba(0, 0, 0, 0.1) );
+.banner {
+  position:relative;
+  z-index:-1;
+  width:100%;
+  height:350px;
+  overflow:hidden;
+
+  .douala {
+    min-height:350px;    
+    min-width:100%;
+    max-width:none !important;
+
+    position:absolute;
+    z-index:40;
+    top:0;
+    left:0;
+    display:block;
+  }
+
+  &.remove-height{
+    margin-bottom:-350px;
+  }
 }
 
 .navbar a:hover {
@@ -167,19 +179,6 @@ margin-left: 10px;
 	color:@warningText;
 }
 
-.js-loading-overlay {
-	background: url("../img/loading.gif") center center  no-repeat #EEEEEE;
-	.opacity(80);
-
-	width:100%;
-	height: 100%;
-
-	position: absolute;
-	top:0; 
-	left:0;
-
-	z-index:999;
-}
 
 .current, {
   border: 1px solid #900;

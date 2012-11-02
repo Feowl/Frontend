@@ -10,7 +10,7 @@
  */
 class Controller_User extends Controller_Template {
  
-    public $template = "template/sub_template.tpl";
+  public $template = "template/sub_template.tpl";
 	
 	public function before()
 	{
@@ -84,132 +84,128 @@ class Controller_User extends Controller_Template {
 			Request::current()->redirect('contribute');
 		}
 	}
-	 //post to the api to creat an account for a contributor
-    public function action_signup()
-    {
-		//check if the user is logged in
-		$this->action_already_logged_in();
-		
-        $this->template->right_content = View::factory('user/signup.tpl')
-            ->bind('error', $error);
-		$this->template->left_content = View::factory('user/signup_info.tpl');
 
-        if (HTTP_Request::POST == $this->request->method())
-        {    //echo "I love Feowl"; exit;
-			try
-			{
-				//build json items
-				$json_items['name'] = Arr::get($_POST,'username');	
-				$json_items['password'] = Arr::get($_POST,'userpassword');
-				$email = $json_items['email'] = Arr::get($_POST,'useremail');	
-				$json_items['language'] = mb_strtoupper(i18n::lang());	
-				$json_items['frequency'] = Arr::get($_POST,'frequency');
-				$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
+	 //post to the api to creat an account for a contributor
+    public function action_signup() {
+
+			//check if the user is logged in
+			$this->action_already_logged_in();
+	
+      $this->template->right_content = View::factory('user/signup.tpl')->bind('error', $error);
+			$this->template->left_content = View::factory('user/signup_info.tpl');
+
+      if (HTTP_Request::POST == $this->request->method()) {    
+
+				try {
+					//build json items
+					$json_items['name'] = Arr::get($_POST,'username');	
+					$json_items['password'] = Arr::get($_POST,'userpassword');
+					$email = $json_items['email'] = Arr::get($_POST,'useremail');	
+					$json_items['language'] = mb_strtoupper(i18n::lang());	
+					$json_items['frequency'] = Arr::get($_POST,'frequency');
+					$phone_number = Format::phone_number(Arr::get($_POST, 'phonenumber'));
+					
+					//send to api
+					$data_string = json_encode($json_items);
+					$results = Model_Contributors::post_contributor($data_string);
+					//$http_status = json_decode($results['http_status']);
+					//$json_result = json_decode($results['json_result']); 
+					$http_status = $results['http_status'];
+					$json_result = $results['json_result']; 
 				
-				//send to api
-				$data_string = json_encode($json_items);
-				$results = Model_Contributors::post_contributor($data_string);
-				//$http_status = json_decode($results['http_status']);
-				//$json_result = json_decode($results['json_result']); 
-				$http_status = $results['http_status'];
-				$json_result = $results['json_result']; 
-			
-				//print_r($json_result); exit;
-				 
-				if($http_status == 201)
-				{
-					//contributor device number #mobile
-					$device['category'] = 'Phone';
-					$device['phone_number'] = $phone_number['number'];
-					//get the contributor ID
-					$results = Model_Contributors::get_contributors('', "email=$email");
-					$r = json_decode($results['json_result'], true);
-					$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'].'/';
-					$device_json = json_encode($device);  
-					$device_json = str_replace("\\", "", $device_json);
-					$results = Model_Devices::post_device($device_json);
-					
-					//login the user
-					$this->model->force_login($r['objects'][0]['id']);
-					
-					//print_r($results); echo "<br />"; print_r($device_json); exit;
-					
-					$notice = "Thanks for signing up!";
-					//set notice in session
-					$this->session->set('alert', $notice);
-					Request::current()->redirect('home');
-				}
-				elseif(isset($json_result))
-				{
-					$error_string = $pieces = explode(" ", $json_result);
-					if(in_array("name", $error_string)) 
+					//print_r($json_result); exit;
+					 
+					if($http_status == 201)
 					{
-						$error = "This name is already in use";
+						//contributor device number #mobile
+						$device['category'] = 'Phone';
+						$device['phone_number'] = $phone_number['number'];
+						//get the contributor ID
+						$results = Model_Contributors::get_contributors('', "email=$email");
+						$r = json_decode($results['json_result'], true);
+						$device['contributor'] = "/api/v1/contributors/".$r['objects'][0]['id'].'/';
+						$device_json = json_encode($device);  
+						$device_json = str_replace("\\", "", $device_json);
+						$results = Model_Devices::post_device($device_json);
+						
+						//login the user
+						$this->model->force_login($r['objects'][0]['id']);
+						
+						//print_r($results); echo "<br />"; print_r($device_json); exit;
+						
+						$notice = "Thanks for signing up!";
+						//set notice in session
+						$this->session->set('alert', $notice);
+						Request::current()->redirect('home');
 					}
-					elseif(in_array("email", $error_string))
+					elseif(isset($json_result))
 					{
-						$error = "This e-mail address is already in use. Forgot your password ?";
-					}	
+						$error_string = $pieces = explode(" ", $json_result);
+						if(in_array("name", $error_string)) 
+						{
+							$error = "This name is already in use";
+						}
+						elseif(in_array("email", $error_string))
+						{
+							$error = "This e-mail address is already in use. Forgot your password ?";
+						}	
+						else
+						{
+							$error = "Technical Error. PLease try again Later";
+						}
+						//$error_1 = $json_result['error_message']; 
+					}
 					else
 					{
 						$error = "Technical Error. PLease try again Later";
 					}
-					//$error_1 = $json_result['error_message']; 
-				}
-				else
-				{
-					$error = "Technical Error. PLease try again Later";
-				}
-				//@todo force login to next step
+					//@todo force login to next step
+				} catch(Exception $e)  {
+	        // Set failure message TODO: Set various notices
+					$this->session->set('alert', "Technical Error :)");
+	      }
 			}
-			catch(Exception $e) 
-			{
-                // Set failure message TODO: Set various notices
-				$this->session->set('alert', "Technical Error :)");
-            }
-		}
     }
      
-	//login the user
-    public function action_login()
-    {
-		//check if the user is logged in
-		$this->action_already_logged_in();
-		
-        $this->template->right_content = View::factory('user/login.tpl')
-            ->bind('message', $message);
-		$this->template->left_content = View::factory('user/login_info.tpl');
+		//login the user
+    public function action_login() {
+
+    	// Change the template dynamicly
+			$this->template = View::factory("template/template.tpl");
+
+			//check if the user is logged in
+			$this->action_already_logged_in();
+			
+			$this->template->content = View::factory('user/login.tpl')->bind('message', $message);
          
-        if (HTTP_Request::POST == $this->request->method())
-        {
-			$email = $this->request->post('email');
-			$password = $this->request->post('password');
-			
-			//Attempt login a user
-			//$user = Session::instance()->get('user');
-			$user = $this->model->login($email, $password);
-			
-            // If successful, redirect user to contribute page
-            if ($user)
-            {
-				$proceedURL = $this->session->get('proceedURL');
-				if($proceedURL)
-				{
-					Request::current()->redirect($proceedURL);
-				}
-				else
-				{
-					Request::current()->redirect('contribute');
-				}
-            }
-            else
-            {
-                $message = 'Username and password don\'t match';
-            }
+      if( HTTP_Request::POST == $this->request->method() ) {
+
+				$email = $this->request->post('email');
+				$password = $this->request->post('password');
+						
+				//Attempt login a user
+				//$user = Session::instance()->get('user');
+				$user = $this->model->login($email, $password);
+		
+          // If successful, redirect user to contribute page
+        if ($user) {
+
+					$proceedURL = $this->session->get('proceedURL');
+
+					if($proceedURL) {
+						Request::current()->redirect($proceedURL);
+					} else {
+						Request::current()->redirect('contribute');
+					}
+
+        } else {
+            $message = 'Username and password don\'t match';
         }
+
+      }
     }
 	
-	// user forgot password
+		// user forgot password
     public function action_forgot_password()
     {
         //check if the user is logged in
