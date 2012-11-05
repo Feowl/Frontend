@@ -96,6 +96,7 @@
 
 	if (typeof(duration_total) != "undefined") {
 		var duration_total = 0;
+  }
 	
 	/**
 	 * Adds a bar chart for the specified district
