@@ -97,19 +97,6 @@
 
 	if (typeof(duration_total) != "undefined") {
 		var duration_total = 0;
-	}
-
-	/*Handlebars.registerHelper('duration_rate', function(key) {
-
-		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
-		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
-		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
-		// console.log(typeof(duration_total));
-		// console.log(duration_total);
-		// duration_total += key;
-
-		return duration_total;
-	});*/
 	
 	/**
 	 * Adds a bar chart for the specified district
@@ -149,26 +136,20 @@
 
 	explore.drawChart = function(reports) {
 
-		// console.log('drawchart');
-
 		var half   = 0,
 				two    = 0,
 				four   = 0,
 				more   = 0,
 				slider = 0;
 
-// slider = explore.$dateRange.on("userValuesChanged", true); // AF: uservch <=> slider  >> cet évé a-t-il eu lieu?
-// console.log('drawchart');
-
-		// Adaptate the User reports to the clicked area // To be called only for clicks
-		/*if() */explore.drawList(reports);
+		// Adaptate the User reports to the clicked area
+		explore.drawList(reports);
     // Display info about the current area
 		explore.displayMetadata	(reports);			
 	
 		// Distributes the bar proportions according the list of reports
 		for( var i in reports ) {
 
-			// console.log('iteration n°' + i);
 			var report = reports[i];
 
   		switch(true) {
@@ -200,40 +181,38 @@
   	explore.$exploreBarchartsArea.empty();
 
 
-    var    r = Raphael("explore-barchart-area"),
-     txtattr = { font: "14px verdana" },
-     total_p = (half+two+four+more)/100,
- openTooltip = function() {
- 			$(this.node).qtip(
- 				{
- 					content: explore.getBarchartTooltip(this.value), 
- 					show: { 
- 						ready: true 
- 					},
- 					position: {
-						target: 'mouse',
-						adjust: {
-							mouse: true  // Can be omitted (e.g. default behaviour)
-						}
- 					}
- 				}
- 			);
-    },
-closeTooltip = function() { /* Nothing yet */ },
-   drawChart = function() {
-    		 			
-    		 			// Bar style
-    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
+    var r = Raphael("explore-barchart-area"),
+  			txtattr = { font: "14px verdana" },
+  			total_p = (half+two+four+more)/100,
+		 		openTooltip = function() {
+		 			$(this.node).qtip({
+		 					content: explore.getBarchartTooltip(this.value), 
+		 					show: { 
+		 						ready: true 
+		 					},
+		 					position: {
+								target: 'mouse',
+								adjust: {
+									mouse: true  // Can be omitted (e.g. default behaviour)
+								}
+		 					}
+		 				});
+		    },
+				closeTooltip = function() { /* Nothing yet */ },
+   			drawChart = function() {
+		 			
+		 			// Bar style
+		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
 
-	    		 		// Create the bar flag
-    					this.flag = r.popup(
-    						this.bar.x, 
-    						this.bar.y, 
-    						this.bar.value + "%" || "0%"
-    					)
-							.attr({ fill: "#168891", stroke: "#ffffff" })
-    					.insertBefore(this);
-    				};
+  		 		// Create the bar flag
+					this.flag = r.popup(
+						this.bar.x, 
+						this.bar.y, 
+						this.bar.value + "%" || "0%"
+					)
+					.attr({ fill: "#168891", stroke: "#ffffff" })
+					.insertBefore(this);
+    		};
 
     if( !half && !two && !four && !more ) {
     	
@@ -295,8 +274,6 @@ closeTooltip = function() { /* Nothing yet */ },
 		// Clear the table only if we are in the first page of the API OR if an area is clicked
 		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
-			// console.log('empty the user reports list');
-			// console.dir(data);
 			$tbody.empty();
 		// If not the first page
 		} else {
@@ -306,7 +283,6 @@ closeTooltip = function() { /* Nothing yet */ },
 			if(!data.current_page) $tbody.empty();
 		}
 
-		// console.log('adding to reports list');
 		// Append every items at the same time
 		$tbody.append(html);
 	};
@@ -436,7 +412,7 @@ closeTooltip = function() { /* Nothing yet */ },
 			// Hide the map chart
 			explore.removeMapGraphs();
 
-			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
+			// limits are linked to to the times of average electricity cuts (in seconds)
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
