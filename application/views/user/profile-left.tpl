@@ -1,5 +1,5 @@
-<div class="span12 top20 bottom10">
-	<h2> Profile </h2>
+<div class="page-header span12">
+	<h1>{__ t='Profile'}</h1>
 </div>
 <div class="span4">
 	<div class="">		
