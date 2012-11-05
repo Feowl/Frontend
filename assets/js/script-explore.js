@@ -149,7 +149,7 @@
 
 	explore.drawChart = function(reports) {
 
-		console.log('drawchart');
+		// console.log('drawchart');
 
 		var half   = 0,
 				two    = 0,
@@ -295,18 +295,18 @@ closeTooltip = function() { /* Nothing yet */ },
 		// Clear the table only if we are in the first page of the API OR if an area is clicked
 		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
-			console.log('empty the user reports list');
-			console.dir(data);
+			// console.log('empty the user reports list');
+			// console.dir(data);
 			$tbody.empty();
 		// If not the first page
 		} else {
-			// Removed the load more button
+			// Removed the load more button to be added if necessary through explore.tpl
 			$tbody.find(".load-more").remove();
 			// If no data is available
-			if(!data[0]) $tbody.empty();
+			if(!data.current_page) $tbody.empty();
 		}
 
-		console.log('adding to reports list');
+		// console.log('adding to reports list');
 		// Append every items at the same time
 		$tbody.append(html);
 	};
