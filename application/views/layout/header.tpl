@@ -22,10 +22,12 @@
 		
 		{* Optional CSS *}
 		{if isset($files_stylesheet)}
-        {include file='tool/header-file.tpl' type='stylesheet' list=$files_stylesheet after="" before=""}             
+            {include file='tool/header-file.tpl' type='stylesheet' list=$files_stylesheet after="" before=""}             
         {/if}
 		{* .less js *}
 		<script src="{URL::base()}assets/js/less.min.js" type="text/javascript"></script>
+        {* Base URL in a global constante *}
+        <script type="text/javascript">window.BASE_URL = "{URL::base()}";</script>
 		
 		<meta property="og:title" content="{$smarty.const.SITE_DESCRIPTION}" />
         <meta property="og:type" content="website" />

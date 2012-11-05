@@ -38,14 +38,14 @@ class Controller_locale extends Controller {
    */
   public function action_signup() {
 
-    $messages = array(
-      "username"  => __("Enter your first and last name"),
+    $messages = array(      
+      "username"  => array(
+        "required" => __("This field required.")
+      ),
       "useremail" => array(
-          "required"  => __("Enter your email address"),
-          "useremail" => __("Enter valid email address")
+          "email"     => __("Enter valid email address"),
       ),
       "userpassword" => array(
-          "required"  => __("Enter your password"),
           "minlength" => __("Password must be minimum 8 characters")
       ),
       "phonenumber" => array(
