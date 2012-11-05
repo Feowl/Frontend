@@ -149,6 +149,8 @@
 
 	explore.drawChart = function(reports) {
 
+		console.log('drawchart');
+
 		var half   = 0,
 				two    = 0,
 				four   = 0,
@@ -161,7 +163,7 @@
 		// Adaptate the User reports to the clicked area // To be called only for clicks
 		/*if() */explore.drawList(reports);
     // Display info about the current area
-		explore.displayMetadata(reports);			
+		explore.displayMetadata	(reports);			
 	
 		// Distributes the bar proportions according the list of reports
 		for( var i in reports ) {
@@ -294,14 +296,17 @@ closeTooltip = function() { /* Nothing yet */ },
 		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
 			console.log('empty the user reports list');
+			console.dir(data);
 			$tbody.empty();
 		// If not the first page
 		} else {
 			// Removed the load more button
 			$tbody.find(".load-more").remove();
+			// If no data is available
+			if(!data[0]) $tbody.empty();
 		}
 
-			console.log('adding to reports list');
+		console.log('adding to reports list');
 		// Append every items at the same time
 		$tbody.append(html);
 	};
@@ -500,6 +505,7 @@ closeTooltip = function() { /* Nothing yet */ },
 			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
 			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
+		var areaOn = explore.$exploreBarcharts.data('district');
 
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
@@ -514,7 +520,8 @@ closeTooltip = function() { /* Nothing yet */ },
 				if(data.aggregation) explore.drawMap(data);
 				// Draw the list only if we have listed reports + Displays info under the legend 
 				if(data.list) {
-					explore.drawList(data);
+					// Displays the list if it is not to be displayed through drawchart
+					if(!areaOn) explore.drawList(data);
 					explore.displayMetadata(data);
 				}
 				// Removes the loading overlay
