@@ -316,7 +316,7 @@ class Controller_User extends Controller_Template {
 		$this->action_check_login();
 		$alert = $this->session->get_once('alert');
 		$notice = $this->session->get_once('notice');
-		$this->template->right_content = View::factory('user/account.tpl')->bind('user', $user)
+		$this->template->right_content = View::factory('user/profile-details.tpl')->bind('user', $user)
 		->bind('notice', $notice)->bind('alert', $alert);
 		$this->template->left_content = Render::profile('account');
 		try
@@ -486,7 +486,7 @@ class Controller_User extends Controller_Template {
 		if($http_status == 200)
 		{
 			//print_r( $json_result['objects']); exit;
-			$this->template->right_content = View::factory('user/contributions.tpl')
+			$this->template->right_content = View::factory('user/profile-contributions.tpl')
 			->bind('contributions', $json_result['objects'])->bind('total_count', $json_result['meta']['total_count']);
 			$this->template->left_content = Render::profile('contributions');
 		}
