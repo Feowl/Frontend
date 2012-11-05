@@ -1,7 +1,7 @@
 <div class="span6 offset1">
 	<div class="white-panel padding20">
 		<h3>{__ t='Lists of contributions'}</h3>
-		{if $total_count >= 0}
+		{if $total_count > 0}
 
 			<table class="table table-striped table-condensed">
 				<thead>
