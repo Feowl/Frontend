@@ -39,7 +39,7 @@
             </li>
         </ul> 
 
-        {if isset($smarty.session.user.name) || 1}
+        {if isset($smarty.session.user.name)}
             <ul class="nav pull-right">
                 <li>
                     <a href="{url::site('user/profile')}" class="dropdown-toggle" data-toggle="dropdown">
