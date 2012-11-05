@@ -19,16 +19,16 @@ $(document).ready(function () {
 
   $(".contribute").change(function () {
     //ger multiple powercut value
-    num = $(".contribute option:selected").val()
+    var num = $(".contribute option:selected").val()
     if ($(".contribute").val() != "Please select") {
       //@todo, refactor how the success icons are called
-      $(".success-tick").show()
+      $(".success-tick0").show()
     } else {
-      $(".success-tick").hide()
+      $(".success-tick0").hide()
     }
-    $(".contribute1").removeAttr('disabled')
-    $(".contribute1").parents(".control-group").removeClass("current")
-    $(".contribute1").parents(".control-group").addClass("current")
+    $(".contribute1").removeAttr('disabled');
+    $(".contribute").parents(".current").removeClass("current");
+    $(".contribute1").parents(".control-group").addClass("current");
     //detect last div
     if (num == 1) last_div = ".contribute1-1";
     $(".grid3, .grid2").hide();
@@ -46,8 +46,8 @@ $(document).ready(function () {
   //@todo, generalize this process
   $(".contribute1").change(function () {
     $(".contribute1-1").removeAttr('disabled')
-    $(".contribute1").parents(".control-group").removeClass("current")
-    $(".contribute1-1").parents(".control-group").addClass("current")
+    $(".contribute1").parents(".control-group").removeClass("current");
+    $(".contribute1-1").parents(".control-group").addClass("current");
     //actions when dash is post selected
     if (($(".contribute1-1").val() != "Please select") && ($(".contribute1").val() == "Please select")) {
       $(".success-tick1").hide()
