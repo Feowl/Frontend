@@ -1,6 +1,8 @@
 $(document).ready(function () {
+
   //initialize       
-  $(".endContainer, .grid2, .grid3,.js-loading-overlay").hide()
+  $(".endContainer, .grid2, .grid3, .js-loading-overlay, .success-tick").hide()
+  
   $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled', 'disabled')
   $('input[name=know]').change(function () {
     var c = this.checked
@@ -25,8 +27,8 @@ $(document).ready(function () {
       $(".success-tick").hide()
     }
     $(".contribute1").removeAttr('disabled')
-    $(".contribute1").removeClass("current")
-    $(".contribute1").addClass("current")
+    $(".contribute1").parents(".control-group").removeClass("current")
+    $(".contribute1").parents(".control-group").addClass("current")
     //detect last div
     if (num == 1) last_div = ".contribute1-1";
     $(".grid3, .grid2").hide();
@@ -44,8 +46,8 @@ $(document).ready(function () {
   //@todo, generalize this process
   $(".contribute1").change(function () {
     $(".contribute1-1").removeAttr('disabled')
-    $(".contribute1").removeClass("current")
-    $(".contribute1-1").addClass("current")
+    $(".contribute1").parents(".control-group").removeClass("current")
+    $(".contribute1-1").parents(".control-group").addClass("current")
     //actions when dash is post selected
     if (($(".contribute1-1").val() != "Please select") && ($(".contribute1").val() == "Please select")) {
       $(".success-tick1").hide()
@@ -62,8 +64,8 @@ $(document).ready(function () {
     //fill 2-1,3-1 with values of 1-1
     $(".contribute2-1,.contribute3-1").val(selected).attr('selected', true);
     $(".contribute2").removeAttr('disabled')
-    $(".contribute1-1").removeClass("current")
-    $(".contribute2").addClass("current")
+    $(".contribute1-1").parents(".control-group").removeClass("current")
+    $(".contribute2").parents(".control-group").addClass("current")
     if (last_div == ".contribute1-1") {
       $(".contribute-submit").addClass("btn-primary")
       $(".contribute-submit").removeAttr('disabled');
@@ -77,9 +79,9 @@ $(document).ready(function () {
   });
   $(".contribute2").change(function () {
     $(".contribute2-1").removeAttr('disabled')
-    $(".contribute2").removeClass("current");
+    $(".contribute2").parents(".control-group").removeClass("current");
     $(".contribute3").removeAttr('disabled');
-    $(".contribute2-1").addClass("current")
+    $(".contribute2-1").parents(".control-group").addClass("current")
     //optionaly make button clickable
     $(".contribute-submit").addClass("btn-primary")
     $(".contribute-submit").removeAttr('disabled')
@@ -102,19 +104,19 @@ $(document).ready(function () {
     if ($(".contribute2-1").val() != "Please select") {
       $(".success-tick2").show()
       $(".contribute3").removeAttr('disabled')
-      $(".contribute2-1").removeClass("current")
+      $(".contribute2-1").parents(".control-group").removeClass("current")
     } else {
       $(".success-tick2").hide()
       $(".contribute-submit").attr('disabled', 'disabled')
     }
 
-    $(".contribute3").addClass("current")
+    $(".contribute3").parents(".control-group").addClass("current")
 
   });
   $(".contribute3").change(function () {
     $(".contribute3-1").removeAttr('disabled')
-    $(".contribute3").removeClass("current")
-    $(".contribute3-1").addClass("current")
+    $(".contribute3").parents(".control-group").removeClass("current")
+    $(".contribute3-1").parents(".control-group").addClass("current")
     //optionaly make button clickable
     $(".contribute-submit").addClass("btn-primary")
     $(".contribute-submit").removeAttr('disabled')
@@ -132,7 +134,7 @@ $(document).ready(function () {
   $(".contribute3-1").change(function () {
     if ($(".contribute3-1").val() != "Please select") {
       $(".success-tick3").show()
-      $(".contribute3-1").removeClass("current")
+      $(".contribute3-1").parents(".control-group").removeClass("current")
       $(".contribute-submit").addClass("btn-primary")
     } else {
       $(".success-tick3").hide()
@@ -191,14 +193,16 @@ $(document).ready(function () {
 });
 //reset fields
 function reset_fields(form) {
+  
   $(".grid2,.grid3").hide();
   $(".contribute").removeAttr('disabled', 'disabled');
-  $(".success-tick1,.success-tick, .success-tick2").hide();
+  $(".success-tick").hide();
+
   // set its value to its first option
-  var selects = document.forms["contribute"].getElementsByTagName("SELECT");
-  for (var i = 0; i < selects.length; i++) {
-    selects.item(i).selectedIndex = 0;
-  }
+  $("select").each(function() {
+    $(this).find("option:first").prop("selected", true);
+  });
+
   $(form).children('input[type=checkbox]').each(function () {
     this.checked = false;
   });

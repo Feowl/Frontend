@@ -10,7 +10,7 @@
  */
 class Controller_Contribute extends Controller_Template {
  
-  public $template = "template/sub_template.tpl";
+  public $template = "template/template.tpl";
 	public $how_many_outage;
 	public $area;
 	public $duration;
@@ -43,12 +43,11 @@ class Controller_Contribute extends Controller_Template {
 		parent::after();
 	}
 	
-    public function action_index()
-    {
 	
-        $this->template->left_content = View::factory('contribute/how_to.tpl');
-		$this->template->right_content = View::factory('contribute/contribute.tpl');
-    }
+	public function action_index() {
+		$this->template->content = View::factory('contribute/contribute.tpl');
+  }
+
 	//handle contribute action
 	public function action_switch()
 	{
