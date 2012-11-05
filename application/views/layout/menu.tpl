@@ -39,9 +39,8 @@
             </li>
         </ul> 
 
-        {if isset($smarty.session.user.name)}
+        {if isset($smarty.session.user.name) || 1}
             <ul class="nav pull-right">
-                <li class="divider-vertical"></li>
                 <li>
                     <a href="{url::site('user/profile')}" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i> 
@@ -75,6 +74,7 @@
             <li class="{$active_home|default:''}"><a href="{url::site()}">{__ t='Home'}</a></li>
             <li class="{$active_explore|default:''}"><a href="{url::site('explore')}">{__ t='Explore'}</a></li>
             <li class="{$active_contribute|default:''}"><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+            <li class="divider-vertical"></li>
 		</ul>
 
     </div>
