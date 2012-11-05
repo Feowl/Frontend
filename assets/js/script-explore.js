@@ -1,4 +1,3 @@
-
 (function(window, undefined) {
 
 	var explore = {
@@ -442,13 +441,6 @@
 	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
 	  	});
 
-			// Hightlight
-			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
-				$(this).css("stroke", "#075156");
-			});
-			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
-				$(this).css("stroke", "black");
-			}); */
 
 		} catch (err) {
 			console && console.log(err);
@@ -559,8 +551,6 @@
 		// Add the events
 		explore.bindEvents();		 		
 
-	})();
-
-	
+	})();	
 
 })(window);
