@@ -182,11 +182,14 @@ class Controller_User extends Controller_Template {
   
   // user forgot password
   public function action_forgot_password() {
+    
+    // Change the template dynamicly
+    $this->template = View::factory("template/template.tpl");
+
     //check if the user is logged in
     $this->action_already_logged_in();
     
-    $this->template->right_content = View::factory('user/forgot_password.tpl')->bind('message', $message)->bind('password', $password);
-    $this->template->left_content  = View::factory('user/forgot_info.tpl');
+    $this->template->content = View::factory('user/forgot-password.tpl')->bind('message', $message)->bind('password', $password);    
     
     if (HTTP_Request::POST == $this->request->method()) {
       $email = $this->request->post('email');
