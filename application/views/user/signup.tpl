@@ -8,7 +8,7 @@
 		<div class="span4 offset4">		
 			<h1 class="white-color bottom0 top40">{__ t="Create an account"}</h1>
 			<p class="white-color bottom20 left10 right10">
-				Lorem ipsum dolor si amet. Lorem ipsum dolor si ipsum  si amet. Lorem ipsum dolor si amet.
+				{__ t='When you sign up to Feowl, you will receive SMS and you will be able to contribute right away!'}
 			</p>
 			<div class="login-form white-panel">
 
@@ -22,35 +22,30 @@
 						</div>
 					{/if}
 
-						<div class="margin20 bottom0">
-							{__ t='I have a phone, <a href="#">send my login details</a>'}									
-						</div>
-						<hr />
-
 						<div class="margin20">
 
 
-							<p class="row-fluid">
+							<p class="row-fluid control-group">
 								<label for="user_name">{__ t='Name'}*</label>
 								<input type="text" class="span12" id="user_name" name="username" placeholder="Ex: John Do" />
 							</p>	
 								
-							<p class="row-fluid bottom10">	
+							<p class="row-fluid bottom10 control-group">	
 								<label for="user_email">{__ t='E-mail'}*</label>
 								<input type="text" class="span12" id="user_email" name="useremail" placeholder="Ex: jd@example.org" />
 							</p>	
 							
-							<p class="row-fluid bottom10">	
+							<p class="row-fluid bottom10 control-group">	
 								<label for="pwd">{__ t='Password'}*</label>						
 								<input type="password" class="span12" id="pwd" name="userpassword" placeholder="{__ t='More than 8 characters'}" />
 							</p>	
 							
-							<p class="row-fluid bottom10">	
+							<p class="row-fluid bottom10 control-group">	
 								<label for="phone_number">{__ t='GSM Phone Number'}</label>						
 								<input type="text" class="span12" id="phone_number" name="phonenumber" placeholder="060000" />
 							</p>	
 							
-							<p class="row-fluid bottom10">	
+							<p class="row-fluid bottom10 control-group">	
 								<label for="distribution">{__ t='How often do you want to contribute ?'}</label>						
 								<select id="distribution" name="frequency">
 									<option value="0">{__ t='I\'m not sure'}</option>
