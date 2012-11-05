@@ -8,7 +8,7 @@
 		<div class="span4 offset4">		
 			<h1 class="white-color bottom0 top40">{__ t="Create an account"}</h1>
 			<p class="white-color bottom20 left10 right10">
-				Lorem ipsum dolor si amet. Lorem ipsum dolor si ipsum  si amet. Lorem ipsum dolor si amet.
+				{__ t='When you sign up to Feowl, you will receive SMS and you will be able to contribute right away!'}
 			</p>
 			<div class="login-form white-panel">
 
