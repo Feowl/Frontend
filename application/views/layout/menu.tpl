@@ -39,21 +39,21 @@
             </li>
         </ul> 
 
-		{if isset($smarty.session.user.name)}
+        {if isset($smarty.session.user.name)}
             <ul class="nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="divider-vertical"></li>
+                <li>
+                    <a href="{url::site('user/profile')}" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i> 
-    						{$smarty.session.user.name}
-                        <b class="caret"></b>
+    					{$smarty.session.user.name}                        
                     </a>
-                    <ul class="dropdown-menu"> 					
-                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
-                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
-    					<li class="divider"></li>
-    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
-                    </ul>
                 </li>
+    		    <li>
+                    <a href="{url::site('user/logout')}">                        
+                        <i class="icon-off"></i> 
+                        {__ t='Logout'}
+                    </a>
+                </li>					
             </ul>
 		{else}		 
             <div class="pull-right">                  

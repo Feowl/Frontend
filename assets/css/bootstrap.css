@@ -3847,7 +3847,7 @@ input[type="submit"].btn.btn-mini {
   margin: 0 9px;
   overflow: hidden;
   background-color: #ffffff;
-  border-right: 1px solid #ffffff;
+  border-right: 1px solid #DADADA;
 }
 
 .navbar .nav.pull-right {
