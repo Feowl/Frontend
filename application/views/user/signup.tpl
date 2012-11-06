@@ -58,7 +58,7 @@
 
 							<div class="row-fluid top20">
 								<div class="span6 tl top10">
-									<a href="{URL::site('user/login')}">{__ t='Have an account? Login'}</a>
+									<a href="{URL::site('user/login')}">{__ t='Already an account? Log in'}</a>
 								</div>
 								<div class="span6 tr">
 									<input type="submit" class="btn btn-primary btn-large" name="submit" value="Sign up" />

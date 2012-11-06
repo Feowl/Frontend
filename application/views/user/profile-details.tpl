@@ -1,4 +1,4 @@
-<div class="span6 top20">
+<div class="span6 offset1 ">
   <div class="account-form white-panel">    
 
     <form method='post' action="{url::site('user/account')}" class="form-horizontal" id="signup">
@@ -71,12 +71,19 @@
 	      <div class="control-group light-border">
 	        <label class="control-label" for="">{__ t='Repeat new password'}</label>
 	        <div class="controls">
-	          <input type="password" class="span3" id="pwd" name="repeat_newpassword"
-	          rel="popover">
+	          <input type="password" class="span3" id="pwd" name="repeat_newpassword" rel="popover">
 	        </div>
 	      </div>
-	      <div class="tr right0">
-	        <input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value="{__ t='Update Profile'}" />   
+	      <div class="row-fluid">
+	      	<div class="span6 top10">
+						<i class="icon-remove-circle"></i>
+						<a href="{URL::site('user/delete')}" class="danger-link" />
+							{__ t='Delete my account'}
+						</a>
+	      	</div>
+	      	<div class="span6 tr">
+	        	<input type='submit' class="btn btn-primary btn-large sbtn" name='submit' value="{__ t='Update Profile'}" />   
+	        </div>
 	      </div>
 
 	    </div>

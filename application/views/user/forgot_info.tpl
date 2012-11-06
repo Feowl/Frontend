@@ -1,1 +1,0 @@
-  <div class="span5">  <h2>{__ t='Forgot your password ?'}</h2>  <p>{__ t='Give us your email and we would send you a new password'}  </p>           <small>{__ t='Feowl team.'}</small>            </div>
