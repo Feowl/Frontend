@@ -23,7 +23,37 @@
 
 		<div class="row">
 			
-			<div class="span4 offset7 home white-panel" id="explore-space">
+			<div class="span7">				
+				<h2 class="left30 top20 bottom20">How it works?</h2>		
+				
+				<div class="right20 left30">
+					<div class="row-fluid">
+						<div class="span4 what">
+							<div class="well">
+								<h3>1. {__ t="Register"}</h3>
+								{__ t="Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!"}
+							</div>
+						</div>
+
+						<div class="span4 what">
+							<div class="well">
+								<h3>2. {__ t="Contribute"}</h3>
+								{__ t="We'll send you an SMS each morning (or less!) asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!"}
+							</div>
+						</div>
+
+						<div class="span4 what">
+							<div class="well">
+								<h3>3. {__ t="Explore"}</h3>
+								{__ t="Feowl then produces statistics with all the information collected. It'll be a powerful source to hold energy producers and regulators to account!"}
+							</div>
+						</div>
+					</div>	
+				</div>
+
+			</div>
+
+			<div class="span4  home white-panel" id="explore-space">
 				
 				<h3>{__ t='Power cuts in Douala'}</h3>
 				<div id="explore-legend" class="tl">
@@ -47,6 +77,6 @@
 			
 			</div>
 
-		</div>		
+		</div>	
 
 	</div>

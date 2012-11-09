@@ -18,9 +18,6 @@ return array(
 
 	// views/user/signup_info.tpl
 	'Sign up' => 'Inscription', // 1
-/// TODO	'Don\'t worry, they will not contradict you when i finish with your report and others.' => '', // 1
-/// TODO	'You will be able to have a geographical look on how the mess up all this time.' => '', // 1
-/// TODO	'I intend to equip you with relevant tools to measure the quality of service you pay for.' => '', // 1
 
 	// views/user/signup.tpl
 	'Name' => 'Nom', // 20
