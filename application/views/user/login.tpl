@@ -2,7 +2,7 @@
 	<img src="{URL::base()}assets/img/home-douala.jpg" class="douala" alt="Photo: Alvise Forcellini" />
 </div>
 
-<div class="container">
+<div class="container cover-banner">
 	<div class="row">
 		<div class="span4 offset4">		
 			<h1 class="white-color bottom40 top40">{__ t="Login to your account"}</h1>
