@@ -130,8 +130,11 @@
 
 				<!-- metadata under the legend -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
-					{{! kind of sentence WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
-					{/literal}{__ t='There are {{count}} contributions'}{literal}
+					{{#if isSingle}}
+						{/literal}{__ t='There is {{count}} contribution.'}{literal}
+					{{else}}
+						{/literal}{__ t='There are {{count}} contributions.'}{literal}
+					{{/if}}
 				</script>
 
 			{/literal}

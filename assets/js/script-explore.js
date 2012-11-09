@@ -323,7 +323,7 @@
 		var   $contributions = explore.$exploreBarcharts.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template({count: data.length});
+		,     html = template({count: data.length, isSingle: data.length <= 1});
 
 		$contributions.empty();
 		$contributions.removeClass('hidden');
