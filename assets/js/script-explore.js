@@ -21,8 +21,7 @@
 	explore.bindEvents = function() {
 
 		// When we create the date slider, a "value changed" event is triggered
-		explore.$dateRange.on("userValuesChanged", explore.updateData); // for a click: call addchart directly, not to get interval_reports. -> use areaOn?
-    // ==> care for the "load-more" action
+		explore.$dateRange.on("userValuesChanged", explore.updateData); 
 		// Resize the map when we resize the window
 		$(window).on("resize", explore.resizeMap);	
 
@@ -31,9 +30,7 @@
 			// Resize the map when we resize the window
 			explore.$exploreList.delegate(".load-more", "click", explore.moreReports);	
 			// Deleting barchart view
-			explore.$exploreMap.on("click", explore.removeMapGraphs); // Acting for both clicks to charge and to delete -> not() does not change anything
-      // Resets list if barchart is deleted
-      explore.$exploreMap.on("click", explore.updateData); // it should work for chart charging only, not chart deleting. But how?      
+			explore.$exploreMap.on("click", explore.removeMapGraphs);
 			// Change the order of the list
 			explore.$exploreList.delegate("th[data-sort]", "click", explore.changeListOrder);		
 		}
@@ -46,7 +43,6 @@
 	 */
 	explore.removeMapGraphs = function(event) {
 
-    console.log("removeMapGraphs");
 		// If we are not clicking on a map element
 	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 
 
@@ -140,8 +136,6 @@
 	};
 
 	explore.drawChart = function(reports) {
-
-    console.log("appel du callback drawchart");
 
 		var half   = 0,
 				two    = 0,
@@ -416,9 +410,6 @@
 	explore.updateMap = function() {
 
 		try {
-			
-			// Hide the map chart
-			explore.removeMapGraphs();
 
 			// limits are linked to to the times of average electricity cuts (in seconds)
 			explore.colorscale = new chroma.ColorScale({
@@ -468,8 +459,6 @@
 	
 	explore.updateData = function(event) {
 
-
-console.log("updateData");
 		// Catch an event, we reset the current page
 		if(event !== undefined) explore.currentPage = 0;
 

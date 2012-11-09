@@ -6,7 +6,7 @@
 			
 			<div class="white-panel">
 
-				<div id="explore-space">
+				<div id="explore-space" class="relative">
 
 					<div class="row-fluid">
 
