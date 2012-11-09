@@ -128,8 +128,16 @@
 
 				</script>
 
+				<!-- bar chart popup-->
+				<script id="tpl-proportion-popup" type="text/x-handlebars-template">
+					{/literal}{__ t='In {{place}} between the {{dateStart}} and the {{dateEnd}},
+					<strong>{{proportion}}% of respondents</strong> had their power cut between {{intervalStart}} and {{intervalEnd}}
+					on any given day'}{literal}
+				</script>
+
 				<!-- metadata under the legend -->
 				<script id="tpl-reports-summary" type="text/x-handlebars-template">
+					{{! kind of sentence WANTED: 5,623 Responses out of 28,112 participants living in Douala III (20%) }}
 					{{#if isSingle}}
 						{/literal}{__ t='There is {{count}} contribution.'}{literal}
 					{{else}}

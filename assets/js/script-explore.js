@@ -1,4 +1,5 @@
 (function(window, undefined) {
+  "use strict";
 
 	var explore = {
 		map:null,
@@ -117,7 +118,7 @@
 		};
 
 		// Prepare the bar chart area
-		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarchartsArea.empty();
 		explore.$exploreBarcharts.removeClass('hidden');	
 		// Stores the name of the district clicked
 		explore.$exploreBarcharts.data('district', pathName);
@@ -127,7 +128,7 @@
     var $title = explore.$exploreBarcharts.find("h4");
     // CHOICE: a html presentation might be better
     // @TODO use an html template to allow multiple languages (here an example)    
-    $title.html( $title.data("tpl").replace("%s", pathName) );
+    $title.html( $title.data("tpl").replace("%s", getText(pathName) ) );
 
 		// Load every reports for this interval
 		$.getJSON("json/area_reports/", params, explore.drawChart);
@@ -182,12 +183,13 @@
   	explore.$exploreBarchartsArea.empty();
 
 
-    var r = Raphael("explore-barchart-area"),
-  			txtattr = { font: "14px verdana" },
+    explore.barChart = Raphael("explore-barchart-area");
+  	var	txtattr = { font: "14px verdana" },
+       barIndex = 0,
   			total_p = (half+two+four+more)/100,
 		 		openTooltip = function() {
 		 			$(this.node).qtip({
-		 					content: explore.getBarchartTooltip(this.value), 
+		 					content: explore.getBarchartTooltip(this), 
 		 					show: { 
 		 						ready: true 
 		 					},
@@ -201,12 +203,15 @@
 		    },
 				closeTooltip = function() { /* Nothing yet */ },
    			drawChart = function() {
-		 			
+
+          // Adds an index to each bar
+          this.bar.index = barIndex++; 
+
 		 			// Bar style
 		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
 
   		 		// Create the bar flag
-					this.flag = r.popup(
+					this.flag = explore.barChart.popup(
 						this.bar.x, 
 						this.bar.y, 
 						this.bar.value + "%" || "0%"
@@ -223,7 +228,7 @@
     } else {
 
     	// Create the bar chart
-    	var bc = r.barchart(
+    	var bc = explore.barChart.barchart(
     		// Positions
     		30, 20,
     		// Dimensions
@@ -247,20 +252,37 @@
 
 	};
 
-	explore.getBarchartTooltip = function(value) {		
+	explore.getBarchartTooltip = function(el) {	
 
-		var   str = [],
-				place = "Douala I",
-		dateStart = "yesterday",
-		  dateEnd = "today",
-		 interval = "30min and 2h";
+    // Extract the dates from the range
+    var  dates = explore.$dateRange.dateRangeSlider("values"),
+    // Index of the bar to determines the interval
+    intervalId = el.bar.index;
 
-		str.push("In " + place + ", Between " + dateStart + " and " + dateEnd + ",");
-		str.push(value + "% of respondents had their power cut between " + interval);
-		str.push("on any given day.");
+    var data = {
+			place         : getText( explore.$exploreBarcharts.data('district') ),
+		  dateStart     : explore.getLocaleShortDateString(dates.min),
+		  dateEnd       : explore.getLocaleShortDateString(dates.max),
+		  intervalStart : explore.getIntervalWording(intervalId).start,
+      intervalEnd   : explore.getIntervalWording(intervalId).end,
+      proportion    : el.bar.value
+    };  
+  
+    var source = $("#tpl-proportion-popup").html()
+    , template = Handlebars.compile(source);
 
-		return str.join("\n");
-	}
+    return template(data);
+	};
+
+  explore.getIntervalWording = function(id) {
+
+    return [
+      { start: getText("0 minute"),   end:getText("30 minutes")},
+      { start: getText("30 minutes"), end:getText("2 hours")},
+      { start: getText("2 hours"),    end:getText("4 hours")},
+      { start: getText("4 hours"),    end:getText("more")}
+    ][id];
+  };
 
 	/**
 	 * Draw the list
@@ -440,7 +462,7 @@
 	  		}
 
 	  		// @TODO : use an HTML template 
-	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+	    	return [getText(d.id), getText('Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>').replace("%s", avg_duration) ];
 	  	});
 
 
@@ -518,8 +540,7 @@
 		explore.map.resize(mapWidth, mapHeight);
 	};
 
-	(explore.init = function() {
-		"use strict";
+	explore.init = function() {
 
 		// Element to use to create the date slider
 		explore.$dateRange = $("#explore-range-slider");
@@ -553,6 +574,14 @@
 		// Add the events
 		explore.bindEvents();		 		
 
-	})();	
+	};
+
+  // Load messages first
+  $.getJSON(window.BASE_URL + "locale/explore", function(messages) {
+    // Save the messages
+    window.messages = messages;
+    // Launch the map
+    explore.init();
+  });
 
 })(window);

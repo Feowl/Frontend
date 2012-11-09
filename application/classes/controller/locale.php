@@ -58,6 +58,28 @@ class Controller_locale extends Controller {
     return $this->send_json($messages);
   }
   
+  /**
+   * Send the explore messages as a json object
+   * @access  public    
+   */
+  public function action_explore() {
+
+    $messages = array(      
+      "0 minute" => __("0 minute"),
+      "30 minutes" => __("30 minutes"),
+      "2 hours" => __("2 hours"),
+      "4 hours"  => __("4 hours"),
+      "more" => __("more"),
+      "Douala-I" => __("Douala&nbsp;I"),
+      "Douala-II" => __("Douala&nbsp;II"),
+      "Douala-III" => __("Douala&nbsp;III"),
+      "Douala-IV" => __("Douala&nbsp;IV"),
+      "Douala-V" => __("Douala&nbsp;V"),
+      "Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>" => __("Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>")
+    );
+
+    return $this->send_json($messages);
+  }
   
    
 }

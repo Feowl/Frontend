@@ -2,6 +2,17 @@
 localStorage.clear();
 less.refresh();
 
+
+/**
+ * Get a translated message using the global variable window.messages
+ */
+function getText(key) {
+    // Creates the object if doesnt exist
+    window.messages = window.messages || {};
+    // Returns the value or the key itself
+    return window.messages[key] || key;
+}
+
 /**
  *  Adds a loading overlay on the element
  * 
