@@ -318,10 +318,12 @@
 	 */
 	explore.displayMetadata = function(data) {
 
+    if(data.list) return;
+
 		var   $contributions = explore.$exploreBarcharts.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template(data);
+		,     html = template({count: data.length});
 
 		$contributions.empty();
 		$contributions.removeClass('hidden');
