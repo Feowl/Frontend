@@ -12,7 +12,7 @@
 					</p>
 					<p>
 						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">Contribute to Feowl</a>
-						<a class="btn btn-giant left10" href="{URL::base()}pages/">Not in Douala?</a>
+						<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">Not in Douala?</a>
 					</p>
 				</div>
 			</div>
