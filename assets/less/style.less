@@ -1,11 +1,11 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 
-@import "tools.less?s";
+@import "tools.less";
 @import "layouts.less";
 @import "explore.less";
 
-
+a { cursor:pointer; }
 #header-step { height:@navbarHeight; }
 
 .page-header { padding-bottom:0; }
@@ -201,8 +201,15 @@ margin-left: 10px;
   vertical-align: text-top;
   width: 14px;
   background-position: -72px -96px;
-  display:inline-block;
+  display:none;
+  .succeed & {
+    display:inline-block;
+  }
+  .succeed.inactive & {
+    display:none;
+  }
 }
+
 	
 .center{
 	margin:0 auto;
@@ -222,5 +229,21 @@ margin-left: 10px;
 
   &:hover {
     color:lighten(@red, 20%);    
+  }
+}
+
+.detail.inactive {
+  
+  position:relative;
+  
+
+  &:after {
+    content:"";
+    #gradient > .striped(fade(#aaa, 20%) );
+    position:absolute;
+    top:0; bottom:0;
+    left:-24px; right:0;
+    border:0;
+    border-left:1px solid white;
   }
 }

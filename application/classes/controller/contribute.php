@@ -37,6 +37,7 @@ class Controller_Contribute extends Controller_Template {
 	{
 		// Adds all optional javascript files
 		$this->template->files_javascript = array(		
+			url::base()."assets/js/global.js",
 			url::base()."assets/js/script-contribute.js"
 		);	
 		$this->template->active_contribute = "active";
