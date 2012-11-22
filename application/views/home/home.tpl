@@ -25,7 +25,7 @@
 		<div class="row">
 			
 			<div class="span7">				
-				<h2 class="left30 top20 bottom20">How it works?</h2>		
+				<h2 class="left30 top20 bottom20">How it works</h2>		
 				
 				<div class="right20 left30">
 					<div class="row-fluid">
@@ -39,7 +39,7 @@
 						<div class="span4 what">
 							<div class="well">
 								<h3>2. {__ t="Contribute"}</h3>
-								{__ t="We'll send you an SMS each morning (or less!) asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!"}
+								{__ t="We'll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!"}
 							</div>
 						</div>
 

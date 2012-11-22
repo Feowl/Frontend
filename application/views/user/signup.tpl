@@ -8,7 +8,7 @@
 		<div class="span4 offset4">		
 			<h1 class="white-color bottom0 top40">{__ t="Create an account"}</h1>
 			<p class="white-color bottom20 left10 right10">
-				{__ t='When you sign up to Feowl, you will receive SMS and you will be able to contribute right away!'}
+				{__ t='When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!'}
 			</p>
 			<div class="login-form white-panel">
 
@@ -42,7 +42,7 @@
 							
 							<p class="row-fluid bottom10 control-group">	
 								<label for="phone_number">{__ t='GSM Phone Number'}</label>						
-								<input type="text" class="span12" id="phone_number" name="phonenumber" placeholder="060000" />
+								<input type="text" class="span12" id="phone_number" name="phonenumber" placeholder="Ex: 060000" />
 							</p>	
 							
 							<p class="row-fluid bottom10 control-group">	
@@ -57,15 +57,15 @@
 							
 
 							<div class="row-fluid top20">
-								<div class="span6 tl top10">
-									<a href="{URL::site('user/login')}">{__ t='Already an account? Log in'}</a>
+								<div class="span8 tl top05">
+									<p class="bottom0 top0">{__ t='* Required field.'}</p>
+									<p><a href="{URL::site('user/login')}">{__ t='Already have an account? Log in'}</a></p>
 								</div>
-								<div class="span6 tr">
+								<div class="span4 tr">
 									<input type="submit" class="btn btn-primary btn-large" name="submit" value="Sign up" />
 								</div>
 							</div>
 							
-
 						</div>
 							
 				</form>

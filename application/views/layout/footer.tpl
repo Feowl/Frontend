@@ -17,9 +17,9 @@
 			<div class="row">
 				<div class="offset2 span8 tc">
 					<p class="mentions">
-						{__ t='Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.'}
+						{__ t='Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.'}
 						<br />
-						{__ t='It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.'}
+						{__ t='It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.'}
 					</p>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 	
 	{* Optional js *}
 	{if isset($files_javascript)}
-	{include file='tool/header-file.tpl' type='js'  list=$files_javascript after="" before=""}
+		{include file='tool/header-file.tpl' type='js'  list=$files_javascript after="" before=""}
 	{/if}
 
 	</body>

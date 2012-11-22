@@ -35,7 +35,7 @@
 
 					<div class="row-fluid">
 						<div class="span6 tl top10">
-							<a href="{url::site('user/forgot_password')}" >{__ t='Forget your password?'}</a>				
+							<a href="{url::site('user/forgot_password')}" >{__ t='Forgot your password?'}</a>				
 						</div>
 						<div class="span6 tr">
 							<input type='submit' class="btn btn-primary btn-large" name='submit' value='{__ t='Login'}'/>
