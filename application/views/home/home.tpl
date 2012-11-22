@@ -5,13 +5,14 @@
 
 		<div class="welcome">
 			<div class="container">
-				<div class="span5">
+				<div class="span6">
 					<h2>{__ t='Welcome to Feowl'}</h2>		
 					<p>
 						{__ t='Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.'}
 					</p>
 					<p>
-						<a class="btn btn-giant btn-primary btn-giant" href="{url::site('contribute')}">Contribute to Feowl</a>
+						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">Contribute to Feowl</a>
+						<a class="btn btn-giant left10" href="{URL::base()}pages/">Not in Douala?</a>
 					</p>
 				</div>
 			</div>
