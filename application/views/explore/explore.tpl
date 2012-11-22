@@ -57,7 +57,6 @@
 								<th data-sort="area">{__ t='District'}</th>
 								<th data-sort="duration">{__ t='Duration'}</th>
 								<th data-sort="happened_at" class="sorted">{__ t='Date'}</th>
-								<th data-sort="quality">{__ t='Quality'}</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -65,12 +64,11 @@
 								<th data-sort="area">{__ t='District'}</th>
 								<th data-sort="duration">{__ t='Duration'}</th>
 								<th data-sort="happened_at" class="sorted">{__ t='Date'}</th>
-								<th data-sort="quality">{__ t='Quality'}</th>
 							</tr>
 						</tfoot>
 						<tbody>
 							<tr>
-								<td colspan="4" class="tc">{__ t='Loading'}</td>
+								<td colspan="3" class="tc">{__ t='Loading'}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -89,7 +87,6 @@
 								<td>{{district_name area}}</td>
 								<td>{{duration}}</td>
 								<td>{{short_date_string happened_at}}</td>
-								<td>{{quality}}</td>
 							</tr>
 				  	{{/list}}
 
@@ -111,14 +108,13 @@
 									<td>{{district_name area}}</td>
 									<td>{{duration}}</td>
 									<td>{{short_date_string happened_at}}</td>
-									<td>{{quality}}</td>
 								</tr>
 
 			  			{{/each}}
 
 			  		{{else}}
 							<tr>
-								<td colspan="4" class="tc">
+								<td colspan="3" class="tc">
 									{/literal}{__ t='No reports submited for that period'}{literal}
 								</td>
 							</tr>
