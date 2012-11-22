@@ -399,9 +399,6 @@
 			explore.addChart(data, areaOn);
 		}
 
-    explore.map.addLayer('land', {  
-      name:"land"
-    })
 
     explore.map.addLayer('douala-arrts', {          
       key: 'id',
