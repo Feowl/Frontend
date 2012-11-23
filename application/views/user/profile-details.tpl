@@ -5,12 +5,6 @@
 
       <div class="padding20">
 
-	    	{if isset($alert)}
-		      <div class="alert">{$alert}	<a class="close" data-dismiss="alert" href="#">&times;</a></div>	      
-	      {elseif isset($notice)}
-		      <div class="alert">{$notice}	<a class="close" data-dismiss="alert" href="#">&times;</a></div>	
-	      {/if}
-
 	    	<h3>{__ t='Change my informations'}</h3>			
 				<div class="control-group light-border">
 					<label class="control-label" for="">{__ t='Name'}*</label>
@@ -27,9 +21,13 @@
 				</div>
 
 				<div class="control-group light-border">
-					<label class="control-label" for="">{__ t='GSM Phone Number'}*</label>
+					<label class="control-label" for="">{__ t='GSM Phone Number'}</label>
 					<div class="controls">
-						<input type="text" class="span3" id="phone_number" name="phonenumber" value="{$user.phone_number}" rel="popover" >
+						{if is_numeric($user.phone_number)}
+							<input type="text" class="span3" id="phone_number" name="phonenumber" value="{$user.phone_number}" rel="popover" >
+						{else}
+							<input type="text" class="span3" id="phone_number" name="phonenumber" value="" rel="popover" >
+						{/if}
 					</div>
 				</div>
 
@@ -57,21 +55,21 @@
 	      <div class="control-group light-border">
 	        <label class="control-label" for="">{__ t='Current password'}</label>
 	        <div class="controls">
-	          <input type="password" class="span3" id="pwd" name="password" rel="popover">
+	          <input type="password" class="span3" name="password" rel="popover">
 	        </div>
 	      </div>
 
 	      <div class="control-group light-border">
 	        <label class="control-label" for="">{__ t='New password'}</label>
 	        <div class="controls">
-	          <input type="password" class="span3" id="pwd" name="newpassword" rel="popover">
+	          <input type="password" class="span3" name="newpassword" rel="popover">
 	        </div>
 	      </div>
 
 	      <div class="control-group light-border">
 	        <label class="control-label" for="">{__ t='Repeat new password'}</label>
 	        <div class="controls">
-	          <input type="password" class="span3" id="pwd" name="repeat_newpassword" rel="popover">
+	          <input type="password" class="span3" name="repeat_newpassword" rel="popover">
 	        </div>
 	      </div>
 	      <div class="row-fluid">

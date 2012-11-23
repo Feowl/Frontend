@@ -58,7 +58,7 @@ class Controller_Json extends Controller {
 		// Parse the json object
 		$body = json_decode($rep->body);
 		// Decode the json body and records the aggregated objects
-		$res = array("list" => $body->objects );
+		$res = array("list" => $body->objects ? $body->objects : array() );
 		// Add a current_page parameter
 		$res += array("current_page" => $currentPage);
 		// Add a next_page parameter if there is a next page
@@ -121,6 +121,7 @@ class Controller_Json extends Controller {
 
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("reports-aggregation/", $params);		
+
 
 		// Decode the json body and records the aggregated objects
 		$res = array("aggregation" => json_decode($rep->body)->objects );

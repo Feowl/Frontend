@@ -102,11 +102,10 @@ $(document).ready(function () {
     url = "contribute/switch?content=" + content
 
     //@todo do inline validation 
-    $.get(url, function (data) {
+    $.getJSON(url, function (data) {
       // Get out of the loading mode
       $contribute.loading(false);
-      $(".endContainer").show()
-      $(".endContainer .alert").append(data).show();
+      window.location = data.url;
     })
 
     return false;

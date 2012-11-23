@@ -37,10 +37,15 @@
 
 				  </form>	
 				{else}
-				  <div class="alert">
-				  	{__ t='Your Password has been resetted: Check your E-mail for your new password'}
-				    <a class="close" data-dismiss="alert" href="#">&times;</a>
-				  </div>
+					<div class="padding20 bottom0">
+					  {__ t='Your Password has been resetted: Check your E-mail for your new password.'}				 	
+			      <div class="top10">		      	
+		      		<a href="{url::site('user/login')}">
+		      			<i class=" icon-arrow-left"></i>
+		      			Go back to log in.
+		      		</a> 
+			      </div>
+			     </div>
 				{/if}
 			</div>
 		</div>

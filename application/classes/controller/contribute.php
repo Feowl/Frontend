@@ -51,11 +51,13 @@ class Controller_Contribute extends Controller_Template {
   
   //handle contribute action
   public function action_switch() {
+
     //check for ajax request
-    if (HTTP_Request::GET == $this->request->method() AND $this->request->is_ajax()) {
+    if (HTTP_Request::GET == $this->request->method()) {
       //prepare variables
       $e         = explode(",", Arr::get($_GET, 'content'));
       $count_var = count($e);
+
       //@todo, scale it to n power cuts
       if ($e[1] != 1) {
         //iterate to report several power cuts
@@ -103,23 +105,26 @@ class Controller_Contribute extends Controller_Template {
           $data_string            = str_replace("\\", "", $data_string);
           //Model returns an array of status code and json data
           $results                = Model_Reports::create_report($data_string);
-        }
-      } else {
-        //no power cut
+
+		      //we expect just the final result from the api if more than 1 power cut			
+		      $http_status = json_decode($results['http_status']);
+		      $json_result = json_decode($results['json_result'], true);
+		      
+		      if ($http_status == 201) {
+        		Session::instance()->set('alert', __("Thank you, your contribution has been taken into account.") );
+		        //redirect to explore
+		      } elseif (isset($json_result['error_message'])) {
+		        Session::instance()->set('alert', $json_result['error_message']);
+		      }
+			 	}
       }
-      
-      //we expect just the final result from the api if more than 1 power cut			
-      $http_status = json_decode($results['http_status']);
-      $json_result = json_decode($results['json_result'], true);
-      
-      if ($http_status == 201) {
-        echo __("Thank you, your contribution has been taken into account.");
-        //redirect to explore
-      } elseif (isset($json_result['error_message'])) {
-        echo $json_result['error_message'];
-      }
-      exit;
-      //@todo, return the right notice and display with twitter boostrap
+
+
+	 		// Change the content type for JSON
+	 		$this->response->headers('Content-Type','application/json')->send_headers();
+			//Request::initial()->response($r);
+			echo json_encode( array("url" =>  url::site('user/contributions') ) );
+			exit;
     }
   }
   

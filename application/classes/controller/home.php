@@ -50,11 +50,14 @@ class Controller_Home extends Controller_Template {
 			url::base()."assets/js/global.js",
 			url::base()."assets/js/script-explore.js",
 		);
+
 		$this->template->active_home = "active";
+		
 		$alert = $this->session->get_once('alert');
 		if(isset($alert)){
 			$this->template->alert = $alert;
 		}
+		
 		parent::after();		
 	}
 

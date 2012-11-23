@@ -25,6 +25,8 @@ class Controller_User extends Controller_Template {
     $this->session = Session::instance();
     //instantiate user model
     $this->model   = new Model_Users;
+
+    
   }
   
   //Use the after method to load static files
@@ -34,6 +36,13 @@ class Controller_User extends Controller_Template {
       url::base() . "assets/js/script-user.js",
       "http://jzaefferer.github.com/jquery-validation/jquery.validate.js"
     );
+
+    // Error message
+    $alert = $this->session->get_once('alert');
+    if(isset($alert)){
+      $this->template->alert = $alert;
+    }
+    
     parent::after();
   }
   
@@ -82,18 +91,17 @@ class Controller_User extends Controller_Template {
     
     $this->template->content = View::factory('user/signup.tpl')->bind('error', $error)->bind('loader', $loader);
     
-    if (HTTP_Request::POST == $this->request->method()) { //echo "I love Feowl"; exit;
-      //echo "<div class='js-loading-overlay' style='display: block;'></div>";
-      //$loader = true;
+    if (HTTP_Request::POST == $this->request->method()) { 
+
       try {
         //build json items
         $json_items['name']      = Arr::get($_POST, 'username');
         $json_items['password']  = Arr::get($_POST, 'userpassword');
-        $email                   = $json_items['email'] = Arr::get($_POST, 'useremail');
+        $json_items['email']     = $email = Arr::get($_POST, 'useremail');
         $json_items['language']  = mb_strtoupper(i18n::lang());
         $json_items['frequency'] = Arr::get($_POST, 'frequency');
         $phone_number            = Format::phone_number(Arr::get($_POST, 'phonenumber'));
-        
+
         //send to api
         $data_string = json_encode($json_items);
         $results     = Model_Contributors::post_contributor($data_string);
@@ -101,8 +109,6 @@ class Controller_User extends Controller_Template {
         //$json_result = json_decode($results['json_result']); 
         $http_status = $results['http_status'];
         $json_result = $results['json_result'];
-        
-        //print_r($json_result); exit;
         
         if ($http_status == 201) {
           //contributor device number #mobile
@@ -119,28 +125,29 @@ class Controller_User extends Controller_Template {
           //login the user
           $this->model->force_login($r['objects'][0]['id']);
           
-          $notice = "Thanks for signing up!";
+          $notice = __("Thanks for signing up!");
           //set notice in session
           $this->session->set('alert', $notice);
           Request::current()->redirect('home');
+
         } elseif (isset($json_result)) {
           $error_string = $pieces = explode(" ", $json_result);
           if (in_array("name", $error_string)) {
-            $error = "This name is already in use";
-          } elseif (in_array("email", $error_string)) {
-            $error = "This e-mail address is already in use. Forgot your password ?";
+            $error = __("This name is already in use");
+          } elseif (in_array("email", $error_string)) {            
+            $error = __("This e-mail address is already in use. Forgot your password ?");
           } else {
-            $error = "Technical Error. PLease try again Later";
+            $error = __("Technical Error. PLease try again Later");
           }
           //$error_1 = $json_result['error_message']; 
         } else {
-          $error = "Technical Error. PLease try again Later";
+          $error = __("Technical Error. PLease try again Later");
         }
         //@todo force login to next step
       }
       catch (Exception $e) {
         // Set failure message TODO: Set various notices
-        $this->session->set('alert', "Technical Error :)");
+        $this->session->set('alert', __("Technical Error. PLease try again Later") );
       }
     }
   }
@@ -206,9 +213,9 @@ class Controller_User extends Controller_Template {
         Model_Contributors::reset_password($json_encode, $user["id"]);
         $message = "User exist. $password";
         $message = View::factory('user/new_password.tpl')->bind("name", $user["name"])->bind("password", $password);
-        $headers = "From: iamfeowl@gmail.com";
+        $headers = "From: contact@feowl.com";
         
-        mail($email, "Password Reset", $message, $headers);
+        mail($email, __("Feowl: Password Reset"), $message, $headers);
       } else {
         $message = 'We can\'t find your E-mail in our system';
       }
@@ -241,8 +248,8 @@ class Controller_User extends Controller_Template {
     
     if ($q == "yes") {
       //sucess notice
-      $notice_success = $username . " your account has been deleted";
-      $notice_failure = $username . " oops something went wrong, Please try again";
+      $notice_success = $username . ", your account has been deleted.";
+      $notice_failure = $username . ", oops something went wrong, Please try again.";
       
       //delete user account
       $delete = $this->model->delete();
@@ -268,12 +275,14 @@ class Controller_User extends Controller_Template {
   
   //accounts
   public function action_account() {
+
     //check if the user is logged in
     $this->action_check_login();
     $alert                         = $this->session->get_once('alert');
     $notice                        = $this->session->get_once('notice');
     $this->template->right_content = View::factory('user/profile-details.tpl')->bind('user', $user)->bind('notice', $notice)->bind('alert', $alert);
     $this->template->left_content  = Render::profile('account');
+    
     try {
       $user           = $this->session->get('user');
       $contributor_id = $user['id'];
@@ -308,91 +317,102 @@ class Controller_User extends Controller_Template {
       
       // if the user updates profile
       if (HTTP_Request::POST == $this->request->method()) {
+        
         //build json items	
         $password           = Arr::get($_POST, 'password');
         $newpassword        = Arr::get($_POST, 'newpassword');
         $repeat_newpassword = Arr::get($_POST, 'repeat_newpassword');
+
+                
+        if (!empty($password) || !empty($newpassword) || !empty($repeat_newpassword) ) {
         
-        //check in the user entered their present password correctly
-        $password_check_json = Model_Users::check_password($user['id'], $password);
-        $password_check      = json_decode($password_check_json['json_result'], true);
-        
-        //confirm pwd
-        if (!empty($newpassword) AND $newpassword != $repeat_newpassword) {
-          $alert = "Enter your new password and repeat it correctly";
-          $this->session->set('alert', $alert);
-          //exit;
-        } elseif (!empty($newpassword) AND $password_check['password_valid'] == false) {
-          $alert = "Enter your present password correctly";
-          $this->session->set('alert', $alert);
-        } else {
-          //$_email = Arr::get($_POST,'useremail');	
+          //check in the user entered their present password correctly
+          $password_check_json = Model_Users::check_password($user['id'], $password);
+          $password_check      = json_decode($password_check_json['json_result'], true);
           
-          if (!empty($newpassword))
-            $json_items['password'] = $newpassword;
-          
-          $_name = Arr::get($_POST, 'username');
-          //if email and or name is changed submit --- 
-          //The API would return a 404 if u submit an already existing email
-          
-          /*
-           * Email can't be modified
-           if($_email != $user['email']):
-           $json_items['email'] = $_email;
-           endif;
-           */
-          if ($_name != $user['name']):
-            $json_items['name'] = $_name;
-          endif;
-          
-          $json_items['frequency'] = Arr::get($_POST, 'frequency');
-          
-          $json_items['language'] = mb_strtoupper(i18n::lang());
-          $phonenumber            = Format::phone_number(Arr::get($_POST, 'phonenumber'));
-          
-          //send to api
-          $data_json = json_encode($json_items);
-          
-          //print_r($data_json); exit;
-          
-          $results = Model_Contributors::update_contributor($data_json, $contributor_id);
-          
-          //change user info in session
-          $this->model->force_login($user['id']);
-          
-          $http_status = json_decode($results['http_status']);
-          
-          //$http_status = 204;
-          if ($http_status == 204) {
-            //contributor device number #mobile
-            $device['category']     = 'Phone';
-            $device['phone_number'] = $phonenumber['number'];
-            $device['contributor']  = "/api/v1/contributors/" . $contributor_id . '/';
-            $device_json            = json_encode($device);
-            $device_json            = str_replace("\\", "", $device_json);
-            
-            if ($phonenumber['number'] != $user['phone_number'] AND isset($device_id)) {
-              //print_r($device_json); exit;
-              $results = Model_Devices::update_device($device_json, $device_id);
-            } else {
-              $results = Model_Devices::post_device($device_json);
-            }
-            
-            $notice = "Your profile has been updated";
-            
-            $this->session->set('notice', $notice);
-            Request::current()->redirect('user/account');
-          } else {
-            $alert = "Technical Error";
+          //confirm pwd
+          if ($newpassword != $repeat_newpassword) {
+            $alert = __("Enter your new password and repeat it correctly");
             $this->session->set('alert', $alert);
-          }
-          //@todo force login to next step
+            return;
+
+          } elseif($password_check['password_valid'] == false) {
+            $alert = __("Enter your present password correctly");
+            $this->session->set('alert', $alert);
+            return;
+
+          }  elseif( strlen($newpassword) < 8) {
+            $alert = __("Enter your new password correctly");
+            $this->session->set('alert', $alert);
+            return;
+
+          } else if($password_check['password_valid'] == false && $newpassword == $repeat_newpassword) {
+            $json_items['password'] = $newpassword;
+          } 
+
         }
+
+          
+        $_name = Arr::get($_POST, 'username');
+        //if email and or name is changed submit --- 
+        //The API would return a 404 if u submit an already existing email
+        
+        /*
+         * Email can't be modified
+         if($_email != $user['email']):
+         $json_items['email'] = $_email;
+         endif;
+         */
+        if ($_name != $user['name']):
+          $json_items['name'] = $_name;
+        endif;
+        
+        $json_items['frequency'] = Arr::get($_POST, 'frequency');
+        
+        $json_items['language'] = mb_strtoupper(i18n::lang());
+        $phonenumber            = Format::phone_number(Arr::get($_POST, 'phonenumber'));
+        
+        //send to api
+        $data_json = json_encode($json_items);
+        
+        
+        $results = Model_Contributors::update_contributor($data_json, $contributor_id);
+        
+        //change user info in session
+        $this->model->force_login($user['id']);
+        
+        $http_status = json_decode($results['http_status']);
+        
+        //$http_status = 204;
+        if ($http_status == 204) {
+          //contributor device number #mobile
+          $device['category']     = 'Phone';
+          $device['phone_number'] = $phonenumber['number'];
+          $device['contributor']  = "/api/v1/contributors/" . $contributor_id . '/';
+          $device_json            = json_encode($device);
+          $device_json            = str_replace("\\", "", $device_json);
+          
+          if ($phonenumber['number'] != $user['phone_number'] AND isset($device_id)) {
+            //print_r($device_json); exit;
+            $results = Model_Devices::update_device($device_json, $device_id);
+          } else {
+            $results = Model_Devices::post_device($device_json);
+          }
+          
+          $notice = __("Your profile has been updated");
+          
+          $this->session->set('notice', $notice);
+          Request::current()->redirect('user/account');
+        } else {
+          $alert = __("Technical Error");
+          $this->session->set('alert', $alert);
+        }
+        //@todo force login to next step
       }
     }
     catch (Exception $e) {
-      $this->session->set('alert', "Technical Error :)");
-      $alert                                = $this->session->get_once('alert');
+      $this->session->set('alert', __("Technical Error") );
+      $alert = $this->session->get_once('alert');
       //$alert = $this->session->get_once('alert');
       $this->template->right_content->alert = $alert;
       echo $e;
@@ -402,6 +422,7 @@ class Controller_User extends Controller_Template {
   
   //display logged in user contributions
   public function action_contributions() {
+
     //check if the user is logged in
     $this->action_check_login();
     

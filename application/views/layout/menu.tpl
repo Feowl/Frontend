@@ -5,10 +5,27 @@
 
     <div class="container">
 
-        <a href="{url::site()}" class="brand">
-            <img src="{url::base()}assets/img/logo_small.png" class="pull-left logo"/>
-            <span>Feowl</span>
-        </a>    
+        <div class="pull-left">
+
+            <a href="{url::site()}" class="brand pull-left right20">
+                <img src="{url::base()}assets/img/logo_small.png" class="pull-left logo"/>
+                <span>Feowl</span>
+            </a>    
+            
+            {if isset($alert) }
+                <div class="alert pull-left top10 bottom0">
+                    {$alert|default:'No content supplied'}
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>  
+            {else if isset($notice) }
+                <div class="alert pull-left top10 bottom0">
+                    {$notice|default:'No content supplied'}
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>  
+            {/if}
+
+        </div>
+
 
         <ul class="nav pull-right">
             <li class="dropdown">
