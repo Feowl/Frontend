@@ -1,5 +1,5 @@
-
 (function(window, undefined) {
+  "use strict";
 
 	var explore = {
 		map:null,
@@ -22,7 +22,7 @@
 	explore.bindEvents = function() {
 
 		// When we create the date slider, a "value changed" event is triggered
-		explore.$dateRange.on("userValuesChanged", explore.updateData);
+		explore.$dateRange.on("userValuesChanged", explore.updateData); 
 		// Resize the map when we resize the window
 		$(window).on("resize", explore.resizeMap);	
 
@@ -43,6 +43,7 @@
 	 * @param  {Object} event The triggered event
 	 */
 	explore.removeMapGraphs = function(event) {
+
 		// If we are not clicking on a map element
 	 	if(typeof event == "undefined" || event.target.nodeName != 'path') {	 
 
@@ -97,19 +98,7 @@
 
 	if (typeof(duration_total) != "undefined") {
 		var duration_total = 0;
-	}
-
-	/*Handlebars.registerHelper('duration_rate', function(key) {
-
-		// WEIRD number or NaN? > possible hints: definition NaN || way to declare variables
-		// cf. https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
-		// or http://www.diveintojavascript.com/core-javascript-reference/the-nan-property
-		// console.log(typeof(duration_total));
-		// console.log(duration_total);
-		// duration_total += key;
-
-		return duration_total;
-	});*/
+  }
 	
 	/**
 	 * Adds a bar chart for the specified district
@@ -129,7 +118,7 @@
 		};
 
 		// Prepare the bar chart area
-		explore.$exploreBarcharts.find('svg:first').remove();
+		explore.$exploreBarchartsArea.empty();
 		explore.$exploreBarcharts.removeClass('hidden');	
 		// Stores the name of the district clicked
 		explore.$exploreBarcharts.data('district', pathName);
@@ -139,7 +128,7 @@
     var $title = explore.$exploreBarcharts.find("h4");
     // CHOICE: a html presentation might be better
     // @TODO use an html template to allow multiple languages (here an example)    
-    $title.html( $title.data("tpl").replace("%s", pathName) );
+    $title.html( $title.data("tpl").replace("%s", getText(pathName) ) );
 
 		// Load every reports for this interval
 		$.getJSON("json/area_reports/", params, explore.drawChart);
@@ -155,18 +144,14 @@
 				more   = 0,
 				slider = 0;
 
-// slider = explore.$dateRange.on("userValuesChanged", true); // AF: uservch <=> slider  >> cet évé a-t-il eu lieu?
-// console.log('drawchart');
-
-		// Adaptate the User reports to the clicked area // To be called only for clicks
-		/*if() */explore.drawList(reports);
+		// Adaptate the User reports to the clicked area
+		explore.drawList(reports);
     // Display info about the current area
-		explore.displayMetadata(reports);			
+		explore.displayMetadata	(reports);			
 	
 		// Distributes the bar proportions according the list of reports
 		for( var i in reports ) {
 
-			// console.log('iteration n°' + i);
 			var report = reports[i];
 
   		switch(true) {
@@ -198,40 +183,42 @@
   	explore.$exploreBarchartsArea.empty();
 
 
-    var    r = Raphael("explore-barchart-area"),
-     txtattr = { font: "14px verdana" },
-     total_p = (half+two+four+more)/100,
- openTooltip = function() {
- 			$(this.node).qtip(
- 				{
- 					content: explore.getBarchartTooltip(this.value), 
- 					show: { 
- 						ready: true 
- 					},
- 					position: {
-						target: 'mouse',
-						adjust: {
-							mouse: true  // Can be omitted (e.g. default behaviour)
-						}
- 					}
- 				}
- 			);
-    },
-closeTooltip = function() { /* Nothing yet */ },
-   drawChart = function() {
-    		 			
-    		 			// Bar style
-    		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
+    explore.barChart = Raphael("explore-barchart-area");
+  	var	txtattr = { font: "14px verdana" },
+       barIndex = 0,
+  			total_p = (half+two+four+more)/100,
+		 		openTooltip = function() {
+		 			$(this.node).qtip({
+		 					content: explore.getBarchartTooltip(this), 
+		 					show: { 
+		 						ready: true 
+		 					},
+		 					position: {
+								target: 'mouse',
+								adjust: {
+									mouse: true  // Can be omitted (e.g. default behaviour)
+								}
+		 					}
+		 				});
+		    },
+				closeTooltip = function() { /* Nothing yet */ },
+   			drawChart = function() {
 
-	    		 		// Create the bar flag
-    					this.flag = r.popup(
-    						this.bar.x, 
-    						this.bar.y, 
-    						this.bar.value + "%" || "0%"
-    					)
-							.attr({ fill: "#168891", stroke: "#ffffff" })
-    					.insertBefore(this);
-    				};
+          // Adds an index to each bar
+          this.bar.index = barIndex++; 
+
+		 			// Bar style
+		 			this.bar.attr({fill: "#9AD3D7", stroke: "none"});
+
+  		 		// Create the bar flag
+					this.flag = explore.barChart.popup(
+						this.bar.x, 
+						this.bar.y, 
+						this.bar.value + "%" || "0%"
+					)
+					.attr({ fill: "#168891", stroke: "#ffffff" })
+					.insertBefore(this);
+    		};
 
     if( !half && !two && !four && !more ) {
     	
@@ -241,7 +228,7 @@ closeTooltip = function() { /* Nothing yet */ },
     } else {
 
     	// Create the bar chart
-    	var bc = r.barchart(
+    	var bc = explore.barChart.barchart(
     		// Positions
     		30, 20,
     		// Dimensions
@@ -265,20 +252,37 @@ closeTooltip = function() { /* Nothing yet */ },
 
 	};
 
-	explore.getBarchartTooltip = function(value) {		
+	explore.getBarchartTooltip = function(el) {	
 
-		var   str = [],
-				place = "Douala I",
-		dateStart = "yesterday",
-		  dateEnd = "today",
-		 interval = "30min and 2h";
+    // Extract the dates from the range
+    var  dates = explore.$dateRange.dateRangeSlider("values"),
+    // Index of the bar to determines the interval
+    intervalId = el.bar.index;
 
-		str.push("In " + place + ", Between " + dateStart + " and " + dateEnd + ",");
-		str.push(value + "% of respondents had their power cut between " + interval);
-		str.push("on any given day.");
+    var data = {
+			place         : getText( explore.$exploreBarcharts.data('district') ),
+		  dateStart     : explore.getLocaleShortDateString(dates.min),
+		  dateEnd       : explore.getLocaleShortDateString(dates.max),
+		  intervalStart : explore.getIntervalWording(intervalId).start,
+      intervalEnd   : explore.getIntervalWording(intervalId).end,
+      proportion    : el.bar.value
+    };  
+  
+    var source = $("#tpl-proportion-popup").html()
+    , template = Handlebars.compile(source);
 
-		return str.join("\n");
-	}
+    return template(data);
+	};
+
+  explore.getIntervalWording = function(id) {
+
+    return [
+      { start: getText("0 minute"),   end:getText("30 minutes")},
+      { start: getText("30 minutes"), end:getText("2 hours")},
+      { start: getText("2 hours"),    end:getText("4 hours")},
+      { start: getText("4 hours"),    end:getText("more")}
+    ][id];
+  };
 
 	/**
 	 * Draw the list
@@ -293,15 +297,15 @@ closeTooltip = function() { /* Nothing yet */ },
 		// Clear the table only if we are in the first page of the API OR if an area is clicked
 		if(data.current_page == 0 || data[0]) {
 			// First page, empty the table
-			console.log('empty the user reports list');
 			$tbody.empty();
 		// If not the first page
 		} else {
-			// Removed the load more button
+			// Removed the load more button to be added if necessary through explore.tpl
 			$tbody.find(".load-more").remove();
+			// If no data is available
+			if(!data.current_page) $tbody.empty();
 		}
 
-			console.log('adding to reports list');
 		// Append every items at the same time
 		$tbody.append(html);
 	};
@@ -336,10 +340,12 @@ closeTooltip = function() { /* Nothing yet */ },
 	 */
 	explore.displayMetadata = function(data) {
 
+    if(data.list) return;
+
 		var   $contributions = explore.$exploreBarcharts.find("#contributions")
 		,   source = $("#tpl-reports-summary").html()
 		, template = Handlebars.compile(source)
-		,     html = template(data);
+		,     html = template({count: data.length, isSingle: data.length <= 1});
 
 		$contributions.empty();
 		$contributions.removeClass('hidden');
@@ -388,13 +394,11 @@ closeTooltip = function() { /* Nothing yet */ },
 
     var areaOn = explore.$exploreBarcharts.data('district');
 
+    // Adds a barchart if a district is already selected
 		if(areaOn) {
 			explore.addChart(data, areaOn);
 		}
 
-    explore.map.addLayer('land', {  
-      name:"land"
-    })
 
     explore.map.addLayer('douala-arrts', {          
       key: 'id',
@@ -427,11 +431,8 @@ closeTooltip = function() { /* Nothing yet */ },
 	explore.updateMap = function() {
 
 		try {
-			
-			// Hide the map chart
-			explore.removeMapGraphs();
 
-			// limits are linked to to the times of average electricity cuts (in seconds)_____CAREFUL: data from the API are currently not consistent
+			// limits are linked to to the times of average electricity cuts (in seconds)
 			explore.colorscale = new chroma.ColorScale({
 				colors: ['#fafafa','#0A3E42'],
 				limits: [0, 1, 30, 120, 240, 1440]
@@ -458,16 +459,9 @@ closeTooltip = function() { /* Nothing yet */ },
 	  		}
 
 	  		// @TODO : use an HTML template 
-	    	return [d.id, 'Average daily duration without electricity : <br/>' + avg_duration + ' min'];
+	    	return [getText(d.id), getText('Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>').replace("%s", avg_duration) ];
 	  	});
 
-			// Hightlight
-			/* explore.map.getLayer('douala-arrts').map.container.on('mouseenter', ".douala-arrts", function() {
-				$(this).css("stroke", "#075156");
-			});
-			explore.map.getLayer('douala-arrts').map.container.on('mouseleave', ".douala-arrts", function() {
-				$(this).css("stroke", "black");
-			}); */
 
 		} catch (err) {
 			console && console.log(err);
@@ -500,6 +494,7 @@ closeTooltip = function() { /* Nothing yet */ },
 			"order_by"	: explore.$exploreList.find("th.sorted").data("sort"),
 			"desc"			: explore.$exploreList.find("th.sorted").hasClass("desc")*1
 		};
+		var areaOn = explore.$exploreBarcharts.data('district');
 
 		// Adds a loading overlay on the map
 		explore.$exploreSpace.loading();
@@ -514,7 +509,8 @@ closeTooltip = function() { /* Nothing yet */ },
 				if(data.aggregation) explore.drawMap(data);
 				// Draw the list only if we have listed reports + Displays info under the legend 
 				if(data.list) {
-					explore.drawList(data);
+					// Displays the list if it is not to be displayed through drawchart
+					if(!areaOn) explore.drawList(data);
 					explore.displayMetadata(data);
 				}
 				// Removes the loading overlay
@@ -541,8 +537,7 @@ closeTooltip = function() { /* Nothing yet */ },
 		explore.map.resize(mapWidth, mapHeight);
 	};
 
-	(explore.init = function() {
-		"use strict";
+	explore.init = function() {
 
 		// Element to use to create the date slider
 		explore.$dateRange = $("#explore-range-slider");
@@ -576,8 +571,14 @@ closeTooltip = function() { /* Nothing yet */ },
 		// Add the events
 		explore.bindEvents();		 		
 
-	})();
+	};
 
-	
+  // Load messages first
+  $.getJSON(window.BASE_URL + "locale/explore", function(messages) {
+    // Save the messages
+    window.messages = messages;
+    // Launch the map
+    explore.init();
+  });
 
 })(window);

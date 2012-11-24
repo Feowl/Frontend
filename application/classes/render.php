@@ -15,7 +15,7 @@ class Render {
 	//renders the profile sidebar
     public static function profile($current=null)
 	{
-	    return  View::factory('user/profile.tpl')->bind('active', $current);
+	    return  View::factory('user/profile-left.tpl')->bind('active', $current);
 	}
  
  

@@ -5,10 +5,27 @@
 
     <div class="container">
 
-        <a href="{url::site()}" class="brand">
-            <img src="{url::base()}assets/img/logo_small.png" class="pull-left logo"/>
-            <span>Feowl</span>
-        </a>    
+        <div class="pull-left">
+
+            <a href="{url::site()}" class="brand pull-left right20">
+                <img src="{url::base()}assets/img/logo_small.png" class="pull-left logo"/>
+                <span>Feowl</span>
+            </a>    
+            
+            {if isset($alert) }
+                <div class="alert pull-left top10 bottom0">
+                    {$alert|default:'No content supplied'}
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>  
+            {else if isset($notice) }
+                <div class="alert pull-left top10 bottom0">
+                    {$notice|default:'No content supplied'}
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>  
+            {/if}
+
+        </div>
+
 
         <ul class="nav pull-right">
             <li class="dropdown">
@@ -39,21 +56,20 @@
             </li>
         </ul> 
 
-		{if isset($smarty.session.user.name)}
+        {if isset($smarty.session.user.name)}
             <ul class="nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <li>
+                    <a href="{url::site('user/profile')}" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i> 
-    						{$smarty.session.user.name}
-                        <b class="caret"></b>
+    					{$smarty.session.user.name}                        
                     </a>
-                    <ul class="dropdown-menu"> 					
-                        <li><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
-                        <li><a href="{url::site('user/profile')}">{__ t='Profile'}</a></li>
-    					<li class="divider"></li>
-    					<li><a href="{url::site('user/logout')}">{__ t='Logout'}</a></li>					
-                    </ul>
                 </li>
+    		    <li>
+                    <a href="{url::site('user/logout')}">                        
+                        <i class="icon-off"></i> 
+                        {__ t='Logout'}
+                    </a>
+                </li>					
             </ul>
 		{else}		 
             <div class="pull-right">                  
@@ -75,6 +91,7 @@
             <li class="{$active_home|default:''}"><a href="{url::site()}">{__ t='Home'}</a></li>
             <li class="{$active_explore|default:''}"><a href="{url::site('explore')}">{__ t='Explore'}</a></li>
             <li class="{$active_contribute|default:''}"><a href="{url::site('contribute')}">{__ t='Contribute'}</a></li>
+            <li class="divider-vertical"></li>
 		</ul>
 
     </div>

@@ -28,23 +28,32 @@ class Controller_Pages extends Controller_Template {
 		//default page lands to about
 		$this->about();
 	}
-	public function action_about()
-	{
-	$this->template->content = View::factory('pages/about.tpl');
+
+	public function action_about() {
+		$this->template->content = View::factory('pages/about.tpl');
+	}
+
+	public function action_credits() {
+		$this->template->content = View::factory('pages/credits.tpl');
+	}
+
+	public function action_tos() {
+		$this->template->content = View::factory('pages/tos.tpl');
 	}
 	
+	public function action_not_in_douala() {
+		$this->template->content = View::factory('pages/not_in_douala.tpl');
+	}
+
 	public function after(){
 		// Adds optional stylesheet files in an array
-		$this->template->files_stylesheet = array(
-			url::base()."assets/css/jquery.qtip.css",	
-			url::base()."assets/less/jQRangeSlider.less",	
-		);
+		$this->template->files_stylesheet = array();
 
 		// Adds optional javascript files in an array
 		$this->template->files_javascript = array(
 			url::base()."assets/js/global.js"
 		);
-		$this->template->active_about = "active";
+
 		parent::after();		
 	}
 

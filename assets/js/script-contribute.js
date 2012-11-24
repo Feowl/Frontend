@@ -1,215 +1,115 @@
-$(document).ready(function() {
-    //initialize       
-	$(".endContainer, .grid2, .grid3,.js-loading-overlay").hide()
-    $(".contribute-submit, .contribute1, .contribute1-1, .contribute2, .contribute2-1, .contribute3, .contribute3-1").attr('disabled','disabled')
-	$('input[name=know]').change(function(){
-    var c = this.checked
-   //disable all other fields
-   if(c){
-   $(".contribute, .contribute1, .contribute1-1").attr('disabled','disabled');
-    $(".contribute-submit").addClass("btn-primary")
-    $(".contribute-submit").removeAttr('disabled')
-	 }
-	 else{
-    reset_fields();	
 
-	 }
-   });
+$(document).ready(function () {
 
-        $(".contribute").change(function(){
-		//ger multiple powercut value
-		   num = $(".contribute option:selected").val()
-			  if( $(".contribute").val() !="Please select")
-			 {
-			 //@todo, refactor how the success icons are called
-			 $(".success-tick").show()
-			 }else{
-			  $(".success-tick").hide()
-			 }
-			 $(".contribute1").removeAttr('disabled')
-			  $(".contribute1").removeClass("current")
-			 $(".contribute1").addClass("current")
-			 //detect last div
-			 if(num==1)
-			  last_div = ".contribute1-1";
-			  $(".grid3, .grid2").hide();
-		      if(num==2){
-			  $(".grid2").show();
-			  $(".grid3").hide();
-			  last_div = ".contribute2-1";
-			  }
-			  if(num==3){
-			  $(".grid2,.grid3").show();
-			  last_div = ".contribute3-1";
-			  }
-		    });
+  var $contribute = $("#contribute");
 
-			//@todo, generalize this process
-			 $(".contribute1").change(function(){
-			 $(".contribute1-1").removeAttr('disabled')
-			  $(".contribute1").removeClass("current")
-			 $(".contribute1-1").addClass("current")
-			 //actions when dash is post selected
-			 if( ($(".contribute1-1").val() !="Please select") &&  ($(".contribute1").val() =="Please select")){
-					$(".success-tick1").hide()
-					$(".contribute-submit").attr('disabled','disabled')
-			} if( ($(".contribute1-1").val() !="Please select") &&  ($(".contribute1").val() !="Please select")){
-				     $(".contribute-submit").addClass("btn-primary")
-					 $(".contribute-submit").removeAttr('disabled')
-					 $(".success-tick1").show()
-			}
-			 })
-			  $(".contribute1-1").change(function(){
-			  selected = $(".contribute1-1 option:selected").val()
-			  //fill 2-1,3-1 with values of 1-1
-			  $(".contribute2-1,.contribute3-1").val( selected ).attr('selected',true);
-			  $(".contribute2").removeAttr('disabled')
-			  $(".contribute1-1").removeClass("current")
-			 $(".contribute2").addClass("current")
-			 if(last_div==".contribute1-1"){
-			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled');}
-			 if( $(".contribute1-1").val() !="Please select")
-			 {
-			 $(".success-tick1").show()
-			 }else{
-			  $(".success-tick1").hide()
-			  $(".contribute-submit").attr('disabled','disabled')
-			 }
-			 });
-			  $(".contribute2").change(function(){
-			   $(".contribute2-1").removeAttr('disabled')
-			  $(".contribute2").removeClass("current");
-			  $(".contribute3").removeAttr('disabled');
-			 $(".contribute2-1").addClass("current")
-			 //optionaly make button clickable
-			  $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
-			  //actions when dash is post selected
-			 if( ($(".contribute2-1").val() !="Please select") &&  ($(".contribute2").val() =="Please select")){
-					$(".success-tick2").hide()
-					$(".contribute-submit").attr('disabled','disabled')
-			} if( ($(".contribute2-1").val() !="Please select") &&  ($(".contribute2").val() !="Please select")){
-				     $(".contribute-submit").addClass("btn-primary")
-					 $(".contribute-submit").removeAttr('disabled')
-					 $(".success-tick2").show()
-			}
-			 });
-			   $(".contribute2-1").change(function(){
-			     if(last_div==".contribute2-1" ){
-			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
-			 }
-			    if( $(".contribute2-1").val() !="Please select")
-			 {
-			 $(".success-tick2").show()
-			 $(".contribute3").removeAttr('disabled')
-			  $(".contribute2-1").removeClass("current")
-			 }else{
-			  $(".success-tick2").hide()
-			  $(".contribute-submit").attr('disabled','disabled')
-			 }
-			
-			 $(".contribute3").addClass("current")
-			 
-			 });
-			    $(".contribute3").change(function(){
-			   $(".contribute3-1").removeAttr('disabled')
-			  $(".contribute3").removeClass("current")
-			 $(".contribute3-1").addClass("current")
-			 //optionaly make button clickable
-			  $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
-			 //actions when dash is post selected
-			 if( ($(".contribute3-1").val() !="Please select") &&  ($(".contribute3").val() =="Please select")){
-					$(".success-tick3").hide()
-					$(".contribute-submit").attr('disabled','disabled')
-			} if( ($(".contribute3-1").val() !="Please select") &&  ($(".contribute3").val() !="Please select")){
-				     $(".contribute-submit").addClass("btn-primary")
-					 $(".contribute-submit").removeAttr('disabled')
-					 $(".success-tick3").show()
-			}
-			 });
-			 $(".contribute3-1").change(function(){
-			  if( $(".contribute3-1").val() !="Please select")
-			 {
-			 $(".success-tick3").show()
-			  $(".contribute3-1").removeClass("current")
-			$(".contribute-submit").addClass("btn-primary")
-			 }else{
-			  $(".success-tick3").hide()
-			  $(".contribute-submit").attr('disabled','disabled')
-			 }
-				 if(last_div==".contribute3-1" && $(".contribute2-1").val() !="Please select"){
-			 $(".contribute-submit").addClass("btn-primary")
-			 $(".contribute-submit").removeAttr('disabled')
-			 }
-			 });
-			 
-	
-	if(    $(".contribute2-1").val() =="Please select"){
-	$(".success-tick2").hide()
-	 $(".contribute-submit").attr('disabled','disabled')
-	}
-	if(    $(".contribute3-1").val() =="Please select"){
-	$(".success-tick3").hide()
-	 $(".contribute-submit").attr('disabled','disabled')
-	}
+  /**
+   * Validates the contribute form
+   * @param  {Object} e The event
+   * @return {[type]}   [description]
+   */
+  function contributeFormValidation(e) {
 
-		 //handle submit
-		 $(".contribute-submit").click(function(){
-		 $(".js-loading-overlay").show()
-		 
-		         var content = new Array();
-				 content[0]=$(".contribute option:selected").val()
-				 content[1]=$('input[name=know]:checked').val()
-                 content[2]=$(".contribute1 option:selected").val()
-				 content[3]=$(".contribute1-1 option:selected").val()
-				  num_pc = $(".contribute option:selected").val()
-				  if(num_pc==2)
-				  {
-				  content[4]= $(".contribute2 option:selected").val()
-				  content[5]= $(".contribute2-1 option:selected").val()
-				  }
-				   if(num_pc==3)
-				  {
-				 content[6] = $(".contribute3 option:selected").val()
-				 content[7] = $(".contribute3-1 option:selected").val()
-				 }
-				 url = "contribute/switch?content="+content
-	 
-			//@todo do inline validation 
-				$.get(url, {
-			}, 
-			function(data){   		 
-				//return from server
-				 $("#contribute,.js-loading-overlay").hide();
-	           $(".endContainer").show()
-			    $(".endContainer .alert").append(data).show();
-				
-			})
-            return false;
-		 });
-				  
-			
-			 });
-			 //reset fields
-  function reset_fields(form)
-		 {
-	  $(".grid2,.grid3").hide();
-	  $(".contribute").removeAttr('disabled','disabled');
-	  $(".success-tick1,.success-tick, .success-tick2").hide();
-	  // set its value to its first option
-	var selects = document.forms["contribute"].getElementsByTagName("SELECT");
-	for (var i=0; i<selects.length; i++){
-	selects.item(i).selectedIndex = 0;
-	}
-    $(form).children('input[type=checkbox]').each(function()
-    {
-     this.checked = false;
+    var powerCutsNumber = $contribute.find("[name=contribute]").val();
+    // Are we selecting a number of powercuts ?
+    if( e && $contribute.find("[name=contribute]").is(e.target) ) {
+      // Shoud we uncheck the "don't" know checkox ?
+       $contribute.find("[name=know]").prop("checked", isNaN( $(this).val() ) );
+    } 
+
+    // Activate temporary all select box
+    $contribute.find("select").prop("disabled", false);
+
+    var notKnown = $contribute.find("[name=know]").is(":checked");
+    // reduce the powercuts number if we don't know
+    if(notKnown) {
+      powerCutsNumber = 0;
+      $contribute.find("select").prop("disabled", true);
+    }
+
+    // Show the detail form according the number of powercuts
+    $contribute.find(".detail").each(function(i) {
+      var isActive = i <= powerCutsNumber-1;
+      $(this).toggleClass("inactive", !isActive).find(":input").prop("disabled", !isActive);
     });
-   $(".contribute-submit").attr('disabled','disabled')
-   $(".contribute-submit").removeClass("btn-primary")
-	
 
-}
+    // Show or hide the success tick
+    $contribute.find(".ctrl-group").each(function() {
+      var $this = $(this);
+      // Succeed if the ctrl group contain no empty field
+      $this.toggleClass("succeed", $this.find(":input[value='']").length === 0);
+    });
+    
+    // Disabled all current state
+    $contribute.find(".current").removeClass("current");
+
+    // Select activeted inputs
+    var $allActivatedInputs = $contribute.find("select:not(:disabled)"),
+    // Select empty inputs
+            $allEmptyInputs = $allActivatedInputs.filter(function() { return $(this).val() == ""; });
+
+    // Add a current class to the first uncompleted and activated selectbox
+    $allEmptyInputs.eq(0).parents("label").addClass("current");
+
+
+    // To know if the form is OK, all activated input must be full
+    var allCompleted = $allEmptyInputs.length === 0;
+    // Activate the submit button
+    $contribute.find(":input[type=submit]").prop("disabled", !notKnown && !allCompleted );
+  }
+
+
+  /**
+   * Reset the form
+   */
+  function reset_fields() {    
+    $contribute.each(function() { this.reset() });
+    contributeFormValidation();
+  }
+
+  // Initialize the form by validating the data       
+  contributeFormValidation();
+
+  // Trigger the form validation when we change something
+  $contribute.on("change", contributeFormValidation);
+  // Trigger the form reset
+  $contribute.on("click", "a.reset", reset_fields);
+
+  // Handle submit on the form
+  // @TODO Refine this ugly submition way
+  $contribute.on("submit", function(event) {
+    
+    event.preventDefault();
+
+    // Loading mode
+    $contribute.loading();
+
+    var content = new Array();
+    content[0] = $(".contribute option:selected").val()
+    content[1] = $('input[name=know]:checked').val()
+    content[2] = $(".contribute1 option:selected").val()
+    content[3] = $(".contribute1-1 option:selected").val()
+    num_pc = $(".contribute option:selected").val()
+
+    if (num_pc == 2) {
+      content[4] = $(".contribute2 option:selected").val()
+      content[5] = $(".contribute2-1 option:selected").val()
+    }
+    if (num_pc == 3) {
+      content[6] = $(".contribute3 option:selected").val()
+      content[7] = $(".contribute3-1 option:selected").val()
+    }
+    url = "contribute/switch?content=" + content
+
+    //@todo do inline validation 
+    $.getJSON(url, function (data) {
+      // Get out of the loading mode
+      $contribute.loading(false);
+      window.location = data.url;
+    })
+
+    return false;
+  });
+
+
+});

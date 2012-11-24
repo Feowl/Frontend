@@ -17,10 +17,10 @@ class Controller_Json extends Controller {
 	public $auto_render = FALSE;
 
 	
-    public function action_index() {
-       //do nothing
-         
-    }
+  public function action_index() {
+     //do nothing
+       
+  }
 
 
 	/**
@@ -58,42 +58,14 @@ class Controller_Json extends Controller {
 		// Parse the json object
 		$body = json_decode($rep->body);
 		// Decode the json body and records the aggregated objects
-		$res = array("list" => $body->objects );
+		$res = array("list" => $body->objects ? $body->objects : array() );
 		// Add a current_page parameter
 		$res += array("current_page" => $currentPage);
-
-		// if the request is a about an area, so using action_area_reports()
-		// if($res["aggregation"]) {
-
-
-		// }
-
 		// Add a next_page parameter if there is a next page
 		if($body->meta->next) $res += array("next_page" => $currentPage+1);
 
 		return $res;
 	}
-
-
-	// public function count_contributors($res) {
-
-
-	// 	$contributors = 0;
-
-	// 	// Iterate over all objects of the list array of the page
-	// 	foreach( $res["list"] as $obj_list ) {
-	// 		if( isset( $obj_list->contributor ) ) {
-	// 			// Sum up contributors of the current page
-	// 			$contributors += ltrim($obj_list->contributor, "/api/v1/contributors/");
-	// 		}
-	// 	}
-	// 	// Adds the contributors total in the report
-	// 	$res += array("total" => array("contributors_total" => $contributors ));
-
-	// 	return $res;
-
-	// }
-
 
 	/*
 	 * Looks for reports for a specific area
@@ -117,10 +89,6 @@ class Controller_Json extends Controller {
 		  $page++;
 		// check if there is a next page
 		} while ( isset($res["next_page"])	&& $page < 10 ); // TODO: Precise the limit of 10 pages in the doc
-
-		//$res = $this::count_contributors($res);
-
-		//$reports = array_merge($reports, $res["total"]);
 
  		// Change the content type for JSON
  		$this->response->headers('Content-Type','application/json');
@@ -153,6 +121,7 @@ class Controller_Json extends Controller {
 
 		$restClient = REST_Client::instance();
 		$rep = $restClient->get("reports-aggregation/", $params);		
+
 
 		// Decode the json body and records the aggregated objects
 		$res = array("aggregation" => json_decode($rep->body)->objects );
