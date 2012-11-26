@@ -45,6 +45,11 @@ class Controller_Pages extends Controller_Template {
 		$this->template->content = View::factory('pages/not_in_douala.tpl');
 	}
 
+	public function action_help() {
+		$this->template->active_help = "active";
+		$this->template->content = View::factory('pages/help.tpl');
+	}
+
 	public function after(){
 		// Adds optional stylesheet files in an array
 		$this->template->files_stylesheet = array();
