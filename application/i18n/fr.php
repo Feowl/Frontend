@@ -8,115 +8,115 @@ return array(
 /// TODO	'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply' => '', // 134
 
 	// views/user/delete_info.tpl
-/// TODO	'Deleting your account' => '', // 2
-/// TODO	'Deleting your account ...' => '', // 3
+	'Deleting your account' => 'Suppression de votre compte', // 2
+	'Deleting your account ...' => 'Suppression de votre compte...', // 3
 	'Feowl team.' => 'L\'équipe Feowl', // 4
 
 	// views/user/forgot-password.tpl
-/// TODO	'Forgot your password?' => '', // 4
-/// TODO	'Enter your e-mail address to receive a new password:' => '', // 21
-/// TODO	'Send' => '', // 34
-/// TODO	'Your Password has been resetted: Check your E-mail for your new password.' => '', // 41
+	'Forgot your password?' => 'Mot de passe oublié?', // 4
+	'Enter your e-mail address to receive a new password:' => 'Indiquez votre adresse e-mail pour recevoir un nouveau mot de passe:', // 21
+	'Send' => 'Envoyer', // 34
+	'Your Password has been resetted: Check your E-mail for your new password.' => 'Votre mot de passe a été réinitiallisé. Vérifiez votre boîte de réception pour trouver votre nouveau mot de passe.', // 41
 
 	// views/user/gsm_phonenumber_info.tpl
-/// TODO	'Send my Login details' => '', // 1
-/// TODO	'You have already registered by SMS? No need to register again on the website. Enter your phone number and we'll send you your login information by SMS.' => '', // 1
+	'Send my Login details' => 'Envoyer mes identifiants', // 1
+	'You have already registered by SMS? No need to register again on the website. Enter your phone number and we\'ll send you your login information by SMS.' => 'Vous vous êtes déjà inscrit par SMS? Pas la peine de vous réinscrire. Indiquez votre numéro de téléphone et nous vous enverrons vos identifiants par SMS.', // 1
 
 	// views/user/gsm_phonenumber.tpl
-/// TODO	'GSM Phone number*' => '', // 17
-/// TODO	'Get my login Information' => '', // 24
+	'GSM Phone number*' => 'Numéro de téléphone mobile *', // 17
+	'Get my login Information' => 'Recevoir mes informations de connexion', // 24
 
 	// views/user/login.tpl
-/// TODO	'Login to your account' => '', // 8
+	'Login to your account' => 'Connexion à votre compte', // 8
 	'Email' => 'Email', // 27
 	'Password' => 'Mot de passe', // 32
 	'Login' => 'Connexion', // 41
 
 	// views/user/profile-contributions.tpl
-/// TODO	'Lists of contributions' => '', // 3
+	'Lists of contributions' => 'Liste de vos contributions', // 3
 	'District' => 'Arrondissement', // 9
 	'Duration' => 'Durée', // 10
 	'Date' => 'Date', // 11
 	'Quality' => 'Qualité', // 12
-/// TODO	'Download your contributions (CSV)' => '', // 38
-/// TODO	'You currently have no contributions' => '', // 44
+	'Download your contributions (CSV)' => 'Télécharger vos contributions (CSV)', // 38
+	'You currently have no contributions' => 'Vous n'avez pour l\'instant aucune contribution', // 44
 
 	// views/user/profile-details.tpl
-/// TODO	'Change my informations' => '', // 8
+	'Change my informations' => 'Modifier mes informations', // 8
 	'Name' => 'Nom', // 10
-/// TODO	'E-mail' => '', // 17
-/// TODO	'GSM Phone Number' => '', // 24
-/// TODO	'How often do you want to contribute ?' => '', // 35
-/// TODO	'Not Sure' => '', // 39
-/// TODO	'Daily' => '', // 40
-/// TODO	'Weekly' => '', // 41
-/// TODO	'Monthly' => '', // 42
-/// TODO	'Change my password' => '', // 53
-/// TODO	'Current password' => '', // 56
-/// TODO	'New password' => '', // 63
-/// TODO	'Repeat new password' => '', // 70
-/// TODO	'Delete my account' => '', // 79
-/// TODO	'Update Profile' => '', // 83
+	'E-mail' => 'E-mail', // 17
+	'GSM Phone Number' => 'Numéro de téléphone mobile', // 24
+	'How often do you want to contribute ?' => 'A quelle fréquence souhaitez-vous contribuer?', // 35
+	'Not Sure' => 'Je ne sais pas', // 39
+	'Daily' => 'Tous les jours', // 40
+	'Weekly' => 'Toutes les semaines', // 41
+	'Monthly' => 'Tous les mois', // 42
+	'Change my password' => 'Modifier mon mot de passe', // 53
+	'Current password' => 'Mot de passe actuel', // 56
+	'New password' => 'Nouveau mot de passe', // 63
+	'Repeat new password' => 'Répéter le mot de passe', // 70
+	'Delete my account' => 'Supprimer mon compte', // 79
+	'Update Profile' => 'Mettre à jour mon profil', // 83
 
 	// views/user/profile-left.tpl
 	'Profile' => 'Profil', // 2
-/// TODO	'My account' => '', // 17
-/// TODO	'My contributions' => '', // 23
+	'My account' => 'Mon compte', // 17
+	'My contributions' => 'Mes contributions', // 23
 
 	// views/user/signup.tpl
-/// TODO	'Create an account' => '', // 9
-/// TODO	'When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!' => '', // 11
-/// TODO	'More than 8 characters' => '', // 40
-/// TODO	'I\'m not sure' => '', // 51
-/// TODO	'* Required field.' => '', // 61
-/// TODO	'Already have an account? Log in' => '', // 62
+	'Create an account' => 'Créer un compte', // 9
+	'When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!' => 'Une fois inscrits, vous recevrez un SMS et vous pourrez contribuer tout de suite!', // 11
+	'More than 8 characters' => 'Plus de 8 caractères', // 40
+	'I\'m not sure' => 'Je ne sais pas', // 51
+	'* Required field.' => '* Champ requis', // 61
+	'Already have an account? Log in' => 'Vous avez déjà un compte? Connexion', // 62
 
 	// views/pages/about.tpl
 	'About' => 'A propos', // 6
-/// TODO	'<p>What can be measured can be changed. Feowl is a platform that collects and provides data on the lack of electricity in Douala, the economic capital of Cameroon: How long does a power cut last? What time of day? What social and economic impact do these power cuts have on the city?</p>' => '', // 18
-/// TODO	'<p>Contributors are invited to report to Feowl by SMS or via the web interface, any power outage. The data collected will be analyzed and available online to anyone interested. The data are displayed on an interactive and geolocalized: users can access specific information on power outages in a particular neighborhoods of Douala.</p>' => '', // 19
-/// TODO	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '', // 20
+	'<p>What can be measured can be changed. Feowl is a platform that collects and provides data on the lack of electricity in Douala, the economic capital of Cameroon: How long does a power cut last? What time of day? What social and economic impact do these power cuts have on the city?</p>' => '<p>Ce qui peut être mesuré peut être changé. Feowl est une plateforme qui collecte et fournit des données concernant la fourniture d\'électricité à Douala, la capitale économique du Cameroun. Combien de temps une coupure dure-t-elle? A quel moment de la journée? Quels impact ces coupures ont-elles sur la ville?</p>', // 18
+	'<p>Contributors are invited to report to Feowl by SMS or via the web interface, any power outage. The data collected will be analyzed and available online to anyone interested. The data are displayed on an interactive and geolocalized: users can access specific information on power outages in a particular neighborhoods of Douala.</p>' => '<p>Les contributeurs peuvent signaler les coupures à Feowl via SMS ou sur le web. Les données collectées sont ensuite agrégées et analysées. Elles peuvent être téléchargées par tous. Les données sont présentées sur une carte interactive et géolocalisée: Les utilisateurs peuvent constater les coupures d\'éléctricité dans chacun des arrondissement de Douala.</p>', // 19
+	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '<p>Feowl est différent des autres projets de crowdsourcing, dans la mesure où la plateforme demande directement aux personnes concernées si elles ont subies une coupure de courant.</p>', // 20
 
 	// views/pages/credits.tpl
-/// TODO	'Credits' => '', // 6
+	'Credits' => 'Remerciements', // 6
 
 	// views/pages/help.tpl
-/// TODO	'Help' => '', // 6
-/// TODO	'<p>You often witness power cuts and would like to help Feowl&nbsp;? It&rsquo;s very simple.</p>' => '', // 18
-/// TODO	'<h2>1. SIGN UP</h2>' => '', // 19
-/// TODO	'<h3>If you sign up directly on the web platform&nbsp;:</h3>' => '', // 20
-/// TODO	'<p>1 &ndash; Go to ACCOUNT and click on SIGN UP</p>' => '', // 21
-/// TODO	'<p>2 &ndash; Fill in your name, e-mail and chose a password. Then chose how often you want to contribute.</p>' => '', // 22
-/// TODO	'<h3>If you sign up using SMS&nbsp;:</h3>' => '', // 23
-/// TODO	'<p>1 &ndash; Send REGISTER to 88002014 and you&rsquo;ll receive a message from Feowl</p>' => '', // 24
-/// TODO	'<p>That&rsquo;s it&nbsp;! You&rsquo;re a member of Feowl&rsquo;s change makers community&nbsp;!</p>' => '', // 25
+	'Help' => 'Tutoriel', // 6
+	'<p>You often witness power cuts and would like to help Feowl&nbsp;? It&rsquo;s very simple.</p>' => '<p>Vous subissez régulièrement des coupures de courant et vous souhaitez aider le projet Feowl ? C’est très simple.</p>', // 18
+	'<h2>1. SIGN UP</h2>' => '1. INSCRIPTION', // 19
+	'<h3>If you sign up directly on the web platform&nbsp;:</h3>' => '<h3>Si vous vous inscrivez directement sur la plateforme web :</h3>', // 20
+	'<p>1 &ndash; Go to ACCOUNT and click on SIGN UP</p>' => '<p>1 – Cliquez sur l’onglet PROFIL et choisissez la rubrique INSCRIPTION</p>', // 21
+	'<p>2 &ndash; Fill in your name, e-mail and chose a password. Then chose how often you want to contribute.</p>' => '<p>2 – Complétez votre NOM, EMAIL ; choisissez un mot de passe et la fréquence à laquelle vous souhaitez être sondé</p>', // 22
+	'<h3>If you sign up using SMS&nbsp;:</h3>' => '<h3>Si vous vous inscrivez par SMS :</h3>', // 23
+	'<p>1 &ndash; Send REGISTER to 88002014 and you&rsquo;ll receive a message from Feowl</p>' => '<p>1 - Envoyez INSCRIPTION au 88002014, et vous recevrez un message de Feowl</p>', // 24
+	'<p>That&rsquo;s it&nbsp;! You&rsquo;re a member of Feowl&rsquo;s change makers community&nbsp;!</p>' => '<p>Voilà, vous faites désormais partie de la communauté d’acteurs du changement de Feowl !</p>', // 25
 /// TODO	'<h2>2. CONTRIBUTION</h2>' => '', // 26
-/// TODO	'<p>If you wish to report a power cut on Feowl website&nbsp;:</p>' => '', // 27
-/// TODO	'<p>1 &ndash; Click on CONTRIBUTE TO Feowl, and fill in the form</p>' => '', // 28
-/// TODO	'<p>If you wish to report a power cut using SMS&nbsp;:</p>' => '', // 29
-/// TODO	'<p>1 &ndash; Feowl will send you a SMS at 8.30 am everyday, once a week, or once a month, depending on the frequency chosen upon registration, asking if you&rsquo;ve witnessed a power cut. Please do not submit any reports before Feowl has sent you a SMS.</p>' => '', // 30
-/// TODO	'<p>2 &ndash; If you witnessed <strong>one</strong> power cut, reply PC followed by the location of the power cut and the duration in minutes. Ex&nbsp;: If you&rsquo;ve witnessed a 30 minutes power cut in Bali, reply PC Douala 1 30 (because Bali is in Douala 1) </p>' => '', // 31
-/// TODO	'<p>3 &ndash; If you&rsquo;ve witnessed several power cuts and wish to report them, reply PC followed by the different locations and durations of each power cut. Please make sure to separate them with commas. Ex&nbsp;: if you&rsquo;ve witnessed a 30 minutes power cut in Bali, then a 50 minutes powercut in Akwa, and a 10 minutes power cut in Maképé, reply PC&nbsp; Douala 1 30, PC Douala 1 50, PC Douala 5 10</p>' => '', // 32
-/// TODO	'<h2>3. HELP </h2>' => '', // 33
-/// TODO	'<p>To receive instructions on how to report a power cut, send HELP to 88002014.</p>' => '', // 34
-/// TODO	'<h2>4. UNSUSCRIBE</h2>' => '', // 35
-/// TODO	'<p>To unsuscribe and stop receiving news from Feowl, send STOP to 88002014.</p>' => '', // 36
+	'<p>If you wish to report a power cut on Feowl website&nbsp;:</p>' => '<p>Si vous souhaitez signaler une coupure de courant directement sur le site de Feowl :</p>', // 27
+	'<p>1 &ndash; Click on CONTRIBUTE TO Feowl, and fill in the form</p>' => '<p>1 – Cliquez sur Contribuer, puis remplissez le formulaire</p>', // 28
+	'<p>If you wish to report a power cut using SMS&nbsp;:</p>' => '<p>Si vous souhaitez signaler une coupure par SMS :</p>', // 29
+	'<p>1 &ndash; Feowl will send you a SMS at 8.30 am everyday, once a week, or once a month, depending on the frequency chosen upon registration, asking if you&rsquo;ve witnessed a power cut. Please do not submit any reports before Feowl has sent you a SMS.</p>' => '<p>1 - Feowl vous enverra un message à 8h30 tous les jours, une fois par semaine, ou une fois par mois, selon la préférence indiquée au moment de votre inscription pour savoir si vous avez eu une ou plusieurs coupure(s) de courant. Inutile de signaler une coupure de courant sans que Feowl ne soit venu vers vous, cette contribution ne serait pas prise en compte</p>', // 30
+	'<p>2 &ndash; If you witnessed <strong>one</strong> power cut, reply PC followed by the location of the power cut and the duration in minutes. Ex&nbsp;: If you&rsquo;ve witnessed a 30 minutes power cut in Bali, reply PC Douala 1 30 (because Bali is in Douala 1) </p>' => '<p>2 – Si vous avez eu une coupure, répondez REP suivi du lieu de la coupure et de la durée en minutes. Ex : Si vous avez eu une coupure de 30 minutes dans le quartier Bali (à Douala 1), envoyez REP Douala1 30</p>', // 31
+	'<p>3 &ndash; If you&rsquo;ve witnessed several power cuts and wish to report them, reply PC followed by the different locations and durations of each power cut. Please make sure to separate them with commas. Ex&nbsp;: if you&rsquo;ve witnessed a 30 minutes power cut in Bali, then a 50 minutes powercut in Akwa, and a 10 minutes power cut in Maképé, reply PC&nbsp; Douala 1 30, PC Douala 1 50, PC Douala 5 10</p>' => '<p>3 – Si vous avez eu plusieurs coupures et souhaitez toutes les signaler, envoyer REP suivi des différents lieux et de la durée de chaque coupure, en les séparant par une virgule. Ex : si vous avez eu une coupure de 30 minutes à Bali (Douala 1), puis une coupure de 50 minutes à Akwa (Douala 1) et une coupure de 10 minutes à Maképé (Douala 5), envoyez REP DOUALA1 30, REP DOUALA1 50, REP DOUALA5 10</p>', // 32
+	'<h2>3. HELP </h2>' => '<h2>3. AIDE</h2>', // 33
+	'<p>To receive instructions on how to report a power cut, send HELP to 88002014.</p>' => '<p>Pour savoir comment signaler des coupures de courant par SMS, envoyez AIDE au 88002014.</p>', // 34
+	'<h2>4. UNSUSCRIBE</h2>' => '<h2>4. DESINSCRIPTION</h2>', // 35
+	'<p>To unsuscribe and stop receiving news from Feowl, send STOP to 88002014.</p>' => '<p>Pour vous désinscrire et cesser de recevoir des nouvelles de FEOWL, envoyez STOP au 88002014.</p>', // 36
 
 	// views/pages/not_in_douala.tpl
-/// TODO	'So, you don\'t live in Douala?' => '', // 6
-/// TODO	'<p>Feowl is a platform that monitors power cuts based on a daily survey of residents of Douala. Only people who actually live there can contribute.</p>' => '', // 18
-/// TODO	'<p>Here are a few things you can do if you don\'t live in Douala.</p>' => '', // 19
-/// TODO	'<h2>Bring Feowl to your city!</h2>' => '', // 20
-/// TODO	'<p>Feowl is an open source project. All you need is a server and a way to send and receive SMS messages and you can get started.</p>' => '', // 21
-/// TODO	'<h2>Contribute to the code</h2>' => '', // 22
-/// TODO	'<p>If you\'re a developer, you can check out the code and contribute. There are always bugs to be fixed and features to be developed!</p>' => '', // 23
-/// TODO	'<h2>Spread the word</h2>' => '', // 24
-/// TODO	'<p>Even a tweet or a like helps Feowl. It lets more people know about it, some of whom might have the resources to set up an instance of Feowl in your city.</p>' => '', // 25
-/// TODO	'<h2>Analyze the data</h2>' => '', // 26
-/// TODO	'<p>Collecting data is only the start. Numbers have to be analyzed so that power outages can be better understood. Analyses based on the data can help civil society, energy utilities, regulators and, above all, consumers.</p>' => '', // 27
+	'So, you don\'t live in Douala?' => 'Vous n\'habitez pas Douala?', // 6
+	'<p>Feowl is a platform that monitors power cuts based on a daily survey of residents of Douala. Only people who actually live there can contribute.</p>' => '<p>Feowl est une plateforme qui surveille les coupures de courant grâce à un sondage quotidien des habitants de Douala. Seuls les personnes qui y habitent peuvent contribuer.</p>', // 18
+	'<p>Here are a few things you can do if you don\'t live in Douala.</p>' => '<p>Voici ce que vous pouvez faire si vous n\'habitez pas à Douala.</p>', // 19
+	'<h2>Bring Feowl to your city!</h2>' => '<h2>Accueillez Feowl dans votre ville!</h2>', // 20
+	'<p>Feowl is an open source project. All you need is a server and a way to send and receive SMS messages and you can get started.</p>' => '<p>Feowl est un projet open source. Vous avez juste besoin d\'un serveur et d\'un moyen d\'envoyer et de recevoir des SMS pour pouvoir commencer.</p>', // 21
+	'<h2>Contribute to the code</h2>' => '<h2>Contribuez au code</h2>', // 22
+	'<p>If you\'re a developer, you can check out the code and contribute. There are always bugs to be fixed and features to be developed!</p>' => '<p>Si vous êtes développeur, vous pouvez consulter le code et contribuer. Il y a toujours un bug à corriger et de nouvelles fonctionnalités à inventer!</p>', // 23
+	'<h2>Spread the word</h2>' => '<h2>Parlez-en autour de vous</h2>', // 24
+	'<p>Even a tweet or a like helps Feowl. It lets more people know about it, some of whom might have the resources to set up an instance of Feowl in your city.</p>' => '<p>Chaque tweet, chaque "j\'aime" aide Feowl. Plus il y a de personnes qui connaissent le projet, plus il y a de chances pour que l\'une d\'entre elles puisse déployer Feowl dans votre comunauté.</p>', // 25
+	'<h2>Analyze the data</h2>' => '<h2>Analyser les données</h2>', // 26
+	'<p>Collecting data is only the start. Numbers have to be analyzed so that power outages can be better understood. Analyses based on the data can help civil society, energy utilities, regulators and, above all, consumers.</p>' => '<p>Collecter les données n\'est que le début. Les chiffres doivent être analysés pour que les coupures soient mieux comprises. Les analyses des données peuvent aider la société civile, les fournisseurs d\'électricité, le régulateur et, surtout, les consommateurs.</p>', // 27
 
 	// views/pages/tos.tpl
-/// TODO	'Terms of Service' => '', // 6
+	'Terms of Service' => 'Conditions d\'utilisation', // 6
 /// TODO	'<h3>Introduction</h3>' => '', // 18
 /// TODO	'<p>These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.</p>' => '', // 19
 /// TODO	'<h3>License to use website</h3>' => '', // 20
@@ -216,123 +216,123 @@ return array(
 /// TODO	'<li>by email to <a href="mailto:contact@feowl.com">contact@feowl.com</a></li>' => '', // 123
 
 	// views/layout/footer.tpl
-/// TODO	'Licence' => '', // 8
-/// TODO	'Contact' => '', // 9
-/// TODO	'Terms of service' => '', // 10
-/// TODO	'Blog' => '', // 11
-/// TODO	'Twitter' => '', // 12
-/// TODO	'Facebook' => '', // 13
-/// TODO	'Code' => '', // 14
-/// TODO	'Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.' => '', // 20
-/// TODO	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => '', // 22
+	'Licence' => 'Licence', // 8
+	'Contact' => 'Contact', // 9
+	'Terms of service' => 'CGU', // 10
+	'Blog' => 'Blog', // 11
+	'Twitter' => 'Twitter', // 12
+	'Facebook' => 'Facebook', // 13
+	'Code' => 'Code source', // 14
+	'Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl est financé par un don de <a href="http://www.freemedia.at/">International Press Institute</a>.', // 20
+	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => 'C\'est un projet mené par <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> et <a href="http://www.tesobe.com/">TESOBE</a>.', // 22
 
 	// views/layout/menu.tpl
 	'Language' => 'Langue', // 33
-/// TODO	'Logout' => '', // 70
+	'Logout' => 'Déconnexion', // 70
 	'Sign up' => 'Inscription', // 83
 	'Home' => 'Accueil', // 91
 	'Explore' => 'Explorer', // 92
 	'Contribute' => 'Contribuer', // 93
 
 	// views/home/home.tpl
-	'Welcome to Feowl' => 'Bienvenue sur Feowl	', // 9
-/// TODO	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => '', // 11
-/// TODO	'Register' => '', // 34
-/// TODO	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => '', // 35
-/// TODO	'We'll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => '', // 42
-/// TODO	'Feowl then produces statistics with all the information collected. It'll be a powerful source to hold energy producers and regulators to account!' => '', // 49
-/// TODO	'Power cuts in Douala' => '', // 59
-/// TODO	'no data' => '', // 62
+	'Welcome to Feowl' => 'Bienvenue sur Feowl', // 9
+	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d'électricité à Douala., // 11
+	'Register' => 'Inscription', // 34
+	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 35
+	'We\'ll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: \"Combien de coupures avez-vous eu hier?\" Répondez bien, même si vous avez eu 0 coupure!', // 42
+	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl produit des statistiques grâce aux informations collectées. Ca sera une source d\'information puissante pour demander des comptes aux producteurs d\'électricité.', // 49
+	'Power cuts in Douala' => 'Coupures à Douala', // 59
+	'no data' => 'pas de données', // 62
 /// TODO	'&lt; 30m' => '', // 63
 /// TODO	'&lt; 2h' => '', // 64
 /// TODO	'&lt; 4h' => '', // 65
 /// TODO	'&gt; 4h' => '', // 66
-/// TODO	'Explore the reports' => '', // 72
+	'Explore the reports' => 'Parcourir les réponses', // 72
 
 	// views/explore/explore.tpl
 	'Legend' => 'Légende', // 16
 	'No enough data' => 'Données insuffisantes', // 18
-/// TODO	'No power cuts or less than 30mn' => '', // 19
-/// TODO	'Beetween 30mn and 2h' => '', // 20
-/// TODO	'Beetween 2h and 4h' => '', // 21
-/// TODO	'More than 4 hours' => '', // 22
-/// TODO	'Proportion of Feowl users suffering from power cuts in %s' => '', // 26
-/// TODO	'no data available' => '', // 27
+	'No power cuts or less than 30mn' => 'Aucune coupure ou moins de 30 min.', // 19
+	'Beetween 30mn and 2h' => 'Entre 30 min et 2 h', // 20
+	'Beetween 2h and 4h' => 'Entre 2 h et 4 h', // 21
+	'More than 4 hours' => 'Plus de 4 h', // 22
+	'Proportion of Feowl users suffering from power cuts in %s' => 'Proportion des utilisateurs de Feowl subissant des coupures à %s', // 26
+	'no data available' => 'Aucune donnée disponible', // 27
 /// TODO	'0' => '', // 29
 /// TODO	'30'' => '', // 30
 /// TODO	'2h' => '', // 31
 /// TODO	'4h' => '', // 32
-/// TODO	'Duration of daily power cuts' => '', // 35
+	'Duration of daily power cuts' => 'Durée des coupures quotidiennes', // 35
 	'User reports' => 'Rapports des utilisateurs', // 53
 	'Loading' => 'Chargement', // 71
 	'Load more' => 'Voir plus', // 96
 	'No reports submited for that period' => 'Aucun rapport soumis durant cette période', // 118
-/// TODO	'Based on {{count}} contribution.' => '', // 138
-/// TODO	'Based on {{count}} contributions.' => '', // 140
+	'Based on {{count}} contribution.' => 'Fondé sur {{count}} contribution', // 138
+	'Based on {{count}} contributions.' => 'Fondé sur {{count}} contributions', // 140
 
 	// views/contribute/contribute.tpl
-/// TODO	'Contribute to Feowl' => '', // 1
-/// TODO	'How many power cuts did you witness yesterday ?' => '', // 1
-/// TODO	'Please select' => '', // 1
+	'Contribute to Feowl' => 'Contribuer à Feowl', // 1
+	'How many power cuts did you witness yesterday ?' => 'Combien de coupures avez-vous subi hier?', // 1
+	'Please select' => 'Choisissez', // 1
 	'or' => 'ou', // 1
-/// TODO	'I don\'t know, I wasn\'t in Douala' => '', // 1
-/// TODO	'First powercut' => '', // 1
-/// TODO	'How long did it last?' => '', // 1
+	'I don\'t know, I wasn\'t in Douala' => 'Je ne sais pas, je n\'étais pas à Douala', // 1
+	'First powercut' => 'Première coupure', // 1
+	'How long did it last?' => 'Combien de temps a-t-elle duré?', // 1
 /// TODO	'-' => '', // 1
-/// TODO	'Less than 30 mins' => '', // 1
-/// TODO	'About 30 mins' => '', // 1
-/// TODO	'About 1 hour' => '', // 1
-/// TODO	'About 2 hours' => '', // 1
-/// TODO	'About 3 hours' => '', // 1
-/// TODO	'Which part of town where you?' => '', // 1
+	'Less than 30 mins' => 'Moins de 30 min.', // 1
+	'About 30 mins' => 'Environ 30 min.', // 1
+	'About 1 hour' => 'Environ 1 heure', // 1
+	'About 2 hours' => 'Environ 2 heures', // 1
+	'About 3 hours' => 'Environ 3 heures', // 1
+	'Which part of town where you?' => 'Dans quel arrondissement étiez-vous?', // 1
 /// TODO	'Douala I' => '', // 1
 /// TODO	'Douala II' => '', // 1
 /// TODO	'Douala III' => '', // 1
 /// TODO	'Douala IV' => '', // 1
 /// TODO	'Douala V' => '', // 1
-/// TODO	'Second powercut' => '', // 1
-/// TODO	'Third powercut' => '', // 1
-/// TODO	'Clear form' => '', // 1
-/// TODO	'Contribute to Feowl!' => '', // 1
-/// TODO	'Explore the data' => '', // 1
+	'Second powercut' => 'Deuxième coupure', // 1
+	'Third powercut' => 'Troisième coupure', // 1
+	'Clear form' => 'Annuler', // 1
+	'Contribute to Feowl!' => 'Contribuer à Feowl', // 1
+	'Explore the data' => 'Parcourir les données', // 1
 
 	// classes/controller/contribute.php
-/// TODO	'Thank you, your contribution has been taken into account.' => '', // 114
+	'Thank you, your contribution has been taken into account.' => 'Merci, votre contribution a été prise en compte.', // 114
 
 	// classes/controller/locale.php
-/// TODO	'This field required.' => '', // 43
-/// TODO	'Enter valid email address' => '', // 46
-/// TODO	'Password must be minimum 8 characters' => '', // 49
-/// TODO	'Phone Number must have atleast 6 chars' => '', // 52
-/// TODO	'Phone Number must not exceed 13 chars' => '', // 53
-/// TODO	'Phone Number should content only digits' => '', // 54
+	'This field required.' => 'Champ obligatoire', // 43
+	'Enter valid email address' => 'Merci de saisir une adresse e-mail valide', // 46
+	'Password must be minimum 8 characters' => 'Le mot de passe doit faire au moins 8 caractères', // 49
+	'Phone Number must have atleast 6 chars' => 'Le numéro de téléphone doit avoir au moins 6 caractères', // 52
+	'Phone Number must not exceed 13 chars' => 'Le numéro de téléphone ne peut excéder 13 caractères', // 53
+	'Phone Number should content only digits' => 'Le numéro de téléphone ne doit comporter que des chiffres', // 54
 /// TODO	'0 minute' => '', // 68
 /// TODO	'30 minutes' => '', // 69
-/// TODO	'2 hours' => '', // 70
-/// TODO	'4 hours' => '', // 71
-/// TODO	'more' => '', // 72
+	'2 hours' => '2 heures', // 70
+	'4 hours' => '4 heures', // 71
+	'more' => 'plus', // 72
 /// TODO	'Douala&nbsp;I' => '', // 73
 /// TODO	'Douala&nbsp;II' => '', // 74
 /// TODO	'Douala&nbsp;III' => '', // 75
 /// TODO	'Douala&nbsp;IV' => '', // 76
 /// TODO	'Douala&nbsp;V' => '', // 77
-/// TODO	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => '', // 78
+	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 78
 
 	// classes/controller/user.php
-/// TODO	'Thanks for signing up!' => '', // 128
-/// TODO	'This name is already in use' => '', // 136
-/// TODO	'This e-mail address is already in use. Forgot your password ?' => '', // 138
-/// TODO	'Technical Error. PLease try again Later' => '', // 140
-/// TODO	'Feowl: Password Reset' => '', // 218
-/// TODO	'Enter your new password and repeat it correctly' => '', // 335
-/// TODO	'Enter your present password correctly' => '', // 340
-/// TODO	'Enter your new password correctly' => '', // 345
-/// TODO	'Your profile has been updated' => '', // 402
-/// TODO	'Technical Error' => '', // 407
+	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 128
+	'This name is already in use' => 'Ce nom est déjà utilisé', // 136
+	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 138
+	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 140
+	'Feowl: Password Reset' => 'Feowl: réinitialiser le mot de passe.', // 218
+	'Enter your new password and repeat it correctly' => 'Indiquez votre nouveau mot de passe, deux fois', // 335
+	'Enter your present password correctly' => 'Indiquez votre mot de passe actuel', // 340
+	'Enter your new password correctly' => 'Indiquez votre nouveau mot de passe', // 345
+	'Your profile has been updated' => 'Votre profil a été mis à jour', // 402
+	'Technical Error' => 'Erreur technique', // 407
 
 	// Orphan phrases
 	'User Guide' => 'Guide Utilisateur',
-	'<p>Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.</p><p>Feowl will poll reliable voluntary contributors and will ask them about their power cut experience: Did they witness one? When was that? Where?</p><p>Feowl will aggregate, compute and analyze the data received via polls and will display them on this platform using the best visualization techniques.</p><p>Feowl was made possible thanks to a grant received from the International Press Institute.</p>' => '<p>Feowl est une plateforme alimentée par la communauté, qui produit des données publiques précises et exploitables sur la fourniture d'électricité à Douala.</p><p>Feowl sondera des contributeurs volontaires fiables et leur posera des questions sur leur expérience des coupure de courant : en ont-ils subi une ? Quand était-ce ? Où était-ce ?</p><p>Feowl agrégera, calculera et analysera les données reçues via les sondages, et les disposera sur cette plateforme grâce aux meilleures techniques de visualisation en ligne.</p><p>Feowl a été rendu possible grâce un financement reçu de l'Institut International de la Presse.</p>',
+	'<p>Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.</p><p>Feowl will poll reliable voluntary contributors and will ask them about their power cut experience: Did they witness one? When was that? Where?</p><p>Feowl will aggregate, compute and analyze the data received via polls and will display them on this platform using the best visualization techniques.</p><p>Feowl was made possible thanks to a grant received from the International Press Institute.</p>' => '<p>Feowl est une plateforme alimentée par la communauté, qui produit des données publiques précises et exploitables sur la fourniture d\'électricité à Douala.</p><p>Feowl sondera des contributeurs volontaires fiables et leur posera des questions sur leur expérience des coupure de courant : en ont-ils subi une ? Quand était-ce ? Où était-ce ?</p><p>Feowl agrégera, calculera et analysera les données reçues via les sondages, et les disposera sur cette plateforme grâce aux meilleures techniques de visualisation en ligne.</p><p>Feowl a été rendu possible grâce un financement reçu de l\'Institut International de la Presse.</p>',
 	'Login and report power cuts' => 'Connectez vous et participez',
 	'Fork us on GitHub!' => 'Cloner sur GitHub!',
 	'Feowl files under an Apache licence' => 'Le code source de Feowl est sous licence Apache',
