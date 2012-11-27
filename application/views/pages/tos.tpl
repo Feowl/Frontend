@@ -46,7 +46,7 @@
               <p>{__ t='In addition, personal information that you submit for publication on the website will be published on the internet and may be available around the world.'}</p>
               <p>{__ t='You agree to such cross-border transfers of personal information. '}</p>
             <h3>{__ t='Cookies'}</h3>
-              <p>{__ t='Our web server places a small data file on your computer called a 'cookie.' This cookie helps us improve the web site's performance by knowing what kind of browser and computer you are using during your visit.'}</p>
+              <p>{__ t='Our web server places a small data file on your computer called a <em>cookie</em>. This cookie helps us improve the website\'s performance by knowing what kind of browser and computer you are using during your visit.'}</p>
               <p>{__ t='The cookie contains no personal information and is not readable during your visits to other web sites.'}</p>
             <h3>{__ t='Other websites'}</h3>
               <p>{__ t='This website contains links to other websites.'}</p>
