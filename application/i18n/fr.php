@@ -221,7 +221,7 @@ return array(
 	'contact' => 'contact',
 	'blog' => 'blog',
 	'Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl est financé par le <a href="http://www.freemedia.at/">International Press Institute</a>.',
-	'It's a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Ce projet est mené  par <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> et <a href="http://www.wasamundi.com/">Wasamundi</a>.',
+	'It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Ce projet est mené  par <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> et <a href="http://www.wasamundi.com/">Wasamundi</a>.',
 	'Account' => 'Profil',
 	'Signup' => 'Inscription',
 	'Less power cuts' => 'Peu de coupure',
