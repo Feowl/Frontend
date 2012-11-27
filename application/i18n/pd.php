@@ -4,78 +4,166 @@
 
 return array(
 	// bootstrap.php
-	'Feowl empowers local media and their stakeholders with accurate and actionable insights on the electricity supply' => 'Feowl go give people way dem di make news and all the others true true story about all the news on power cuts', // 130
-	'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply' => 'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply', // 133
+	'Feowl empowers local media and their stakeholders with accurate and actionable insights on the electricity supply' => 'Feowl go give people way dem di make news and all the others true true story about all the news on power cuts', // 131
+	'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply' => 'feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply', // 134
 
-	// views/user/login_info.tpl
-	'Login' => 'Connect', // 1
-	'Login and report power cuts' => 'Connect and report power cuts', // 1
-	'Feowl team.' => 'Feowl people', // 1
+	// views/user/delete_info.tpl
+/// TODO	'Deleting your account' => '', // 2
+/// TODO	'Deleting your account ...' => '', // 3
+	'Feowl team.' => 'Feowl people', // 4
+
+	// views/user/forgot-password.tpl
+/// TODO	'Forgot your password?' => '', // 4
+/// TODO	'Enter your e-mail address to receive a new password:' => '', // 21
+/// TODO	'Send' => '', // 34
+/// TODO	'Your Password has been resetted: Check your E-mail for your new password.' => '', // 41
+
+	// views/user/gsm_phonenumber_info.tpl
+/// TODO	'Send my Login details' => '', // 1
+/// TODO	'You have already registered by SMS? No need to register again on the website. Enter your phone number and we'll send you your login information by SMS.' => '', // 1
+
+	// views/user/gsm_phonenumber.tpl
+/// TODO	'GSM Phone number*' => '', // 17
+/// TODO	'Get my login Information' => '', // 24
 
 	// views/user/login.tpl
-	'Email' => 'Email', // 14
-	'Password' => 'Password', // 21
+/// TODO	'Login to your account' => '', // 8
+	'Email' => 'Email', // 27
+	'Password' => 'Password', // 32
+	'Login' => 'Connect', // 41
 
-	// views/user/signup_info.tpl
-	'Sign Up' => 'Join we', // 1
-	'Don\'t worry, they will not contradict you when i finish with your report and others.' => 'Wouna no worry, no man no go argue wouna when i go finish with all wouna reports', // 1
-	'You will be able to have a geographical look on how the mess up all this time.' => 'You go fit lookam quarter by quarter and you go see how them dey misbehave.', // 1
-	'I intend to equip you with relevant tools to measure the quality of service you pay for.' => 'I want may wouna get correct way for measure the kind service way you dey pay for.', // 1
+	// views/user/profile-contributions.tpl
+/// TODO	'Lists of contributions' => '', // 3
+	'District' => 'Arrondissement', // 9
+	'Duration' => 'Durée', // 10
+	'Date' => 'Date', // 11
+	'Quality' => 'Qualité', // 12
+/// TODO	'Download your contributions (CSV)' => '', // 38
+/// TODO	'You currently have no contributions' => '', // 44
+
+	// views/user/profile-details.tpl
+/// TODO	'Change my informations' => '', // 8
+	'Name' => 'Name', // 10
+/// TODO	'E-mail' => '', // 17
+/// TODO	'GSM Phone Number' => '', // 24
+/// TODO	'How often do you want to contribute ?' => '', // 35
+/// TODO	'Not Sure' => '', // 39
+/// TODO	'Daily' => '', // 40
+/// TODO	'Weekly' => '', // 41
+/// TODO	'Monthly' => '', // 42
+/// TODO	'Change my password' => '', // 53
+/// TODO	'Current password' => '', // 56
+/// TODO	'New password' => '', // 63
+/// TODO	'Repeat new password' => '', // 70
+/// TODO	'Delete my account' => '', // 79
+/// TODO	'Update Profile' => '', // 83
+
+	// views/user/profile-left.tpl
+	'Profile' => 'Profil', // 2
+/// TODO	'My account' => '', // 17
+/// TODO	'My contributions' => '', // 23
 
 	// views/user/signup.tpl
-	'Name' => 'Name', // 20
-	'Language' => 'Language', // 41
-	'English' => 'English', // 44
-	'French' => 'French', // 45
-	'Pidgin' => 'Pidgin', // 46
+/// TODO	'Create an account' => '', // 9
+/// TODO	'When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!' => '', // 11
+/// TODO	'More than 8 characters' => '', // 40
+/// TODO	'I\'m not sure' => '', // 51
+/// TODO	'* Required field.' => '', // 61
+/// TODO	'Already have an account? Log in' => '', // 62
+
+	// views/pages/about.tpl
+	'About' => 'About', // 6
+	'<p>Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.</p><p>Feowl will poll reliable voluntary contributors and will ask them about their power cut experience: Did they witness one? When was that? Where?</p><p>Feowl will aggregate, compute and analyze the data received via polls and will display them on this platform using the best visualization techniques.</p><p>Feowl was made possible thanks to a grant received from the International Press Institute.</p>' => '<p>Feowl est une plateforme alimentée par la communauté, qui produit des données publiques précises et exploitables sur la fourniture d\'électricité à Douala.</p><p>Feowl sondera des contributeurs volontaires fiables et leur posera des questions sur leur expérience des coupure de courant : en ont-ils subi une ? Quand était-ce ? Où était-ce ?</p><p>Feowl agrégera, calculera et analysera les données reçues via les sondages, et les disposera sur cette plateforme grâce aux meilleures techniques de visualisation en ligne.</p><p>Feowl a été rendu possible grâce un financement reçu de l\'Institut International de la Presse.</p>', // 18
+
+	// views/pages/credits.tpl
+/// TODO	'Credits' => '', // 6
+/// TODO	'' => '', // 18
+
+	// views/pages/help.tpl
+/// TODO	'Help' => '', // 6
+
+	// views/pages/not_in_douala.tpl
+/// TODO	'So, you don\'t live in Douala?' => '', // 6
+/// TODO	'<p>Feowl is a platform that monitors power cuts based on a daily survey of residents of Douala. Only people who actually live there can contribute.</p>' => '', // 18
+/// TODO	'<p>Here are a few things you can do if you don\'t live in Douala.</p>' => '', // 19
+/// TODO	'<h2>Bring Feowl to your city!</h2>' => '', // 20
+/// TODO	'<p>Feowl is an open source project. All you need is a server and a way to send and receive SMS messages and you can get started.</p>' => '', // 21
+/// TODO	'<h2>Contribute to the code</h2>' => '', // 22
+/// TODO	'<p>If you\'re a developer, you can check out the code and contribute. There are always bugs to be fixed and features to be developed!</p>' => '', // 23
+/// TODO	'<h2>Spread the word</h2>' => '', // 24
+/// TODO	'<p>Even a tweet or a like helps Feowl. It lets more people know about it, some of whom might have the resources to set up an instance of Feowl in your city.</p>' => '', // 25
+/// TODO	'<h2>Analyze the data</h2>' => '', // 26
+/// TODO	'<p>Collecting data is only the start. Numbers have to be analyzed so that power outages can be better understood. Analyses based on the data can help civil society, energy utilities, regulators and, above all, consumers.</p>' => '', // 27
+
+	// views/pages/tos.tpl
+/// TODO	'Terms of Service' => '', // 6
 
 	// views/layout/footer.tpl
-	'Fork us on GitHub!' => 'Copy us on GitHub!', // 6
-	'Feowl files under an Apache licence' => 'Feowl files be under Apache licence', // 7
-	'contact' => 'contact', // 11
-	'blog' => 'blog', // 11
-	'Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl money come from <a href="http://www.freemedia.at/">International Press Institute</a>.', // 15
-	'It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Feowl people them na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.', // 18
+/// TODO	'Licence' => '', // 8
+/// TODO	'Contact' => '', // 9
+/// TODO	'Terms of service' => '', // 10
+/// TODO	'Blog' => '', // 11
+/// TODO	'Twitter' => '', // 12
+/// TODO	'Facebook' => '', // 13
+/// TODO	'Code' => '', // 14
+/// TODO	'Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.' => '', // 20
+/// TODO	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => '', // 22
 
 	// views/layout/menu.tpl
-	'Account' => 'Your account', // 16
-	'Signup' => 'Join we', // 23
-	'Home' => 'Home', // 57
-	'Explore' => 'Watch map', // 58
-	'Contribute' => 'Contribute', // 59
-	'About' => 'About', // 
+	'Language' => 'Language', // 33
+/// TODO	'Logout' => '', // 70
+/// TODO	'Sign up' => '', // 83
+	'Home' => 'Home', // 91
+	'Explore' => 'Watch map', // 92
+	'Contribute' => 'Contribute', // 93
 
 	// views/home/home.tpl
-	'Legend' => 'Legend', // 12
-	'No enough data' => 'Données insuffisantes', // 14
-	'Less power cuts' => 'Peu de coupure', // 15
-	'More power cuts' => 'Beaucoup de coupure', // 16
-	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 31
-	'<p>Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.</p><p>Feowl will poll reliable voluntary contributors and will ask them about their power cut experience: Did they witness one? When was that? Where?</p><p>Feowl will aggregate, compute and analyze the data received via polls and will display them on this platform using the best visualization techniques.</p><p>Feowl was made possible thanks to a grant received from the International Press Institute.</p>' => '<p>Feowl est une plateforme alimentée par la communauté, qui produit des données publiques précises et exploitables sur la fourniture d\'électricité à Douala.</p><p>Feowl sondera des contributeurs volontaires fiables et leur posera des questions sur leur expérience des coupure de courant : en ont-ils subi une ? Quand était-ce ? Où était-ce ?</p><p>Feowl agrégera, calculera et analysera les données reçues via les sondages, et les disposera sur cette plateforme grâce aux meilleures techniques de visualisation en ligne.</p><p>Feowl a été rendu possible grâce un financement reçu de l\'Institut International de la Presse.</p>', // 32
+	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 9
+/// TODO	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => '', // 11
+/// TODO	'Register' => '', // 34
+/// TODO	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => '', // 35
+/// TODO	'We'll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => '', // 42
+/// TODO	'Feowl then produces statistics with all the information collected. It'll be a powerful source to hold energy producers and regulators to account!' => '', // 49
+/// TODO	'Power cuts in Douala' => '', // 59
+/// TODO	'no data' => '', // 62
+/// TODO	'&lt; 30m' => '', // 63
+/// TODO	'&lt; 2h' => '', // 64
+/// TODO	'&lt; 4h' => '', // 65
+/// TODO	'&gt; 4h' => '', // 66
+/// TODO	'Explore the reports' => '', // 72
 
 	// views/explore/explore.tpl
-	'Explore the data collected by Feowl' => 'Explorez les données collectées par Feowl', // 4
-	'User reports' => 'Rapports des utilisateurs', // 27
-	'District' => 'Arrondissement', // 31
-	'Duration' => 'Durée', // 32
-	'Date' => 'Date', // 33
-	'Quality' => 'Qualité', // 34
-	'Loading' => 'Chargement', // 47
-	'Load more' => 'Voir plus', // 70
-	'No reports submited for that period' => 'Aucun rapport soumis durant cette période', // 79
+	'Legend' => 'Legend', // 16
+	'No enough data' => 'Données insuffisantes', // 18
+/// TODO	'No power cuts or less than 30mn' => '', // 19
+/// TODO	'Beetween 30mn and 2h' => '', // 20
+/// TODO	'Beetween 2h and 4h' => '', // 21
+/// TODO	'More than 4 hours' => '', // 22
+/// TODO	'Proportion of Feowl users suffering from power cuts in %s' => '', // 26
+/// TODO	'no data available' => '', // 27
+/// TODO	'0' => '', // 29
+/// TODO	'30'' => '', // 30
+/// TODO	'2h' => '', // 31
+/// TODO	'4h' => '', // 32
+/// TODO	'Duration of daily power cuts' => '', // 35
+	'User reports' => 'Rapports des utilisateurs', // 53
+	'Loading' => 'Chargement', // 71
+	'Load more' => 'Voir plus', // 96
+	'No reports submited for that period' => 'Aucun rapport soumis durant cette période', // 118
+/// TODO	'Based on {{count}} contribution.' => '', // 138
+/// TODO	'Based on {{count}} contributions.' => '', // 140
 
 	// views/contribute/contribute.tpl
-	'Did you witness a power cut today ?' => 'light don go today ?', // 1
-	'Yes' => 'Yes', // 1
-	'No' => 'No', // 1
-	'About when did it occur ?' => 'which time e happen?', // 1
+/// TODO	'Contribute to Feowl' => '', // 1
+/// TODO	'How many power cuts did you witness yesterday ?' => '', // 1
 	'Please select' => '', // 1
-	'Midnight' => '', // 1
-	'Midday' => '', // 1
-	'Please Select' => '', // 1
+/// TODO	'or' => '', // 1
+/// TODO	'I don\'t know, I wasn\'t in Douala' => '', // 1
+/// TODO	'First powercut' => '', // 1
 	'How long did it last?' => 'e stay for how many time?', // 1
-	'Less than 30Mins' => 'e no reach 30Mins', // 1
-	'About 30Mins' => 'e be like 30 Mins', // 1
+/// TODO	'-' => '', // 1
+/// TODO	'Less than 30 mins' => '', // 1
+/// TODO	'About 30 mins' => '', // 1
 	'About 1 hour' => 'e be like 1 hour', // 1
 	'About 2 hours' => 'e be like 2 hours', // 1
 	'About 3 hours' => 'e be like 3 hours', // 1
@@ -85,13 +173,77 @@ return array(
 	'Douala III' => 'Douala Tree', // 1
 	'Douala IV' => 'Douala Four', // 1
 	'Douala V' => 'Douala Five', // 1
+/// TODO	'Second powercut' => '', // 1
+/// TODO	'Third powercut' => '', // 1
+/// TODO	'Clear form' => '', // 1
+/// TODO	'Contribute to Feowl!' => '', // 1
+/// TODO	'Explore the data' => '', // 1
 
-	// views/contribute/how_to.tpl
-	'How to Contribute' => '', // 2
-	'Read More' => '', // 4
+	// classes/controller/contribute.php
+/// TODO	'Thank you, your contribution has been taken into account.' => '', // 114
+
+	// classes/controller/locale.php
+/// TODO	'This field required.' => '', // 43
+/// TODO	'Enter valid email address' => '', // 46
+/// TODO	'Password must be minimum 8 characters' => '', // 49
+/// TODO	'Phone Number must have atleast 6 chars' => '', // 52
+/// TODO	'Phone Number must not exceed 13 chars' => '', // 53
+/// TODO	'Phone Number should content only digits' => '', // 54
+/// TODO	'0 minute' => '', // 68
+/// TODO	'30 minutes' => '', // 69
+/// TODO	'2 hours' => '', // 70
+/// TODO	'4 hours' => '', // 71
+/// TODO	'more' => '', // 72
+/// TODO	'Douala&nbsp;I' => '', // 73
+/// TODO	'Douala&nbsp;II' => '', // 74
+/// TODO	'Douala&nbsp;III' => '', // 75
+/// TODO	'Douala&nbsp;IV' => '', // 76
+/// TODO	'Douala&nbsp;V' => '', // 77
+/// TODO	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => '', // 78
+
+	// classes/controller/user.php
+/// TODO	'Thanks for signing up!' => '', // 128
+/// TODO	'This name is already in use' => '', // 136
+/// TODO	'This e-mail address is already in use. Forgot your password ?' => '', // 138
+/// TODO	'Technical Error. PLease try again Later' => '', // 140
+/// TODO	'Feowl: Password Reset' => '', // 218
+/// TODO	'Enter your new password and repeat it correctly' => '', // 335
+/// TODO	'Enter your present password correctly' => '', // 340
+/// TODO	'Enter your new password correctly' => '', // 345
+/// TODO	'Your profile has been updated' => '', // 402
+/// TODO	'Technical Error' => '', // 407
 
 	// Orphan phrases
 	'User Guide' => 'Guide Utilisateur',
-	'Profile' => 'Profil',
-	'Sign Out' => 'Clos\'am',
+	'Login and report power cuts' => 'Connect and report power cuts',
+	'Fork us on GitHub!' => 'Copy us on GitHub!',
+	'Feowl files under an Apache licence' => 'Feowl files be under Apache licence',
+	'contact' => 'contact',
+	'blog' => 'blog',
+	'Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl money come from <a href="http://www.freemedia.at/">International Press Institute</a>.',
+	'It's a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => 'Feowl people them na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.',
+	'Account' => 'Your account',
+	'Signup' => 'Join we',
+	'Less power cuts' => 'Peu de coupure',
+	'More power cuts' => 'Beaucoup de coupure',
+	'Explore the data collected by Feowl' => 'Explorez les données collectées par Feowl',
+	'How to Contribute' => '',
+	'Read More' => '',
+	'Sign Out' => 'Clos'am',
+	'Sign Up' => 'Join we',
+	'Don't worry, they will not contradict you when i finish with your report and others.' => 'Wouna no worry, no man no go argue wouna when i go finish with all wouna reports',
+	'You will be able to have a geographical look on how the mess up all this time.' => 'You go fit lookam quarter by quarter and you go see how them dey misbehave.',
+	'I intend to equip you with relevant tools to measure the quality of service you pay for.' => 'I want may wouna get correct way for measure the kind service way you dey pay for.',
+	'English' => 'English',
+	'French' => 'French',
+	'Pidgin' => 'Pidgin',
+	'Did you witness a power cut today ?' => 'light don go today ?',
+	'Yes' => 'Yes',
+	'No' => 'No',
+	'About when did it occur ?' => 'which time e happen?',
+	'Midnight' => '',
+	'Midday' => '',
+	'Please Select' => '',
+	'Less than 30Mins' => 'e no reach 30Mins',
+	'About 30Mins' => 'e be like 30 Mins',
 );
