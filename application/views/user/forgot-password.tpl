@@ -38,7 +38,7 @@
 				  </form>	
 				{else}
 					<div class="padding20 bottom0">
-					  {__ t='Your Password has been resetted: Check your E-mail for your new password.'}				 	
+					  {__ t='Your password has been reset: Check your inbox for your new password.'}				 	
 			      <div class="top10">		      	
 		      		<a href="{url::site('user/login')}">
 		      			<i class=" icon-arrow-left"></i>

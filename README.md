@@ -45,3 +45,9 @@ By your credentials:
 			"api_key"  => "example-key"
 		)
 	);
+
+
+### Generate locales
+From the root directory, type :
+
+	php index.php --uri="i18nget/generate"

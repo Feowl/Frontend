@@ -21,7 +21,7 @@
 	</div>
 	<div class="control-group">
 	<div class="controls">
-	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Get my login Information'}'/>
+	<input type='submit' class="btn btn-primary btn-large sbtn padbtn" name='submit' value='{__ t='Get my login information'}'/>
 	</div> 
 	</div>  
 	
