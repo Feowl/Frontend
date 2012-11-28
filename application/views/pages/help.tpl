@@ -31,7 +31,7 @@
           {__ t='<p>2 &ndash; If you witnessed <strong>one</strong> power cut, reply PC followed by the location of the power cut and the duration in minutes. Ex&nbsp;: If you&rsquo;ve witnessed a 30 minutes power cut in Bali, reply PC DOUALA1 30 (because Bali is in Douala 1) </p>'}
           {__ t='<p>3 &ndash; If you&rsquo;ve witnessed several power cuts and wish to report them, reply PC followed by the different locations and durations of each power cut. Please make sure to separate them with commas. Ex&nbsp;: if you&rsquo;ve witnessed a 30 minutes power cut in Bali, then a 50 minutes powercut in Akwa, and a 10 minutes power cut in Maképé, reply PC&nbsp; DOUALA1 30, PC DOUALA1 50, PC DOUALA5 10</p>'}
           {__ t='<p>4 &ndash; If you had no power cut at all, send in PC NO</p>'}
-          {__ t='<p><a href="/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>'}
+          {__ t='<p><a href="/pages/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>'}
           {__ t='<h2>3. HELP </h2>'}
           {__ t='<p>To receive instructions on how to report a power cut, send HELP to 88002014.</p>'}
           {__ t='<h2>4. UNSUSCRIBE</h2>'}
