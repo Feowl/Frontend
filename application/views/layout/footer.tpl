@@ -19,7 +19,7 @@
 					<p class="mentions">
 						{__ t='Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.'}
 						<br />
-						{__ t='It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.'}
+						{__ t='It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">TESOBE</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.'}
 					</p>
 				</div>
 			</div>
