@@ -1,4 +1,3 @@
-
 	<div class="banner">
 
 		<img src="{URL::base()}assets/img/home-douala.jpg" class="douala" alt="Photo: Alvise Forcellini" />
@@ -11,8 +10,8 @@
 						{__ t='Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.'}
 					</p>
 					<p>
-						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">Contribute to Feowl</a>
-						<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">Not in Douala?</a>
+						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">{__ t='Contribute to Feowl'}</a>
+						<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">{__ t='Not in Douala?'}</a>
 					</p>
 				</div>
 			</div>
