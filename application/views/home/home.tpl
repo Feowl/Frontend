@@ -38,7 +38,7 @@
 						<div class="span4 what">
 							<div class="well">
 								<h3>2. {__ t="Contribute"}</h3>
-								{__ t="We'll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!"}
+								{__ t="We'll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!"}
 							</div>
 						</div>
 
