@@ -109,6 +109,9 @@ class Controller_User extends Controller_Template {
         $http_status = $results['http_status'];
         $json_result = $results['json_result'];
 
+        var_dump($results);
+        exit;
+
         if ($http_status == 201) {
 
           //contributor device number #mobile
