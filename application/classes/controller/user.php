@@ -141,11 +141,13 @@ class Controller_User extends Controller_Template {
           } elseif (in_array("email", $error_string)) {            
             $error = __("This e-mail address is already in use. Forgot your password ?");
           } else {
-            $error =  $error_string . __("A : Technical Error. PLease try again Later");
+            var_dump($error_string);
+            $error =  __("A : Technical Error. PLease try again Later");
           }
           //$error_1 = $json_result['error_message']; 
         } else {
-          $error =  $error_string . __("B : Technical Error. PLease try again Later");
+          var_dump($error_string);
+          $error =  __("B : Technical Error. PLease try again Later");
         }
 
         //@todo force login to next step
