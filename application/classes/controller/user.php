@@ -93,7 +93,6 @@ class Controller_User extends Controller_Template {
     
     if (HTTP_Request::POST == $this->request->method()) { 
 
-      try {
         //build json items
         $json_items['name']      = Arr::get($_POST, 'username');
         $json_items['password']  = Arr::get($_POST, 'userpassword');
@@ -141,21 +140,15 @@ class Controller_User extends Controller_Template {
           } elseif (in_array("email", $error_string)) {            
             $error = __("This e-mail address is already in use. Forgot your password ?");
           } else {
-            var_dump($error_string);
-            $error =  __("A : Technical Error. PLease try again Later");
+            $error =  __("Technical Error. PLease try again Later");
           }
           //$error_1 = $json_result['error_message']; 
-        } else {
-          var_dump($error_string);
+        } else {         
           $error =  __("B : Technical Error. PLease try again Later");
         }
 
         //@todo force login to next step
-      }
-      catch (Exception $e) {
-        // Set failure message TODO: Set various notices
-        $this->session->set('alert', __("Technical Error. PLease try again Later") );
-      }
+      
     }
   }
   
