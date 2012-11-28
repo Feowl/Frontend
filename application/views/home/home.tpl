@@ -24,7 +24,7 @@
 		<div class="row">
 			
 			<div class="span7">				
-				<h2 class="left30 top20 bottom20">How it works</h2>		
+				<h2 class="left30 top20 bottom20">{__ t='How it works'}</h2>		
 				
 				<div class="right20 left30">
 					<div class="row-fluid">
