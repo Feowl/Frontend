@@ -133,27 +133,24 @@ class Controller_User extends Controller_Template {
           Request::current()->redirect('home');
 
         } elseif ($json_result) {
-          $error_string = $pieces = explode(" ", $json_result);
 
+          $error_string = $pieces = explode(" ", $json_result);
 
           if (in_array("name", $error_string)) {
             $error = __("This name is already in use");
           } elseif (in_array("email", $error_string)) {            
             $error = __("This e-mail address is already in use. Forgot your password ?");
           } else {
-            $error = __("Technical Error. PLease try again Later");
+            $error =  $error_string . __("A : Technical Error. PLease try again Later");
           }
           //$error_1 = $json_result['error_message']; 
         } else {
-          $error = __("Technical Error. PLease try again Later");
+          $error =  $error_string . __("B : Technical Error. PLease try again Later");
         }
 
         //@todo force login to next step
       }
       catch (Exception $e) {
-
-          var_dump($e);
-          exit;
         // Set failure message TODO: Set various notices
         $this->session->set('alert', __("Technical Error. PLease try again Later") );
       }
