@@ -109,12 +109,14 @@ class Controller_User extends Controller_Template {
         //$json_result = json_decode($results['json_result']); 
         $http_status = $results['http_status'];
         $json_result = $results['json_result'];
-        
+
         if ($http_status == 201) {
+
           //contributor device number #mobile
           $device['category']     = 'Phone';
           $device['phone_number'] = $phone_number['number'];
           //get the contributor ID
+          $email = urlencode($email);
           $results                = Model_Contributors::get_contributors('', "email=$email");
           $r                      = json_decode($results['json_result'], true);
           $device['contributor']  = "/api/v1/contributors/" . $r['objects'][0]['id'] . '/';
@@ -124,14 +126,16 @@ class Controller_User extends Controller_Template {
           
           //login the user
           $this->model->force_login($r['objects'][0]['id']);
-          
+
           $notice = __("Thanks for signing up!");
           //set notice in session
           $this->session->set('alert', $notice);
           Request::current()->redirect('home');
 
-        } elseif (isset($json_result)) {
+        } elseif ($json_result) {
           $error_string = $pieces = explode(" ", $json_result);
+
+
           if (in_array("name", $error_string)) {
             $error = __("This name is already in use");
           } elseif (in_array("email", $error_string)) {            
@@ -143,9 +147,13 @@ class Controller_User extends Controller_Template {
         } else {
           $error = __("Technical Error. PLease try again Later");
         }
+
         //@todo force login to next step
       }
       catch (Exception $e) {
+
+          var_dump($e);
+          exit;
         // Set failure message TODO: Set various notices
         $this->session->set('alert', __("Technical Error. PLease try again Later") );
       }
