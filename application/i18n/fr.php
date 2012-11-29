@@ -245,6 +245,7 @@ return array(
 	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala.', // 10
 	'Contribute to Feowl' => 'Contribuer à Feowl', // 13
 	'Not in Douala?' => 'Pas à Douala?', // 14
+	'How it works' => 'Comment ça marche',
 	'Register' => 'Inscription', // 33
 	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 34
 	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: <em>Combien de coupures avez-vous eu hier?</em> Répondez bien, même si vous avez eu 0 coupure!', // 41
