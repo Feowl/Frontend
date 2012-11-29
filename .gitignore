@@ -1,4 +1,17 @@
 # HTACCESS - to avoid pushing personal config e.g feowl/UI
 .htaccess
+
 # temporal folder to keep downloaded csv
 temp/*
+application/cache/*
+application/logs/*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
