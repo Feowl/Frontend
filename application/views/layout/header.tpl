@@ -34,7 +34,7 @@
         <meta property="og:url" content="{$smarty.const.SITE_URL}" />
         <meta property="og:site_name" content="{$smarty.const.SITE_TITLE}" />
         <meta property="fb:admins" content="{$smarty.const.SITE_FB_ADMIN}" />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="{$smarty.const.SITE_URL}/assets/img/logo.png" />
         <link rel="image_src" type="image/jpeg" href="" />
     </head>
     <body>
