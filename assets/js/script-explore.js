@@ -454,7 +454,7 @@
 	  		// Look for the updatime
 	  		for(var index in explore.reportsAggregation) {
 	  			if(explore.reportsAggregation[index].id == d.id) {
-	  				avg_duration = explore.reportsAggregation[index].avg_duration;
+	  				avg_duration = explore.reportsAggregation[index].avg_duration * 1;
 	  			}
 	  		}
 
