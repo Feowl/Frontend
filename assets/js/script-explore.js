@@ -257,7 +257,7 @@
     // Extract the dates from the range
     var  dates = explore.$dateRange.dateRangeSlider("values"),
     // Index of the bar to determines the interval
-    intervalId = el.bar.index;
+    intervalId = 3 - el.bar.index;    
 
     var data = {
 			place         : getText( explore.$exploreBarcharts.data('district') ),
