@@ -314,7 +314,7 @@ return array(
 	'Phone Number must have atleast 6 chars' => 'Le numéro de téléphone doit avoir au moins 6 caractères', // 52
 	'Phone Number must not exceed 13 chars' => 'Le numéro de téléphone ne peut excéder 13 caractères', // 53
 	'Phone Number should content only digits' => 'Le numéro de téléphone ne doit comporter que des chiffres', // 54
-/// TODO	'unknown' => '', // 68
+	'unknown' => 'inconnu', // 68
 /// TODO	'0 minute' => '', // 69
 /// TODO	'30 minutes' => '', // 70
 	'2 hours' => '2 heures', // 71
