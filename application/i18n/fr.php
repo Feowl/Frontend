@@ -245,7 +245,7 @@ return array(
 	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala.', // 10
 	'Contribute to Feowl' => 'Contribuer à Feowl', // 13
 	'Not in Douala?' => 'Pas à Douala?', // 14
-	'How it works' => 'Comment ça marche',
+	'How it works' => 'Comment ça marche', // 27
 	'Register' => 'Inscription', // 33
 	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 34
 	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: <em>Combien de coupures avez-vous eu hier?</em> Répondez bien, même si vous avez eu 0 coupure!', // 41
@@ -268,7 +268,7 @@ return array(
 	'Proportion of Feowl users suffering from power cuts in %s' => 'Proportion des utilisateurs de Feowl subissant des coupures à %s', // 26
 	'no data available' => 'Aucune donnée disponible', // 27
 /// TODO	'0' => '', // 29
-/// TODO	'30'' => '', // 30
+/// TODO	'30\'' => '', // 30
 /// TODO	'2h' => '', // 31
 /// TODO	'4h' => '', // 32
 	'Duration of daily power cuts' => 'Durée des coupures quotidiennes', // 35
@@ -314,23 +314,25 @@ return array(
 	'Phone Number must have atleast 6 chars' => 'Le numéro de téléphone doit avoir au moins 6 caractères', // 52
 	'Phone Number must not exceed 13 chars' => 'Le numéro de téléphone ne peut excéder 13 caractères', // 53
 	'Phone Number should content only digits' => 'Le numéro de téléphone ne doit comporter que des chiffres', // 54
-/// TODO	'0 minute' => '', // 68
-/// TODO	'30 minutes' => '', // 69
-	'2 hours' => '2 heures', // 70
-	'4 hours' => '4 heures', // 71
-	'more' => 'plus', // 72
-/// TODO	'Douala&nbsp;I' => '', // 73
-/// TODO	'Douala&nbsp;II' => '', // 74
-/// TODO	'Douala&nbsp;III' => '', // 75
-/// TODO	'Douala&nbsp;IV' => '', // 76
-/// TODO	'Douala&nbsp;V' => '', // 77
-	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 78
+/// TODO	'unknown' => '', // 68
+/// TODO	'0 minute' => '', // 69
+/// TODO	'30 minutes' => '', // 70
+	'2 hours' => '2 heures', // 71
+	'4 hours' => '4 heures', // 72
+	'more' => 'plus', // 73
+/// TODO	'Douala&nbsp;I' => '', // 74
+/// TODO	'Douala&nbsp;II' => '', // 75
+/// TODO	'Douala&nbsp;III' => '', // 76
+/// TODO	'Douala&nbsp;IV' => '', // 77
+/// TODO	'Douala&nbsp;V' => '', // 78
+	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 79
 
 	// classes/controller/user.php
-	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 128
-	'This name is already in use' => 'Ce nom est déjà utilisé', // 136
-	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 138
-	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 140
+	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 129
+	'This name is already in use' => 'Ce nom est déjà utilisé', // 139
+	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 141
+	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 143
+/// TODO	'B : Technical Error. PLease try again Later' => '', // 147
 	'Feowl: Password Reset' => 'Feowl: réinitialiser le mot de passe.', // 218
 	'Enter your new password and repeat it correctly' => 'Indiquez votre nouveau mot de passe, deux fois', // 335
 	'Enter your present password correctly' => 'Indiquez votre mot de passe actuel', // 340
@@ -364,4 +366,6 @@ return array(
 	'How to Contribute' => 'Comment contribuer',
 	'Read More' => 'En savoir plus',
 	'Sign Out' => 'Déconnexion',
+/// TODO	'How you go want report light cut ?' => '',
+/// TODO	'1' => '',
 );

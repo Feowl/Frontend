@@ -115,6 +115,7 @@ class I18nget_Controller_I18nget extends Controller {
 
 					$new_phrases = array_diff(array_unique($matches['phrase']), $unique_phrases_helper);
 
+
 					if ($new_phrases)
 					{
 						$data_file[] = array(
@@ -213,21 +214,24 @@ class I18nget_Controller_I18nget extends Controller {
 		{
 			if ($default_language !== $language_code)
 			{
-                $filename = $this->lang_file_path($output_path, $language_code);
+        
+        $filename = $this->lang_file_path($output_path, $language_code);
 
-                //construct content before renaming original file
+        //construct content before renaming original file
 				$content = View::factory('i18nget/generate')
-					->set(array(
-                        'data' => $data,
-					    'orphe_phrases' => $orphe_phrases,
-					    'language_code' => $language_code,
-                        'filename' => $filename,
-					    'global_i18n' => $global_i18n,
-                ))->render();
+                					->set(
+                            array(
+                              'data' => $data,
+  					                  'orphe_phrases' => $orphe_phrases,
+  					                  'language_code' => $language_code,
+                              'filename' => $filename,
+  					                  'global_i18n' => $global_i18n,
+                            )
+                          )->render();
 
                 //print_r($content);
 
-                if ( file_exists($filename) AND Kohana::$config->load('i18nget')->get('should_make_backups') )
+        if ( file_exists($filename) AND Kohana::$config->load('i18nget')->get('should_make_backups') )
 				{
 					rename( $filename, $backup_name = $filename . '.old_' . time() );
                     echo "Backup file: ".substr($backup_name, strlen(DOCROOT))."\n";

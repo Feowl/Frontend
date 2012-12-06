@@ -46,7 +46,7 @@ return array(
 	'Name' => 'Name', // 10
 	'E-mail' => 'E-mail box', // 17
 	'GSM Phone Number' => 'Ya telephone number', // 24
-	'How you go want report light cut ?' => 'How you go want report am ?', // 35
+/// TODO	'How often do you want to contribute ?' => '', // 35
 	'Not Sure' => 'I no sure', // 39
 	'Daily' => 'Every day', // 40
 	'Weekly' => 'Every week', // 41
@@ -71,12 +71,42 @@ return array(
 	'* Required field.' => '*You must type something for here.', // 61
 	'Already have an account? Log in' => 'You be don already join we? Connect', // 62
 
+	// views/pages/about.tpl
+/// TODO	'About' => '', // 6
+/// TODO	'<p>What can be measured can be changed. Feowl is a platform that collects and provides data on the lack of electricity in Douala, the economic capital of Cameroon: How long does a power cut last? What time of day? What social and economic impact do these power cuts have on the city?</p>' => '', // 18
+/// TODO	'<p>Contributors are invited to report to Feowl by SMS or via the web interface, any power outage. The data collected will be analyzed and available online to anyone interested. The data are displayed on an interactive and geolocalized: users can access specific information on power outages in a particular neighborhoods of Douala.</p>' => '', // 19
+/// TODO	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '', // 20
+
 	// views/pages/credits.tpl
 	'Credits' => 'Dem help we', // 6
 
 	// views/pages/districts.tpl
 	'Districts' => 'Area', // 6
 	'<p>Not sure which <em>arrondissement</em> you\'re in? This list of correspondence is here to help!</p>' => '<p>You no sabi the place you di stay?, This list go helep you!</p>', // 18
+
+	// views/pages/help.tpl
+/// TODO	'Help' => '', // 6
+/// TODO	'<p>You often witness power cuts and would like to help Feowl&nbsp;? It&rsquo;s very simple.</p>' => '', // 18
+/// TODO	'<h2>1. SIGN UP</h2>' => '', // 19
+/// TODO	'<h3>If you sign up directly on the web platform&nbsp;:</h3>' => '', // 20
+/// TODO	'<p>1 &ndash; Go to ACCOUNT and click on SIGN UP</p>' => '', // 21
+/// TODO	'<p>2 &ndash; Fill in your name, e-mail and chose a password. Then chose how often you want to contribute.</p>' => '', // 22
+/// TODO	'<h3>If you sign up using SMS&nbsp;:</h3>' => '', // 23
+/// TODO	'<p>1 &ndash; Send REGISTER to 88002014 and you&rsquo;ll receive a message from Feowl</p>' => '', // 24
+/// TODO	'<p>That&rsquo;s it&nbsp;! You&rsquo;re a member of Feowl&rsquo;s change makers community&nbsp;!</p>' => '', // 25
+/// TODO	'<h2>2. CONTRIBUTION</h2>' => '', // 26
+/// TODO	'<p>If you wish to report a power cut on Feowl website&nbsp;:</p>' => '', // 27
+/// TODO	'<p>1 &ndash; Click on CONTRIBUTE TO Feowl, and fill in the form</p>' => '', // 28
+/// TODO	'<p>If you wish to report a power cut using SMS&nbsp;:</p>' => '', // 29
+/// TODO	'<p>1 &ndash; Feowl will send you a SMS at 8.30 am everyday, once a week, or once a month, depending on the frequency chosen upon registration, asking if you&rsquo;ve witnessed a power cut. Please do not submit any reports before Feowl has sent you a SMS.</p>' => '', // 30
+/// TODO	'<p>2 &ndash; If you witnessed <strong>one</strong> power cut, reply PC followed by the location of the power cut and the duration in minutes. Ex&nbsp;: If you&rsquo;ve witnessed a 30 minutes power cut in Bali, reply PC DOUALA1 30 (because Bali is in Douala 1) </p>' => '', // 31
+/// TODO	'<p>3 &ndash; If you&rsquo;ve witnessed several power cuts and wish to report them, reply PC followed by the different locations and durations of each power cut. Please make sure to separate them with commas. Ex&nbsp;: if you&rsquo;ve witnessed a 30 minutes power cut in Bali, then a 50 minutes powercut in Akwa, and a 10 minutes power cut in Maképé, reply PC&nbsp; DOUALA1 30, PC DOUALA1 50, PC DOUALA5 10</p>' => '', // 32
+/// TODO	'<p>4 &ndash; If you had no power cut at all, send in PC NO</p>' => '', // 33
+/// TODO	'<p><a href="/pages/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>' => '', // 34
+/// TODO	'<h2>3. HELP </h2>' => '', // 35
+/// TODO	'<p>To receive instructions on how to report a power cut, send HELP to 88002014.</p>' => '', // 36
+/// TODO	'<h2>4. UNSUSCRIBE</h2>' => '', // 37
+/// TODO	'<p>To unsuscribe and stop receiving news from Feowl, send STOP to 88002014.</p>' => '', // 38
 
 	// views/pages/not_in_douala.tpl
 	'So, you don\'t live in Douala?' => 'Say, you no dey stay for Douala', // 6
@@ -91,6 +121,106 @@ return array(
 	'<h2>Analyze the data</h2>' => '<h2>Look am fine</h2>', // 26
 	'<p>Collecting data is only the start. Numbers have to be analyzed so that power outages can be better understood. Analyses based on the data can help civil society, energy utilities, regulators and, above all, consumers.</p>' => 'The big work na for gather wouna reports. Then we calculate am so wouna go know wetin be this light cuts. This work go helep we all.', // 27
 
+	// views/pages/tos.tpl
+/// TODO	'Terms of Service' => '', // 6
+/// TODO	'<h3>Introduction</h3>' => '', // 18
+/// TODO	'<p>These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.</p>' => '', // 19
+/// TODO	'<h3>License to use website</h3>' => '', // 20
+/// TODO	'<p>Unless otherwise stated, all content published on the website is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/fr/">Creative Commons</a>.</p>' => '', // 21
+/// TODO	'<h3>Acceptable use</h3>' => '', // 22
+/// TODO	'<p>You must not use this website in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website ; or in any way which is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity.</p>' => '', // 23
+/// TODO	'<p>You must not use this website to copy, store, host, transmit, send, use, publish or distribute any material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, rootkit or other malicious computer software.</p>' => '', // 24
+/// TODO	'<p>You must not use this website to transmit or send unsolicited commercial communications.</p>' => '', // 25
+/// TODO	'<p>You must not use this website for any purposes related to marketing without Feowl&rsquo;s express written consent.</p>' => '', // 26
+/// TODO	'<h3>Restricted access</h3>' => '', // 27
+/// TODO	'<p>Access to certain areas of this website is restricted. Feowl reserves the right to restrict access to areas of this website, or indeed this entire website, at Feowl&rsquo;s discretion.</p>' => '', // 28
+/// TODO	'<p>If Feowl provides you with a user ID and password to enable you to access restricted areas of this website or other content or services, you must ensure that the user ID and password are kept confidential.</p>' => '', // 29
+/// TODO	'<p>Feowl may disable your user ID and password in Feowl&rsquo;s sole discretion without notice or explanation.</p>' => '', // 30
+/// TODO	'<h3>User content</h3>' => '', // 31
+/// TODO	'<p>In these terms and conditions, &ldquo;your user content&rdquo; means material (including without limitation text, images, audio material, video material and audio-visual material) that you submit to this website, for whatever purpose.</p>' => '', // 32
+/// TODO	'<p>You grant to Feowl a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute your user content in any existing or future media. You also grant to Feowl the right to sub-license these rights, and the right to bring an action for infringement of these rights.</p>' => '', // 33
+/// TODO	'<p>Your user content must not be illegal or unlawful, must not infringe any third party\'s legal rights, and must not be capable of giving rise to legal action whether against you or Feowl or a third party (in each case under any applicable law).</p>' => '', // 34
+/// TODO	'<p>You must not submit any user content to the website that is or has ever been the subject of any threatened or actual legal proceedings or other similar complaint.</p>' => '', // 35
+/// TODO	'<p>Feowl reserves the right to edit or remove any material submitted to this website, or stored on Feowl&rsquo;s servers, or hosted or published upon this website.</p>' => '', // 36
+/// TODO	'<p>Notwithstanding Feowl&rsquo;s rights under these terms and conditions in relation to user content, Feowl does not undertake to monitor the submission of such content to, or the publication of such content on, this website.</p>' => '', // 37
+/// TODO	'<h3>No warranties</h3>' => '', // 38
+/// TODO	'<p>This website is provided &ldquo;as is&rdquo; without any representations or warranties, express or implied. Feowl makes no representations or warranties in relation to this website or the information and materials provided on this website.</p>' => '', // 39
+/// TODO	'<p>Without prejudice to the generality of the foregoing paragraph, Feowl does not warrant that: this website will be constantly available, or available at all.</p>' => '', // 40
+/// TODO	'<p>Nothing on this website constitutes, or is meant to constitute, advice of any kind. If you require advice in relation to any legal, financial or medical matter you should consult an appropriate professional.</p>' => '', // 41
+/// TODO	'<h3>Limitations of liability</h3>' => '', // 42
+/// TODO	'<p>Feowl will not be liable to you (whether under the law of contact, the law of torts or otherwise) in relation to the contents of, or use of, or otherwise in connection with, this website:</p>' => '', // 43
+/// TODO	'<li>to the extent that the website is provided free-of-charge, for any direct loss;</li>' => '', // 45
+/// TODO	'<li>for any indirect, special or consequential loss; or</li>' => '', // 46
+/// TODO	'<li>for any business losses, loss of revenue, income, profits or anticipated savings, loss of contracts or business relationships, loss of reputation or goodwill, or loss or corruption of information or data.</li>' => '', // 47
+/// TODO	'<p>These limitations of liability apply even if Feowl has been expressly advised of the potential loss.</p>' => '', // 49
+/// TODO	'<h3>Exceptions</h3>' => '', // 50
+/// TODO	'<p>Nothing in this website disclaimer will exclude or limit any warranty implied by law that it would be unlawful to exclude or limit; and nothing in this website disclaimer will exclude or limit Feowl&rsquo;s liability in respect of any:</p>' => '', // 51
+/// TODO	'<li>death or personal injury caused by Feowl&rsquo;s negligence;</li>' => '', // 53
+/// TODO	'<li>fraud or fraudulent misrepresentation on the part of Feowl; or</li>' => '', // 54
+/// TODO	'<li>matter which it would be illegal or unlawful for Feowl to exclude or limit, or to attempt or purport to exclude or limit, its liability.</li>' => '', // 55
+/// TODO	'<h3>Reasonableness</h3>' => '', // 57
+/// TODO	'<p>By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable.</p>' => '', // 58
+/// TODO	'<p>If you do not think they are reasonable, you must not use this website.</p>' => '', // 59
+/// TODO	'<h3>Other parties</h3>' => '', // 60
+/// TODO	'<p>You accept that, as a limited liability entity, Feowl has an interest in limiting the personal liability of its officers and employees. You agree that you will not bring any claim personally against Feowl&rsquo;s officers or employees in respect of any losses you suffer in connection with the website.</p>' => '', // 61
+/// TODO	'<h3>Unenforceable provisions</h3>' => '', // 62
+/// TODO	'<p>If any provision of this website disclaimer is, or is found to be, unenforceable under applicable law, that will not affect the enforceability of the other provisions of this website disclaimer.</p>' => '', // 63
+/// TODO	'<h3>Indemnity</h3>' => '', // 64
+/// TODO	'<p>You hereby indemnify Feowl and undertake to keep Feowl indemnified against any losses, damages, costs, liabilities and expenses (including without limitation legal expenses and any amounts paid by Feowl to a third party in settlement of a claim or dispute on the advice of Feowl&rsquo;s legal advisers) incurred or suffered by Feowl arising out of any breach by you of any provision of these terms and conditions, or arising out of any claim that you have breached any provision of these terms and conditions.</p>' => '', // 65
+/// TODO	'<h3>Breaches of these terms and conditions</h3>' => '', // 66
+/// TODO	'<p>Without prejudice to Feowl&rsquo;s other rights under these terms and conditions, if you breach these terms and conditions in any way, Feowl may take such action as Feowl deems appropriate to deal with the breach, including suspending your access to the website, prohibiting you from accessing the website, blocking computers using your IP address from accessing the website, contacting your internet service provider to request that they block your access to the website and/or bringing court proceedings against you.</p>' => '', // 67
+/// TODO	'<h3>Variation</h3>' => '', // 68
+/// TODO	'<p>Feowl may revise these terms and conditions from time-to-time. Revised terms and conditions will apply to the use of this website from the date of the publication of the revised terms and conditions on this website. Please check this page regularly to ensure you are familiar with the current version.</p>' => '', // 69
+/// TODO	'<h3>Assignment</h3>' => '', // 70
+/// TODO	'<p>Feowl may transfer, sub-contract or otherwise deal with Feowl&rsquo;s rights and/or obligations under these terms and conditions without notifying you or obtaining your consent.</p>' => '', // 71
+/// TODO	'<p>You may not transfer, sub-contract or otherwise deal with your rights and/or obligations under these terms and conditions.</p>' => '', // 72
+/// TODO	'<h3>Severability</h3>' => '', // 73
+/// TODO	'<p>If a provision of these terms and conditions is determined by any court or other competent authority to be unlawful and/or unenforceable, the other provisions will continue in effect. If any unlawful and/or unenforceable provision would be lawful or enforceable if part of it were deleted, that part will be deemed to be deleted, and the rest of the provision will continue in effect.</p>' => '', // 74
+/// TODO	'<h3>Entire agreement</h3>' => '', // 75
+/// TODO	'<p>These terms and conditions, together with the Privacy Statement below constitute the entire agreement between you and Feowl in relation to your use of this website, and supersede all previous agreements in respect of your use of this website.</p>' => '', // 76
+/// TODO	'<h2>PRIVACY STATEMENT</h2>' => '', // 77
+/// TODO	'<p>Your privacy is important to Feowl. This privacy statement provides information about the personal information that Feowl collects through its website (the &ldquo;Site&rdquo;), and the ways in which Feowl uses that personal information.</p>' => '', // 78
+/// TODO	'<p>YOUR USE OF THE SITE, OR YOUR PROVISION TO US OF ANY PERSONAL INFORMATION CONSTITUTES YOUR AGREEMENT TO THESE TERMS AND ANY SUBSEQUENT CHANGES TO THESE TERMS; DO NOT USE THE SITE OR PROVIDE INFORMATION IF YOU DO NOT AGREE WITH ALL OF THE TERMS.</p>' => '', // 79
+/// TODO	'<h3>Personal information collection</h3>' => '', // 80
+/// TODO	'<p>Feowl may collect and use the following kinds of personal information:</p>' => '', // 81
+/// TODO	'<li>information about your use of this website (including your contributions to Feowl);</li>' => '', // 83
+/// TODO	'<li>information that you provide for the purpose of registering with the website (including your personal names, e-mail addresses, location, password);</li>' => '', // 84
+/// TODO	'<li>information that you provide for the purpose of subscribing to the website services (including access to your contributions); and</li>' => '', // 85
+/// TODO	'<li>any other information that you send to Feowl.</li>' => '', // 86
+/// TODO	'<h3>Using personal information</h3>' => '', // 88
+/// TODO	'<p>Feowl may use your personal information to:</p>' => '', // 89
+/// TODO	'<li>administer this website;</li>' => '', // 91
+/// TODO	'<li>personalize the website for you;</li>' => '', // 92
+/// TODO	'<li>enable your access to and use of the website services;</li>' => '', // 93
+/// TODO	'<li>publish information about you on the website. </li>' => '', // 94
+/// TODO	'<h3>Children\'s Privacy</h3>' => '', // 96
+/// TODO	'<p>The Site\'s content is intended for adults and we will not knowingly collect personal information from children under 13 years of age. If you are a parent or legal guardian of a child under age 13 who you believe has submitted personal information to the Site, please contact us immediately.</p>' => '', // 97
+/// TODO	'<h3>Disclosure of Information </h3>' => '', // 98
+/// TODO	'<p>Available log records, account information, and all data stored on our servers may be accessed by our system administrators. In the event that we are required by law (including a court order) to disclose the information you submit, we will provide you with notice (unless we are prohibited) that a request for your information has been made so that you may object to the disclosure. We will send this notice by email to the address you have given us. If you do not challenge the disclosure request yourself, we may be legally required to turn over your information.</p>' => '', // 99
+/// TODO	'<h3>Securing your data</h3>' => '', // 100
+/// TODO	'<p>Feowl will take reasonable technical and organisational precautions to prevent the loss, misuse or alteration of your personal information.</p>' => '', // 101
+/// TODO	'<p>Feowl will store all the personal information you provide on its secure servers. </p>' => '', // 102
+/// TODO	'<h3>Cross-border data transfers</h3>' => '', // 103
+/// TODO	'<p>Information that Feowl collects may be stored and processed in and transferred between any of the countries in which Feowl operates to enable the use of the information in accordance with this privacy policy.</p>' => '', // 104
+/// TODO	'<p>In addition, personal information that you submit for publication on the website will be published on the internet and may be available around the world.</p>' => '', // 105
+/// TODO	'<p>You agree to such cross-border transfers of personal information. </p>' => '', // 106
+/// TODO	'<h3>Cookies</h3>' => '', // 107
+/// TODO	'<p>Our web server places a small data file on your computer called a <em>cookie</em>. This cookie helps us improve the website\'s performance by knowing what kind of browser and computer you are using during your visit.</p>' => '', // 108
+/// TODO	'<p>The cookie contains no personal information and is not readable during your visits to other web sites.</p>' => '', // 109
+/// TODO	'<h3>Other websites</h3>' => '', // 110
+/// TODO	'<p>This website contains links to other websites.</p>' => '', // 111
+/// TODO	'<p>Feowl is not responsible for the privacy policies or practices of any third party. We encourage you to read the privacy policies of any websites you visit from this website.</p>' => '', // 112
+/// TODO	'<h3>Advertising</h3>' => '', // 113
+/// TODO	'<p>The web site carries no advertising. There are no paid sponsorships.</p>' => '', // 114
+/// TODO	'<h3>Fees</h3>' => '', // 115
+/// TODO	'<p>The use of the web site is free for non-commercial use.</p>' => '', // 116
+/// TODO	'<h3>Updating this statement</h3>' => '', // 117
+/// TODO	'<p>Feowl may update this privacy policy by posting a new version on this website.</p>' => '', // 118
+/// TODO	'<p>You should check this page occasionally to ensure you are familiar with any changes. </p>' => '', // 119
+/// TODO	'<h3>Contact Feowl</h3>' => '', // 120
+/// TODO	'<p>If you have any questions about this privacy policy or Feowl&rsquo;s treatment of your personal information, please write:</p>' => '', // 121
+/// TODO	'<li>by email to <a href="mailto:contact@feowl.com">contact@feowl.com</a></li>' => '', // 123
+
 	// views/layout/footer.tpl
 	'Licence' => 'Licence', // 8
 	'Contact' => 'Contact we', // 9
@@ -100,7 +230,7 @@ return array(
 	'Facebook' => 'Facebook', // 13
 	'Code' => 'Code', // 14
 	'Feowl is financed by a grant from the <a href="http://www.freemedia.at/">International Press Institute</a>.' => 'Feowl be support by <a href="http://www.freemedia.at/">International Press Institute</a>.', // 20
-	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => 'People wey work am be na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.', // 22
+/// TODO	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">TESOBE</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => '', // 22
 
 	// views/layout/menu.tpl
 	'Language' => 'Language', // 33
@@ -111,19 +241,22 @@ return array(
 	'Contribute' => 'talk am', // 93
 
 	// views/home/home.tpl
-	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 9
-	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl na some people wey dey help una for know how da people for current di distribute light for Douala.', // 11
-	'Register' => 'Join we', // 34
-	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Join we, either for internet, or send REGISTER with ya phone for 88002014. Feowl na only for Douala!', // 35
-	'We\'ll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => 'We go dey send for your phone every morning time one message: \"Talk how many time weh light cut?" Abeg just talk am even if dey no cut am!', // 42
-	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl di then calculate am then show wouna, so that wouna fit know if that pipo for current di cheat wouna.', // 49
-	'Power cuts in Douala' => 'Light cuts for Douala', // 59
-	'no data' => 'Nothing dey here', // 62
-	'&lt; 30m' => '&lt; 30mins', // 63
-	'&lt; 2h' => '&lt; 2h', // 64
-	'&lt; 4h' => '&lt; 4h', // 65
-	'&gt; 4h' => '&gt; 4h', // 66
-	'Explore the reports' => 'See the map', // 72
+	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 8
+	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl na some people wey dey help una for know how da people for current di distribute light for Douala.', // 10
+	'Contribute to Feowl' => 'Talk am to Feowl', // 13
+/// TODO	'Not in Douala?' => '', // 14
+/// TODO	'How it works' => '', // 27
+	'Register' => 'Join we', // 33
+	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Join we, either for internet, or send REGISTER with ya phone for 88002014. Feowl na only for Douala!', // 34
+/// TODO	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => '', // 41
+	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl di then calculate am then show wouna, so that wouna fit know if that pipo for current di cheat wouna.', // 48
+	'Power cuts in Douala' => 'Light cuts for Douala', // 58
+	'no data' => 'Nothing dey here', // 61
+	'&lt; 30m' => '&lt; 30mins', // 62
+	'&lt; 2h' => '&lt; 2h', // 63
+	'&lt; 4h' => '&lt; 4h', // 64
+	'&gt; 4h' => '&gt; 4h', // 65
+	'Explore the reports' => 'See the map', // 71
 
 	// views/explore/explore.tpl
 	'Legend' => 'Notice', // 16
@@ -135,7 +268,7 @@ return array(
 	'Proportion of Feowl users suffering from power cuts in %s' => ' Feowl people wey dey no get light in %s', // 26
 	'no data available' => 'Nothing dey here', // 27
 	'0' => '0', // 29
-	'30' => '30', // 30
+/// TODO	'30\'' => '', // 30
 	'2h' => '2h', // 31
 	'4h' => '4h', // 32
 	'Duration of daily power cuts' => 'How long light cut fit stay for one day', // 35
@@ -147,7 +280,6 @@ return array(
 	'Based on {{count}} contributions.' => 'We do am with {{count}} contribution.', // 140
 
 	// views/contribute/contribute.tpl
-	'Contribute to Feowl' => 'Talk am to Feowl', // 1
 	'How many power cuts did you witness yesterday ?' => 'Talk how many time weh light cut', // 1
 	'Please select' => 'Abeg choose one', // 1
 	'or' => 'or', // 1
@@ -173,7 +305,7 @@ return array(
 	'Explore the data' => 'GO inside see the thing', // 1
 
 	// classes/controller/contribute.php
-    'Thank you, your contribution has been taken into account.' => 'We thank you for your contibution, we don save am ', // 114
+	'Thank you, your contribution has been taken into account.' => 'We thank you for your contibution, we don save am ', // 114
 
 	// classes/controller/locale.php
 	'This field required.' => 'You must type something for here.', // 43
@@ -182,23 +314,25 @@ return array(
 	'Phone Number must have atleast 6 chars' => 'Phone Number must get 6 numbers', // 52
 	'Phone Number must not exceed 13 chars' => 'Phone Number get only 13 numbers', // 53
 	'Phone Number should content only digits' => 'Phone Number get na numbers only', // 54
-	'0 minute' => '0 minute', // 68
-	'30 minutes' => '30 minutes', // 69
-	'2 hours' => '2 hours', // 70
-	'4 hours' => '4 hours', // 71
-	'more' => 'more', // 72
-	'Douala&nbsp;I' => 'Douala&nbsp;I', // 73
-	'Douala&nbsp;II' => 'Douala&nbsp;II', // 74
-	'Douala&nbsp;III' => 'Douala&nbsp;III', // 75
-	'Douala&nbsp;IV' => 'Douala&nbsp;IV', // 76
-	'Douala&nbsp;V' => 'Douala&nbsp;V', // 77
-	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'How long light cut fit stay for one day&nbsp;:  <strong>%s&nbsp;minutes</strong>', // 78
+/// TODO	'unknown' => '', // 68
+	'0 minute' => '0 minute', // 69
+	'30 minutes' => '30 minutes', // 70
+	'2 hours' => '2 hours', // 71
+	'4 hours' => '4 hours', // 72
+	'more' => 'more', // 73
+	'Douala&nbsp;I' => 'Douala&nbsp;I', // 74
+	'Douala&nbsp;II' => 'Douala&nbsp;II', // 75
+	'Douala&nbsp;III' => 'Douala&nbsp;III', // 76
+	'Douala&nbsp;IV' => 'Douala&nbsp;IV', // 77
+	'Douala&nbsp;V' => 'Douala&nbsp;V', // 78
+	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'How long light cut fit stay for one day&nbsp;:  <strong>%s&nbsp;minutes</strong>', // 79
 
 	// classes/controller/user.php
-	'Thanks for signing up!' => 'We thank you say you don Join', // 128
-	'This name is already in use' => 'Weh, someman get this name, Abeg change am', // 136
-	'This e-mail address is already in use. Forgot your password ?' => 'Someman dey use this email box. You don loss your secret code ?', // 138
-	'Technical Error. PLease try again Later' => 'Mistake dey here, go come', // 140
+	'Thanks for signing up!' => 'We thank you say you don Join', // 129
+	'This name is already in use' => 'Weh, someman get this name, Abeg change am', // 139
+	'This e-mail address is already in use. Forgot your password ?' => 'Someman dey use this email box. You don loss your secret code ?', // 141
+	'Technical Error. PLease try again Later' => 'Mistake dey here, go come', // 143
+/// TODO	'B : Technical Error. PLease try again Later' => '', // 147
 	'Feowl: Password Reset' => 'Feowl: Change secret code', // 218
 	'Enter your new password and repeat it correctly' => 'Write ya new secret code again fine', // 335
 	'Enter your present password correctly' => 'Write ya secret code fine', // 340
@@ -208,9 +342,9 @@ return array(
 
 	// Orphan phrases
 /// TODO	'User Guide' => '',
-/// TODO	'<p><a href="/districts">Not sure which arrondissement you're in? Check out this list!</a></p>' => '',
-/// TODO	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => '',
-/// TODO	'We'll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => '',
+/// TODO	'<p><a href="/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>' => '',
+	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => 'People wey work am be na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.',
+	'We\'ll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => 'We go dey send for your phone every morning time one message: \"Talk how many time weh light cut?" Abeg just talk am even if dey no cut am!',
 /// TODO	'Feowl team.' => '',
 /// TODO	'Your Password has been resetted: Check your E-mail for your new password.' => '',
 /// TODO	'Get my login Information' => '',
@@ -223,7 +357,7 @@ return array(
 /// TODO	'contact' => '',
 /// TODO	'blog' => '',
 /// TODO	'Feowl is financed by the <a href="http://www.freemedia.at/">International Press Institute</a>.' => '',
-/// TODO	'It's a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => '',
+/// TODO	'It\'s a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.tesobe.com/">Tesobe</a> and <a href="http://www.wasamundi.com/">Wasamundi</a>.' => '',
 /// TODO	'Account' => '',
 /// TODO	'Signup' => '',
 /// TODO	'Less power cuts' => '',
@@ -232,4 +366,6 @@ return array(
 /// TODO	'How to Contribute' => '',
 /// TODO	'Read More' => '',
 /// TODO	'Sign Out' => '',
+	'How you go want report light cut ?' => 'How you go want report am ?',
+	'1' => '30',
 );

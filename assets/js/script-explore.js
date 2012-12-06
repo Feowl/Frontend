@@ -87,7 +87,7 @@
 	 */
 	Handlebars.registerHelper('district_name', function(key) {
 		// returns names of districts from "User reports"
-	  return explore.areas[key];
+	  return explore.areas[key] || getText("unknown");
 	});
 
 	/**
