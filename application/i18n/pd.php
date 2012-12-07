@@ -66,7 +66,7 @@ return array(
 	// views/user/signup.tpl
 	'Create an account' => '', // 9
 	'When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!' => 'After you join Feowl, we go dey send you message for ya phone make you report light cut one time!', // 11
-	'More than 8 characters' => 'Make e pass 8 letters', // 40
+	'More than 6 characters' => 'Make e pass 6 letters', // 40
 	'I\'m not sure' => 'I no no me', // 51
 	'* Required field.' => '*You must type something for here.', // 61
 	'Already have an account? Log in' => 'You be don already join we? Connect', // 62
@@ -75,10 +75,23 @@ return array(
 /// TODO	'About' => '', // 6
 /// TODO	'<p>What can be measured can be changed. Feowl is a platform that collects and provides data on the lack of electricity in Douala, the economic capital of Cameroon: How long does a power cut last? What time of day? What social and economic impact do these power cuts have on the city?</p>' => '', // 18
 /// TODO	'<p>Contributors are invited to report to Feowl by SMS or via the web interface, any power outage. The data collected will be analyzed and available online to anyone interested. The data are displayed on an interactive and geolocalized: users can access specific information on power outages in a particular neighborhoods of Douala.</p>' => '', // 19
-/// TODO	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '', // 20
+/// TODO	'<p>Feowl is differente other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '', // 20
 
 	// views/pages/credits.tpl
 	'Credits' => 'Dem help we', // 6
+/// TODO	'<a href="http://www.douala-city.org/">Communaut&eacute; Urbaine de Douala</a>&nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&eacute; de Douala/Universit&eacute; de Paris-Est Marne La Vall&eacute;e&nbsp;-&nbsp;Master II IASIG&nbsp;2011 + auteur de l&rsquo;excellent m&eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 19
+/// TODO	'<a href="http://www.lmtgroup.com/">LMT Group</a>&nbsp;: Elvire Moukoko (account manager in Douala),&nbsp;Roger Nono, Sara Mbiakop.' => '', // 22
+/// TODO	'<a href="http://www.mtncameroon.net/LoadedPortal">MTN Cameroon</a>&nbsp;: Julius Essoka (Training &amp; Communication Officer + stunning&nbsp;Afrobeat maker),&nbsp;Bongang Massey Njiti (Corporate Affairs at MTN).' => '', // 25
+/// TODO	'<a href="http://www.orange.cm/FR/">Orange Cameroon</a>&nbsp;: Mamadou MBENGUE (Directeur Marketing), Elodie Ngowa (Responsable SVA) + Patrick Ndientcheu (Billing Designer, and founder of&nbsp;djoss.TV).' => '', // 28
+/// TODO	'<a href="http://www.cameroon-tribune.cm/">Cameroon Tribune</a>&nbsp;: Alain Tchakounte (r&eacute;dacteur en chef) + Alliance Nyobia (journaliste).' => '', // 31
+/// TODO	'<a href="http://www.quotidienlejour.com/">Quotidien Le Jour</a>&nbsp;: Beaugas-Orain Djoyum (chef rubrique &eacute;conomie).' => '', // 34
+/// TODO	'o Nostalgie&nbsp;: Alix Fetue (Chef des programmes), Carole Leuwe (R&eacute;dactrice en Chef/pr&eacute;sentatrice &eacute;mission 7 &agrave; la Ronde le samedi de 8 &agrave; 10 heures).' => '', // 37
+/// TODO	'e Messager : Alain Njipou (chef service culture), Adeline Tchouakak (reporter).' => '', // 40
+/// TODO	'<a href="http://www.grioo.com/ar,cameroun_mesurer_le_cout_economique_des_coupures_d_electricite,22324.html">Grioo.com</a> : Paul Yange Monthe (Directeur de la redaction).' => '', // 43
+/// TODO	'<a href="https://mail.google.com/mail/ca/u/0/#sent/13b1ee5e8fbc3e01">Africaidea</a>, site d&rsquo;id&eacute;es d&rsquo;entreprise pour l&rsquo;Afrique.' => '', // 46
+/// TODO	'<a href="http://www.riaed.net/?Le-Reseau-associatif-des">RACE/ECAN</a>&nbsp;: Paul G&eacute;r&eacute;mie Bikidik (Pr&eacute;sident).' => '', // 49
+/// TODO	'<a href="http://edouardtamba.com/">Edouar Tamba</a>, Journalism, online communications, PR, blogging&hellip;.' => '', // 52
+/// TODO	'<a href="http://club-efficience.com/">Club Efficience</a>&nbsp;: Dr. Elie Nkamgueu (Pr&eacute;sident).' => '', // 55
 
 	// views/pages/districts.tpl
 	'Districts' => 'Area', // 6
@@ -262,8 +275,8 @@ return array(
 	'Legend' => 'Notice', // 16
 	'No enough data' => 'E to small for see am', // 18
 	'No power cuts or less than 30mn' => 'No light cut or e no reach 30 mins', // 19
-	'Beetween 30mn and 2h' => 'Beetween 30mins and 2h', // 20
-	'Beetween 2h and 4h' => 'Beetween 2h and 4h', // 21
+	'Between 30mn and 2h' => 'Between 30mins and 2h', // 20
+	'Between 2h and 4h' => 'Between 2h and 4h', // 21
 	'More than 4 hours' => 'E pass 4 hours', // 22
 	'Proportion of Feowl users suffering from power cuts in %s' => ' Feowl people wey dey no get light in %s', // 26
 	'no data available' => 'Nothing dey here', // 27
@@ -304,6 +317,9 @@ return array(
 	'Contribute to Feowl!' => 'Talk am to Feowl', // 1
 	'Explore the data' => 'GO inside see the thing', // 1
 
+	// logs/2012/12/07.php
+/// TODO	'&lt;a href=&quot;http://www.douala-city.org/&quot;&gt;Communaut&amp;eacute; Urbaine de Douala&lt;/a&gt;&amp;nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&amp;eacute; de Douala/Universit&amp;eacute; de Paris-Est Marne La Vall&amp;eacute;e&amp;nbsp;-&amp;nbsp;Master II IASIG&amp;nbsp;2011 + auteur de l&amp;rsquo;excellent m&amp;eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 3
+
 	// classes/controller/contribute.php
 	'Thank you, your contribution has been taken into account.' => 'We thank you for your contibution, we don save am ', // 114
 
@@ -342,6 +358,7 @@ return array(
 
 	// Orphan phrases
 /// TODO	'User Guide' => '',
+/// TODO	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '',
 /// TODO	'<p><a href="/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>' => '',
 	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => 'People wey work am be na <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.',
 	'We\'ll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => 'We go dey send for your phone every morning time one message: \"Talk how many time weh light cut?" Abeg just talk am even if dey no cut am!',
