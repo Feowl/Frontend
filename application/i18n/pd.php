@@ -255,7 +255,7 @@ return array(
 
 	// views/home/home.tpl
 	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 8
-	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl na some people wey dey help una for know how da people for current di distribute light for Douala.', // 10
+	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.' => 'Feowl na some people wey dey help una for know how da people for current di distribute light for Douala, Cameroon.', // 10
 	'Contribute to Feowl' => 'Talk am to Feowl', // 13
 /// TODO	'Not in Douala?' => '', // 14
 /// TODO	'How it works' => '', // 27

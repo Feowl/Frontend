@@ -7,7 +7,7 @@
 				<div class="span6">
 					<h2>{__ t='Welcome to Feowl'}</h2>		
 					<p>
-						{__ t='Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.'}
+						{__ t='Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.'}
 					</p>
 					<p>
 						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">{__ t='Contribute to Feowl'}</a>

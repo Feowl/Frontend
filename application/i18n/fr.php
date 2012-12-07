@@ -255,7 +255,7 @@ return array(
 
 	// views/home/home.tpl
 	'Welcome to Feowl' => 'Bienvenue sur Feowl', // 8
-	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala.', // 10
+	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala, Cameroun.', // 10
 	'Contribute to Feowl' => 'Contribuer à Feowl', // 13
 	'Not in Douala?' => 'Pas à Douala?', // 14
 	'How it works' => 'Comment ça marche', // 27
