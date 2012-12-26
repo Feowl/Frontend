@@ -85,20 +85,16 @@ $(document).ready(function () {
     $contribute.loading();
 
     var content = new Array();
-    content[0] = $(".contribute option:selected").val()
-    content[1] = $('input[name=know]:checked').val()
-    content[2] = $(".contribute1 option:selected").val()
-    content[3] = $(".contribute1-1 option:selected").val()
-    num_pc = $(".contribute option:selected").val()
 
-    if (num_pc == 2) {
-      content[4] = $(".contribute2 option:selected").val()
-      content[5] = $(".contribute2-1 option:selected").val()
-    }
-    if (num_pc == 3) {
-      content[6] = $(".contribute3 option:selected").val()
-      content[7] = $(".contribute3-1 option:selected").val()
-    }
+    content[0] = $(".contribute option:selected").val();
+    content[1] = $('input[name=know]:checked').val();
+    content[2] = $(".contribute1 option:selected").val();
+    content[3] = $(".contribute1-1 option:selected").val();
+    content[4] = $(".contribute2 option:selected").val();
+    content[5] = $(".contribute2-1 option:selected").val();
+    content[6] = $(".contribute3 option:selected").val();
+    content[7] = $(".contribute3-1 option:selected").val();
+
     url = "contribute/switch?content=" + content
 
     //@todo do inline validation 
@@ -106,7 +102,7 @@ $(document).ready(function () {
       // Get out of the loading mode
       $contribute.loading(false);
       window.location = data.url;
-    })
+    });
 
     return false;
   });
