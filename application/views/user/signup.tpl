@@ -37,7 +37,7 @@
 							
 							<p class="row-fluid bottom10 control-group">	
 								<label for="pwd">{__ t='Password'}*</label>						
-								<input type="password" class="span12" id="pwd" name="userpassword" placeholder="{__ t='More than 8 characters'}" />
+								<input type="password" class="span12" id="pwd" name="userpassword" placeholder="{__ t='More than 6 characters'}" />
 							</p>	
 							
 							<p class="row-fluid bottom10 control-group">	

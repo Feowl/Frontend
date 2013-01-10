@@ -43,6 +43,12 @@ class Controller_User extends Controller_Template {
       $this->template->alert = $alert;
     }
     
+    // Error message
+    $notice = $this->session->get_once('notice');
+    if(isset($notice)){
+      $this->template->notice = $notice;
+    }
+    
     parent::after();
   }
   
@@ -200,7 +206,7 @@ class Controller_User extends Controller_Template {
     
     if (HTTP_Request::POST == $this->request->method()) {
       $email = $this->request->post('email');
-      
+    
       //check user credentials
       $user = $this->model->check_user($email);
       
@@ -211,16 +217,18 @@ class Controller_User extends Controller_Template {
         $json_encode      = json_encode($json);
         
         Model_Contributors::reset_password($json_encode, $user["id"]);
-        $message = "User exist. $password";
         $message = View::factory('user/new_password.tpl')->bind("name", $user["name"])->bind("password", $password);
-        $headers = "From: contact@feowl.com";
         
-        mail($email, __("Feowl: Password Reset"), $message, $headers);
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= "From: contact@feowl.com";        
+
+        mail($email, __("Feowl: Password Reset"), $message, $headers);        
+        $this->model->logout();
       } else {
-        $message = 'We can\'t find your E-mail in our system';
+        $message = __('We can\'t find your E-mail in our system');
+        $this->session->set('notice', $message);
       }
-      $this->model->logout();
-      $this->session->set('alert', $message);
     }
   }
   

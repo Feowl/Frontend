@@ -66,7 +66,7 @@ return array(
 	// views/user/signup.tpl
 	'Create an account' => 'Créer un compte', // 9
 	'When you sign up to Feowl, you will receive an SMS and you will be able to contribute right away!' => 'Une fois inscrits, vous recevrez un SMS et vous pourrez contribuer tout de suite!', // 11
-	'More than 8 characters' => 'Plus de 8 caractères', // 40
+	'More than 6 characters' => 'Plus de 6 caractères', // 40
 	'I\'m not sure' => 'Je ne sais pas', // 51
 	'* Required field.' => '* Champ requis', // 61
 	'Already have an account? Log in' => 'Vous avez déjà un compte? Connexion', // 62
@@ -75,10 +75,23 @@ return array(
 	'About' => 'A propos', // 6
 	'<p>What can be measured can be changed. Feowl is a platform that collects and provides data on the lack of electricity in Douala, the economic capital of Cameroon: How long does a power cut last? What time of day? What social and economic impact do these power cuts have on the city?</p>' => '<p>Ce qui peut être mesuré peut être changé. Feowl est une plateforme qui collecte et fournit des données concernant la fourniture d\'électricité à Douala, la capitale économique du Cameroun. Combien de temps une coupure dure-t-elle? A quel moment de la journée? Quels impact ces coupures ont-elles sur la ville?</p>', // 18
 	'<p>Contributors are invited to report to Feowl by SMS or via the web interface, any power outage. The data collected will be analyzed and available online to anyone interested. The data are displayed on an interactive and geolocalized: users can access specific information on power outages in a particular neighborhoods of Douala.</p>' => '<p>Les contributeurs peuvent signaler les coupures à Feowl via SMS ou sur le web. Les données collectées sont ensuite agrégées et analysées. Elles peuvent être téléchargées par tous. Les données sont présentées sur une carte interactive et géolocalisée: Les utilisateurs peuvent constater les coupures d\'éléctricité dans chacun des arrondissement de Douala.</p>', // 19
-	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '<p>Feowl est différent des autres projets de crowdsourcing, dans la mesure où la plateforme demande directement aux personnes concernées si elles ont subies une coupure de courant.</p>', // 20
+/// TODO	'<p>Feowl is differente other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '', // 20
 
 	// views/pages/credits.tpl
 	'Credits' => 'Remerciements', // 6
+/// TODO	'<a href="http://www.douala-city.org/">Communaut&eacute; Urbaine de Douala</a>&nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&eacute; de Douala/Universit&eacute; de Paris-Est Marne La Vall&eacute;e&nbsp;-&nbsp;Master II IASIG&nbsp;2011 + auteur de l&rsquo;excellent m&eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 19
+/// TODO	'<a href="http://www.lmtgroup.com/">LMT Group</a>&nbsp;: Elvire Moukoko (account manager in Douala),&nbsp;Roger Nono, Sara Mbiakop.' => '', // 22
+/// TODO	'<a href="http://www.mtncameroon.net/LoadedPortal">MTN Cameroon</a>&nbsp;: Julius Essoka (Training &amp; Communication Officer + stunning&nbsp;Afrobeat maker),&nbsp;Bongang Massey Njiti (Corporate Affairs at MTN).' => '', // 25
+/// TODO	'<a href="http://www.orange.cm/FR/">Orange Cameroon</a>&nbsp;: Mamadou MBENGUE (Directeur Marketing), Elodie Ngowa (Responsable SVA) + Patrick Ndientcheu (Billing Designer, and founder of&nbsp;djoss.TV).' => '', // 28
+/// TODO	'<a href="http://www.cameroon-tribune.cm/">Cameroon Tribune</a>&nbsp;: Alain Tchakounte (r&eacute;dacteur en chef) + Alliance Nyobia (journaliste).' => '', // 31
+/// TODO	'<a href="http://www.quotidienlejour.com/">Quotidien Le Jour</a>&nbsp;: Beaugas-Orain Djoyum (chef rubrique &eacute;conomie).' => '', // 34
+/// TODO	'o Nostalgie&nbsp;: Alix Fetue (Chef des programmes), Carole Leuwe (R&eacute;dactrice en Chef/pr&eacute;sentatrice &eacute;mission 7 &agrave; la Ronde le samedi de 8 &agrave; 10 heures).' => '', // 37
+/// TODO	'e Messager : Alain Njipou (chef service culture), Adeline Tchouakak (reporter).' => '', // 40
+/// TODO	'<a href="http://www.grioo.com/ar,cameroun_mesurer_le_cout_economique_des_coupures_d_electricite,22324.html">Grioo.com</a> : Paul Yange Monthe (Directeur de la redaction).' => '', // 43
+/// TODO	'<a href="https://mail.google.com/mail/ca/u/0/#sent/13b1ee5e8fbc3e01">Africaidea</a>, site d&rsquo;id&eacute;es d&rsquo;entreprise pour l&rsquo;Afrique.' => '', // 46
+/// TODO	'<a href="http://www.riaed.net/?Le-Reseau-associatif-des">RACE/ECAN</a>&nbsp;: Paul G&eacute;r&eacute;mie Bikidik (Pr&eacute;sident).' => '', // 49
+/// TODO	'<a href="http://edouardtamba.com/">Edouar Tamba</a>, Journalism, online communications, PR, blogging&hellip;.' => '', // 52
+/// TODO	'<a href="http://club-efficience.com/">Club Efficience</a>&nbsp;: Dr. Elie Nkamgueu (Pr&eacute;sident).' => '', // 55
 
 	// views/pages/districts.tpl
 	'Districts' => 'Quartiers', // 6
@@ -242,10 +255,10 @@ return array(
 
 	// views/home/home.tpl
 	'Welcome to Feowl' => 'Bienvenue sur Feowl', // 8
-	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala.', // 10
+	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala, Cameroun.', // 10
 	'Contribute to Feowl' => 'Contribuer à Feowl', // 13
 	'Not in Douala?' => 'Pas à Douala?', // 14
-	'How it works' => 'Comment ça marche',
+	'How it works' => 'Comment ça marche', // 27
 	'Register' => 'Inscription', // 33
 	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 34
 	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: <em>Combien de coupures avez-vous eu hier?</em> Répondez bien, même si vous avez eu 0 coupure!', // 41
@@ -262,13 +275,13 @@ return array(
 	'Legend' => 'Légende', // 16
 	'No enough data' => 'Données insuffisantes', // 18
 	'No power cuts or less than 30mn' => 'Aucune coupure ou moins de 30 min.', // 19
-	'Beetween 30mn and 2h' => 'Entre 30 min et 2 h', // 20
-	'Beetween 2h and 4h' => 'Entre 2 h et 4 h', // 21
+	'Between 30mn and 2h' => 'Entre 30 min et 2 h', // 20
+	'Between 2h and 4h' => 'Entre 2 h et 4 h', // 21
 	'More than 4 hours' => 'Plus de 4 h', // 22
 	'Proportion of Feowl users suffering from power cuts in %s' => 'Proportion des utilisateurs de Feowl subissant des coupures à %s', // 26
 	'no data available' => 'Aucune donnée disponible', // 27
 /// TODO	'0' => '', // 29
-/// TODO	'30'' => '', // 30
+/// TODO	'30\'' => '', // 30
 /// TODO	'2h' => '', // 31
 /// TODO	'4h' => '', // 32
 	'Duration of daily power cuts' => 'Durée des coupures quotidiennes', // 35
@@ -304,6 +317,9 @@ return array(
 	'Contribute to Feowl!' => 'Contribuer à Feowl', // 1
 	'Explore the data' => 'Parcourir les données', // 1
 
+	// logs/2012/12/07.php
+/// TODO	'&lt;a href=&quot;http://www.douala-city.org/&quot;&gt;Communaut&amp;eacute; Urbaine de Douala&lt;/a&gt;&amp;nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&amp;eacute; de Douala/Universit&amp;eacute; de Paris-Est Marne La Vall&amp;eacute;e&amp;nbsp;-&amp;nbsp;Master II IASIG&amp;nbsp;2011 + auteur de l&amp;rsquo;excellent m&amp;eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 3
+
 	// classes/controller/contribute.php
 	'Thank you, your contribution has been taken into account.' => 'Merci, votre contribution a été prise en compte.', // 114
 
@@ -314,23 +330,25 @@ return array(
 	'Phone Number must have atleast 6 chars' => 'Le numéro de téléphone doit avoir au moins 6 caractères', // 52
 	'Phone Number must not exceed 13 chars' => 'Le numéro de téléphone ne peut excéder 13 caractères', // 53
 	'Phone Number should content only digits' => 'Le numéro de téléphone ne doit comporter que des chiffres', // 54
-/// TODO	'0 minute' => '', // 68
-/// TODO	'30 minutes' => '', // 69
-	'2 hours' => '2 heures', // 70
-	'4 hours' => '4 heures', // 71
-	'more' => 'plus', // 72
-/// TODO	'Douala&nbsp;I' => '', // 73
-/// TODO	'Douala&nbsp;II' => '', // 74
-/// TODO	'Douala&nbsp;III' => '', // 75
-/// TODO	'Douala&nbsp;IV' => '', // 76
-/// TODO	'Douala&nbsp;V' => '', // 77
-	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 78
+	'unknown' => 'inconnu', // 68
+/// TODO	'0 minute' => '', // 69
+/// TODO	'30 minutes' => '', // 70
+	'2 hours' => '2 heures', // 71
+	'4 hours' => '4 heures', // 72
+	'more' => 'plus', // 73
+/// TODO	'Douala&nbsp;I' => '', // 74
+/// TODO	'Douala&nbsp;II' => '', // 75
+/// TODO	'Douala&nbsp;III' => '', // 76
+/// TODO	'Douala&nbsp;IV' => '', // 77
+/// TODO	'Douala&nbsp;V' => '', // 78
+	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 79
 
 	// classes/controller/user.php
-	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 128
-	'This name is already in use' => 'Ce nom est déjà utilisé', // 136
-	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 138
-	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 140
+	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 129
+	'This name is already in use' => 'Ce nom est déjà utilisé', // 139
+	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 141
+	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 143
+/// TODO	'B : Technical Error. PLease try again Later' => '', // 147
 	'Feowl: Password Reset' => 'Feowl: réinitialiser le mot de passe.', // 218
 	'Enter your new password and repeat it correctly' => 'Indiquez votre nouveau mot de passe, deux fois', // 335
 	'Enter your present password correctly' => 'Indiquez votre mot de passe actuel', // 340
@@ -340,6 +358,7 @@ return array(
 
 	// Orphan phrases
 	'User Guide' => 'Guide Utilisateur',
+	'<p>Feowl is differentke other crowdsourcing projects, Feowl goes directly to the contributor to ask if he has suffered a power outage and how long it lasted.</p>' => '<p>Feowl est différent des autres projets de crowdsourcing, dans la mesure où la plateforme demande directement aux personnes concernées si elles ont subies une coupure de courant.</p>',
 	'<p><a href="/districts">Not sure which arrondissement you\'re in? Check out this list!</a></p>' => '<p><a href="/districts">Vous n\'êtes pas sûr de votre arrondissement? Vérifiez sur la liste!</a></p>',
 	'It is a project by <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> and <a href="http://www.tesobe.com/">TESOBE</a>.' => 'C\'est un projet mené par <a href="http://www.internetsansfrontieres.com/">Internet Sans Frontières</a>, <a href="http://jplusplus.org/">Journalism++</a>, <a href="http://www.wasamundi.com/">Wasamundi</a> et <a href="http://www.tesobe.com/">TESOBE</a>.',
 	'We\'ll send you an SMS each morning at most asking you a simple question: \"How many power cuts did you have yesterday?\" Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: \"Combien de coupures avez-vous eu hier?\" Répondez bien, même si vous avez eu 0 coupure!',
@@ -364,4 +383,6 @@ return array(
 	'How to Contribute' => 'Comment contribuer',
 	'Read More' => 'En savoir plus',
 	'Sign Out' => 'Déconnexion',
+/// TODO	'How you go want report light cut ?' => '',
+/// TODO	'1' => '',
 );

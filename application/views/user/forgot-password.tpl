@@ -7,15 +7,6 @@
 
 			    <form method='post' action="{url::site('user/forgot_password')}" class="padding20 bottom0">
 				    
-				    {if isset($message)}
-				      <div class="error">
-				        <div class="alert">
-				        	{$message|default:""}	
-				        	<a class="close" data-dismiss="alert" href="#">&times;</a>
-				        </div>
-				      </div>			      
-				    {/if}
-
 			      <div class="row-fluid">
 			        <label class="control-label">
 		        		{__ t='Enter your e-mail address to receive a new password:'}

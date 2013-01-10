@@ -14,7 +14,7 @@ foreach ($data as $file)
 	print("\t// ".$file['filepath_human']."\n");
 
 	foreach ($file['lines'] as $line)
-	{
+	{    
 		$line['line_string'] = str_replace('<?php', '', $line['line_string']);
 		$line['line_string'] = str_replace('<?', '', $line['line_string']);
 		$line['line_string'] = str_replace('?>', '', $line['line_string']);
@@ -22,20 +22,22 @@ foreach ($data as $file)
 
 		foreach ($line['phrases'] as $phrase)
 		{
-			$phrase_fixed = str_replace('\\\'', '\'', $phrase);
-			$phrase_fixed = str_replace('\\"', '"', $phrase_fixed);
+
+      $phrase_fixed = str_replace("'", "\'", $phrase);
+  		$phrase_fixed = str_replace('\\\'', '\'', $phrase);
+  		$phrase_fixed = str_replace('\\"', '"', $phrase_fixed);
 
 
-            if( $global_i18n )
-            {
-                //I18n::get() doesnt tell us if the key is equal to the translation
-        	    $phrase_translated = Arr::get($table, $phrase_fixed, NULL);
-            }
-            else
-            {
-                $phrase_translated = Arr::get( file_exists( $filename ) ?
-                    Kohana::load($filename) : array(), $phrase_fixed, NULL);
-            }
+      if( $global_i18n )
+      {
+          //I18n::get() doesnt tell us if the key is equal to the translation
+  	    $phrase_translated = Arr::get($table, $phrase_fixed, NULL);
+      }
+      else
+      {
+          $phrase_translated = Arr::get( file_exists( $filename ) ?
+              Kohana::load($filename) : array(), $phrase_fixed, NULL);
+      }
 
 			$phrase_translated_fixed = str_replace('\'', '\\\'', (string)$phrase_translated);
 
@@ -47,6 +49,8 @@ foreach ($data as $file)
 				$phrase_translated_fixed = '';
 			}
 
+      $phrase = str_replace("\'", "'", $phrase);
+      $phrase = str_replace("'", "\'", $phrase);
 // 			print($not_translated."\t'$phrase' => '".$phrase_translated_fixed."', // ".$line['line_number'].": ".$line['line_string']."\n");
 			print($not_translated."\t'$phrase' => '".$phrase_translated_fixed."', // ".$line['line_number']."\n");
 		}
@@ -71,14 +75,17 @@ foreach ($orphe_phrases as $phrase)
             Kohana::load($filename) : array(), $phrase, NULL);
     }
 
-	$not_translated = '';
+  	$not_translated = '';
 
-	if ( is_null($phrase_translated) )
-	{
-		$not_translated = '/// TODO';
-		$phrase_translated = '';
-	}
+  	if ( is_null($phrase_translated) )
+  	{
+  		$not_translated = '/// TODO';
+  		$phrase_translated = '';
+  	}
 
-	print($not_translated."\t'$phrase' => '".$phrase_translated."',\n");
+    $phrase_translated = str_replace("'", "\'", $phrase_translated);
+    $phrase = str_replace("\'", "'", $phrase);
+    $phrase = str_replace("'", "\'", $phrase);
+  	print($not_translated."\t'$phrase' => '".$phrase_translated."',\n");
 }
 print(");\n");

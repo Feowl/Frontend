@@ -1,1 +1,1 @@
-Hello {$name}, <br /><br />Your new password is {$password} <br /><br />Thanks <br />Feowl
+{__ t='Hello :name,<br /><br />Your new password is <strong>:password</strong>.<br /><br />See you soon,<br /><br />The Feowl team' name=$name password=$password}

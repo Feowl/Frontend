@@ -87,7 +87,7 @@
 	 */
 	Handlebars.registerHelper('district_name', function(key) {
 		// returns names of districts from "User reports"
-	  return explore.areas[key];
+	  return explore.areas[key] || getText("unknown");
 	});
 
 	/**
@@ -257,7 +257,7 @@
     // Extract the dates from the range
     var  dates = explore.$dateRange.dateRangeSlider("values"),
     // Index of the bar to determines the interval
-    intervalId = el.bar.index;
+    intervalId = 3 - el.bar.index;    
 
     var data = {
 			place         : getText( explore.$exploreBarcharts.data('district') ),
@@ -454,7 +454,7 @@
 	  		// Look for the updatime
 	  		for(var index in explore.reportsAggregation) {
 	  			if(explore.reportsAggregation[index].id == d.id) {
-	  				avg_duration = explore.reportsAggregation[index].avg_duration;
+	  				avg_duration = explore.reportsAggregation[index].avg_duration * 1;
 	  			}
 	  		}
 

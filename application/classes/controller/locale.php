@@ -65,6 +65,7 @@ class Controller_locale extends Controller {
   public function action_explore() {
 
     $messages = array(      
+      "unknown" => __("unknown"),
       "0 minute" => __("0 minute"),
       "30 minutes" => __("30 minutes"),
       "2 hours" => __("2 hours"),

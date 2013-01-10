@@ -17,8 +17,8 @@
 								</li>
 								<li><span class="legend no-relevant"></span>{__ t='No enough data'}</li>
 								<li><span class="legend less-30min"></span>{__ t='No power cuts or less than 30mn'}</li>
-								<li><span class="legend less-2h"></span>{__ t='Beetween 30mn and 2h'}</li>
-								<li><span class="legend less-4h"></span>{__ t='Beetween 2h and 4h'}</li>
+								<li><span class="legend less-2h"></span>{__ t='Between 30mn and 2h'}</li>
+								<li><span class="legend less-4h"></span>{__ t='Between 2h and 4h'}</li>
 								<li><span class="legend more-4h"></span>{__ t='More than 4 hours'}</li>
 							</ul>
 
