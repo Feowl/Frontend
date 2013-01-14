@@ -3,5 +3,7 @@ cache/*
 # secret API access
 config/apiauth.php
 config/user.php
+# sendgrid
+config/sendgrid.php
 # Bootstrap - to avoid pushing personal config e.g feowl/UI
 bootstrap.php

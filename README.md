@@ -46,6 +46,14 @@ By your credentials:
 		)
 	);
 
+### Sendgrid
+To setup your sendgrid credidentials, from the Feowl directory type:
+
+	cp application/config/sendgrid.php.template application/config/sendgrid.php
+	nano application/config/sendgrid.php
+
+And complete the file as indicate with the previous one.
+
 
 ### Generate locales
 From the root directory, type :

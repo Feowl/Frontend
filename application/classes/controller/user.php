@@ -1,6 +1,10 @@
 <?php
 defined('SYSPATH') or die('No direct script access.');
 
+// Load SendGrid
+// @TODO find a cleaner solution fiting to Kohana
+include 'path/to/sendgrid-php/SendGrid_loader.php';
+
 /**
  * user controller, User Authentication on the web platform
  *
@@ -219,11 +223,21 @@ class Controller_User extends Controller_Template {
         Model_Contributors::reset_password($json_encode, $user["id"]);
         $message = View::factory('user/new_password.tpl')->bind("name", $user["name"])->bind("password", $password);
         
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= "From: contact@feowl.com";        
+        // Create SendGrid client
+        $sendgrid = new SendGrid(Kohana::config('sendgrid.username'), Kohana::config('sendgrid.password') );
 
-        mail($email, __("Feowl: Password Reset"), $message, $headers);        
+        // Creates email
+        $mail = new SendGrid\Mail();
+        $mail->
+          addTo($email)->
+          setFrom("contact@feowl.com")->
+          setSubject( __("Feowl: Password Reset") )->
+          setText(strip_tags($message))->
+          setHtml($message);
+
+        // Send the email
+        $sendgrid->smtp->send($mail);
+
         $this->model->logout();
       } else {
         $message = __('We can\'t find your E-mail in our system');
