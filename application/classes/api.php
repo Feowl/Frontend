@@ -26,19 +26,20 @@ class API {
 		//action
 		//print_r($filter); print_r($data);  print_r("me"); print_r($api_link); print_r($action); exit;
 		if($filter){
-		$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
+			$data_to_feowl = $filter.'&username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}else{
-		$data_to_feowl = 'username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
+			$data_to_feowl = 'username='.Kohana::config('apiauth.default.username').'&api_key='.Kohana::config('apiauth.default.api_key');
 		}
-		//print_r($api_link.$data_to_feowl); exit;
-		
+		//print_r($api_link.$data_to_feowl); exit;		
+
 		$to_feowl = curl_init($api_link.$data_to_feowl);
+		echo $action;
 		curl_setopt($to_feowl, CURLOPT_CUSTOMREQUEST, $action);
 		curl_setopt($to_feowl, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($to_feowl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($to_feowl, CURLOPT_HTTPHEADER, array(
-		'Content-Type: application/json',
-		'Content-Length: ' . strlen($data))
+			'Content-Type: application/json',
+			'Content-Length: ' . strlen($data))
 		);
 		$from_feowl = curl_exec($to_feowl);
 		$http_status = curl_getinfo($to_feowl, CURLINFO_HTTP_CODE);

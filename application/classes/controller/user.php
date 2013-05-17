@@ -220,9 +220,9 @@ class Controller_User extends Controller_Template {
         $json['password'] = $password = Text::random();
         $json_encode      = json_encode($json);
         
-        Model_Contributors::reset_password($json_encode, $user["id"]);
+        $res = Model_Contributors::update_contributor($json_encode, $user["id"]);        
+
         $message = View::factory('user/new_password.tpl')->bind("name", $user["name"])->bind("password", $password);
-        
         // Create SendGrid client
         $sendgrid = new SendGrid(Kohana::config('sendgrid.username'), Kohana::config('sendgrid.password') );
 
