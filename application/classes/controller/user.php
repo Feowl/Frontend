@@ -3,7 +3,7 @@ defined('SYSPATH') or die('No direct script access.');
 
 // Load SendGrid
 // @TODO find a cleaner solution fiting to Kohana
-include 'path/to/sendgrid-php/SendGrid_loader.php';
+include MODPATH.'sendgrid/SendGrid_loader.php';
 
 /**
  * user controller, User Authentication on the web platform
