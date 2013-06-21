@@ -55,7 +55,10 @@
 						</div>	
 					</div>
 				{else}
-					<h2 class="left30 top20 bottom20">{__ t='Feowl'}</h2>
+					<h2 class="left30 top20 bottom20">{__ t='What is Feowl'}</h2>
+					<div class="left30 bottom50">
+						{__ t='<p>Feowl is a project that monitored power cuts in Douala, Cameroon, between November 2012 and May 2013. Users would register via SMS or email and receive daily prompts asking them how many power cuts they had the day before. They would answer per email or SMS, adding how long the power cut last, using shortcodes, e.g. PC DOUALA1 90 for a 90-minute power cut in the first arrondissement.</p><p>The experiment was discontinued for lack of funding but was a tremendous step forward in crowdsourcing vital information in developing countries.</p>'}
+					</div>
 				{/if}
 
 			</div>
