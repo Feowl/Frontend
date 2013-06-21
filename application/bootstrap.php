@@ -133,6 +133,7 @@ define("SITE_URL", 			'http://feowl.com');
 define("SITE_TITLE",       'Feowl');
 define("SITE_TAGS",			__('feowl, foewl, empowers, power, cut, power cut, accurate, accuration, insights, insight, pool, electricity, cameroon, africa, supply') );
 define("SITE_FB_ADMIN", 	'686299757');
+define("ALLOW_CONTRIBUTION", true);
 
 
 /**

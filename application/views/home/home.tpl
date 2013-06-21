@@ -10,7 +10,9 @@
 						{__ t='Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.'}
 					</p>
 					<p>
-						<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">{__ t='Contribute to Feowl'}</a>
+			            {if $smarty.const.ALLOW_CONTRIBUTION}
+							<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">{__ t='Contribute to Feowl'}</a>
+						{/if}
 						<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">{__ t='Not in Douala?'}</a>
 					</p>
 				</div>
@@ -23,33 +25,38 @@
 
 		<div class="row">
 			
-			<div class="span7">				
-				<h2 class="left30 top20 bottom20">{__ t='How it works'}</h2>		
+			<div class="span7">			
+
+			    {if $smarty.const.ALLOW_CONTRIBUTION}	
+					<h2 class="left30 top20 bottom20">{__ t='How it works'}</h2>		
 				
-				<div class="right20 left30">
-					<div class="row-fluid">
-						<div class="span4 what">
-							<div class="well">
-								<h3>1. {__ t="Register"}</h3>
-								{__ t="Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!"}
+					<div class="right20 left30">
+						<div class="row-fluid">
+							<div class="span4 what">
+								<div class="well">
+									<h3>1. {__ t="Register"}</h3>
+									{__ t="Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!"}
+								</div>
 							</div>
-						</div>
 
-						<div class="span4 what">
-							<div class="well">
-								<h3>2. {__ t="Contribute"}</h3>
-								{__ t="We'll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!"}
+							<div class="span4 what">
+								<div class="well">
+									<h3>2. {__ t="Contribute"}</h3>
+									{__ t="We'll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!"}
+								</div>
 							</div>
-						</div>
 
-						<div class="span4 what">
-							<div class="well">
-								<h3>3. {__ t="Explore"}</h3>
-								{__ t="Feowl then produces statistics with all the information collected. It'll be a powerful source to hold energy producers and regulators to account!"}
+							<div class="span4 what">
+								<div class="well">
+									<h3>3. {__ t="Explore"}</h3>
+									{__ t="Feowl then produces statistics with all the information collected. It'll be a powerful source to hold energy producers and regulators to account!"}
+								</div>
 							</div>
-						</div>
-					</div>	
-				</div>
+						</div>	
+					</div>
+				{else}
+					<h2 class="left30 top20 bottom20">{__ t='Feowl'}</h2>
+				{/if}
 
 			</div>
 
