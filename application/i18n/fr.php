@@ -14,9 +14,9 @@ return array(
 
 	// views/user/forgot-password.tpl
 	'Forgot your password?' => 'Mot de passe oublié?', // 4
-	'Enter your e-mail address to receive a new password:' => 'Indiquez votre adresse e-mail pour recevoir un nouveau mot de passe:', // 21
-	'Send' => 'Envoyer', // 34
-	'Your password has been reset: Check your inbox for your new password.' => 'Votre mot de passe a été réinitiallisé. Veuillez vérifier vos e-mails.', // 41
+	'Enter your e-mail address to receive a new password:' => 'Indiquez votre adresse e-mail pour recevoir un nouveau mot de passe:', // 12
+	'Send' => 'Envoyer', // 25
+	'Your password has been reset: Check your inbox for your new password.' => 'Votre mot de passe a été réinitiallisé. Veuillez vérifier vos e-mails.', // 32
 
 	// views/user/gsm_phonenumber_info.tpl
 	'Send my Login details' => 'Envoyer mes identifiants', // 2
@@ -251,25 +251,27 @@ return array(
 	'Sign up' => 'Inscription', // 83
 	'Home' => 'Accueil', // 91
 	'Explore' => 'Explorer', // 92
-	'Contribute' => 'Contribuer', // 93
+	'Contribute' => 'Contribuer', // 94
 
 	// views/home/home.tpl
 	'Welcome to Feowl' => 'Bienvenue sur Feowl', // 8
 	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.' => 'Feowl est une plateforme collaborative qui fournit des données précises sur la fourniture d\'électricité à Douala, Cameroun.', // 10
-	'Contribute to Feowl' => 'Contribuer à Feowl', // 13
-	'Not in Douala?' => 'Pas à Douala?', // 14
-	'How it works' => 'Comment ça marche', // 27
-	'Register' => 'Inscription', // 33
-	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 34
-	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: <em>Combien de coupures avez-vous eu hier?</em> Répondez bien, même si vous avez eu 0 coupure!', // 41
-	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl produit des statistiques grâce aux informations collectées. Ca sera une source d\'information puissante pour demander des comptes aux producteurs d\'électricité.', // 48
-	'Power cuts in Douala' => 'Coupures à Douala', // 58
-	'no data' => 'pas de données', // 61
-/// TODO	'&lt; 30m' => '', // 62
-/// TODO	'&lt; 2h' => '', // 63
-/// TODO	'&lt; 4h' => '', // 64
-/// TODO	'&gt; 4h' => '', // 65
-	'Explore the reports' => 'Parcourir les réponses', // 71
+	'Contribute to Feowl' => 'Contribuer à Feowl', // 14
+	'Not in Douala?' => 'Pas à Douala?', // 15
+	'How it works' => 'Comment ça marche', // 31
+	'Register' => 'Inscription', // 37
+	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Inscrivez vous à Feowl, en ligne ou via SMS en envoyant INSCRIPTION au 88002014. Feowl ne fonctionne qu\'à Douala pour l\'instant!', // 38
+	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => 'Nous vous enverrons un SMS chaque matin en vous posant une question simple: <em>Combien de coupures avez-vous eu hier?</em> Répondez bien, même si vous avez eu 0 coupure!', // 45
+	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl produit des statistiques grâce aux informations collectées. Ca sera une source d\'information puissante pour demander des comptes aux producteurs d\'électricité.', // 52
+	'What is Feowl' => 'Feowl: collecter des données', // 58
+	'<p>Feowl is a project that monitored power cuts in Douala, Cameroon, between November 2012 and May 2013. Users would register via SMS or email and receive daily prompts asking them how many power cuts they had the day before. They would answer per email or SMS, adding how long the power cut last, using shortcodes, e.g. PC DOUALA1 90 for a 90-minute power cut in the first arrondissement.</p><p>The experiment was discontinued for lack of funding but was a tremendous step forward in crowdsourcing vital information in developing countries.</p>' => '<p>Feowl est un projet qui a collecté des données concernant les coupures de courant à Douala entre novembre 2012 et mai 2013. Les utilisateurs s\'enregistrait par email ou SMS et recevaient tous les matins une question: "combien de coupures de courant avez-vous subit hier?" Ils répondaient ensuite en utilisant des raccourcis, par exemple "PC Douala1 90" pour décrire une coupure de 90 minutes dans le premier arrondissement de la ville.</p><p>L\'expérience a du s\'arrêter par manque de fond mais elle marque une avancée majeure dans la collecte de données collaborative dans les pays en développement.</p>', // 60
+	'Power cuts in Douala' => 'Coupures à Douala', // 68
+	'no data' => 'pas de données', // 71
+/// TODO	'&lt; 30m' => '', // 72
+/// TODO	'&lt; 2h' => '', // 73
+/// TODO	'&lt; 4h' => '', // 74
+/// TODO	'&gt; 4h' => '', // 75
+	'Explore the reports' => 'Parcourir les réponses', // 81
 
 	// views/explore/explore.tpl
 	'Legend' => 'Légende', // 16
@@ -321,7 +323,7 @@ return array(
 /// TODO	'&lt;a href=&quot;http://www.douala-city.org/&quot;&gt;Communaut&amp;eacute; Urbaine de Douala&lt;/a&gt;&amp;nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&amp;eacute; de Douala/Universit&amp;eacute; de Paris-Est Marne La Vall&amp;eacute;e&amp;nbsp;-&amp;nbsp;Master II IASIG&amp;nbsp;2011 + auteur de l&amp;rsquo;excellent m&amp;eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 3
 
 	// classes/controller/contribute.php
-	'Thank you, your contribution has been taken into account.' => 'Merci, votre contribution a été prise en compte.', // 114
+	'Thank you, your contribution has been taken into account.' => 'Merci, votre contribution a été prise en compte.', // 119
 
 	// classes/controller/locale.php
 	'This field required.' => 'Champ obligatoire', // 43
@@ -344,17 +346,18 @@ return array(
 	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'Durée moyenne journalière sans électricité&nbsp;: <strong>%s&nbsp;minutes</strong>', // 79
 
 	// classes/controller/user.php
-	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 129
-	'This name is already in use' => 'Ce nom est déjà utilisé', // 139
-	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 141
-	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 143
-/// TODO	'B : Technical Error. PLease try again Later' => '', // 147
-	'Feowl: Password Reset' => 'Feowl: réinitialiser le mot de passe.', // 218
-	'Enter your new password and repeat it correctly' => 'Indiquez votre nouveau mot de passe, deux fois', // 335
-	'Enter your present password correctly' => 'Indiquez votre mot de passe actuel', // 340
-	'Enter your new password correctly' => 'Indiquez votre nouveau mot de passe', // 345
-	'Your profile has been updated' => 'Votre profil a été mis à jour', // 402
-	'Technical Error' => 'Erreur technique', // 407
+	'Thanks for signing up!' => 'Merci de vous être inscrit!', // 139
+	'This name is already in use' => 'Ce nom est déjà utilisé', // 149
+	'This e-mail address is already in use. Forgot your password ?' => 'Cette adresse e-mail est déjà utilisée. Avez-vous oublié votre mot de passe?', // 151
+	'Technical Error. PLease try again Later' => 'Erreur technique. Merci de réessayer.', // 153
+/// TODO	'B : Technical Error. PLease try again Later' => '', // 157
+	'Feowl: Password Reset' => 'Feowl: réinitialiser le mot de passe.', // 234
+/// TODO	'We can\'t find your E-mail in our system' => '', // 243
+	'Enter your new password and repeat it correctly' => 'Indiquez votre nouveau mot de passe, deux fois', // 357
+	'Enter your present password correctly' => 'Indiquez votre mot de passe actuel', // 362
+	'Enter your new password correctly' => 'Indiquez votre nouveau mot de passe', // 367
+	'Your profile has been updated' => 'Votre profil a été mis à jour', // 424
+	'Technical Error' => 'Erreur technique', // 429
 
 	// Orphan phrases
 	'User Guide' => 'Guide Utilisateur',

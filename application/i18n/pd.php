@@ -14,9 +14,9 @@ return array(
 
 	// views/user/forgot-password.tpl
 	'Forgot your password?' => 'You don lost your secret code?', // 4
-	'Enter your e-mail address to receive a new password:' => 'Type ya e-mail box, we go send ya new secret code:', // 21
-	'Send' => 'Send am', // 34
-	'Your password has been reset: Check your inbox for your new password.' => 'We don change your secret code: Open ya email box for see am', // 41
+	'Enter your e-mail address to receive a new password:' => 'Type ya e-mail box, we go send ya new secret code:', // 12
+	'Send' => 'Send am', // 25
+	'Your password has been reset: Check your inbox for your new password.' => 'We don change your secret code: Open ya email box for see am', // 32
 
 	// views/user/gsm_phonenumber_info.tpl
 	'Send my Login details' => 'Send me my key for enter', // 2
@@ -251,25 +251,27 @@ return array(
 	'Sign up' => 'Start am', // 83
 	'Home' => 'Start for here', // 91
 	'Explore' => 'Watch am', // 92
-	'Contribute' => 'talk am', // 93
+	'Contribute' => 'talk am', // 94
 
 	// views/home/home.tpl
 	'Welcome to Feowl' => 'Wouna salot, Feowl	', // 8
 	'Feowl is a community-driven platform that produces accurate and actionable public data on the electricity supply in Douala, Cameroon.' => 'Feowl na some people wey dey help una for know how da people for current di distribute light for Douala, Cameroon.', // 10
-	'Contribute to Feowl' => 'Talk am to Feowl', // 13
-/// TODO	'Not in Douala?' => '', // 14
-/// TODO	'How it works' => '', // 27
-	'Register' => 'Join we', // 33
-	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Join we, either for internet, or send REGISTER with ya phone for 88002014. Feowl na only for Douala!', // 34
-/// TODO	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => '', // 41
-	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl di then calculate am then show wouna, so that wouna fit know if that pipo for current di cheat wouna.', // 48
-	'Power cuts in Douala' => 'Light cuts for Douala', // 58
-	'no data' => 'Nothing dey here', // 61
-	'&lt; 30m' => '&lt; 30mins', // 62
-	'&lt; 2h' => '&lt; 2h', // 63
-	'&lt; 4h' => '&lt; 4h', // 64
-	'&gt; 4h' => '&gt; 4h', // 65
-	'Explore the reports' => 'See the map', // 71
+	'Contribute to Feowl' => 'Talk am to Feowl', // 14
+/// TODO	'Not in Douala?' => '', // 15
+/// TODO	'How it works' => '', // 31
+	'Register' => 'Join we', // 37
+	'Register for Feowl, either online or via SMS by texting REGISTER to 88002014. Feowl only works in Douala at the moment!' => 'Join we, either for internet, or send REGISTER with ya phone for 88002014. Feowl na only for Douala!', // 38
+/// TODO	'We\'ll send you an SMS each morning at most asking you a simple question: <em>How many power cuts did you have yesterday?</em> Make sure to answer, even if you had 0 cuts!' => '', // 45
+	'Feowl then produces statistics with all the information collected. It\'ll be a powerful source to hold energy producers and regulators to account!' => 'Feowl di then calculate am then show wouna, so that wouna fit know if that pipo for current di cheat wouna.', // 52
+/// TODO	'What is Feowl' => '', // 58
+/// TODO	'<p>Feowl is a project that monitored power cuts in Douala, Cameroon, between November 2012 and May 2013. Users would register via SMS or email and receive daily prompts asking them how many power cuts they had the day before. They would answer per email or SMS, adding how long the power cut last, using shortcodes, e.g. PC DOUALA1 90 for a 90-minute power cut in the first arrondissement.</p><p>The experiment was discontinued for lack of funding but was a tremendous step forward in crowdsourcing vital information in developing countries.</p>' => '', // 60
+	'Power cuts in Douala' => 'Light cuts for Douala', // 68
+	'no data' => 'Nothing dey here', // 71
+	'&lt; 30m' => '&lt; 30mins', // 72
+	'&lt; 2h' => '&lt; 2h', // 73
+	'&lt; 4h' => '&lt; 4h', // 74
+	'&gt; 4h' => '&gt; 4h', // 75
+	'Explore the reports' => 'See the map', // 81
 
 	// views/explore/explore.tpl
 	'Legend' => 'Notice', // 16
@@ -321,7 +323,7 @@ return array(
 /// TODO	'&lt;a href=&quot;http://www.douala-city.org/&quot;&gt;Communaut&amp;eacute; Urbaine de Douala&lt;/a&gt;&amp;nbsp;: Christine Moudiki chef service de l\'Observatoire Urbain), Paul Tatso (Univsersit&amp;eacute; de Douala/Universit&amp;eacute; de Paris-Est Marne La Vall&amp;eacute;e&amp;nbsp;-&amp;nbsp;Master II IASIG&amp;nbsp;2011 + auteur de l&amp;rsquo;excellent m&amp;eacute;moire \'Integration d\'un observatoire urbain sur Google Maps\').' => '', // 3
 
 	// classes/controller/contribute.php
-	'Thank you, your contribution has been taken into account.' => 'We thank you for your contibution, we don save am ', // 114
+	'Thank you, your contribution has been taken into account.' => 'We thank you for your contibution, we don save am ', // 119
 
 	// classes/controller/locale.php
 	'This field required.' => 'You must type something for here.', // 43
@@ -344,17 +346,18 @@ return array(
 	'Average daily duration without electricity&nbsp;: <strong>%s&nbsp;minutes</strong>' => 'How long light cut fit stay for one day&nbsp;:  <strong>%s&nbsp;minutes</strong>', // 79
 
 	// classes/controller/user.php
-	'Thanks for signing up!' => 'We thank you say you don Join', // 129
-	'This name is already in use' => 'Weh, someman get this name, Abeg change am', // 139
-	'This e-mail address is already in use. Forgot your password ?' => 'Someman dey use this email box. You don loss your secret code ?', // 141
-	'Technical Error. PLease try again Later' => 'Mistake dey here, go come', // 143
-/// TODO	'B : Technical Error. PLease try again Later' => '', // 147
-	'Feowl: Password Reset' => 'Feowl: Change secret code', // 218
-	'Enter your new password and repeat it correctly' => 'Write ya new secret code again fine', // 335
-	'Enter your present password correctly' => 'Write ya secret code fine', // 340
-	'Enter your new password correctly' => 'Write ya new secret code fine', // 345
-	'Your profile has been updated' => 'We don save your information', // 402
-	'Technical Error' => 'Mistake dey here', // 407
+	'Thanks for signing up!' => 'We thank you say you don Join', // 139
+	'This name is already in use' => 'Weh, someman get this name, Abeg change am', // 149
+	'This e-mail address is already in use. Forgot your password ?' => 'Someman dey use this email box. You don loss your secret code ?', // 151
+	'Technical Error. PLease try again Later' => 'Mistake dey here, go come', // 153
+/// TODO	'B : Technical Error. PLease try again Later' => '', // 157
+	'Feowl: Password Reset' => 'Feowl: Change secret code', // 234
+/// TODO	'We can\'t find your E-mail in our system' => '', // 243
+	'Enter your new password and repeat it correctly' => 'Write ya new secret code again fine', // 357
+	'Enter your present password correctly' => 'Write ya secret code fine', // 362
+	'Enter your new password correctly' => 'Write ya new secret code fine', // 367
+	'Your profile has been updated' => 'We don save your information', // 424
+	'Technical Error' => 'Mistake dey here', // 429
 
 	// Orphan phrases
 /// TODO	'User Guide' => '',
