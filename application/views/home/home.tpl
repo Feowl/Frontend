@@ -12,8 +12,8 @@
 					<p>
 			            {if $smarty.const.ALLOW_CONTRIBUTION}
 							<a class="btn btn-primary btn-giant" href="{url::site('contribute')}">{__ t='Contribute to Feowl'}</a>
+							<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">{__ t='Not in Douala?'}</a>
 						{/if}
-						<a class="btn btn-giant left10" href="{URL::base()}pages/not_in_douala">{__ t='Not in Douala?'}</a>
 					</p>
 				</div>
 			</div>

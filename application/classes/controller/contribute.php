@@ -46,7 +46,12 @@ class Controller_Contribute extends Controller_Template {
   
   
   public function action_index() {
-    $this->template->content = View::factory('contribute/contribute.tpl');
+    if(ALLOW_CONTRIBUTION) {
+      $this->template->content = View::factory('contribute/contribute.tpl');
+    } else {
+      $this->request->redirect('/');
+      exit;
+    }
   }
   
   //handle contribute action
