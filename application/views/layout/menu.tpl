@@ -78,11 +78,13 @@
                         {__ t='Login'}
                     </span>
                 </a>
-                <a href="{url::site('user/signup')}">                        
-                    <strong class="btn btn-primary">
-                    {__ t='Sign up'}  
-                    </strong>                  
-                </a>
+                {if $smarty.const.ALLOW_CONTRIBUTION}
+                    <a href="{url::site('user/signup')}">                        
+                        <strong class="btn btn-primary">
+                        {__ t='Sign up'}  
+                        </strong>                  
+                    </a>
+                {/if}
             </div>
         {/if}
 
