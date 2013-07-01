@@ -4,6 +4,7 @@
 # temporal folder to keep downloaded csv
 temp/*
 tmp/*
+!tmp/.gitempty
 application/cache/*
 application/logs/*
 
