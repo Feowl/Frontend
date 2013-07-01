@@ -81,7 +81,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' =>'',
-	'cache_dir' => DOCROOT.'tmp/',
+	'cache_dir' => '/tmp',
 	'errors' => true
 ));
 
