@@ -3,6 +3,7 @@
 
 # temporal folder to keep downloaded csv
 temp/*
+tmp/*
 application/cache/*
 application/logs/*
 

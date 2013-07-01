@@ -81,6 +81,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' =>'',
+	'cache_dir' => DOCROOT.'tmp/',
 	'errors' => true
 ));
 
@@ -108,8 +109,8 @@ Kohana::modules(array(
 	'database'   	=> MODPATH.'database',	   // Database access
 	//'orm'        	=> MODPATH.'orm',          // Object Relationship Mapping
 	'userguide'  	=> MODPATH.'userguide',    // User guide and API documentation
-  'smarty'  	 	=> MODPATH.'smarty',	   // Smarty Template Engine
-  'i18nget'  	 	=> MODPATH.'i18nget'	   // Retrieve all string to translate
+  	'smarty'  	 	=> MODPATH.'smarty',	   // Smarty Template Engine
+  	'i18nget'  	 	=> MODPATH.'i18nget'	   // Retrieve all string to translate
 ));
 
 /**
