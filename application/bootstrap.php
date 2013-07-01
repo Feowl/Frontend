@@ -81,7 +81,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' =>'',
-	'cache_dir' => DOCROOT.'tmp',
+	'cache_dir' => DOCROOT.'tmp',	
 	'errors' => true
 ));
 
@@ -89,7 +89,7 @@ Kohana::init(array(
 /**
  * Attach the file write to logging. Multiple writers are supported.
  */
-Kohana::$log->attach(new Log_File(APPPATH.'logs'));
+Kohana::$log->attach(new Log_File(DOCROOT.'logs'));
 
 /**
  * Attach a file reader to config. Multiple readers are supported.

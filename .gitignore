@@ -5,6 +5,8 @@
 temp/*
 tmp/*
 !tmp/.gitempty
+logs/*
+!logs/.gitempty
 application/cache/*
 application/logs/*
 
