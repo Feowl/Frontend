@@ -48,6 +48,7 @@ class Kohana_Kohana_Exception extends Exception {
 			Kohana_Exception::$php_errors[E_DEPRECATED] = 'Deprecated';
 		}
 
+		var_dump($variables);
 		echo $message;
 		// Set the message
 		//$message = __($message, $variables);
