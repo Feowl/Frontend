@@ -50,7 +50,7 @@ class Kohana_Kohana_Exception extends Exception {
 
 		echo $message;
 		// Set the message
-		$message = __($message, $variables);
+		//$message = __($message, $variables);
 
 		// Pass the message and integer code to the parent
 		parent::__construct($message, (int) $code);
