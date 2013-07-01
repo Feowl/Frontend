@@ -13,47 +13,22 @@ You must have a basic Apache and PHP environement:
 	sudo apt-get install apache2 php5 libapache2-mod-php5 php5-curl
 
 ### System configuration
-The Kohana installation <b>must be in a subdirectory <em>/Frontend/</em> from the root of your virtual host or domain</b>.
+The Kohana installation <b>must be in a directory <em>/</em> from the root of your virtual host or domain</b>.
 
-Also, you have to allow writing on <em>/Frontend/application/cache</em>, <em>/Frontend/application/logs</em> and <em>/Frontend/temp</em> directories (replace 	&lt;path> by the path of the Feowl directory):
+Also, you have to allow writing on <em>./tmp</em>, <em>./logs</em> directories (replace 	&lt;path> by the path of the Feowl directory):
 
-	cd /Frontend/
-	mkdir -p application/logs application/cache temp
-	chmod 777 -Rf application/logs application/cache temp
+	chmod 777 -Rf ./logs ./tmp
 
-### API access
+### API access, Sendgrid access
 Every Feowl installation must use a unique key for the API. [Do not hesitate to ask for a key!](mailto:contact@feowl.com)
-To setup your key, from the Feowl directory type:
-
-	cp application/config/apiauth.php.template application/config/apiauth.php
-	nano application/config/apiauth.php
+To setup your keys, from the Feowl directory use the following environement variables:
 	
-And replace:
+	API_USERNAME
+	API_KEY
+	SENDGRID_USERNAME
+	SENDGRID_PASSWORD
 
-	return array(
-		"default" => array(
-			"username" => "",
-			"api_key"  => ""
-		)
-	);
-	
-By your credentials:
-
-	return array(
-		"default" => array(
-			"username" => "example-user",
-			"api_key"  => "example-key"
-		)
-	);
-
-### Sendgrid
-To setup your sendgrid credidentials, from the Feowl directory type:
-
-	cp application/config/sendgrid.php.template application/config/sendgrid.php
-	nano application/config/sendgrid.php
-
-And complete the file as indicate with the previous one.
-
+You can otherwise edit the file under application/config but be carefull to not send it to git.
 
 ### Generate locales
 From the root directory, type :
