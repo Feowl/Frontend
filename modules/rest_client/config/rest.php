@@ -6,7 +6,7 @@ return array(
          * uri: the location and protocol of the rest server
          * content_type: What to send up as a default Content-Type header
          */
-        'uri' => 'http://dev-api.feowl.com/api/v1/',
+        'uri' => $_ENV["FEOWL_API_ROOT"],
         'content_type' => 'application/json'
     )
 );
