@@ -2,7 +2,7 @@
 
   return array(
     "default" => array(
-      "username" => $_ENV["API_USERNAME"],
-      "api_key"  => $_ENV["API_KEY"]
+      "username" => $_ENV["FEOWL_API_USERNAME"],
+      "api_key"  => $_ENV["FEOWL_API_KEY"]
     )
 );

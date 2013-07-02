@@ -23,10 +23,11 @@ Also, you have to allow writing on <em>./tmp</em>, <em>./logs</em> directories (
 Every Feowl installation must use a unique key for the API. [Do not hesitate to ask for a key!](mailto:contact@feowl.com)
 To setup your keys, from the Feowl directory use the following environement variables:
 	
-	API_USERNAME
-	API_KEY
-	SENDGRID_USERNAME
-	SENDGRID_PASSWORD
+	FEOWL_API_USERNAME
+	FEOWL_API_KEY
+	FEOWL_API_ROOT
+	FEOWL_SENDGRID_USERNAME
+	FEOWL_SENDGRID_PASSWORD
 
 You can otherwise edit the file under application/config but be carefull to not send it to git.
 
