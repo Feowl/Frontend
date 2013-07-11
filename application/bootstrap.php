@@ -82,7 +82,7 @@ Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' =>'',
 	'cache_dir' => DOCROOT.'tmp',	
-	'errors' => true
+	'errors' => false
 ));
 
 
