@@ -4,11 +4,11 @@
 
 <div class="container cover-banner">
 	<div class="row">
-		<div class="span4 offset4">		
+		<div class="span4 offset4">
 			<h1 class="white-color bottom40 top40">{__ t="Login to your account"}</h1>
 			<div class="login-form white-panel">
 				<form method="post" action="{url::site('user/login')}" class="margin30">
-					
+
 					{if isset($message)}
 						<div class="alert alert-error">
 							{$message|default:'No content supplied'}
@@ -22,11 +22,11 @@
 						{assign var=email value=''}
 					{/if}
 
-						
+
 					<p class="row-fluid bottom10">
 						<label for="user_email" class="hide">{__ t='Email'}</label>
-						<input type="text" class="span12" id="user_email" name="email" value="{$email}" placeholder="{__ t='Email'}" />	
-					</p>	
+						<input type="text" class="span12" id="user_email" name="email" value="{$email}" placeholder="{__ t='Email'}" />
+					</p>
 
 					<p class="row-fluid bottom10">
 						<label for="pwd" class="hide">{__ t='Password'}</label>
@@ -35,7 +35,7 @@
 
 					<div class="row-fluid">
 						<div class="span6 tl top10">
-							<a href="{url::site('user/forgot_password')}" >{__ t='Forgot your password?'}</a>				
+							<a href="{url::site('user/forgot_password')}" >{__ t='Forgot your password?'}</a>
 						</div>
 						<div class="span6 tr">
 							<input type='submit' class="btn btn-primary btn-large" name='submit' value='{__ t='Login'}'/>
@@ -44,7 +44,7 @@
 				</form>
 				<hr />
 				<p class="margin20 top0 silver-color">
-					{str_replace('%s', url::site('user/signup'), _('New to Feowl? <a href="%s">Sign up</a> and contribute now!') )}
+					{str_replace('%s', url::site('user/signup'), __('New to Feowl? <a href="%s">Sign up</a> and contribute now!') )}
 				</p>
 			</div>
 		</div>
