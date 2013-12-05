@@ -66,6 +66,16 @@ if (isset($_SERVER['KOHANA_ENV']))
 }
 
 /**
+ * Set the environment status by the domain.
+ */
+if (Kohana::$environment === Kohana::PRODUCTION)
+{
+    // Turn off notices and strict errors
+    error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
+}
+
+
+/**
  * Initialize Kohana, setting the default options.
  *
  * The following options are available:
@@ -82,9 +92,10 @@ Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' =>'',
 	'cache_dir' => DOCROOT.'tmp',
-	'errors' => Kohana::$environment != Kohana::PRODUCTION,
-	'profile' => Kohana::$environment != Kohana::PRODUCTION
+	'errors' => Kohana::$environment  !== Kohana::PRODUCTION,
+	'profile' => Kohana::$environment !== Kohana::PRODUCTION
 ));
+
 
 
 /**
